@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd build 
+if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]
+    then make && cd .. && ./build/bin/babel_server
+else
+    MSBuild.exe Babel.sln && cd .. && ./build/bin/babel_server.exe
+fi
