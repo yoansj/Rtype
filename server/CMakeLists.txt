@@ -1,4 +1,4 @@
-project(r-type_server)
+project(babel_server)
 cmake_minimum_required(VERSION 2.8.12)
 add_definitions("-fPIC -g3")
 
@@ -30,8 +30,8 @@ message("before finding")
 message("after finding")
 
 include_directories(${CMAKE_INCLUDE_PATH} ${INC_DIR} ${BSON_INC})
-add_executable(r-type_server ${SERVER_SRC} ${BSON_SRC})
+add_executable(babel_server ${SERVER_SRC} ${BSON_SRC})
 
-target_link_libraries(r-type_server ${CONAN_LIBS})
+target_link_libraries(babel_server ${CONAN_LIBS})
 
 configure_file(./table.txt ./bin/table.txt COPYONLY)

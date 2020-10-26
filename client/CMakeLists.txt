@@ -1,4 +1,4 @@
-project(r-type_client)
+project(babel_client)
 cmake_minimum_required(VERSION 2.8.12)
 add_definitions("-fPIC")
 
@@ -34,6 +34,6 @@ include_directories(
 )
 
 add_compile_definitions(ROOT_PATH="${PROJECT_SOURCE_DIR}/")
-add_executable(r-type_client ${SRC} ${QT_Include} ${BSON_SRC})
-target_link_libraries(r-type_client ${CONAN_LIBS})
-target_link_libraries(r-type_client Qt5::Widgets Qt5::Network Qt5::Core Qt5::Gui)
+add_executable(babel_client ${SRC} ${QT_Include} ${BSON_SRC})
+target_link_libraries(babel_client ${CONAN_LIBS})
+target_link_libraries(babel_client Qt5::Widgets Qt5::Network Qt5::Core Qt5::Gui)
