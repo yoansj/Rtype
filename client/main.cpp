@@ -5,8 +5,6 @@
 ** main
 */
 
-#include <opus/opus.h>
-#include <portaudio.h>
 #include "iostream"
 
 
