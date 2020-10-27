@@ -1,15 +1,17 @@
 [requires]
-qt/5.14.2@bincrafters/stable
 sqlite3/3.29.0@bincrafters/stable
-boost_asio/1.69.0@bincrafters/stable
-boost_uuid/1.69.0@bincrafters/stable
 bzip2/1.0.8
-zlib/1.2.11
+sfml/2.5.1@bincrafters/stable
+freetype/2.9.1@bincrafters/stable
+zlib/1.2.11@conan/stable
 zstd/1.4.4
 
 [generators]
 cmake
 
 [options]
-qt:shared=True
 zlib:shared=True
+sfml:graphics=True
+sfml:audio=True
+sfml:window=True
+sfml:network=True
