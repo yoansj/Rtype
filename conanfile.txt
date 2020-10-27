@@ -5,6 +5,7 @@ sfml/2.5.1@bincrafters/stable
 freetype/2.9.1@bincrafters/stable
 zlib/1.2.11@conan/stable
 zstd/1.4.4
+boost_asio/1.69.0@bincrafters/stable
 
 [generators]
 cmake
