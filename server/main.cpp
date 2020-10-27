@@ -7,6 +7,7 @@
 
 #include "iostream"
 #include <SFML/Network.hpp>
+#include "Test.hpp"
 
 int main()
 {
@@ -23,7 +24,7 @@ int main()
         if (socket.receive(data, 100, received, sender, port) != sf::Socket::Done ) {
             std::cout << "Erreur de paquets zebi" << std::endl;
         } else {
-            std::cout << "Got : " << data << " from : " << sender << std::endl; 
+            std::cout << "Got : " << data << " from : " << sender << std::endl;
         }
     }
 
