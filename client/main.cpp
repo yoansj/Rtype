@@ -37,8 +37,10 @@ int main(int argc, char **argv)
 				window.close();
                 connectSocket.unbind();
 		}
+        sf::Vector2i m = sf::Mouse::getPosition(window);
+        void *mousePos = &m;
 
-		if (connectSocket.send(toSend, 100, test, 54000) != sf::Socket::Done) {
+		if (connectSocket.send(mousePos, 100, test, 54000) != sf::Socket::Done) {
             std::cout << "Erreur d'envoi" << std::endl;
         }
         /*if (connectSocket.receive(data, 100, received, sender, port) != sf::Socket::Done) {

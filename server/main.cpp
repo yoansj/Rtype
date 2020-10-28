@@ -8,6 +8,8 @@
 #include "iostream"
 #include <SFML/Network.hpp>
 #include "Test.hpp"
+#include <boost/asio.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 int main()
 {
@@ -16,6 +18,8 @@ int main()
     sf::UdpSocket socket;
     sf::IpAddress sender;
     unsigned short port;
+
+    boost::asio::io_service service;
 
     socket.bind(54000);
     socket.setBlocking(false);
