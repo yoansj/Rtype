@@ -8,9 +8,9 @@
 #ifndef POSITIONCOMPONENT_HPP_
 #define POSITIONCOMPONENT_HPP_
 
+#include "Component.hpp"
 #include <iostream>
 #include <string>
-#include "Component.hpp"
 
 namespace Client {
 
