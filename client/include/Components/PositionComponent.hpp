@@ -18,7 +18,7 @@ namespace Client {
 
         class PositionComponent : public Client::Components::Component {
             public:
-                PositionComponent(float setX, float setY) : Client::Components::Component("Position"), x(setX), y(setY) {};
+                PositionComponent(float setX, float setY) : Client::Components::Component("Position", 0, {}), x(setX), y(setY) {};
                 ~PositionComponent() {std::cout << "destruction";};
 
                 float x;

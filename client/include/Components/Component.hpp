@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 namespace Client {
 
@@ -17,10 +18,13 @@ namespace Client {
 
         class Component {
             public:
-                Component(std::string name) : _name(name) {};
-                virtual ~Component() = 0;
+                Component(std::string name, int id, std::vector<std::string> systems)
+                : _name(name), _entityId(id), _systems(systems) {};
+                virtual ~Component();
             
                 std::string _name;
+                int _entityId;
+                std::vector<std::string> _systems;
         };
 
     }
