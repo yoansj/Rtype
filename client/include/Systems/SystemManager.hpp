@@ -26,7 +26,7 @@ namespace Client {
             public:
                 static SystemManager &Get() {static SystemManager sys; return (sys);};
                 void CreateSystem(std::shared_ptr<System> s);
-                System &GetSystem(std::string name);
+                std::shared_ptr<System> &GetSystem(std::string name);
                 void AddComponentToSystem(std::string systemName, std::shared_ptr<Components::Component> c);
                 void Update();
 
