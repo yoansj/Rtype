@@ -12,6 +12,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace Client {
 
@@ -26,14 +27,14 @@ namespace Client {
             public:
                 System(std::string name) : _name(name) {};
                 std::string GetName() const {return (_name);};
-                void AddComponent(Components::Component &c) {_components.push_back(c);};
+                void AddComponent(std::shared_ptr<Components::Component> c) {_components.push_back(c);};
                 ~System() {};
                 virtual void Init() {};
                 virtual void Update() {};
 
             private:
                 std::string _name;
-                std::vector<Components::Component> _components;
+                std::vector<std::shared_ptr<Components::Component>> _components;
         };
 
     }

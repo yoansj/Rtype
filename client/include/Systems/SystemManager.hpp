@@ -13,20 +13,21 @@
 
 #include <map>
 #include <string>
+#include <memory>
 
 namespace Client {
 
     namespace Systems {
 
         /**
-         * @brief Factory pour les systèmes   
+         * @brief Factory pour les systèmes
          */
         class SystemManager {
             public:
                 static SystemManager &Get() {static SystemManager sys; return (sys);};
-                void CreateSystem(System &s);
+                void CreateSystem(std::shared_ptr<System> s);
                 System &GetSystem(std::string name);
-                void AddComponentToSystem(std::string systemName, Components::Component &c);
+                void AddComponentToSystem(std::string systemName, std::shared_ptr<Components::Component> c);
                 void Update();
 
             private:
@@ -35,7 +36,7 @@ namespace Client {
                 SystemManager &operator= (const SystemManager&) = delete;
                 SystemManager (const SystemManager&) = delete;
 
-                std::map<std::string, System&> _systems;
+                std::map<std::string, std::shared_ptr<System>> _systems;
         };
 
     }

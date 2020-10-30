@@ -10,6 +10,7 @@
 
 #include <map>
 #include <vector>
+#include <memory>
 
 #include "SystemManager.hpp"
 #include "Component.hpp"
@@ -24,7 +25,7 @@ namespace Client {
                 ComponentManager();
                 ~ComponentManager();
 
-                Component &CreateComponent(Component &c);
+                std::shared_ptr<Component> CreateComponent(std::shared_ptr<Component> c);
 
                 std::map<Component, std::vector<Systems::System>> _components;
         };

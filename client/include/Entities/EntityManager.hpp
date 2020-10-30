@@ -21,7 +21,7 @@ namespace Client {
         class EntityManager {
             public:
                 static EntityManager &Get() {static EntityManager instance; return (instance);};
-                std::shared_ptr<Entity> &Create(std::vector<Components::Component> initComponents);
+                std::shared_ptr<Entity> Create(std::vector<Components::Component> initComponents);
 
             private:
                 EntityManager &operator= (const EntityManager&) = delete;
