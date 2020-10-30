@@ -16,10 +16,12 @@ namespace Client {
 
     namespace Components {
 
-        class PositionComponent : public Client::Components::Component {
+        class PositionComponent : public Components::Component {
             public:
-                PositionComponent(float setX, float setY) : Client::Components::Component("Position", 0, {}), x(setX), y(setY) {};
-                ~PositionComponent() {std::cout << "destruction";};
+                PositionComponent(float setX, float setY) : Client::Components::Component("Position", -1, {"PositionSystem"}), x(setX), y(setY) {};
+                ~PositionComponent() {};
+
+                void print() {std::cout << x << " " << y << std::endl;};
 
                 float x;
                 float y;

@@ -20,14 +20,33 @@ namespace Client {
 
     namespace Components {
 
+        /**
+         * @brief Handles all Components of the ECS, is a singleton
+         * Use Get() to access the instance
+         * */
         class ComponentManager {
             public:
-                ComponentManager();
-                ~ComponentManager();
+                /**
+                 * @brief Allow access to the ComponentManager class
+                 * @return ComponentManager instance
+                 */
+                static ComponentManager &Get() {static ComponentManager comp; return (comp);};
 
-                std::shared_ptr<Component> CreateComponent(std::shared_ptr<Component> c);
+                /**
+                 * @brief Creates a component and adds-it to the component list
+                 * @note No note
+                 * @param  &c: Reference to the component that was created
+                 * @return The component created
+                 */
+                std::shared_ptr<Component> const &CreateComponent(std::shared_ptr<Component> const &c);
 
-                std::map<Component, std::vector<Systems::System>> _components;
+            private:
+                std::map<std::shared_ptr<Component>, std::vector<std::shared_ptr<Systems::System>>> _components;
+
+                ComponentManager() {};
+                ~ComponentManager() = default;
+                ComponentManager &operator= (const ComponentManager&) = delete;
+                ComponentManager (const ComponentManager&) = delete;
         };
 
     }

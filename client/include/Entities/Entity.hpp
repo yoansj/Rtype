@@ -19,7 +19,7 @@ namespace Client {
         class Entity {
             public:
                 Entity(int id, std::vector<Components::Component> initComponents) : _id(id), _components(initComponents) {}
-                ~Entity();
+                ~Entity() {};
 
             private:
                 int _id;

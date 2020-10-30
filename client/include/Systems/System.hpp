@@ -32,7 +32,7 @@ namespace Client {
                 virtual void Init() {};
                 virtual void Update() {};
 
-            private:
+            protected:
                 std::string _name;
                 std::vector<std::shared_ptr<Components::Component>> _components;
         };

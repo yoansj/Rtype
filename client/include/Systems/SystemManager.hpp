@@ -25,13 +25,13 @@ namespace Client {
         class SystemManager {
             public:
                 static SystemManager &Get() {static SystemManager sys; return (sys);};
-                void CreateSystem(std::shared_ptr<System> s);
+                void CreateSystem(std::shared_ptr<System> const &s);
                 std::shared_ptr<System> &GetSystem(std::string name);
                 void AddComponentToSystem(std::string systemName, std::shared_ptr<Components::Component> c);
                 void Update();
 
             private:
-                SystemManager();
+                SystemManager() {};
                 ~SystemManager() = default;
                 SystemManager &operator= (const SystemManager&) = delete;
                 SystemManager (const SystemManager&) = delete;
