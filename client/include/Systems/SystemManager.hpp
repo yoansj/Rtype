@@ -25,9 +25,9 @@ namespace Client {
         class SystemManager {
             public:
                 static SystemManager &Get() {static SystemManager sys; return (sys);};
-                void CreateSystem(std::shared_ptr<System> const &s);
-                std::shared_ptr<System> &GetSystem(std::string name);
-                void AddComponentToSystem(std::string systemName, std::shared_ptr<Components::Component> c);
+                void CreateSystem(System const &s);
+                System &GetSystem(std::string name);
+                void AddComponentToSystem(std::string systemName, Components::Component c);
                 void Update();
 
             private:
@@ -36,7 +36,7 @@ namespace Client {
                 SystemManager &operator= (const SystemManager&) = delete;
                 SystemManager (const SystemManager&) = delete;
 
-                std::map<std::string, std::shared_ptr<System>> _systems;
+                std::map<std::string, System> _systems;
         };
 
     }

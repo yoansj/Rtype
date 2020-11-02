@@ -7,9 +7,9 @@
 
 #include "EntityManager.hpp"
 
-std::shared_ptr<Client::Entities::Entity> Client::Entities::EntityManager::Create(std::vector<Components::Component> initComponents)
+Client::Entities::Entity &Client::Entities::EntityManager::Create(std::vector<Components::Component> initComponents)
 {
-    auto newEntity = std::make_shared<Entity>(_minId, initComponents);
+    Entity newEntity = Entity(_minId, initComponents);
     _minId++;
     _entities.push_back(newEntity);
     return (newEntity);

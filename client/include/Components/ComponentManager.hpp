@@ -38,7 +38,7 @@ namespace Client {
                  * @param  &c: Reference to the component that was created
                  * @return The component created
                  */
-                std::shared_ptr<Component> const &CreateComponent(std::shared_ptr<Component> const &c);
+                Component const &CreateComponent(Component const &c);
 
             private:
                 std::map<std::shared_ptr<Component>, std::vector<std::shared_ptr<Systems::System>>> _components;

@@ -27,14 +27,14 @@ namespace Client {
             public:
                 System(std::string name) : _name(name) {};
                 std::string GetName() const {return (_name);};
-                void AddComponent(std::shared_ptr<Components::Component> c) {_components.push_back(c);};
+                void AddComponent(Components::Component &c) {_components.push_back(c);};
                 ~System() {};
                 virtual void Init() {};
                 virtual void Update() {};
 
             protected:
                 std::string _name;
-                std::vector<std::shared_ptr<Components::Component>> _components;
+                std::vector<Components::Component> _components;
         };
 
     }

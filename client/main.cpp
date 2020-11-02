@@ -19,11 +19,13 @@ int main(int argc, char **argv)
 
 
 	Client::Systems::SystemManager::Get().CreateSystem(
-		std::make_shared<Client::Systems::PositionSystem>()
+		// std::make_shared<Client::Systems::PositionSystem>()
+		Client::Systems::PositionSystem()
 	);
 
 	Client::Components::ComponentManager::Get().CreateComponent(
-		std::make_shared<Client::Components::PositionComponent>(11, 12)
+		// std::make_shared<Client::Components::PositionComponent>(11, 12)
+		Client::Components::PositionComponent(11,12)
 	);
 
 	while (window.isOpen()) {
