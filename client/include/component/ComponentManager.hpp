@@ -27,7 +27,7 @@ class ComponentManager {
 
         bool destroy(Entity &e) {
             for (int i = 0; i != _components.size(); i++) {
-                if (_components[i].getEntity() == e) {
+                if (_components[i].entity == e) {
                     _components.erase(_components.begin() + i);
                     return (true);
                 }
@@ -35,13 +35,23 @@ class ComponentManager {
             return (false);
         }
 
+        size_t size() {return(_components.size());};
+
         AbstractComponent &getComponent(Entity &e) {
             for (int i = 0; i != _components.size(); i++) {
-                if (_components[i].getEntity() == e) {
+                if (_components[i].entity == e) {
                     return (_components[i]);
                 }
             }
             throw std::logic_error("Component non trouvé");
+        }
+
+        std::vector<AbstractComponent> &getComponents() {
+            return (_components);
+        }
+
+        const AbstractComponent &operator[](std::size_t size) {
+            return (_components[size]);
         }
 
     private:

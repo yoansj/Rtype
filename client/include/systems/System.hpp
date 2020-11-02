@@ -35,10 +35,18 @@ namespace Engine {
                 return (_components.getComponent(e));
             }
 
+            size_t size() {
+                return (_components.size());
+            }
+
             virtual void update() {
                 //Each system should implement this function
                 //Even if it does nothing
             };
+
+            const AbstractComponent &operator[](std::size_t size) {
+                return (_components[size]);
+            }
 
         protected:
             ComponentManager<AbstractComponent> _components;

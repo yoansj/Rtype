@@ -16,18 +16,10 @@ int main(int argc, char **argv)
 {
 	Engine::Engine game;
 
-	game.update();
-	// Engine::EntityManager E;
-	// Engine::PositionSystem Pos;
+	try {
+		game.run();
+	} catch (...) {
 
-
-	// Entity box = E.create();
-	// Entity otherbox = E.create();
-	// Entity ball = E.create();
-
-	// auto boxPos = Pos.create(box);
-	// auto ortherboxPos = Pos.create(otherbox);
-	// auto ballPos = Pos.create(ball);
-
+	}
 	return 0;
 }

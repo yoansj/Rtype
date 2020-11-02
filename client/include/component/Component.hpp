@@ -19,12 +19,9 @@ namespace Engine {
      */
     class Component {
         public:
-            Component(Entity father) : _entity(father) {};
+            Component(Entity father) : entity(father) {};
             ~Component() = default;
-            Entity getEntity() {return (_entity);};
-
-        protected:
-            Entity _entity;
+            Entity entity;
     };
 
 }

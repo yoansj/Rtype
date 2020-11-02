@@ -8,7 +8,10 @@
 #ifndef ENGINE_HPP_
 #define ENGINE_HPP_
 
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <memory>
+#include "Systems.hpp"
+#include "Entity.hpp"
 
 namespace Engine {
     class Engine {
@@ -16,11 +19,14 @@ namespace Engine {
             Engine();
             ~Engine();
 
-            void update();
-        protected:
+            void run();
+
+            void updateSystems();
         private:
-            sf::Window _window;
+            std::shared_ptr<sf::RenderWindow> _window;
             sf::Event _event;
+            Systems &_systems;
+            EntityManager _entityManager;
     };
 }
 
