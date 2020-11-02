@@ -12,13 +12,22 @@
 #include "Position.hpp"
 #include "Entity.hpp"
 
-class PositionSystem : public System<Position> {
-    public:
-        PositionSystem() : System() {};
-        ~PositionSystem() = default;
+namespace Engine {
 
-        bool setPosition(Entity e, float x, float y);
-        Position &getPosition(Entity e);
-};
+    /**
+     * @brief  Position system used on the Position component
+     */
+    class PositionSystem : public System<Position> {
+        public:
+            PositionSystem() : System() {};
+            ~PositionSystem() = default;
+
+            void update() override {};
+
+            bool setPosition(Entity e, float x, float y);
+            Position &getPosition(Entity e);
+    };
+
+}
 
 #endif /* !POSITIONSYSTEM_HPP_ */

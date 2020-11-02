@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	sf::Event event;
 
 	Engine::EntityManager E;
-	PositionSystem Pos;
+	Engine::PositionSystem Pos;
 
 
 	Entity box = E.create();

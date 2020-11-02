@@ -10,14 +10,23 @@
 
 #include "Entity.hpp"
 
-class Component {
-    public:
-        Component(Entity father) : _entity(father) {};
-        ~Component() = default;
-        Entity getEntity() {return (_entity);};
+namespace Engine {
 
-    protected:
-        Entity _entity;
-};
+    /**
+     * @brief  Base class for all of our components
+     * A component is a data structure that belongs to an entity
+     * All components must inherit this class
+     */
+    class Component {
+        public:
+            Component(Entity father) : _entity(father) {};
+            ~Component() = default;
+            Entity getEntity() {return (_entity);};
+
+        protected:
+            Entity _entity;
+    };
+
+}
 
 #endif /* !COMPONENT_HPP_ */

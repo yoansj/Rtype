@@ -7,13 +7,13 @@
 
 #include "PositionSystem.hpp"
 
-Position &PositionSystem::getPosition(Entity e) {
+Engine::Position &Engine::PositionSystem::getPosition(Entity e) {
     return (
         _components.getComponent(e)
     );
 }
 
-bool PositionSystem::setPosition(Entity e, float x, float y) {
+bool Engine::PositionSystem::setPosition(Entity e, float x, float y) {
     auto pos = _components.getComponent(e);
 
     pos.x = x;
