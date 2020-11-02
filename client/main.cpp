@@ -8,6 +8,7 @@
 #include <iostream>
 #include <SFML/Window.hpp>
 #include "Entity.hpp"
+#include "PositionSystem.hpp"
 
 
 int main(int argc, char **argv)
@@ -15,14 +16,17 @@ int main(int argc, char **argv)
 	sf::Window window(sf::VideoMode(800, 600), "My window");
 	sf::Event event;
 
-	Engine::EntityManager lol;
-	std::cout << lol.create() << std::endl;
-	std::cout << lol.create() << std::endl;
-	lol.remove(1);
-	std::cout << lol.create() << std::endl;
-	std::cout << lol.create() << std::endl;
+	Engine::EntityManager E;
+	PositionSystem Pos;
 
 
+	Entity box = E.create();
+	Entity otherbox = E.create();
+	Entity ball = E.create();
+
+	auto boxPos = Pos.create(box);
+	auto ortherboxPos = Pos.create(otherbox);
+	auto ballPos = Pos.create(ball);
 
 
 	while (window.isOpen()) {

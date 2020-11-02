@@ -12,12 +12,12 @@
 
 class Component {
     public:
-        Component();
-        ~Component();
+        Component(Entity father) : _entity(father) {};
+        ~Component() = default;
+        Entity getEntity() {return (_entity);};
 
     protected:
         Entity _entity;
-    private:
 };
 
 #endif /* !COMPONENT_HPP_ */

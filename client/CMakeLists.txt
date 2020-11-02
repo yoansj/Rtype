@@ -15,6 +15,7 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS ${PROJECT_SOURCE_DIR}/client/src/)
 file(GLOB SRC
     ${PROJECT_SOURCE_DIR}/client/main.cpp
     ${PROJECT_SOURCE_DIR}/client/src/entities/*
+    ${PROJECT_SOURCE_DIR}/client/src/systems/*
 
 )
 
@@ -22,6 +23,8 @@ include_directories(${CMAKE_INCLUDE_PATH})
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/client/include/
+    ${PROJECT_SOURCE_DIR}/client/include/component/
+    ${PROJECT_SOURCE_DIR}/client/include/systems/
 )
 
 add_compile_definitions(ROOT_PATH="${PROJECT_SOURCE_DIR}/")
