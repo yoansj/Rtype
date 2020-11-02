@@ -16,7 +16,6 @@ int main(int argc, char **argv)
 	sf::Event event;
 
 	Engine::EntityManager lol;
-	
 	std::cout << lol.create() << std::endl;
 	std::cout << lol.create() << std::endl;
 	lol.remove(1);

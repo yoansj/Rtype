@@ -14,7 +14,7 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS ${PROJECT_SOURCE_DIR}/client/src/)
 
 file(GLOB SRC
     ${PROJECT_SOURCE_DIR}/client/main.cpp
-    ${PROJECT_SOURCE_DIR}/client/entities/*
+    ${PROJECT_SOURCE_DIR}/client/src/entities/*
 
 )
 
