@@ -16,6 +16,8 @@ file(GLOB SRC
     ${PROJECT_SOURCE_DIR}/client/main.cpp
     ${PROJECT_SOURCE_DIR}/client/src/entities/*
     ${PROJECT_SOURCE_DIR}/client/src/systems/*
+    ${PROJECT_SOURCE_DIR}/client/src/engine/*
+
 
 )
 
@@ -25,6 +27,8 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/client/include/
     ${PROJECT_SOURCE_DIR}/client/include/component/
     ${PROJECT_SOURCE_DIR}/client/include/systems/
+    ${PROJECT_SOURCE_DIR}/client/include/engine/
+
 )
 
 add_compile_definitions(ROOT_PATH="${PROJECT_SOURCE_DIR}/")

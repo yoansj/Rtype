@@ -9,31 +9,25 @@
 #include <SFML/Window.hpp>
 #include "Entity.hpp"
 #include "PositionSystem.hpp"
+#include "Engine.hpp"
 
 
 int main(int argc, char **argv)
 {
-	sf::Window window(sf::VideoMode(800, 600), "My window");
-	sf::Event event;
+	Engine::Engine game;
 
-	Engine::EntityManager E;
-	Engine::PositionSystem Pos;
-
-
-	Entity box = E.create();
-	Entity otherbox = E.create();
-	Entity ball = E.create();
-
-	auto boxPos = Pos.create(box);
-	auto ortherboxPos = Pos.create(otherbox);
-	auto ballPos = Pos.create(ball);
+	game.update();
+	// Engine::EntityManager E;
+	// Engine::PositionSystem Pos;
 
 
-	while (window.isOpen()) {
-		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-	}
+	// Entity box = E.create();
+	// Entity otherbox = E.create();
+	// Entity ball = E.create();
+
+	// auto boxPos = Pos.create(box);
+	// auto ortherboxPos = Pos.create(otherbox);
+	// auto ballPos = Pos.create(ball);
+
 	return 0;
 }
