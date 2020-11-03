@@ -26,7 +26,7 @@ Engine::Position &Engine::PositionSystem::getPosition(Entity e) {
  * @returns A boolean to know if the value changed
  */
 bool Engine::PositionSystem::setPosition(Entity e, float x, float y) {
-    auto pos = _components.getComponent(e);
+    auto &pos = _components.getComponent(e);
 
     pos.x = x;
     pos.y = y;

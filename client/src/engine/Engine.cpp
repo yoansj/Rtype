@@ -8,7 +8,7 @@
 #include "Engine.hpp"
 
 Engine::Engine::Engine() :
-    _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1000, 1000), "R-Type"))
+    _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1000, 1000), "R-Type")), _renderer(_window)
 {
     auto test = _entityManager.create();
     _systems.spriteSystem.create(test);
@@ -35,6 +35,7 @@ void Engine::Engine::run()
                 _window->close();
         }
         updateSystems();
+        _renderer.doRender(_systems);
         _window->display();
     }
 }

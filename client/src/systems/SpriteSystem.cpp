@@ -13,12 +13,12 @@ Engine::SpriteSystem::SpriteSystem() : System()
 
 bool Engine::SpriteSystem::initSprite(Entity e, std::string const &filepath)
 {
-    auto component = _components.getComponent(e);
+    auto &component = _components.getComponent(e);
 
     if (!component.texture.loadFromFile(filepath)) {
         throw std::logic_error("blabla sprite a changer non trouvé");
     } else {
-        component.sprite.setTexture(component.texture);
+        component.sprite.setTexture(component.texture, true);
         component.isCreated = true;
     }
     return (true);

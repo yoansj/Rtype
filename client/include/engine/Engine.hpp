@@ -10,8 +10,10 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
+
 #include "SystemManager.hpp"
 #include "Entity.hpp"
+#include "Renderer.hpp"
 
 namespace Engine {
     class Engine {
@@ -27,6 +29,7 @@ namespace Engine {
             sf::Event _event;
             SystemManager _systems;
             EntityManager _entityManager;
+            Renderer _renderer;
     };
 }
 

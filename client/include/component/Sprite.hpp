@@ -18,8 +18,8 @@ namespace Engine {
     struct Sprite : public Component {
         std::string filepath;
         bool isCreated;
-        sf::Sprite sprite;
         sf::Texture texture;
+        sf::Sprite sprite;
     };
 
 }
