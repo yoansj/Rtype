@@ -25,7 +25,7 @@ namespace Engine {
         private:
             std::shared_ptr<sf::RenderWindow> _window;
             sf::Event _event;
-            SystemManager &_systems;
+            SystemManager _systems;
             EntityManager _entityManager;
     };
 }

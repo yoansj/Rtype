@@ -44,12 +44,8 @@ namespace Engine {
                 //Even if it does nothing
             }
 
-            const AbstractComponent &operator[](std::size_t size) {
-                return (_components[size]);
-            }
-
-            ComponentManager<AbstractComponent> &getComponents() {
-                return (_components);
+            std::vector<AbstractComponent> &getComponents() {
+                return (_components.getComponents());
             }
         protected:
             ComponentManager<AbstractComponent> _components;

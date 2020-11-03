@@ -8,15 +8,14 @@
 #include "Engine.hpp"
 
 Engine::Engine::Engine() :
-    _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1000, 1000), "R-Type")),
-    _systems(SystemManager::Get())
+    _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1000, 1000), "R-Type"))
 {
     auto test = _entityManager.create();
-    _systems.Get().spriteSystem.create(test);
-    _systems.Get().positionSystem.create(test);
-    _systems.Get().positionSystem.setPosition(test, 500, 500);
-    _systems.Get().spriteSystem.setWindow(_window);
-    _systems.Get().spriteSystem.initSprite(test, "../client/assets/sprite.png");
+    _systems.spriteSystem.create(test);
+    _systems.positionSystem.create(test);
+    _systems.positionSystem.setPosition(test, 500, 500);
+    _systems.spriteSystem.setWindow(_window);
+    _systems.spriteSystem.initSprite(test, "../client/assets/sprite.png");
 }
 
 Engine::Engine::~Engine()
