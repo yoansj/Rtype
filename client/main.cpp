@@ -44,7 +44,7 @@ class udp_client {
 int main(int argc, char **argv)
 {
     udp_client client(7171, "localhost");
-    client.send("test");
+    client.send();
     while (1) {
         client.receiver();
     }
