@@ -42,12 +42,15 @@ namespace Engine {
             virtual void update() {
                 //Each system should implement this function
                 //Even if it does nothing
-            };
+            }
 
             const AbstractComponent &operator[](std::size_t size) {
                 return (_components[size]);
             }
 
+            ComponentManager<AbstractComponent> &getComponents() {
+                return (_components);
+            }
         protected:
             ComponentManager<AbstractComponent> _components;
     };

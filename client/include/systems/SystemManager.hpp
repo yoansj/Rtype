@@ -14,16 +14,14 @@
 namespace Engine {
     class SystemManager {
         public:
-            static SystemManager &Get() {static SystemManager sys; return(sys);};
-
-            PositionSystem positionSystem;
-            Engine::SpriteSystem spriteSystem;
-
-        private:
-            SystemManager &operator= (const SystemManager&) = delete;
-            SystemManager (const SystemManager&) = delete;
             SystemManager() = default;
             ~SystemManager() = default;
+
+            PositionSystem positionSystem;
+            SpriteSystem spriteSystem;
+
+        private:
+
     };
 }
 
