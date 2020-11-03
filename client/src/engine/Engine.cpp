@@ -9,13 +9,14 @@
 
 Engine::Engine::Engine() :
     _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1000, 1000), "R-Type")),
-    _systems(Systems::Get())
+    _systems(SystemManager::Get())
 {
     auto test = _entityManager.create();
     _systems.Get().spriteSystem.create(test);
     _systems.Get().positionSystem.create(test);
     _systems.Get().positionSystem.setPosition(test, 500, 500);
-    _systems.Get().spriteSystem.initSprite(test, "sprite.png");
+    _systems.Get().spriteSystem.setWindow(_window);
+    _systems.Get().spriteSystem.initSprite(test, "../client/assets/sprite.png");
 }
 
 Engine::Engine::~Engine()
@@ -29,7 +30,7 @@ Engine::Engine::~Engine()
 void Engine::Engine::run()
 {
     while (_window->isOpen()) {
-        _window->clear(sf::Color::Magenta);
+        _window->clear(sf::Color::Blue);
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();

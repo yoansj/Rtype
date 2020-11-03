@@ -12,7 +12,6 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 
-#include "Systems.hpp"
 #include "System.hpp"
 #include "Sprite.hpp"
 

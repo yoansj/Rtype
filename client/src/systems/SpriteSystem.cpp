@@ -5,6 +5,7 @@
 ** SpriteSystem
 */
 
+#include "SystemManager.hpp"
 #include "SpriteSystem.hpp"
 
 Engine::SpriteSystem::SpriteSystem() : System()
@@ -28,9 +29,11 @@ void Engine::SpriteSystem::update()
 {
     for (int i = 0; i != _components.size(); i++) {
         auto entity = _components[i].entity;
-        auto position = Systems::Get().positionSystem.getComponent(entity);
-        _components.getComponents()[i].sprite.setPosition(position.x, position.y);
+        auto position = SystemManager::Get().positionSystem.getComponent(entity);
+        _components.getComponents()[i].sprite.setPosition(20, 20);
+        std::cout << _components.getComponents()[i].sprite.getPosition().x << std::endl;
         _window->draw(_components.getComponents()[i].sprite);
+        std::cout << "draw !" << std::endl;
     }
 }
 

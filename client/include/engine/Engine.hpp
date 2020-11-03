@@ -10,7 +10,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
-#include "Systems.hpp"
+#include "SystemManager.hpp"
 #include "Entity.hpp"
 
 namespace Engine {
@@ -25,7 +25,7 @@ namespace Engine {
         private:
             std::shared_ptr<sf::RenderWindow> _window;
             sf::Event _event;
-            Systems &_systems;
+            SystemManager &_systems;
             EntityManager _entityManager;
     };
 }
