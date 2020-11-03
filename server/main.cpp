@@ -1,36 +1,84 @@
 /*
 ** EPITECH PROJECT, 2020
-** B-CPP-500-PAR-5-1-babel-aurele.auboin
+** B-CPP-501-PAR-5-1-rtype-yoan.saint-juste
 ** File description:
 ** main
 */
 
-#include "iostream"
-#include <SFML/Network.hpp>
-#include "Test.hpp"
+#include <array>
 #include <boost/asio.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
+#include <iostream>
+#include <boost/array.hpp>
+#include <boost/bind.hpp>
 
-int main()
+using boost::asio::ip::udp;
+
+std::string make_daytime_string()
 {
-    char data[100];
-	std::size_t received;
-    sf::UdpSocket socket;
-    sf::IpAddress sender;
-    unsigned short port;
+    using namespace std; // For time_t, time and ctime;
+    time_t now = time(0);
+    return ctime(&now);
+}
 
-    boost::asio::io_service service;
-
-    socket.bind(54000);
-    socket.setBlocking(false);
-
-    while (1) {
-        if (socket.receive(data, 100, received, sender, port) != sf::Socket::Done ) {
-            std::cout << "Erreur de paquets zebi" << std::endl;
-        } else {
-            std::cout << "Got : " << data << " from : " << sender << std::endl;
-        }
+class udp_server
+{
+public:
+    udp_server(boost::asio::io_service &io_service)
+        : socket_(io_service, udp::endpoint(udp::v4(), 7171))
+    {
+        start_receive();
     }
 
-    return (0);
+private:
+    void start_receive()
+    {
+        socket_.async_receive_from(
+            boost::asio::buffer(recv_buffer_), remote_endpoint_,
+            boost::bind(&udp_server::handle_receive, this,
+                        boost::asio::placeholders::error,
+                        boost::asio::placeholders::bytes_transferred));
+    }
+
+    void handle_receive(const boost::system::error_code &error,
+                        std::size_t bytes)
+    {
+        if (!error || error == boost::asio::error::message_size)
+        {
+            auto buffer_begin = std::cbegin(recv_buffer_), buffer_end = std::cend(recv_buffer_);
+            std::cout << "Buffer :" << std::string(recv_buffer_.begin(), bytes)
+            << " Error code :" << error
+            << " Bytes : " << bytes
+            << " Endpoint : " << remote_endpoint_
+            << std::endl;
+            boost::shared_ptr<std::string> message(
+                new std::string(make_daytime_string()));
+            socket_.async_send_to(boost::asio::buffer(*message), remote_endpoint_,
+                                    boost::bind(&udp_server::handle_send, this, message,
+                                                boost::asio::placeholders::error,
+                                                boost::asio::placeholders::bytes_transferred));
+            start_receive();
+        }
+    }
+    void handle_send(boost::shared_ptr<std::string> msg,
+                        const boost::system::error_code & err,
+                        std::size_t bytes)
+    {
+    }
+
+    udp::socket socket_;
+    udp::endpoint remote_endpoint_;
+    boost::array<char, 128> recv_buffer_;
+};
+
+int main(int argc, char **argv)
+{
+    try {
+        boost::asio::io_service io_service;
+        udp_server server(io_service);
+        io_service.run();
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    return 0;
 }

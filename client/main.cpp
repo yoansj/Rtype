@@ -1,54 +1,62 @@
 /*
 ** EPITECH PROJECT, 2020
-** b-cpp-500-par-5-1-babel-aurele.auboin
+** B-CPP-501-PAR-5-1-rtype-yoan.saint-juste
 ** File description:
 ** main
 */
 
 #include <iostream>
-#include <SFML/Network.hpp>
-#include <SFML/Window.hpp>
+#include <boost/array.hpp>
+#include <boost/asio.hpp>
+
+using boost::asio::ip::udp;
+
+class UDPClient
+{
+    public:
+        UDPClient(
+            boost::asio::io_service& io_service,
+            const std::string& host,
+            const std::string& port
+        ) : io_service_(io_service), socket_(io_service, udp::endpoint(udp::v4(), 0)) {
+            udp::resolver resolver(io_service_);
+            udp::resolver::query query(udp::v4(), host, port);
+            udp::resolver::iterator iter = resolver.resolve(query);
+            endpoint_ = *iter;
+        }
+
+	~UDPClient()
+	{
+		socket_.close();
+	}
+
+	void send(const std::string& msg) {
+		socket_.send_to(boost::asio::buffer(msg, msg.size()), endpoint_);
+	}
+
+    void receive(void)
+    {
+        boost::array<char, 128> recv_buf;
+        udp::endpoint sender_endpoint;
+        size_t len = socket_.receive_from(
+            boost::asio::buffer(recv_buf), sender_endpoint);
+
+        std::cout.write(recv_buf.data(), len);
+    }
+
+    private:
+        boost::asio::io_service& io_service_;
+        udp::socket socket_;
+        udp::endpoint endpoint_;
+};
 
 int main(int argc, char **argv)
 {
-	sf::Window window(sf::VideoMode(800, 600), "My window");
-	sf::Event event;
-    sf::UdpSocket connectSocket;
+	boost::asio::io_service io_service;
+	UDPClient client(io_service, "localhost", argv[1]);
 
-	char toSend[100] = "yoannnnn";
-    char data[100];
-
-	std::size_t received;
-    sf::IpAddress sender;
-    unsigned short port;
-
-    sf::IpAddress test = "127.0.0.1";
-
-    connectSocket.setBlocking(false);
-	if (connectSocket.bind(54000) != sf::Socket::Done) {
-        std::cout << "Erreur de port" << std::endl;
-        exit(42);
+	client.send("Hello, World!");
+    while (1) {
+        client.receive();
     }
-
-
-	while (window.isOpen()) {
-		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed)
-				window.close();
-                connectSocket.unbind();
-		}
-        sf::Vector2i m = sf::Mouse::getPosition(window);
-        void *mousePos = &m;
-
-		if (connectSocket.send(mousePos, 100, test, 54000) != sf::Socket::Done) {
-            std::cout << "Erreur d'envoi" << std::endl;
-        }
-        /*if (connectSocket.receive(data, 100, received, sender, port) != sf::Socket::Done) {
-            std::cout << "Erreur de reçu" << std::endl;
-        }*/
-        if (data != nullptr) {
-            //std::cout << data << std::endl;
-        }
-	}
-	return 0;
 }
