@@ -2,7 +2,7 @@
 
 cd build
 if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]
-    then make && ./bin/r-type_client $1
+    then make && ./bin/r-type_client $1 $2
 else
     MSBuild.exe R-Type.sln && ./bin/r-type_client.exe
 fi

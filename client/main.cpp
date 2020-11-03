@@ -6,57 +6,48 @@
 */
 
 #include <iostream>
-#include <boost/array.hpp>
-#include <boost/asio.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Network.hpp>
+#include <memory>
+#include <string.h>
 
-using boost::asio::ip::udp;
-
-class UDPClient
-{
+class udp_client {
     public:
-        UDPClient(
-            boost::asio::io_service& io_service,
-            const std::string& host,
-            const std::string& port
-        ) : io_service_(io_service), socket_(io_service, udp::endpoint(udp::v4(), 0)) {
-            udp::resolver resolver(io_service_);
-            udp::resolver::query query(udp::v4(), host, port);
-            udp::resolver::iterator iter = resolver.resolve(query);
-            endpoint_ = *iter;
+        udp_client(unsigned port, sf::IpAddress recipient) {
+            _recipient = recipient;
+            _port = port;
         }
 
-	~UDPClient()
-	{
-		socket_.close();
-	}
+        void send(void) {
+            char data[100] = "hello world";
+            _socket.send(data, 100, _recipient, _port);
+        }
 
-	void send(const std::string& msg) {
-		socket_.send_to(boost::asio::buffer(msg, msg.size()), endpoint_);
-	}
+        std::string receiver(void) {
+            char data[4096];
+            std::size_t received;
+            sf::IpAddress sender;
+            unsigned short port;
 
-    void receive(void)
-    {
-        boost::array<char, 128> recv_buf;
-        udp::endpoint sender_endpoint;
-        size_t len = socket_.receive_from(
-            boost::asio::buffer(recv_buf), sender_endpoint);
-
-        std::cout.write(recv_buf.data(), len);
-    }
+            _socket.receive(data, 4096, received, sender, port);
+            std::cout << std::string(&data[0], received) << std::endl;
+            return std::string(&data[0], received);
+        }
 
     private:
-        boost::asio::io_service& io_service_;
-        udp::socket socket_;
-        udp::endpoint endpoint_;
+        sf::UdpSocket _socket;
+        sf::IpAddress _recipient;
+        unsigned short _port;
 };
 
 int main(int argc, char **argv)
 {
-	boost::asio::io_service io_service;
-	UDPClient client(io_service, "localhost", argv[1]);
-
-	client.send("Hello, World!");
+    udp_client client(7171, "localhost");
+    client.send("test");
     while (1) {
-        client.receive();
+        client.receiver();
     }
+
+    return 0;
 }

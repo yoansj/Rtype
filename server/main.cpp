@@ -10,6 +10,7 @@
 #include <iostream>
 #include <boost/array.hpp>
 #include <boost/bind.hpp>
+#include <thread>
 
 using boost::asio::ip::udp;
 
@@ -29,6 +30,11 @@ public:
         start_receive();
     }
 
+    void do_send( std::string message)
+    {
+        socket_.send_to(boost::asio::buffer(message, message.size()), remote_endpoint_);
+    }
+
 private:
     void start_receive()
     {
@@ -39,19 +45,17 @@ private:
                         boost::asio::placeholders::bytes_transferred));
     }
 
-    void handle_receive(const boost::system::error_code &error,
-                        std::size_t bytes)
+    void handle_receive(const boost::system::error_code &error, std::size_t bytes)
     {
         if (!error || error == boost::asio::error::message_size)
         {
-            auto buffer_begin = std::cbegin(recv_buffer_), buffer_end = std::cend(recv_buffer_);
             std::cout << "Buffer :" << std::string(recv_buffer_.begin(), bytes)
-            << " Error code :" << error
+            << " Error code : " << error
             << " Bytes : " << bytes
             << " Endpoint : " << remote_endpoint_
             << std::endl;
             boost::shared_ptr<std::string> message(
-                new std::string(make_daytime_string()));
+                new std::string("100, 100"));
             socket_.async_send_to(boost::asio::buffer(*message), remote_endpoint_,
                                     boost::bind(&udp_server::handle_send, this, message,
                                                 boost::asio::placeholders::error,
@@ -75,7 +79,10 @@ int main(int argc, char **argv)
     try {
         boost::asio::io_service io_service;
         udp_server server(io_service);
-        io_service.run();
+        std::thread thread1([&io_service]() { io_service.run(); });
+        std::thread thread2([&io_service]() { io_service.run(); });
+        thread1.join();
+        thread2.join();
     }
     catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
