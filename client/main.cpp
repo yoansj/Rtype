@@ -12,6 +12,13 @@
 #include <memory>
 #include <string.h>
 
+struct data {
+    int type_message;
+    int struct_type;
+    char message[2000];
+};
+
+
 class udp_client {
     public:
         udp_client(unsigned port, sf::IpAddress recipient) {
@@ -19,9 +26,8 @@ class udp_client {
             _port = port;
         }
 
-        void send(void) {
-            char data[100] = "hello world";
-            _socket.send(data, 100, _recipient, _port);
+        void send(struct data *tmp) {
+            _socket.send(tmp, sizeof(struct data), _recipient, _port);
         }
 
         std::string receiver(void) {
@@ -34,7 +40,6 @@ class udp_client {
             std::cout << std::string(&data[0], received) << std::endl;
             return std::string(&data[0], received);
         }
-
     private:
         sf::UdpSocket _socket;
         sf::IpAddress _recipient;
@@ -44,10 +49,11 @@ class udp_client {
 int main(int argc, char **argv)
 {
     udp_client client(7171, "localhost");
-    client.send();
+    struct data tmp = {0, 0, "Move up"};
+
+    client.send(&tmp);
     while (1) {
         client.receiver();
     }
-
     return 0;
 }
