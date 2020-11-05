@@ -5,12 +5,4 @@
 ** $
 */
 
-#include "Test.hpp"
-
-Test::Test()
-{
-}
-
-Test::~Test()
-{
-}
+#include "Packages.hpp"
