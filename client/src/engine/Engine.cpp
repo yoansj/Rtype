@@ -16,6 +16,9 @@ Engine::Engine::Engine() :
     _systems.positionSystem.setPosition(test, 500, 500);
     _systems.spriteSystem.setWindow(_window);
     _systems.spriteSystem.initSprite(test, "../client/assets/sprite.png");
+    _systems.playerSystem.setPlayer(test);
+    _systems.velocitySystem.create(test);
+    _systems.velocitySystem.setVelocity(test, 1, 1);
 }
 
 Engine::Engine::~Engine()
@@ -46,6 +49,8 @@ void Engine::Engine::run()
  */
 void Engine::Engine::updateSystems()
 {
+    auto player = _systems.playerSystem.getPlayer();
     _systems.positionSystem.update();
     _systems.spriteSystem.update();
+    _systems.inputSystem.update(_systems.positionSystem.getComponent(player), _systems.velocitySystem.getComponent(player));
 }

@@ -10,6 +10,9 @@
 
 #include "PositionSystem.hpp"
 #include "SpriteSystem.hpp"
+#include "PlayerSystem.hpp"
+#include "InputSystem.hpp"
+#include "VelocitySystem.hpp"
 
 namespace Engine {
     class SystemManager {
@@ -19,6 +22,9 @@ namespace Engine {
 
             PositionSystem positionSystem;
             SpriteSystem spriteSystem;
+            PlayerSystem playerSystem;
+            InputSystem inputSystem;
+            VelocitySystem velocitySystem;
 
         private:
 
