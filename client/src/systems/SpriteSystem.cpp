@@ -20,6 +20,7 @@ bool Engine::SpriteSystem::initSprite(Entity e, std::string const &filepath)
     } else {
         component.sprite.setTexture(component.texture, true);
         component.isCreated = true;
+        component.animated = false;
     }
     return (true);
 }
@@ -28,7 +29,30 @@ void Engine::SpriteSystem::update()
 {
 }
 
-void Engine::SpriteSystem::setWindow(std::shared_ptr<sf::RenderWindow> const &window)
+void Engine::SpriteSystem::createAnimation(Entity e, std::vector<sf::IntRect> frames)
 {
-    _window = window;
+    auto &component = _components.getComponent(e);
+
+    //Animation newAnimation;
+
+    //newAnimation.setSpriteSheet(component.texture);
+    for (int i = 0; i != frames.size(); i++) {
+        //newAnimation.addFrame(frames[i]);
+    }
+    //component.animations.push_back(newAnimation);
+}
+
+void Engine::SpriteSystem::setAnimationSpeed(Entity e, float speed)
+{
+    auto &component = _components.getComponent(e);
+
+    component.animationSpeed = speed;
+    //component.animatedSprite.setFrameTime(sf::seconds(speed));
+}
+
+void Engine::SpriteSystem::setPlayingAnimation(Entity e, int index)
+{
+    auto &component = _components.getComponent(e);
+
+    //component.animatedSprite.play(component.animations[index]);
 }

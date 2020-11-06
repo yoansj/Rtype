@@ -13,6 +13,7 @@
 #include "PlayerSystem.hpp"
 #include "InputSystem.hpp"
 #include "VelocitySystem.hpp"
+#include "MonsterLoaderSystem.hpp"
 
 namespace Engine {
     class SystemManager {
@@ -25,6 +26,7 @@ namespace Engine {
             PlayerSystem playerSystem;
             InputSystem inputSystem;
             VelocitySystem velocitySystem;
+            MonsterLoaderSystem monsterLoaderSystem;
 
         private:
 

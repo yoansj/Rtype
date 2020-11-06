@@ -29,7 +29,11 @@ namespace Engine {
 
             bool initSprite(Entity e, std::string const &filepath);
 
-            void setWindow(std::shared_ptr<sf::RenderWindow> const &window);
+            void createAnimation(Entity e, std::vector<sf::IntRect> frames);
+
+            void setAnimationSpeed(Entity e, float speed);
+
+            void setPlayingAnimation(Entity e, int index);
 
         private:
             std::shared_ptr<sf::RenderWindow> _window;

@@ -16,6 +16,9 @@
 #include "Renderer.hpp"
 
 namespace Engine {
+
+    using monsterGenerator = Entity (*) (EntityManager &, SystemManager &);
+
     class Engine {
         public:
             Engine();

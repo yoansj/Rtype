@@ -6,6 +6,7 @@
 */
 
 #include "Engine.hpp"
+#include <fstream>
 
 Engine::Engine::Engine() :
     _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1000, 1000), "R-Type")), _renderer(_window)
@@ -14,11 +15,19 @@ Engine::Engine::Engine() :
     _systems.spriteSystem.create(test);
     _systems.positionSystem.create(test);
     _systems.positionSystem.setPosition(test, 500, 500);
-    _systems.spriteSystem.setWindow(_window);
+    //_systems.spriteSystem.setWindow(_window);
     _systems.spriteSystem.initSprite(test, "../client/assets/sprite.png");
     _systems.playerSystem.setPlayer(test);
     _systems.velocitySystem.create(test);
     _systems.velocitySystem.setVelocity(test, 1, 1);
+    /*std::ifstream f("lib/libfrog.so");
+    if (f.good())
+        std::cout << "Good filepath !" << std::endl;
+    else
+        std::cout << "Bad filepath !" << std::endl;*/
+    _systems.monsterLoaderSystem.load({"lib/libfrog.so"});
+    monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_systems.monsterLoaderSystem.getFactory(0));
+    auto frog = frogFactory(_entityManager, _systems);
 }
 
 Engine::Engine::~Engine()
