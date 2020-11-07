@@ -15,7 +15,6 @@ Engine::Engine::Engine() :
     _systems.spriteSystem.create(test);
     _systems.positionSystem.create(test);
     _systems.positionSystem.setPosition(test, 500, 500);
-    //_systems.spriteSystem.setWindow(_window);
     _systems.spriteSystem.initSprite(test, "../client/assets/sprite.png");
     _systems.playerSystem.setPlayer(test);
     _systems.velocitySystem.create(test);
