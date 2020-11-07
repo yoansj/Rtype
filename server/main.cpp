@@ -32,12 +32,10 @@ int main(int argc, char **argv)
     try {
         boost::asio::io_service io_service;
         UdpServer server(io_service);
-        boost::thread_group threads;
-        // boost::thread_attributes :
-        // std::thread thread1([&io_service]() { io_service.run(); });
-        // std::thread thread2([&io_service]() { io_service.run(); });
-        // thread1.join();
-        // thread2.join();
+        std::thread thread1([&io_service]() { io_service.run(); });
+        std::thread thread2([&io_service]() { io_service.run(); });
+        thread1.join();
+        thread2.join();
     }
     catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
