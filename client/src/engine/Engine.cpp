@@ -37,6 +37,11 @@ Engine::Engine::Engine() :
     _systems.monsterLoaderSystem.load({"lib/libfrog.so"});
     monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_systems.monsterLoaderSystem.getFactory(0));
     auto frog = frogFactory(_entityManager, _systems);
+
+    _systems.networkSystem.setPort(7171);
+    _systems.networkSystem.setRecipient("localhost");
+    connectionToServer_t package = {0, "Connection"};
+    _systems.networkSystem.send(static_cast<void *>(&package));
 }
 
 Engine::Engine::~Engine()

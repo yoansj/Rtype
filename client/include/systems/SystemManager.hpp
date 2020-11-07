@@ -15,6 +15,7 @@
 #include "VelocitySystem.hpp"
 #include "MonsterLoaderSystem.hpp"
 #include "ParallaxSystem.hpp"
+#include "NetworkSystem.hpp"
 
 namespace Engine {
     class SystemManager {
@@ -29,6 +30,7 @@ namespace Engine {
             VelocitySystem velocitySystem;
             MonsterLoaderSystem monsterLoaderSystem;
             ParallaxSystem parallaxSystem;
+            NetworkSystem networkSystem;
 
         private:
 
