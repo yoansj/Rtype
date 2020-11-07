@@ -36,6 +36,24 @@ void Engine::Engine::initGame()
     _systems.spriteSystem.initSprite(another, "../client/assets/r-typesheet44.gif");
     std::cout << "Size: " << _systems.spriteSystem.getComponent(another).texture.getSize().x << std::endl;
 
+    // auto bg = _entityManager.create();
+    // _systems.spriteSystem.create(bg);
+    // _systems.positionSystem.create(bg);
+    // _systems.positionSystem.setPosition(bg, 0, 0);
+    // _systems.spriteSystem.initSprite(bg, "../client/assets/background.png");
+    // // _systems.playerSystem.setPlayer(bg);
+    // _systems.velocitySystem.setVelocity(bg, 1, 1);
+
+
+
+    auto bg = _entityManager.create();
+    _systems.spriteSystem.create(bg);
+    _systems.positionSystem.create(bg);
+    _systems.positionSystem.setPosition(bg, -1800, 0);
+    _systems.playerSystem.setPlayer(bg);
+    _systems.spriteSystem.initSprite(bg, "../client/assets/background.png");
+    _systems.velocitySystem.create(bg);
+    _systems.velocitySystem.setVelocity(bg, 1, 1);
     /*std::ifstream f("lib/libfrog.so");
     if (f.good())
         std::cout << "Good filepath !" << std::endl;
@@ -82,5 +100,6 @@ void Engine::Engine::updateSystems()
     auto player = _systems.playerSystem.getPlayer();
     _systems.positionSystem.update();
     _systems.spriteSystem.update();
-    _systems.inputSystem.update(_systems.positionSystem.getComponent(player), _systems.velocitySystem.getComponent(player));
+    _systems.parallaxSystem.update(_systems.positionSystem.getComponent(player), _systems.velocitySystem.getComponent(player));
+    // _systems.inputSystem.update(_systems.positionSystem.getComponent(player), _systems.velocitySystem.getComponent(player));
 }
