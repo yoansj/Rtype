@@ -11,31 +11,47 @@
 Engine::Engine::Engine() :
     _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1800, 1000), "R-Type")), _renderer(_window)
 {
-    auto test = _entityManager.create();
-    _systems.spriteSystem.create(test);
-    _systems.positionSystem.create(test);
-    _systems.positionSystem.setPosition(test, 500, 500);
-    _systems.spriteSystem.initSprite(test, "../client/assets/sprite.png");
-    _systems.playerSystem.setPlayer(test);
-    _systems.velocitySystem.create(test);
-    _systems.velocitySystem.setVelocity(test, 1, 1);
+}
+
+Engine::Engine::~Engine()
+{
+}
+
+void Engine::Engine::initGame()
+{
+    auto player = _entityManager.create();
+    _systems.spriteSystem.create(player);
+    _systems.positionSystem.create(player);
+    _systems.positionSystem.setPosition(player, 500, 500);
+    _systems.spriteSystem.initSprite(player,"../client/assets/sprite.png");
+    _systems.playerSystem.setPlayer(player);
+    _systems.velocitySystem.create(player);
+    _systems.velocitySystem.setVelocity(player, 1, 1);
+    std::cout << "Size: " << _systems.spriteSystem.getComponent(player).texture.getSize().x << std::endl;
+
+    auto another = _entityManager.create();
+    _systems.spriteSystem.create(another);
+    _systems.positionSystem.create(another);
+    _systems.positionSystem.setPosition(another, 100, 100);
+    _systems.spriteSystem.initSprite(another, "../client/assets/r-typesheet44.gif");
+    std::cout << "Size: " << _systems.spriteSystem.getComponent(another).texture.getSize().x << std::endl;
+
     /*std::ifstream f("lib/libfrog.so");
     if (f.good())
         std::cout << "Good filepath !" << std::endl;
     else
         std::cout << "Bad filepath !" << std::endl;*/
-    _systems.monsterLoaderSystem.load({"lib/libfrog.so"});
-    monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_systems.monsterLoaderSystem.getFactory(0));
-    auto frog = frogFactory(_entityManager, _systems);
 
+    _systems.monsterLoaderSystem.load({std::string(ROOT_PATH) + "build/lib/libfrog.so"});
+    monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_systems.monsterLoaderSystem.getFactory(0));
+    //auto frog = frogFactory(_entityManager, _systems);
+
+
+    // Network
     _systems.networkSystem.setPort(7171);
     _systems.networkSystem.setRecipient("localhost");
     connectionToServer_t package = {0, "Connection"};
     _systems.networkSystem.send(static_cast<void *>(&package));
-}
-
-Engine::Engine::~Engine()
-{
 }
 
 /**
@@ -44,6 +60,7 @@ Engine::Engine::~Engine()
  */
 void Engine::Engine::run()
 {
+    initGame();
     while (_window->isOpen()) {
         _window->clear(sf::Color::Blue);
         while (_window->pollEvent(_event)) {

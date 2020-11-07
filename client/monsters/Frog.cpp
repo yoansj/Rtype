@@ -4,7 +4,7 @@
 extern "C" {
     extern const int secret = 0x667;
 
-    Entity monsterGenerator(Engine::EntityManager &entities, Engine::SystemManager &systems) {
+    extern Entity monsterGenerator(Engine::EntityManager &entities, Engine::SystemManager &systems) {
         Entity frog = entities.create();
 
         systems.positionSystem.create(frog);
