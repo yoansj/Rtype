@@ -34,9 +34,6 @@ int main(int argc, char **argv)
         UdpServer server(io_service);
         boost::thread_group threads;
         // boost::thread_attributes :
-        for (unsigned i = 0; i < stack_size; ++i)
-            threads.add_thread(bind(&asio::io_service::run, &io_service));
-        threads.join_all();
         // std::thread thread1([&io_service]() { io_service.run(); });
         // std::thread thread2([&io_service]() { io_service.run(); });
         // thread1.join();
