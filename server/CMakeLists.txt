@@ -18,14 +18,19 @@ message("after setting up")
 
 #set(NET_DIR server/src/network)
 #set(DB_DIR server/src/db)
-#set(INC_DIR server/include)
-#set(BSON_INC utils/include)
+set(BSON_INC utils/include)
+set(INC_DIR server/include)
 
 set(SERVER_SRC
         server/main.cpp
+        server/src/Test.cpp
 )
 
-include_directories(${CMAKE_INCLUDE_PATH} ${INC_DIR} ${BSON_INC})
+
+include_directories(
+    ${PROJECT_SOURCE_DIR}/server/include
+)
+
 add_executable(${PROJECT_NAME} ${SERVER_SRC} ${BSON_SRC})
 
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
