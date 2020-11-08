@@ -19,15 +19,17 @@ typedef struct connectionToServer_s {
     char message[128];
 } connectionToServer_t;
 
-typedef struct createNewGame_s {
-    int type_struct;
-    char message[128];
-} createNewGame_t;
-
 typedef struct dataPlayersConnected_s {
     int type_struct;
     std::vector<sf::Sprite> players;
     char message[128];
 } dataPlayersConnected_t;
+
+/* ----TCP PACKAGE---- */
+
+typedef struct createNewGame_s {
+    int type_struct;
+    char message[128];
+} createNewGame_t;
 
 #endif /* !PACKAGES_HPP_ */
