@@ -23,7 +23,7 @@ set(INC_DIR server/include)
 
 set(SERVER_SRC
         server/main.cpp
-        server/src/Test.cpp
+        server/src/UdpServer.cpp
 )
 
 

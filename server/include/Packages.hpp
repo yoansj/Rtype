@@ -19,6 +19,11 @@ typedef struct connectionToServer_s {
     char message[128];
 } connectionToServer_t;
 
+typedef struct createNewGame_s {
+    int type_struct;
+    char message[128];
+} createNewGame_t;
+
 typedef struct dataPlayersConnected_s {
     int type_struct;
     std::vector<sf::Sprite> players;

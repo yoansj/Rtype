@@ -9,8 +9,9 @@
 #define PACKAGESTYPE_HPP_
 
 enum PackagesType {
-    CONNECTION_TO_SERVER = 0,
-    PLAYERS_CONNECTED = 1,
+    CREATE_NEW_GAME = 0,
+    CONNECTION_TO_SERVER = 1,
+    PLAYERS_CONNECTED = 2,
 };
 
 #endif /* !PACKAGESTYPE_HPP_ */

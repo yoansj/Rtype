@@ -6,36 +6,21 @@
 */
 
 #include <boost/asio.hpp>
-#include <iostream>
-// #include <thread>
-#include <memory>
-#include <ctime>
-#include <iostream>
-#include <string>
-#include <boost/array.hpp>
-#include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
-#include <boost/enable_shared_from_this.hpp>
-#include <boost/make_shared.hpp>
-#include <boost/asio.hpp>
-#include <boost/thread.hpp>
-
-
 #include "UdpServer.hpp"
-
-// Connection -> Nombre de client connecté, la couleur (bleu/rouge/vert/jaune), vector Sprite joueur connecté
-// Position joueurs & information joueur
-// Position des monstres & information des monstres
 
 int main(int argc, char **argv)
 {
+    boost::asio::io_service io_service;
+    UdpServer server(io_service);
+
     try {
-        boost::asio::io_service io_service;
-        UdpServer server(io_service);
-        std::thread thread1([&io_service]() { io_service.run(); });
-        std::thread thread2([&io_service]() { io_service.run(); });
-        thread1.join();
-        thread2.join();
+        if (argc != 2) {
+            std::cerr << "Error try: ./run_server <port>" << std::endl;
+            return 0;
+        } else {
+            std::thread thread([&io_service]() { io_service.run(); });
+            thread.join();
+        }
     }
     catch (std::exception &e) {
         std::cerr << e.what() << std::endl;

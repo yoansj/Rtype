@@ -12,19 +12,19 @@
 #include "Engine.hpp"
 
 
-int main(int argc, char **argv)
-{
-	Engine::Engine game;
+// int main(int argc, char **argv)
+// {
+// 	Engine::Engine game;
 
-	try {
-		game.run();
-	} catch (std::exception &e) {
-        std::cerr << e.what() << std::endl;
-	}
-	return 0;
-}
+// 	try {
+// 		game.run();
+// 	} catch (std::exception &e) {
+//         std::cerr << e.what() << std::endl;
+// 	}
+// 	return 0;
+// }
 
-/*
+
 #include "UdpClient.hpp"
 #include "Packages.hpp"
 #include "PackagesType.hpp"
@@ -36,9 +36,11 @@ int main(int argc, char **argv)
         return 0;
     }
     UdpClient client(std::atoi(argv[1]), "localhost");
-    connectionToServer_t package = {CONNECTION_TO_SERVER, "Connection"};
+    createNewGame_t package = {CREATE_NEW_GAME, "Connection"};
 
-    client.sendPackage(static_cast<void *>(&package));
+        client.sendPackage(static_cast<void *>(&package));
+    while (1) {
+        std::cout << client.receivePackage() << std::endl;
+    }
     return 0;
 }
-*/
