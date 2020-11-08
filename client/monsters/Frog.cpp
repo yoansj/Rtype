@@ -8,7 +8,7 @@ extern "C" {
         Entity frog = entities.create();
 
         systems.positionSystem.create(frog);
-        //systems.spriteSystem.create(frog);
+        systems.spriteSystem.create(frog);
         systems.velocitySystem.create(frog);
         std::cout << "Frog created bwa !" << std::endl;
         return (frog);

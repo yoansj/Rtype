@@ -54,15 +54,12 @@ void Engine::Engine::initGame()
     _systems.spriteSystem.initSprite(bg, "../client/assets/background.png");
     _systems.velocitySystem.create(bg);
     _systems.velocitySystem.setVelocity(bg, 1, 1);
-    /*std::ifstream f("lib/libfrog.so");
-    if (f.good())
-        std::cout << "Good filepath !" << std::endl;
-    else
-        std::cout << "Bad filepath !" << std::endl;*/
+    _systems.parallaxSystem.setBackgroundEntity(bg);
+
 
     _systems.monsterLoaderSystem.load({std::string(ROOT_PATH) + "build/lib/libfrog.so"});
     monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_systems.monsterLoaderSystem.getFactory(0));
-    //auto frog = frogFactory(_entityManager, _systems);
+    auto frog = frogFactory(_entityManager, _systems);
 
 
     // Network

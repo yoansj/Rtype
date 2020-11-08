@@ -21,10 +21,14 @@ namespace Engine {
 
             void update(Position &pos, Velocity &vel);
 
-        protected:
+            void setBackgroundEntity(Entity background) {_background = background;};
+
+            Entity getBackgroundEntity() const {return (_background);};
+
         private:
             sf::Clock _clock;
             sf::Time _time;
+            Entity _background;
     };
 }
 
