@@ -14,6 +14,7 @@
 #include <SFML/Graphics.hpp>
 #include "Position.hpp"
 #include "Velocity.hpp"
+#include "Sprite.hpp"
 
 namespace Engine {
 
@@ -25,7 +26,7 @@ namespace Engine {
             InputSystem() : System() {};
             ~InputSystem() = default;
 
-            void update(Position &pos, Velocity &vel);
+            void update(Position &pos, Velocity &vel, Sprite &spr);
     };
 
 }
