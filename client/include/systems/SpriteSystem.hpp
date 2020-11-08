@@ -14,6 +14,7 @@
 
 #include "System.hpp"
 #include "Sprite.hpp"
+#include "EngineError.hpp"
 
 namespace Engine {
 

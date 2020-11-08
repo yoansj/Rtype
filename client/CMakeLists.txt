@@ -29,9 +29,9 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/client/include/engine/
 )
 
-# Frog
-add_library("frog" SHARED ${MONSTERS_DIR}/Frog.cpp)
-
 add_compile_definitions(ROOT_PATH="${PROJECT_SOURCE_DIR}/")
 add_executable(${PROJECT_NAME} ${SRC})
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
+
+# Frog
+add_library("frog" SHARED ${MONSTERS_DIR}/Frog.cpp)

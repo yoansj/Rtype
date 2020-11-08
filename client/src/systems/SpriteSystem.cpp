@@ -15,8 +15,9 @@ bool Engine::SpriteSystem::initSprite(Entity e, std::string const &filepath)
 {
     auto &component = _components.getComponent(e);
 
+    //std::cout << "Entity: " << component.entity << " Filepath: " << filepath << std::endl;
     if (!component.texture.loadFromFile(filepath)) {
-        throw std::logic_error("blabla sprite a changer non trouvé");
+        throw EngineError("Sprite loading error", "Couldn't load sprite of filepath : " + filepath);
     } else {
         component.sprite.setTexture(component.texture, true);
         component.isCreated = true;

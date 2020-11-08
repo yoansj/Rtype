@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "Entity.hpp"
+#include "EngineError.hpp"
 #include "Component.hpp"
 
 template<class AbstractComponent>
@@ -19,9 +20,9 @@ class ComponentManager {
         ComponentManager() = default;
         ~ComponentManager() = default;
 
-        AbstractComponent &create(Entity &e) {
+        AbstractComponent &create(Entity e) {
             _components.push_back(AbstractComponent(e));
-            std::cout << "Created component !" << std::endl;
+            std::cout << "Father: " << _components.back().entity << std::endl;
             return (_components.back());
         }
 
@@ -43,16 +44,16 @@ class ComponentManager {
                     return (_components[i]);
                 }
             }
-            throw std::logic_error("Component non trouvé");
+            throw EngineError("Component error", "Component not found");
         }
 
         std::vector<AbstractComponent> &getComponents() {
             return (_components);
         }
 
-        const AbstractComponent &operator[](std::size_t size) {
+        /*const AbstractComponent &operator[](std::size_t size) {
             return (_components[size]);
-        }
+        }*/
 
     private:
         std::vector<AbstractComponent> _components;

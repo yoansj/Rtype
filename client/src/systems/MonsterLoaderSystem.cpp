@@ -15,8 +15,7 @@ void Engine::MonsterLoaderSystem::load(std::vector<std::string> libs)
         if (!lib)
             throw MonsterLoaderError(dlerror());
 
-        void *mob = dlsym(lib,
-        "monsterGenerator");
+        void *mob = dlsym(lib, "monsterGenerator");
 
         if (!mob)
             throw MonsterLoaderError("Couldn't load monsterGenerator in lib " + libs[0]);

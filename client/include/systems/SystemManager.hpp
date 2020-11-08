@@ -14,6 +14,7 @@
 #include "InputSystem.hpp"
 #include "VelocitySystem.hpp"
 #include "MonsterLoaderSystem.hpp"
+#include "ParallaxSystem.hpp"
 #include "NetworkSystem.hpp"
 
 namespace Engine {
@@ -28,6 +29,7 @@ namespace Engine {
             InputSystem inputSystem;
             VelocitySystem velocitySystem;
             MonsterLoaderSystem monsterLoaderSystem;
+            ParallaxSystem parallaxSystem;
             NetworkSystem networkSystem;
 
         private:
