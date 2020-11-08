@@ -12,19 +12,19 @@
 #include "Engine.hpp"
 
 
-// int main(int argc, char **argv)
-// {
-// 	Engine::Engine game;
+int main(int argc, char **argv)
+{
+	Engine::Engine game;
 
-// 	try {
-// 		game.run();
-// 	} catch (std::exception &e) {
-//         std::cerr << e.what() << std::endl;
-// 	}
-// 	return 0;
-// }
+	try {
+		game.run();
+	} catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+	}
+	return 0;
+}
 
-
+/*
 #include "UdpClient.hpp"
 #include "Packages.hpp"
 #include "PackagesType.hpp"
@@ -44,3 +44,4 @@ int main(int argc, char **argv)
     }
     return 0;
 }
+*/
