@@ -19,6 +19,8 @@ void Engine::Renderer::doRender(SystemManager &sys)
         auto const &position = sys.positionSystem.getComponent(entity);
         auto &sprite = sys.spriteSystem.getComponents()[i];
         sprite.sprite.setTexture(sprite.texture, true);
+        if (sprite.animated == true)
+            sprite.sprite.setTextureRect(sprite.rect);
         sprite.sprite.setPosition(position.x, position.y);
         _window->draw(sprite.sprite);
     }

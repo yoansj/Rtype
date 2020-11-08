@@ -24,6 +24,7 @@ namespace Engine {
         bool isCreated;
         sf::Texture texture;
         sf::Sprite sprite;
+        sf::IntRect rect;
 
         // For animated sprites
         float animationSpeed;

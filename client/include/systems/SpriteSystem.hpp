@@ -28,9 +28,9 @@ namespace Engine {
 
             void update();
 
-            bool initSprite(Entity e, std::string const &filepath);
+            bool initSprite(Entity e, std::string const &filepath, bool isAnimated);
 
-            void createAnimation(Entity e, std::vector<sf::IntRect> frames);
+            void createAnimation(Entity e, sf::IntRect rect);
 
             void setAnimationSpeed(Entity e, float speed);
 
@@ -38,6 +38,8 @@ namespace Engine {
 
         private:
             std::shared_ptr<sf::RenderWindow> _window;
+            sf::Clock _clock;
+            sf::Time _time;
     };
 
 }
