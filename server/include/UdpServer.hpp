@@ -24,10 +24,6 @@ class UdpServer {
         void run(void);
 
         void send(std::string message);
-        /*{
-            _socket.send_to(boost::asio::buffer(message, message.size()), _remote_endpoint);
-        }*/
-
         void print(void);
         void listNewGame(void);
 
