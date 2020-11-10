@@ -14,7 +14,7 @@ namespace Engine {
 
     class SceneManager {
         public:
-            SceneManager() = default;
+            SceneManager() {_actualScene = Engine::SCENE::TITLE_SCREEN;};
             ~SceneManager() = default;
 
             void setScene(Engine::SCENE newScene) {_actualScene = newScene;};
