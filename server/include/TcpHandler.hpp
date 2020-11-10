@@ -12,58 +12,31 @@
 #include <iostream>
 #include <string>
 #include <boost/asio.hpp>
+#include <thread>
 #include "Packages.hpp"
 #include "PackagesType.hpp"
 
 using boost::asio::ip::tcp;
 
-std::string make_daytime_string()
-{
-    using namespace std; // For time_t, time and ctime;
-    time_t now = time(0);
-    return ctime(&now);
-}
-
 class TcpHandler
 {
     public:
-        TcpHandler() : _acceptor(_io_service, tcp::endpoint(tcp::v4(), 7171))
-        {
-        }
+        TcpHandler() : _acceptor(_io_service, tcp::endpoint(tcp::v4(), 7171)) {};
         ~TcpHandler() = default;
 
-        void run() {
-            while (1) {
-                tcp::socket socket(_io_service);
-                _acceptor.accept(socket);
-                _sockets.push_back(std::move(socket));
-                _sockets.back().receive(boost::asio::buffer(_buffer, bufferSize));
-                getTypePackage();
-                std::string message = make_daytime_string();
-                boost::system::error_code ignored_error;
-                boost::asio::write(_sockets.back(), boost::asio::buffer(message),
-                                    boost::asio::transfer_all(), ignored_error);
-            }
-        }
+        void run();
+        void getTypePackage(void);
+        void listNewGame(void);
+        void createNewGame(int type_struct);
+        void startNewGame(int type_struct);
+        void acceptor(void);
 
-        void getTypePackage(void) {
-            int type_struct;
-
-            std::memcpy(&type_struct, &_buffer, sizeof(int));
-            if (type_struct == CREATE_NEW_GAME)
-                createNewGame();
-        }
-
-        void createNewGame(void) {
-            createNewGame_t package;
-
-            std::memcpy(&package, &_buffer, sizeof(createNewGame_t));
-            std::cout << package.message << std::endl;
-        }
     private:
-        std::array<char, bufferSize> _buffer;
-        boost::asio::io_service _io_service;
+        std::map<std::size_t, std::vector<tcp::endpoint>> _lobbyList;
+        std::map<std::size_t, std::thread> _gameRunning;
+        std::array<char, sizeof(int)> _buffer;
         std::vector<tcp::socket> _sockets;
+        boost::asio::io_service _io_service;
         tcp::acceptor _acceptor;
 };
 

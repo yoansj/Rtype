@@ -6,6 +6,7 @@
 */
 
 #include <iostream>
+#include <cstring>
 #include "TcpClient.hpp"
 #include "Packages.hpp"
 
@@ -23,11 +24,15 @@ void TcpClient::sendPackage(void *package)
         std::cerr << "package not send" << std::endl;
 }
 
-void TcpClient::receivePackage(void)
+std::size_t TcpClient::receivePackage(void)
 {
     char package[bufferSize];
+    replyGameCreated_t reply;
     std::size_t received;
 
     if (_socket.receive(package, bufferSize, received) != sf::Socket::Done)
             std::cerr << "package not get" << std::endl;
+    std::memcpy(&reply, &package, sizeof(replyGameCreated_t));
+    std::cout << reply.idGame << std::endl;
+    return reply.idGame;
 }

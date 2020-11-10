@@ -8,13 +8,16 @@
 #include <boost/asio.hpp>
 #include <thread>
 #include "UdpServer.hpp"
-#include "TcpHandler.hpp"
+#include "ServerEngine.hpp"
 
 int main(int argc, char **argv)
 {
-    TcpHandler tcpServer;
-    std::thread thread([&tcpServer]() {tcpServer.run();});
-    thread.join();
+    ServerEngine server;
+
+        std::cout << "coucou" << std::endl;
+    server.serverLoop();
+            std::cout << "coucou2" << std::endl;
+
     // boost::asio::io_service io_service;
     // UdpServer server(io_service);
 

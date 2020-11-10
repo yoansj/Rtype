@@ -19,7 +19,7 @@ using boost::asio::ip::udp;
 
 class UdpServer {
     public:
-        UdpServer(boost::asio::io_service& io_service);
+        UdpServer();
 
         void run(void);
 
@@ -41,6 +41,7 @@ class UdpServer {
         udp::socket _socket;
         udp::endpoint _remote_endpoint;
         std::array<char, bufferSize> _buffer;
+        boost::asio::io_service _io_service;
 };
 
 #endif /* !UDPSERVER_HPP_ */
