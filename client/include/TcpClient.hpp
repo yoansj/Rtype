@@ -16,7 +16,7 @@ class TcpClient {
         ~TcpClient() = default;
 
         void sendPackage(void *package);
-        void receivePackage(void);
+        std::size_t receivePackage(void);
 
     private:
         sf::TcpSocket _socket;

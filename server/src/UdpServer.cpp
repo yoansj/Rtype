@@ -7,8 +7,8 @@
 
 #include "UdpServer.hpp"
 
-UdpServer::UdpServer::UdpServer(boost::asio::io_service& io_service) :
-    _socket(io_service, udp::endpoint(udp::v4(), 7171))
+UdpServer::UdpServer::UdpServer() :
+    _socket(_io_service, udp::endpoint(udp::v4(), 7171))
 {
     UdpServer::startReceive();
 }

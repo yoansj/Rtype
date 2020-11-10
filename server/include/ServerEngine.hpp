@@ -11,18 +11,18 @@
 #include <boost/asio.hpp>
 
 #include "UdpServer.hpp"
+#include "TcpHandler.hpp"
 
 class ServerEngine {
     public:
-        ServerEngine() : server(io_service) {};
+        ServerEngine() = default;
         ~ServerEngine() = default;
 
         void serverLoop();
 
-    protected:
     private:
-        boost::asio::io_service io_service;
-        UdpServer server;
+        UdpServer _udpServer;
+        TcpHandler _tcpServer;
 };
 
 #endif /* !SERVERENGINE_HPP_ */
