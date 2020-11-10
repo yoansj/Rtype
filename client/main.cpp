@@ -11,17 +11,17 @@
 #include "PositionSystem.hpp"
 #include "Engine.hpp"
 
-// int main(int argc, char **argv)
-// {
-// 	Engine::Engine game;
+int main(int argc, char **argv)
+{
+	Engine::Engine game;
 
-// 	try {
-// 		game.run();
-// 	} catch (std::exception &e) {
-//         std::cerr << e.what() << std::endl;
-// 	}
-// 	return 0;
-// }
+	try {
+		game.run();
+	} catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+	}
+	return 0;
+}
 
 // #include "UdpClient.hpp"
 // #include "Packages.hpp"
@@ -43,20 +43,20 @@
 //     return 0;
 // }
 
-#include "TcpClient.hpp"
-#include "Packages.hpp"
-#include "PackagesType.hpp"
+// #include "TcpClient.hpp"
+// #include "Packages.hpp"
+// #include "PackagesType.hpp"
 
-int main(int argc, char **argv)
-{
-	if (argc != 2) {
-		std::cout << "Try : ./run_client <port>" << std::endl;
-		return 0;
-	}
-	TcpClient client("localhost", std::atoi(argv[1]));
-	createNewGame_t package = {CREATE_NEW_GAME, "NewGame"};
+// int main(int argc, char **argv)
+// {
+// 	if (argc != 2) {
+// 		std::cout << "Try : ./run_client <port>" << std::endl;
+// 		return 0;
+// 	}
+// 	TcpClient client("localhost", std::atoi(argv[1]));
+// 	createNewGame_t package = {CREATE_NEW_GAME, "NewGame"};
 
-	client.sendPackage(static_cast<void *>(&package));
-	client.receivePackage();
-	return 0;
-}
+// 	client.sendPackage(static_cast<void *>(&package));
+// 	client.receivePackage();
+// 	return 0;
+// }
