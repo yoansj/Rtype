@@ -22,7 +22,6 @@ class ComponentManager {
 
         AbstractComponent &create(Entity e) {
             _components.push_back(AbstractComponent(e));
-            std::cout << "Father: " << _components.back().entity << std::endl;
             return (_components.back());
         }
 

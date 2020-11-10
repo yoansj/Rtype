@@ -19,7 +19,7 @@
 namespace Engine {
 
     /**
-     * @brief  Position system used on the Position component
+     * @brief  System used to get user input in the game
      */
     class InputSystem : public System<Position> {
         public:

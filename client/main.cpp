@@ -11,17 +11,17 @@
 #include "PositionSystem.hpp"
 #include "Engine.hpp"
 
-// int main(int argc, char **argv)
-// {
-// 	Engine::Engine game;
+int main(int argc, char **argv)
+{
+	Engine::Engine game;
 
-// 	try {
-// 		game.run();
-// 	} catch (std::exception &e) {
-//         std::cerr << e.what() << std::endl;
-// 	}
-// 	return 0;
-// }
+	try {
+		game.run();
+	} catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+	}
+	return 0;
+}
 
 // #include "UdpClient.hpp"
 // #include "Packages.hpp"
@@ -43,6 +43,7 @@
 //     return 0;
 // }
 
+/*
 #include "TcpClient.hpp"
 #include "Packages.hpp"
 #include "PackagesType.hpp"
@@ -60,3 +61,4 @@ int main(int argc, char **argv)
 	client.receivePackage();
 	return 0;
 }
+*/

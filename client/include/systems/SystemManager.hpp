@@ -16,11 +16,12 @@
 #include "MonsterLoaderSystem.hpp"
 #include "ParallaxSystem.hpp"
 #include "NetworkSystem.hpp"
+#include "TitleScreenSystem.hpp"
 
 namespace Engine {
     class SystemManager {
         public:
-            SystemManager() = default;
+            SystemManager() : titleScreen(spriteSystem, velocitySystem, positionSystem) {};
             ~SystemManager() = default;
 
             PositionSystem positionSystem;
@@ -31,6 +32,7 @@ namespace Engine {
             MonsterLoaderSystem monsterLoaderSystem;
             ParallaxSystem parallaxSystem;
             NetworkSystem networkSystem;
+            TitleScreenSystem titleScreen;
 
         private:
 

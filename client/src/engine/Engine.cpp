@@ -19,6 +19,9 @@ Engine::Engine::~Engine()
 
 void Engine::Engine::initGame()
 {
+    /*_systems.titleScreen.setSceneVariable(_scene);
+    _systems.titleScreen.createSprites();
+
     auto bg = _entityManager.create();
     _systems.spriteSystem.create(bg);
     _systems.positionSystem.create(bg);
@@ -69,7 +72,7 @@ void Engine::Engine::initGame()
     _systems.networkSystem.setPort(7171);
     _systems.networkSystem.setRecipient("localhost");
     connectionToServer_t package = {0, "Connection"};
-    _systems.networkSystem.send(static_cast<void *>(&package));
+    _systems.networkSystem.send(static_cast<void *>(&package));*/
 }
 
 /**
@@ -78,7 +81,6 @@ void Engine::Engine::initGame()
  */
 void Engine::Engine::run()
 {
-    initGame();
     while (_window->isOpen()) {
         _window->clear(sf::Color::Blue);
         while (_window->pollEvent(_event)) {
@@ -97,10 +99,18 @@ void Engine::Engine::run()
  */
 void Engine::Engine::updateSystems()
 {
-    auto player = _systems.playerSystem.getPlayer();
+    if (_sceneManager.getScene() == SCENE::TITLE_SCREEN) {
+        if (!_systems.titleScreen.isCreated()) {
+            _systems.titleScreen.createSprites(_entityManager.create(), _entityManager.create());
+        }
+        _systems.titleScreen.update(_entityManager, _sceneManager);
+    }
+
+
+    /*auto player = _systems.playerSystem.getPlayer();
     auto bgEntity = _systems.parallaxSystem.getBackgroundEntity();
     _systems.positionSystem.update();
     _systems.spriteSystem.update();
     _systems.parallaxSystem.update(_systems.positionSystem.getComponent(bgEntity), _systems.velocitySystem.getComponent(bgEntity));
-    _systems.inputSystem.update(_systems.positionSystem.getComponent(player), _systems.velocitySystem.getComponent(player), _systems.spriteSystem.getComponent(player));
+    _systems.inputSystem.update(_systems.positionSystem.getComponent(player), _systems.velocitySystem.getComponent(player), _systems.spriteSystem.getComponent(player));*/
 }

@@ -12,8 +12,10 @@
 #include <memory>
 
 #include "SystemManager.hpp"
+#include "SceneManager.hpp"
 #include "Entity.hpp"
 #include "Renderer.hpp"
+#include "Scene.hpp"
 
 namespace Engine {
 
@@ -35,6 +37,7 @@ namespace Engine {
             SystemManager _systems;
             EntityManager _entityManager;
             Renderer _renderer;
+            SceneManager _sceneManager;
     };
 }
 
