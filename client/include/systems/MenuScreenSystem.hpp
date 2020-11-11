@@ -28,7 +28,7 @@ namespace Engine {
         };
         public:
             MenuScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem) :
-            _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false), _choice(choice::CREATE) {};
+            _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false), _choice(choice::CREATE), _isPressed(false) {};
             ~MenuScreenSystem() = default;
 
             void createSprites(Entity parallax, std::array<Entity, 3> buttons);
@@ -42,6 +42,7 @@ namespace Engine {
             std::vector<Entity> _menuScreenEntities;
             bool _created;
             int _choice;
+            bool _isPressed;
             SpriteSystem &_spriteSystem;
             VelocitySystem &_velocitySystem;
             PositionSystem &_positionSystem;

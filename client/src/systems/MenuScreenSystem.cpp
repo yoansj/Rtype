@@ -65,13 +65,18 @@ void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager
                 std::cout << "join\n";
             std::cout << _choice << std::endl;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && _isPressed == false) {
         _choice == 2 ? _choice = 0 : _choice++;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        _isPressed = true;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _isPressed == false) {
         _choice == 0 ? _choice = 2 : _choice--;
+        _isPressed = true;
+    }
     _choice == choice::CREATE ? _spriteSystem.changeTexture(_menuScreenEntities[1], "../client/assets/createPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[1], "../client/assets/create.png");
     _choice == choice::JOIN ? _spriteSystem.changeTexture(_menuScreenEntities[2], "../client/assets/joinPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[2], "../client/assets/join.png");
     _choice == choice::QUIT ? _spriteSystem.changeTexture(_menuScreenEntities[3], "../client/assets/quitPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[3], "../client/assets/quit.png");
-
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        _isPressed = false;
 }
 
