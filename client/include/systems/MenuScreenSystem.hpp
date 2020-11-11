@@ -17,15 +17,21 @@
 #include "VelocitySystem.hpp"
 #include "PositionSystem.hpp"
 #include "ParallaxSystem.hpp"
+#include <array>
 
 namespace Engine {
     class MenuScreenSystem {
+        enum choice {
+            CREATE,
+            JOIN,
+            QUIT
+        };
         public:
             MenuScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem) :
-            _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false) {};
+            _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false), _choice(choice::CREATE) {};
             ~MenuScreenSystem() = default;
 
-            void createSprites(Entity parallax);
+            void createSprites(Entity parallax, std::array<Entity, 3> buttons);
             void destroySprites(EntityManager &entityManager);
 
             bool isCreated() const {return (_created);};
@@ -33,8 +39,9 @@ namespace Engine {
 
         protected:
         private:
-            std::vector<Entity> _gameScreenEntities;
+            std::vector<Entity> _menuScreenEntities;
             bool _created;
+            int _choice;
             SpriteSystem &_spriteSystem;
             VelocitySystem &_velocitySystem;
             PositionSystem &_positionSystem;

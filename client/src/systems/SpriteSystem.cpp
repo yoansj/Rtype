@@ -49,17 +49,16 @@ void Engine::SpriteSystem::createAnimation(Entity e, sf::IntRect rect)
     //component.animations.push_back(newAnimation);
 }
 
-void Engine::SpriteSystem::setAnimationSpeed(Entity e, float speed)
+void Engine::SpriteSystem::changeTexture(Entity e, std::string const &filepath)
 {
     auto &component = _components.getComponent(e);
-
-    component.animationSpeed = speed;
-    //component.animatedSprite.setFrameTime(sf::seconds(speed));
+    if (!component.texture.loadFromFile(filepath))
+        throw EngineError("Sprite loading error", "Couldn't load sprite of filepath : " + filepath);
 }
 
-void Engine::SpriteSystem::setPlayingAnimation(Entity e, int index)
+void Engine::SpriteSystem::setScale(Entity e, int x, int y)
 {
     auto &component = _components.getComponent(e);
-
+    component.sprite.setScale(x ,y);
     //component.animatedSprite.play(component.animations[index]);
 }
