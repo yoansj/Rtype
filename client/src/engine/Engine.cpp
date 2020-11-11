@@ -111,6 +111,12 @@ void Engine::Engine::updateSystems()
         }
         _systems.gameScreen.update(_entityManager, _sceneManager);
     }
+    if (_sceneManager.getScene() == SCENE::MAIN_MENU) {
+        if (!_systems.menuScreen.isCreated()) {
+            _systems.menuScreen.createSprites(_entityManager.create());
+        }
+        _systems.menuScreen.update(_entityManager, _sceneManager);
+    }
 
 
     /*auto player = _systems.playerSystem.getPlayer();

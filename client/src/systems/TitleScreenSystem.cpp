@@ -44,6 +44,6 @@ void Engine::TitleScreenSystem::update(EntityManager &entityManager, SceneManage
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
         destroySprites(entityManager);
-        sceneManager.setScene(GAME);
+        sceneManager.setScene(MAIN_MENU);
     }
 }

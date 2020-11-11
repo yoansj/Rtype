@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2020
 ** client
 ** File description:
-** GameScreenSystem
+** MenuScreenSystem
 */
 
-#ifndef GAMESCREENSYSTEM_HPP_
-#define GAMESCREENSYSTEM_HPP_
+#ifndef MENUSCREENSYSTEM_HPP_
+#define MENUSCREENSYSTEM_HPP_
 
 #include "System.hpp"
 #include "Position.hpp"
@@ -19,11 +19,11 @@
 #include "ParallaxSystem.hpp"
 
 namespace Engine {
-    class GameScreenSystem {
+    class MenuScreenSystem {
         public:
-            GameScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem) :
+            MenuScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem) :
             _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false) {};
-            ~GameScreenSystem() = default;
+            ~MenuScreenSystem() = default;
 
             void createSprites(Entity parallax);
             void destroySprites(EntityManager &entityManager);
@@ -42,4 +42,5 @@ namespace Engine {
     };
 }
 
-#endif /* !GAMESCREENSYSTEM_HPP_ */
+
+#endif /* !MENUSCREENSYSTEM_HPP_ */

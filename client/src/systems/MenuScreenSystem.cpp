@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2020
 ** client
 ** File description:
-** GameScreenSystem
+** MenuScreenSystem
 */
 
-#include "GameScreenSystem.hpp"
+#include "MenuScreenSystem.hpp"
 
-void Engine::GameScreenSystem::createSprites(Entity parallax)
+void Engine::MenuScreenSystem::createSprites(Entity parallax)
 {
     _spriteSystem.create(parallax);
     _positionSystem.create(parallax);
@@ -22,7 +22,7 @@ void Engine::GameScreenSystem::createSprites(Entity parallax)
     _created = true;
 }
 
-void Engine::GameScreenSystem::destroySprites(EntityManager &entityManager)
+void Engine::MenuScreenSystem::destroySprites(EntityManager &entityManager)
 {
     for (int i = 0; i != _gameScreenEntities.size(); i++) {
         _spriteSystem.destroy(_gameScreenEntities[i]);
@@ -34,8 +34,9 @@ void Engine::GameScreenSystem::destroySprites(EntityManager &entityManager)
     _created = false;
 }
 
-void Engine::GameScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
+void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
 {
     _parallaxSystem.update(_positionSystem.getComponent(_gameScreenEntities[0]), _velocitySystem.getComponent(_gameScreenEntities[0]));
 
 }
+
