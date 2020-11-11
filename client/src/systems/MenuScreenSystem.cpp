@@ -58,12 +58,13 @@ void Engine::MenuScreenSystem::destroySprites(EntityManager &entityManager)
 void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
 {
     _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[0]), _velocitySystem.getComponent(_menuScreenEntities[0]));
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
             if (_choice == choice::CREATE)
-                std::cout << "create\n";
-            if (_choice == choice::JOIN)
-                std::cout << "join\n";
-            std::cout << _choice << std::endl;
+                sceneManager.setScene(SCENE::GAME);
+            else if (_choice == choice::JOIN)
+                sceneManager.setScene(SCENE::JOIN_GAME);
+            else if (_choice == choice::QUIT)
+                sceneManager.setScene(SCENE::GAME_END);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && _isPressed == false) {
         _choice == 2 ? _choice = 0 : _choice++;

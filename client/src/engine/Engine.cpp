@@ -117,6 +117,8 @@ void Engine::Engine::updateSystems()
         }
         _systems.menuScreen.update(_entityManager, _sceneManager);
     }
+    if (_sceneManager.getScene() == SCENE::GAME_END)
+            _window->close();
 
 
     /*auto player = _systems.playerSystem.getPlayer();
