@@ -1,0 +1,76 @@
+
+
+
+
+
+
+Network Working Group                                       T. Belgacemi
+Request for Comments: 2223                                       Epitech
+Category: Informational                                    November 2020
+
+
+                      Protocol RFC communications R-TYPE
+
+Informational
+
+   This memo provides information for the Internet community. This
+   memo does not specify an Internet standard of any kind.
+   Distribution of this memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (1997).  All Rights Reserved.
+
+Table of Contents
+
+   1.   Introduction . . . . . . . . . . . . . . . . . . . . . . . . 2
+   2.   Client first connection . . . . . . . . . . . . . . . . . .  3
+   3.   Format Rules . . . . . . . . . . . . . . . . . . . . . . . . 4
+   3a.   ASCII Format Rules  . . . . . . . . . . . . . . . . . . . . 5
+   3b.   PostScript Format Rules . . . . . . . . . . . . . . . . . . 6
+   4.   Header . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+   4a.   First Page Heading  . . . . . . . . . . . . . . . . . . . . 7
+   4b.   Running Header  . . . . . . . . . . . . . . . . . . . . . . 8
+   4c.   Running Footer  . . . . . . . . . . . . . . . . . . . . . . 8
+   5.   Status Section . . . . . . . . . . . . . . . . . . . . . . . 8
+   6.   Copyright Notice . . . . . . . . . . . . . . . . . . . . . . 9
+   7.   Introduction Section . . . . . . . . . . . . . . . . . . . . 9
+   8.   References Section . . . . . . . . . . . . . . . . . . . .  11
+   9.   Security Considerations Section  . . . . . . . . . . . . .  11
+   10.  Author's Address Section . . . . . . . . . . . . . . . . .  11
+   11.  Copyright Section  . . . . . . . . . . . . . . . . . . . .  11
+   12.  Relation to other RFCs . . . . . . . . . . . . . . . . . .  12
+   13.  Protocol Standards Process . . . . . . . . . . . . . . . .  13
+   14.  Contact  . . . . . . . . . . . . . . . . . . . . . . . . .  13
+   15.  Distribution Lists . . . . . . . . . . . . . . . . . . . .  14
+   16.  RFC Index  . . . . . . . . . . . . . . . . . . . . . . . .  14
+   17.  Security Considerations  . . . . . . . . . . . . . . . . .  14
+   18.  References . . . . . . . . . . . . . . . . . . . . . . . .  14
+   19.  Authors' Addresses . . . . . . . . . . . . . . . . . . . .  15
+   20.  Appendix - RFC "nroff macros"  . . . . . . . . . . . . . .  16
+
+
+Belgacemi                    Informational                     [Page 1]
+
+RFC 2223         Protocol RFC communications R-TYPE       November 2020
+
+
+1.  Introduction
+
+   The purpose of this RFC is to define the communication rules using a
+   binary protocol between a server and a client.
+   Communication is established for the purpose of enabling the proper
+   functioning of a 2D multi-player video game, known as R-TYPE.
+
+   The server MUST communicate with the client using UDP protocol.
+   However a second communication using the TCP protocol is tolerated
+   but a good justification be given.
+   In all-games every communications MUST be done in UDP.
+
+2.  Client first connection
+
+   Documents proposed to be RFCs are reviewed by the RFC Editor and
+   possibly by other reviewers he selects.
+
+   The result of the review may be to suggest to the author some
+   improvements to the document before publication.
