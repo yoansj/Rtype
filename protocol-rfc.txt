@@ -1,0 +1,138 @@
+
+
+
+
+
+
+Network Working Group                                       T. Belgacemi
+Request for Comments: 2223                                       Epitech
+Category: Informational                                    November 2020
+
+
+                    Protocol client/server communications
+
+Informational
+
+   This memo provides information for the Internet community. This
+   memo does not specify an Internet standard of any kind.
+   Distribution of this memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (1997).  All Rights Reserved.
+
+Table of Contents
+
+   1.   Introduction . . . . . . . . . . . . . . . . . . . . . . . . 2
+   2.   Secure Client Connection . . . . . . . . . . . . . . . . . . 2
+   3.   Lobby TCP Packages . . . . . . . . . . . . . . . . . . . . . 2
+   3a.   Package Creation Lobby  . . . . . . . . . . . . . . . . . . 2
+   3b.   Package Join Lobby . . . . . . . . . . . . . . . . . . . .  3
+   4.   Game Launch on UDP . . . . . . . . . . . . . . . . . . . . . 3
+   4a.   Loading the Game . . . . . . . . . . . . . . . . . . . . .  7
+   4b.   Running Header  . . . . . . . . . . . . . . . . . . . . . . 8
+   4c.   Running Footer  . . . . . . . . . . . . . . . . . . . . . . 8
+   5.   Status Section . . . . . . . . . . . . . . . . . . . . . . . 8
+   6.   Copyright Notice . . . . . . . . . . . . . . . . . . . . . . 9
+   7.   Introduction Section . . . . . . . . . . . . . . . . . . . . 9
+   8.   References Section . . . . . . . . . . . . . . . . . . . .  11
+   9.   Security Considerations Section  . . . . . . . . . . . . .  11
+   10.  Author's Address Section . . . . . . . . . . . . . . . . .  11
+   11.  Copyright Section  . . . . . . . . . . . . . . . . . . . .  11
+   12.  Relation to other RFCs . . . . . . . . . . . . . . . . . .  12
+   13.  Protocol Standards Process . . . . . . . . . . . . . . . .  13
+   14.  Contact  . . . . . . . . . . . . . . . . . . . . . . . . .  13
+   15.  Distribution Lists . . . . . . . . . . . . . . . . . . . .  14
+   16.  RFC Index  . . . . . . . . . . . . . . . . . . . . . . . .  14
+   17.  Security Considerations  . . . . . . . . . . . . . . . . .  14
+   18.  References . . . . . . . . . . . . . . . . . . . . . . . .  14
+   19.  Authors' Addresses . . . . . . . . . . . . . . . . . . . .  15
+   20.  Appendix - RFC "nroff macros"  . . . . . . . . . . . . . .  16
+
+
+Belgacemi                    Informational                     [Page 1]
+
+RFC 2223       Protocol client/server communications      November 2020
+
+
+1.  Introduction
+
+   The purpose of this RFC is to define the communication rules using a
+   binary protocol between a server and a client.
+   Communication is established for the purpose of enabling the proper
+   functioning of a 2D multi-player video game, known as R-TYPE.
+
+   The server MUST communicate with the client using UDP protocol.
+   However a second communication using the TCP protocol is tolerated
+   but a good justification be given.
+   In all-games every communications MUST be done in UDP.
+
+2.  Secure Client Connection
+
+   To ensure a good connection between the server and the client we
+   decided to use the TCP protocol for the first connection between the
+   client and the server.
+   The choice of using the TCP protocol is that the first to the server
+   connection MUST be secure and no packets should be lost to ensure
+   that the client was able to communicate with the server.
+
+3.  Lobby TCP Packages
+
+   Once the secure connection is established between the client and the
+   server, the client MAY send two TCP types of packets to the server.
+
+   3a.  Package Creation Lobby
+
+      The first packet is to ask the server to create a new game, the
+      packet is called createNewGame.
+
+      The createNewGame package contains a variable to store type of the
+      package.
+
+      Once the createNewGame packet arrives at the server, the latter
+      will create a lobby for the client and send a packet confirming
+      the creation of the lobby, the packet is called
+      replyLobbyCreated.
+
+      The first variable in the package is the type of the package.
+
+      The second is a std :: size_t idLobby to see which lobby the
+      client is in.
+
+      The client MUST send this packet if they want to be the creator
+      of the lobby.
+
+
+
+
+
+
+Belgacemi                    Informational                     [Page 2]
+
+RFC 2223       Protocol client/server communications      November 2020
+
+   3b.  Package Join Lobby
+
+      The second package is to ask the server to join an already
+      existing lobby, the package is called connectionLobby.
+
+      The first variable in the package is the type of the package.
+
+      The second is a std :: size_t idLobby for the identifier of the
+      lobby in which to connect.
+
+      The client MUST enter the lobby identifier if he wants to send
+      the packet.
+
+4.  Game Launch on UDP
+
+   Once the creator of the lobby has decided to launch the game alone
+   or with others, the game will start and all the requests that will
+   now pass between the server and the client will be in UDP.
+
+   4a.  Loading the Game
+
+      When the game is launched, the server will send the client the
+      position of all the players present on the game.
+
+
