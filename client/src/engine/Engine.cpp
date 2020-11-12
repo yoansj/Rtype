@@ -25,7 +25,7 @@ void Engine::Engine::initGame()
 
 
     // Network
-    _systems.networkSystem.setPort(7171);
+    /*_systems.networkSystem.setPort(7171);
     _systems.networkSystem.setRecipient("localhost");
     connectionToServer_t package = {0, "Connection"};
     _systems.networkSystem.send(static_cast<void *>(&package));*/
