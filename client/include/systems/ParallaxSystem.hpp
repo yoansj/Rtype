@@ -12,11 +12,13 @@
 #include "Sprite.hpp"
 #include "Position.hpp"
 #include "Velocity.hpp"
+#include "PositionSystem.hpp"
+#include "VelocitySystem.hpp"
 
 namespace Engine {
-    class ParallaxSystem: public System<Position> {
+    class ParallaxSystem {
         public:
-            ParallaxSystem() : System() {};
+            ParallaxSystem() {};
             ~ParallaxSystem() = default;
 
             void update(Position &pos, Velocity &vel);
@@ -24,6 +26,8 @@ namespace Engine {
             void setBackgroundEntity(Entity background) {_background = background;};
 
             Entity getBackgroundEntity() const {return (_background);};
+
+            void removeParallax(PositionSystem &positionSystem, VelocitySystem &velocitySytem, EntityManager &entityManager);
 
         private:
             sf::Clock _clock;

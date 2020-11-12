@@ -9,11 +9,16 @@
 
 void Engine::ParallaxSystem::update(Position &pos, Velocity &vel)
 {
-    _time = _clock.getElapsedTime();
     if (pos.x <= -1800)
         pos.x = 0;
-    if (_time.asMicroseconds() >= 2000) {
-        _clock.restart();
-        pos.x -= vel.x;
-    }
+    pos.x -= vel.x;
+}
+
+void Engine::ParallaxSystem::removeParallax(PositionSystem &positionSystem, VelocitySystem &velocitySytem, EntityManager &entityManager)
+{
+    if (positionSystem.Exist(_background))
+        positionSystem.destroy(_background);
+    if (velocitySytem.Exist(_background))
+        velocitySytem.destroy(_background);
+    entityManager.remove(_background);
 }

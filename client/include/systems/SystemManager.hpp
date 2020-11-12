@@ -15,17 +15,20 @@
 #include "VelocitySystem.hpp"
 #include "MonsterLoaderSystem.hpp"
 #include "ParallaxSystem.hpp"
+#include "TextSystem.hpp"
 #include "NetworkSystem.hpp"
 #include "TitleScreenSystem.hpp"
 #include "GameScreenSystem.hpp"
 #include "MenuScreenSystem.hpp"
+#include "LobbyScreenSystem.hpp"
 
 namespace Engine {
     class SystemManager {
         public:
             SystemManager() : titleScreen(spriteSystem, velocitySystem, positionSystem),
             gameScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),
-            menuScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem) {};
+            menuScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),
+            lobbyScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem) {};
             ~SystemManager() = default;
 
             PositionSystem positionSystem;
@@ -35,10 +38,13 @@ namespace Engine {
             VelocitySystem velocitySystem;
             MonsterLoaderSystem monsterLoaderSystem;
             ParallaxSystem parallaxSystem;
+            TextSystem textSystem;
+
             NetworkSystem networkSystem;
             TitleScreenSystem titleScreen;
             GameScreenSystem gameScreen;
             MenuScreenSystem menuScreen;
+            LobbyScreenSystem lobbyScreen;
 
         private:
 

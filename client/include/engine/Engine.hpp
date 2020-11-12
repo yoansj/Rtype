@@ -29,9 +29,6 @@ namespace Engine {
         public:
             Engine();
             ~Engine();
-
-            void initGame();
-
             void run();
 
             void updateSystems();

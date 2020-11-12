@@ -43,11 +43,20 @@ class ComponentManager {
                     return (_components[i]);
                 }
             }
-            throw EngineError("Component error", "Component not found");
+            throw EngineError("Component error", "Component not found !");
         }
 
         std::vector<AbstractComponent> &getComponents() {
             return (_components);
+        }
+
+        bool Exist(Entity e) {
+            for (int i = 0; i != _components.size(); i++) {
+                if (_components[i].entity == e) {
+                    return (true);
+                }
+            }
+            return (false);
         }
 
         /*const AbstractComponent &operator[](std::size_t size) {
