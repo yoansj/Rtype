@@ -32,9 +32,9 @@ namespace Engine {
 
             void createAnimation(Entity e, sf::IntRect rect);
 
-            void setAnimationSpeed(Entity e, float speed);
+            void changeTexture(Entity e, std::string const &filepath);
 
-            void setPlayingAnimation(Entity e, int index);
+            void setScale(Entity e, int x, int y);
 
         private:
             std::shared_ptr<sf::RenderWindow> _window;

@@ -103,6 +103,20 @@ void Engine::Engine::updateSystems()
         }
         _systems.titleScreen.update(_entityManager, _sceneManager);
     }
+    if (_sceneManager.getScene() == SCENE::GAME) {
+        if (!_systems.gameScreen.isCreated()) {
+            _systems.gameScreen.createSprites(_entityManager.create());
+        }
+        _systems.gameScreen.update(_entityManager, _sceneManager);
+    }
+    if (_sceneManager.getScene() == SCENE::MAIN_MENU) {
+        if (!_systems.menuScreen.isCreated()) {
+            _systems.menuScreen.createSprites(_entityManager.create(), {_entityManager.create(), _entityManager.create(), _entityManager.create()});
+        }
+        _systems.menuScreen.update(_entityManager, _sceneManager);
+    }
+    if (_sceneManager.getScene() == SCENE::GAME_END)
+            _window->close();
 
 
     /*auto player = _systems.playerSystem.getPlayer();
