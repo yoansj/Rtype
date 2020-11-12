@@ -81,15 +81,19 @@ void Engine::Engine::initGame()
  */
 void Engine::Engine::run()
 {
+    sf::Clock clock;
     while (_window->isOpen()) {
         _window->clear(sf::Color::Blue);
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();
         }
-        updateSystems();
-        _renderer.doRender(_systems);
-        _window->display();
+        if (clock.getElapsedTime().asMilliseconds() >= 1000.0 / 60.0) {
+            updateSystems();
+            _renderer.doRender(_systems);
+            _window->display();
+            clock.restart();
+        }
     }
 }
 

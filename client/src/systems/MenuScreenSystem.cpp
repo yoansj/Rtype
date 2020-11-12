@@ -14,7 +14,7 @@ void Engine::MenuScreenSystem::createSprites(Entity parallax, std::array<Entity,
     _positionSystem.setPosition(parallax, -1800, 0);
     _spriteSystem.initSprite(parallax, "../client/assets/background.png", false);
     _velocitySystem.create(parallax);
-    _velocitySystem.setVelocity(parallax, 1, 1);
+    _velocitySystem.setVelocity(parallax, 5, 5);
     _parallaxSystem.setBackgroundEntity(parallax);
 
     _spriteSystem.create(buttons[0]);
