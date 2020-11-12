@@ -47,6 +47,9 @@ namespace Engine {
             std::vector<AbstractComponent> &getComponents() {
                 return (_components.getComponents());
             }
+            bool Exist(Entity e) {
+                return (_components.Exist(e));
+            }
         protected:
             ComponentManager<AbstractComponent> _components;
     };

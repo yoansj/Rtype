@@ -10,9 +10,9 @@
 TcpClient::TcpClient(sf::IpAddress recipient, int port) : _recipient(recipient), _port(port), connected(false)
 {
     _status = _socket.connect(_recipient, _port);
-    if (_status != sf::Socket::Done) {
-        throw EngineError("Sockets error", "Couldn't connect to server");
-    }
+    // if (_status != sf::Socket::Done) {
+    //     throw EngineError("Sockets error", "Couldn't connect to server");
+    // }
     _socket.setBlocking(false);
     connected = true;
 }

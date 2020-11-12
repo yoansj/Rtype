@@ -14,9 +14,8 @@ void Engine::GameScreenSystem::createSprites(Entity parallax)
     _positionSystem.setPosition(parallax, -1800, 0);
     _spriteSystem.initSprite(parallax, "../client/assets/background.png", false);
     _velocitySystem.create(parallax);
-    _velocitySystem.setVelocity(parallax, 1, 1);
+    _velocitySystem.setVelocity(parallax, 5, 5);
     _parallaxSystem.setBackgroundEntity(parallax);
-    _spriteSystem.createAnimation(parallax, sf::IntRect(400, 0, 300, 400));
 
     _gameScreenEntities.push_back(parallax);
     _created = true;
