@@ -72,7 +72,8 @@ void Engine::Engine::initGame()
  */
 void Engine::Engine::run()
 {
-    createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
+    //createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
+    startNewGame_t package = {START_NEW_GAME, 0, "Start new game"};
 
     while (_window->isOpen()) {
         _window->clear(sf::Color::Blue);
