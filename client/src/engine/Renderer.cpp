@@ -24,5 +24,14 @@ void Engine::Renderer::doRender(SystemManager &sys)
         sprite.sprite.setPosition(position.x, position.y);
         _window->draw(sprite.sprite);
     }
+    for (int i=0; i != sys.textSystem.size(); i++) {
+        auto entity = sys.textSystem.getComponents()[i].entity;
+        auto const &position = sys.positionSystem.getComponent(entity);
+        auto &text = sys.textSystem.getComponents()[i];
+        text.text.setPosition(position.x, position.y);
+        std::cout << "yes " << position.x << std::endl;
+        // text.text.setFont(text.font);
+        _window->draw(text.text);
+    }
 }
 

@@ -23,7 +23,7 @@ namespace Engine {
         // For Text
         bool isCreated;
         sf::Font font;
-        sf::String text;
+        sf::Text text;
 
     };
 

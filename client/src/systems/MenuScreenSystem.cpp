@@ -59,10 +59,11 @@ void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager
 {
     _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[0]), _velocitySystem.getComponent(_menuScreenEntities[0]));
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-            if (_choice == choice::CREATE)
-                sceneManager.setScene(SCENE::GAME);
+            if (_choice == choice::CREATE) {
+                sceneManager.setScene(SCENE::LOBBY);
+            }
             else if (_choice == choice::JOIN)
-                sceneManager.setScene(SCENE::JOIN_GAME);
+                sceneManager.setScene(SCENE::LOBBY);
             else if (_choice == choice::QUIT)
                 sceneManager.setScene(SCENE::GAME_END);
     }

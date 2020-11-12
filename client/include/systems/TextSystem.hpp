@@ -28,7 +28,9 @@ namespace Engine {
 
             void update();
 
-            bool initText(Entity e, std::string const &filepath, int size);
+            bool initText(Entity e, std::string const &text, int size);
+
+            void setText(Entity e, std::string str);
 
         private:
             std::shared_ptr<sf::RenderWindow> _window;
