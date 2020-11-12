@@ -19,50 +19,6 @@ Engine::Engine::~Engine()
 
 void Engine::Engine::initGame()
 {
-    /*_systems.titleScreen.setSceneVariable(_scene);
-    _systems.titleScreen.createSprites();
-
-    auto bg = _entityManager.create();
-    _systems.spriteSystem.create(bg);
-    _systems.positionSystem.create(bg);
-    _systems.positionSystem.setPosition(bg, -1800, 0);
-    _systems.spriteSystem.initSprite(bg, "../client/assets/background.png", false);
-    _systems.velocitySystem.create(bg);
-    _systems.velocitySystem.setVelocity(bg, 1, 1);
-    _systems.parallaxSystem.setBackgroundEntity(bg);
-    _systems.spriteSystem.createAnimation(bg, sf::IntRect(400, 0, 300, 400));
-
-
-    auto player = _entityManager.create();
-    _systems.spriteSystem.create(player);
-    _systems.positionSystem.create(player);
-    _systems.positionSystem.setPosition(player, 500, 500);
-    _systems.spriteSystem.initSprite(player,"../client/assets/spaceship.png", true);
-    _systems.spriteSystem.createAnimation(player, sf::IntRect(170, 0,140, 100));
-    _systems.playerSystem.setPlayer(player);
-    _systems.velocitySystem.create(player);
-    _systems.velocitySystem.setVelocity(player, 1, 1);
-    std::cout << "Size: " << _systems.spriteSystem.getComponent(player).texture.getSize().x << std::endl;
-
-    // auto another = _entityManager.create();
-    // _systems.spriteSystem.create(another);
-    // _systems.positionSystem.create(another);
-    // _systems.positionSystem.setPosition(another, 100, 100);
-    // _systems.spriteSystem.initSprite(another, "../client/assets/r-typesheet44.gif");
-    // std::cout << "Size: " << _systems.spriteSystem.getComponent(another).texture.getSize().x << std::endl;
-
-    // auto bg = _entityManager.create();
-    // _systems.spriteSystem.create(bg);
-    // _systems.positionSystem.create(bg);
-    // _systems.positionSystem.setPosition(bg, 0, 0);
-    // _systems.spriteSystem.initSprite(bg, "../client/assets/background.png");
-    // // _systems.playerSystem.setPlayer(bg);
-    // _systems.velocitySystem.setVelocity(bg, 1, 1);
-
-
-
-
-
     _systems.monsterLoaderSystem.load({std::string(ROOT_PATH) + "build/lib/libfrog.so"});
     monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_systems.monsterLoaderSystem.getFactory(0));
     auto frog = frogFactory(_entityManager, _systems);
