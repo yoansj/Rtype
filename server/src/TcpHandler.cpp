@@ -9,8 +9,8 @@
 
 void TcpHandler::run()
 {
-    std::cout << "test" << std::endl;
     std::thread receiverHandler([this](std::vector<tcp::socket> &_sockets) {
+        std::cout << "thread créé !" << std::endl;
         while (1) {
             for (unsigned int i = 0; i < _sockets.size(); i += 1) {
                 std::string tmp = "Salut";
@@ -20,12 +20,11 @@ void TcpHandler::run()
         }
     }, std::ref(_sockets));
     receiverHandler.detach();
-    while (1) {
-        tcp::socket socket(_io_service);
-        _acceptor.accept(socket);
-        _sockets.push_back(std::move(socket));
-        std::cout << _sockets.size() << std::endl;
-    }
+    tcp::socket socket(_io_service);
+    _acceptor.accept(socket);
+    socket.non_blocking(false);
+    _sockets.push_back(std::move(socket));
+    std::cout << _sockets.size() << std::endl;
 
 
     // while (1) {
