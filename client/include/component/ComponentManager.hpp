@@ -50,6 +50,15 @@ class ComponentManager {
             return (_components);
         }
 
+        bool Exist(Entity e) {
+            for (int i = 0; i != _components.size(); i++) {
+                if (_components[i].entity == e) {
+                    return (true);
+                }
+            }
+            return (false);
+        }
+
         /*const AbstractComponent &operator[](std::size_t size) {
             return (_components[size]);
         }*/

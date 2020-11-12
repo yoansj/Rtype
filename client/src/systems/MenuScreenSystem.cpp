@@ -45,13 +45,13 @@ void Engine::MenuScreenSystem::createSprites(Entity parallax, std::array<Entity,
 
 void Engine::MenuScreenSystem::destroySprites(EntityManager &entityManager)
 {
-    for (int i = 0; i != _menuScreenEntities.size(); i++) {
-        _spriteSystem.destroy(_menuScreenEntities[i]);
-        _velocitySystem.destroy(_menuScreenEntities[i]);
-        _positionSystem.destroy(_menuScreenEntities[i]);
-        _parallaxSystem.destroy(_menuScreenEntities[i]);
-        entityManager.remove(_menuScreenEntities[i]);
-    }
+    // for (int i = 0; i != _menuScreenEntities.size(); i++) {
+        _spriteSystem.destroy(_menuScreenEntities[0]);
+        _velocitySystem.destroy(_menuScreenEntities[0]);
+        _positionSystem.destroy(_menuScreenEntities[0]);
+        _parallaxSystem.destroy(_menuScreenEntities[0]);
+        entityManager.remove(_menuScreenEntities[0]);
+    // }
     _created = false;
 }
 
@@ -61,6 +61,7 @@ void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
             if (_choice == choice::CREATE) {
                 sceneManager.setScene(SCENE::LOBBY);
+                destroySprites(entityManager);
             }
             else if (_choice == choice::JOIN)
                 sceneManager.setScene(SCENE::LOBBY);
