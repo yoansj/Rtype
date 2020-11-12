@@ -8,7 +8,12 @@
 #ifndef TCPCLIENT_HPP_
 #define TCPCLIENT_HPP_
 
+#include "Packages.hpp"
+#include "EngineError.hpp"
+
 #include <SFML/Network.hpp>
+#include <iostream>
+#include <cstring>
 
 class TcpClient {
     public:
@@ -23,6 +28,7 @@ class TcpClient {
         sf::Socket::Status _status;
         sf::IpAddress _recipient;
         int _port;
+        bool connected;
 };
 
 #endif /* !TCPCLIENT_HPP_ */

@@ -17,6 +17,10 @@
 #include "Renderer.hpp"
 #include "Scene.hpp"
 
+#include "TcpClient.hpp"
+#include "Packages.hpp"
+#include "PackagesType.hpp"
+
 namespace Engine {
 
     using monsterGenerator = Entity (*) (EntityManager &, SystemManager &);
@@ -25,9 +29,6 @@ namespace Engine {
         public:
             Engine();
             ~Engine();
-
-            void initGame();
-
             void run();
 
             void updateSystems();
@@ -38,6 +39,7 @@ namespace Engine {
             EntityManager _entityManager;
             Renderer _renderer;
             SceneManager _sceneManager;
+            TcpClient _tcpClient;
     };
 }
 
