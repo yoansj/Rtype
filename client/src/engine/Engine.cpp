@@ -9,7 +9,8 @@
 #include <fstream>
 
 Engine::Engine::Engine() :
-    _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1800, 1000), "R-Type")), _renderer(_window)
+    _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1800, 1000), "R-Type")),
+    _renderer(_window), _tcpClient("localhost", 7172)
 {
 }
 
@@ -60,19 +61,9 @@ void Engine::Engine::initGame()
     // _systems.velocitySystem.setVelocity(bg, 1, 1);
 
 
-
-
-
     _systems.monsterLoaderSystem.load({std::string(ROOT_PATH) + "build/lib/libfrog.so"});
     monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_systems.monsterLoaderSystem.getFactory(0));
-    auto frog = frogFactory(_entityManager, _systems);
-
-
-    // Network
-    _systems.networkSystem.setPort(7171);
-    _systems.networkSystem.setRecipient("localhost");
-    connectionToServer_t package = {0, "Connection"};
-    _systems.networkSystem.send(static_cast<void *>(&package));*/
+    auto frog = frogFactory(_entityManager, _systems);*/
 }
 
 /**
@@ -81,11 +72,18 @@ void Engine::Engine::initGame()
  */
 void Engine::Engine::run()
 {
+    createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
+
     while (_window->isOpen()) {
         _window->clear(sf::Color::Blue);
+        _tcpClient.receivePackage();
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+                _tcpClient.sendPackage(static_cast<void *>(&package));
+                std::cout << "ziak les paquets partent" << std::endl;
+            }
         }
         updateSystems();
         _renderer.doRender(_systems);
