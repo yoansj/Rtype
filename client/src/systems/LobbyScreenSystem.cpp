@@ -38,7 +38,7 @@ void Engine::LobbyScreenSystem::createSprites(std::array<Entity, 2> parallax, st
     // _spriteSystem.setScale(buttons[2], 2, 2);
 
     _positionSystem.create(text);
-    _positionSystem.setPosition(text, 850, 400);
+    _positionSystem.setPosition(text, 770, 900);
     _textSystem.create(text);
     _textSystem.initText(text, "ID: " + std::to_string(_id), 100);
 
@@ -52,31 +52,26 @@ void Engine::LobbyScreenSystem::createSprites(std::array<Entity, 2> parallax, st
 
 void Engine::LobbyScreenSystem::destroySprites(EntityManager &entityManager)
 {
+    if (_created == false) return;
     for (int i = 0; i != _lobbyScreenEntities.size(); i++) {
         _spriteSystem.Exist(_lobbyScreenEntities[i]) == true ? _spriteSystem.destroy(_lobbyScreenEntities[i]) : true;
         _textSystem.Exist(_lobbyScreenEntities[i]) == true ? _textSystem.destroy(_lobbyScreenEntities[i]) : true;
-        _spriteSystem.Exist(_lobbyScreenEntities[i]) ? _spriteSystem.destroy(_lobbyScreenEntities[i]) : true;
         _velocitySystem.Exist(_lobbyScreenEntities[i]) ? _velocitySystem.destroy(_lobbyScreenEntities[i]) : true;
         _positionSystem.Exist(_lobbyScreenEntities[i]) ? _positionSystem.destroy(_lobbyScreenEntities[i]) : true;
         entityManager.remove(_lobbyScreenEntities[i]);
     }
-    //_parallaxSystem.removeParallax();
-        _parallaxSystem.removeParallax(_positionSystem, _velocitySystem, entityManager);
-        _lobbyScreenEntities.clear();
+    _parallaxSystem.removeParallax(_positionSystem, _velocitySystem, entityManager);
+    _lobbyScreenEntities.clear();
     _created = false;
 }
 
 void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
 {
-    _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
-    _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[1]), _velocitySystem.getComponent(_lobbyScreenEntities[1]));
-
-    // _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-        sceneManager.setScene(SCENE::GAME);
-        destroySprites(entityManager);
-        return;
+    if (_positionSystem.Exist(_lobbyScreenEntities[0]) && _positionSystem.Exist(_lobbyScreenEntities[1])) {
+        _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
+        _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[1]), _velocitySystem.getComponent(_lobbyScreenEntities[1]));
     }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
         sceneManager.setScene(SCENE::MAIN_MENU);
         destroySprites(entityManager);
@@ -87,5 +82,6 @@ void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManage
         _networkSystem.sendPackage(reinterpret_cast<void *>(&pkg), START_NEW_GAME);
         return;
     }
-    _textSystem.setText(_lobbyScreenEntities[2], "LOBBY ID: " + std::to_string(_id));
+    if (_textSystem.Exist(_lobbyScreenEntities[2]))
+        _textSystem.setText(_lobbyScreenEntities[2], "Lobby Id: " + std::to_string(_id));
 }

@@ -5,10 +5,8 @@
 ** NetworkSystem
 */
 
-#include <cstring>
 #include "NetworkSystem.hpp"
-#include "Packages.hpp"
-#include "PackagesType.hpp"
+
 
 template <class PkgType>
 PkgType Engine::NetworkSystem::loadPkgType(bool typePackage, char *pkgUdp)
@@ -44,7 +42,7 @@ void Engine::NetworkSystem::receivePackageUdp()
     }
 }
 
-void Engine::NetworkSystem::receivePackageTcp(SceneManager &smgr)
+void Engine::NetworkSystem::receivePackageTcp(SceneManager &smgr, EntityManager &entityManager)
 {
     char buffer[sizeof(int)];
     int typePackage;
@@ -74,7 +72,9 @@ void Engine::NetworkSystem::receivePackageTcp(SceneManager &smgr)
         case STARTED_GAME:
         {
             auto co = loadPkgType<gameStarted_t>(false, nullptr);
-            //smgr.setScene(SCENE::LOBBY); METTRE NEW SCENE
+            smgr.setScene(SCENE::GAME);
+            _destroyLobby();
+            std::cout << "Scene switch !" << std::endl;
             break;
         }
     }
@@ -95,6 +95,11 @@ void Engine::NetworkSystem::sendPackage(void const *package, int typePackage)
         case JOIN_GAME_PACKAGE:
             std::cout << "JOIN GAME SENT !" << std::endl;
             if (_socketTcp.send(package, sizeof(joinGame_t)) != sf::Socket::Done) {
+                throw EngineError("Network Error", "Package not sent !");
+            }
+        case START_NEW_GAME:
+            std::cout << "START GAME SENT !" << std::endl;
+            if (_socketTcp.send(package, sizeof(startNewGame_t)) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
             }
     default:

@@ -13,6 +13,9 @@ Engine::Engine::Engine(std::string const &serverIp) :
     _renderer(_window), _serverIp(serverIp)
 {
     _systems.networkSystem.setRecipient(serverIp);
+    _systems.networkSystem.setDestroyLobby([this]() {
+        this->_systems.lobbyScreen.destroySprites(this->_entityManager);
+    });
 }
 
 Engine::Engine::~Engine()
@@ -29,9 +32,7 @@ void Engine::Engine::run()
 
     while (_window->isOpen()) {
         _window->clear(sf::Color::Black);
-        // _systems.networkSystem.receivePackageUdp();
-        // _systems.networkSystem.receivePackageTcp();
-        _systems.networkSystem.update(_sceneManager);
+        _systems.networkSystem.update(_sceneManager, _entityManager);
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();

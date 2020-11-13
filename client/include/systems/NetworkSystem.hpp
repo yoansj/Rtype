@@ -10,12 +10,15 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
+#include <cstring>
+#include <functional>
 
 #include "Position.hpp"
 #include "System.hpp"
 #include "Packages.hpp"
 #include "EngineError.hpp"
 #include "SceneManager.hpp"
+#include "PackagesType.hpp"
 
 namespace Engine {
 
@@ -41,15 +44,17 @@ namespace Engine {
             void setIdGame(std::size_t idGame) {_idGame = idGame;};
             void setPlayerIndex(std::size_t id) {_playerId = id;};
 
+            void setDestroyLobby(std::function<void()> f) {_destroyLobby = f;};
+
             std::size_t getIdGame() {return _idGame;};
 
-            void update(SceneManager &smgr) {
+            void update(SceneManager &smgr, EntityManager &entityManager) {
                 receivePackageUdp();
-                receivePackageTcp(smgr);
+                receivePackageTcp(smgr, entityManager);
             };
 
             void receivePackageUdp();
-            void receivePackageTcp(SceneManager &smgr);
+            void receivePackageTcp(SceneManager &smgr, EntityManager &entityManager);
             template <class PkgType>
             PkgType loadPkgType(bool typePackage, char *pkgUdp);
         private:
@@ -60,6 +65,7 @@ namespace Engine {
             std::size_t _idGame;
             std::size_t _playerId;
             bool _connectedTcp;
+            std::function<void()> _destroyLobby;
     };
 
 }

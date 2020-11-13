@@ -73,7 +73,7 @@ void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager
     _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[1]), _velocitySystem.getComponent(_lobbyScreenEntities[1]));
 
     // _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _id > 1)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _id > 0)
         _id--;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         _id++;
