@@ -9,6 +9,7 @@
 #define SERVERGAME_HPP_
 
 #include "PackagesType.hpp"
+#include "Packages.hpp"
 
 #include <vector>
 #include <iostream>
@@ -24,6 +25,9 @@ class ServerGame {
 
         void run();
         void startGame();
+        void readPackages();
+
+        void addPackage(std::tuple<PackagesType, void *> pck) {_packages.push_back(pck);};
         void addPlayer(tcpSocket &p) {_tcpPlayers.push_back(p);};
         std::size_t getId() const {return (_gameId);};
 
