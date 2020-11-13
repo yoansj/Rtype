@@ -31,7 +31,7 @@ namespace Engine {
             _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false), _choice(choice::CREATE), _isPressed(true) {};
             ~MenuScreenSystem() = default;
 
-            void createSprites(Entity parallax, std::array<Entity, 3> buttons);
+            void createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons);
             void destroySprites(EntityManager &entityManager);
 
             bool isCreated() const {return (_created);};

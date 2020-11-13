@@ -7,15 +7,23 @@
 
 #include "MenuScreenSystem.hpp"
 
-void Engine::MenuScreenSystem::createSprites(Entity parallax, std::array<Entity, 3> buttons)
+void Engine::MenuScreenSystem::createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons)
 {
-    _spriteSystem.create(parallax);
-    _positionSystem.create(parallax);
-    _positionSystem.setPosition(parallax, -1800, 0);
-    _spriteSystem.initSprite(parallax, "../client/assets/background.png", false);
-    _velocitySystem.create(parallax);
-    _velocitySystem.setVelocity(parallax, 5, 5);
-    _parallaxSystem.setBackgroundEntity(parallax);
+    _spriteSystem.create(parallax[0]);
+    _positionSystem.create(parallax[0]);
+    _positionSystem.setPosition(parallax[0], 0, 0);
+    _spriteSystem.initSprite(parallax[0], "../client/assets/parallax.png", false);
+    _velocitySystem.create(parallax[0]);
+    _velocitySystem.setVelocity(parallax[0], 3, 3);
+    _parallaxSystem.setBackgroundEntity(parallax[0]);
+
+    _spriteSystem.create(parallax[1]);
+    _positionSystem.create(parallax[1]);
+    _positionSystem.setPosition(parallax[1], 1920, 0);
+    _spriteSystem.initSprite(parallax[1], "../client/assets/parallax.png", false);
+    _velocitySystem.create(parallax[1]);
+    _velocitySystem.setVelocity(parallax[1], 3, 3);
+    _parallaxSystem.setBackgroundEntity(parallax[1]);
 
     _spriteSystem.create(buttons[0]);
     _positionSystem.create(buttons[0]);
@@ -35,7 +43,8 @@ void Engine::MenuScreenSystem::createSprites(Entity parallax, std::array<Entity,
     _spriteSystem.initSprite(buttons[2], "../client/assets/quit.png", false);
     _spriteSystem.setScale(buttons[2], 2, 2);
 
-    _menuScreenEntities.push_back(parallax);
+    _menuScreenEntities.push_back(parallax[0]);
+    _menuScreenEntities.push_back(parallax[1]);
     _menuScreenEntities.push_back(buttons[0]);
     _menuScreenEntities.push_back(buttons[1]);
     _menuScreenEntities.push_back(buttons[2]);
@@ -59,6 +68,7 @@ void Engine::MenuScreenSystem::destroySprites(EntityManager &entityManager)
 void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
 {
     _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[0]), _velocitySystem.getComponent(_menuScreenEntities[0]));
+    _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[1]), _velocitySystem.getComponent(_menuScreenEntities[1]));
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
             if (_choice == choice::CREATE) {
                 destroySprites(entityManager);
@@ -78,9 +88,9 @@ void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager
         _choice == 0 ? _choice = 2 : _choice--;
         _isPressed = true;
     }
-    _choice == choice::CREATE ? _spriteSystem.changeTexture(_menuScreenEntities[1], "../client/assets/createPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[1], "../client/assets/create.png");
-    _choice == choice::JOIN ? _spriteSystem.changeTexture(_menuScreenEntities[2], "../client/assets/joinPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[2], "../client/assets/join.png");
-    _choice == choice::QUIT ? _spriteSystem.changeTexture(_menuScreenEntities[3], "../client/assets/quitPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[3], "../client/assets/quit.png");
+    _choice == choice::CREATE ? _spriteSystem.changeTexture(_menuScreenEntities[2], "../client/assets/createPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[2], "../client/assets/create.png");
+    _choice == choice::JOIN ? _spriteSystem.changeTexture(_menuScreenEntities[3], "../client/assets/joinPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[3], "../client/assets/join.png");
+    _choice == choice::QUIT ? _spriteSystem.changeTexture(_menuScreenEntities[4], "../client/assets/quitPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[4], "../client/assets/quit.png");
     if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         _isPressed = false;
 }

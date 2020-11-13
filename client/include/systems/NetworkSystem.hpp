@@ -34,15 +34,25 @@ namespace Engine {
             ~NetworkSystem() = default;
 
             void sendPackage(void const *package, int typePackage);
+
             void setPort(unsigned short port) {_port = port;};
             void setRecipient(sf::IpAddress recipient) {_recipient = recipient;};
+            void setIdGame(std::size_t idGame) {_idGame = idGame;};
+
+            std::size_t getIdGame() {return _idGame;};
+
             void update() {};
-            std::string receivePackage();
+
+            void receivePackageUdp();
+            void receivePackageTcp();
+            template <class PkgType>
+            PkgType loadPkgType(bool typePackage, char *pkgUdp);
         private:
             sf::IpAddress _recipient;
             unsigned short _port;
             sf::UdpSocket _socketUdp;
             sf::TcpSocket _socketTcp;
+            std::size_t _idGame;
             bool _connectedTcp;
     };
 

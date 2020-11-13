@@ -33,7 +33,7 @@ namespace Engine {
             _created(false), _choice(choice::CREATE), _isPressed(false), _id(1) {};
             ~LobbyScreenSystem() = default;
 
-            void createSprites(Entity parallax, std::array<Entity, 3> buttons, Entity text);
+            void createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons, Entity text);
             void destroySprites(EntityManager &entityManager);
 
             bool isCreated() const {return (_created);};

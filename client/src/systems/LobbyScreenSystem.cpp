@@ -7,21 +7,23 @@
 
 #include "LobbyScreenSystem.hpp"
 
-void Engine::LobbyScreenSystem::createSprites(Entity parallax, std::array<Entity, 3> buttons, Entity text)
+void Engine::LobbyScreenSystem::createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons, Entity text)
 {
-    // _spriteSystem.create(parallax);
-    // _positionSystem.create(parallax);
-    // _positionSystem.setPosition(parallax, -1800, 0);
-    // _spriteSystem.initSprite(parallax, "../client/assets/background.png", false);
-    // _velocitySystem.create(parallax);
-    // _velocitySystem.setVelocity(parallax, 5, 5);
-    // _parallaxSystem.setBackgroundEntity(parallax);
+    _spriteSystem.create(parallax[0]);
+    _positionSystem.create(parallax[0]);
+    _positionSystem.setPosition(parallax[0], 0, 0);
+    _spriteSystem.initSprite(parallax[0], "../client/assets/parallax.png", false);
+    _velocitySystem.create(parallax[0]);
+    _velocitySystem.setVelocity(parallax[0], 3, 3);
+    _parallaxSystem.setBackgroundEntity(parallax[0]);
 
-    _spriteSystem.create(buttons[0]);
-    _positionSystem.create(buttons[0]);
-    _positionSystem.setPosition(buttons[0], 700, 200);
-    _spriteSystem.initSprite(buttons[0], "../client/assets/sprite.png", false);
-    _spriteSystem.setScale(buttons[0], 2, 2);
+    _spriteSystem.create(parallax[1]);
+    _positionSystem.create(parallax[1]);
+    _positionSystem.setPosition(parallax[1], 1920, 0);
+    _spriteSystem.initSprite(parallax[1], "../client/assets/parallax.png", false);
+    _velocitySystem.create(parallax[1]);
+    _velocitySystem.setVelocity(parallax[1], 3, 3);
+    _parallaxSystem.setBackgroundEntity(parallax[1]);
 
     // _spriteSystem.create(buttons[1]);
     // _positionSystem.create(buttons[1]);
@@ -40,11 +42,10 @@ void Engine::LobbyScreenSystem::createSprites(Entity parallax, std::array<Entity
     _textSystem.create(text);
     _textSystem.initText(text, "ID: " + std::to_string(_id), 100);
 
-    _lobbyScreenEntities.push_back(buttons[0]);
-    _lobbyScreenEntities.push_back(text);
+    _lobbyScreenEntities.push_back(parallax[0]);
+    _lobbyScreenEntities.push_back(parallax[1]);
     // _lobbyScreenEntities.push_back(buttons[0]);
-    // _lobbyScreenEntities.push_back(buttons[1]);
-    // _lobbyScreenEntities.push_back(buttons[2]);
+    _lobbyScreenEntities.push_back(text);
 
     _created = true;
 }
@@ -60,11 +61,16 @@ void Engine::LobbyScreenSystem::destroySprites(EntityManager &entityManager)
         entityManager.remove(_lobbyScreenEntities[i]);
     }
     //_parallaxSystem.removeParallax();
+        _parallaxSystem.removeParallax(_positionSystem, _velocitySystem, entityManager);
+        _lobbyScreenEntities.clear();
     _created = false;
 }
 
 void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
 {
+    _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
+    _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[1]), _velocitySystem.getComponent(_lobbyScreenEntities[1]));
+
     // _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _id > 1)
         _id--;
@@ -72,8 +78,14 @@ void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManage
         _id++;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
         sceneManager.setScene(SCENE::GAME);
+        // destroySprites(entityManager);
+        return;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+        sceneManager.setScene(SCENE::MAIN_MENU);
         destroySprites(entityManager);
+        return;
     }
 
-    // _textSystem.setText(_lobbyScreenEntities[1], "ID: " + std::to_string(_id));
+    _textSystem.setText(_lobbyScreenEntities[2], "ID: " + std::to_string(_id));
 }
