@@ -99,9 +99,12 @@ void ServerEngine::getPackageType(tcpSocket &cli, std::size_t index)
             auto pkg = loadPkgType<startNewGame_t>(cli);
             handlePackage(pkg, cli);
         }
+        if (type_struct == JOIN_GAME_PACKAGE) {
+            auto pkg = loadPkgType<joinGame_t>(cli);
+            handlePackage(pkg, cli);
+        }
     } catch (boost::wrapexcept<boost::system::system_error> &err) {
         if (err.code() == boost::asio::error::try_again) {
-            //std::cout << "Try again okay !" << std::endl;
         } else if (err.code() == boost::asio::error::eof) {
             std::cout << "Client disconnected Ip: " << cli->remote_endpoint().address() << " Port: " << cli->remote_endpoint().port() << std::endl;
             _clientsToDisconnect.push_back(index);
@@ -149,7 +152,7 @@ void ServerEngine::handlePackage(startNewGame_t &package, tcpSocket &cli)
     }
 }
 
-void ServerEngine::handlePackage(connectionGame_t &package, tcpSocket &cli)
+void ServerEngine::handlePackage(joinGame_t &package, tcpSocket &cli)
 {
     // Récupérer la partie
     // Ajouter le joueur dans la partie

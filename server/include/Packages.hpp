@@ -57,6 +57,13 @@ typedef struct connectionGame_s {
 } connectionGame_t;
 
 // Paquet envoyé par le client
+// Lorsqu'il souhaite rejoindre une partie
+typedef struct joinGame_s {
+    int type_struct = 8;
+    std::size_t idGame;
+} joinGame_t;
+
+// Paquet envoyé par le client
 // Lorsqu'il souhaite commencer une partie
 // TCP
 typedef struct startNewGame_s {
