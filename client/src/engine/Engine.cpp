@@ -8,9 +8,9 @@
 #include "Engine.hpp"
 #include <fstream>
 
-Engine::Engine::Engine() :
+Engine::Engine::Engine(std::string const &serverIp) :
     _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1800, 1000), "R-Type")),
-    _renderer(_window), _tcpClient("localhost", 7172)
+    _renderer(_window), _serverIp(serverIp), _tcpClient(serverIp, 7172)
 {
 }
 
