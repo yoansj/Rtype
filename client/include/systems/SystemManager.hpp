@@ -21,6 +21,7 @@
 #include "GameScreenSystem.hpp"
 #include "MenuScreenSystem.hpp"
 #include "LobbyScreenSystem.hpp"
+#include "JoinScreenSystem.hpp"
 
 namespace Engine {
     class SystemManager {
@@ -28,7 +29,8 @@ namespace Engine {
             SystemManager() : titleScreen(spriteSystem, velocitySystem, positionSystem),
             gameScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),
             menuScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),
-            lobbyScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem) {};
+            lobbyScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem),
+            joinScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem) {};
             ~SystemManager() = default;
 
             PositionSystem positionSystem;
@@ -45,6 +47,7 @@ namespace Engine {
             GameScreenSystem gameScreen;
             MenuScreenSystem menuScreen;
             LobbyScreenSystem lobbyScreen;
+            JoinScreenSystem joinScreen;
 
         private:
 

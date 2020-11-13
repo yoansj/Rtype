@@ -78,6 +78,12 @@ void Engine::Engine::updateSystems()
         }
         _systems.menuScreen.update(_entityManager, _sceneManager);
     }
+    if (_sceneManager.getScene() == SCENE::JOIN_GAME) {
+        if (!_systems.joinScreen.isCreated()) {
+            _systems.joinScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()}, _entityManager.create());
+        }
+        _systems.joinScreen.update(_entityManager, _sceneManager);
+    }
     if (_sceneManager.getScene() == SCENE::LOBBY) {
         if (!_systems.lobbyScreen.isCreated()) {
             _systems.lobbyScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()}, _entityManager.create());

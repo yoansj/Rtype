@@ -2,12 +2,13 @@
 ** EPITECH PROJECT, 2020
 ** client
 ** File description:
-** LobbyScreenSytem
+** JoinScreenSystem
 */
 
-#include "LobbyScreenSystem.hpp"
 
-void Engine::LobbyScreenSystem::createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons, Entity text)
+#include "JoinScreenSystem.hpp"
+
+void Engine::JoinScreenSystem::createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons, Entity text)
 {
     _spriteSystem.create(parallax[0]);
     _positionSystem.create(parallax[0]);
@@ -50,7 +51,7 @@ void Engine::LobbyScreenSystem::createSprites(std::array<Entity, 2> parallax, st
     _created = true;
 }
 
-void Engine::LobbyScreenSystem::destroySprites(EntityManager &entityManager)
+void Engine::JoinScreenSystem::destroySprites(EntityManager &entityManager)
 {
     for (int i = 0; i != _lobbyScreenEntities.size(); i++) {
         _spriteSystem.Exist(_lobbyScreenEntities[i]) == true ? _spriteSystem.destroy(_lobbyScreenEntities[i]) : true;
@@ -66,14 +67,18 @@ void Engine::LobbyScreenSystem::destroySprites(EntityManager &entityManager)
     _created = false;
 }
 
-void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
+void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
 {
     _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
     _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[1]), _velocitySystem.getComponent(_lobbyScreenEntities[1]));
 
     // _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _id > 1)
+        _id--;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        _id++;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-        sceneManager.setScene(SCENE::GAME);
+        sceneManager.setScene(SCENE::LOBBY);
         destroySprites(entityManager);
         return;
     }
@@ -83,5 +88,5 @@ void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManage
         return;
     }
 
-    _textSystem.setText(_lobbyScreenEntities[2], "LOBBY ID: " + std::to_string(_id));
+    _textSystem.setText(_lobbyScreenEntities[2], "JOIN ID: " + std::to_string(_id));
 }

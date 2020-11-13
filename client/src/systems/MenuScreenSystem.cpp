@@ -76,7 +76,7 @@ void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager
                 return;
             }
             else if (_choice == choice::JOIN)
-                sceneManager.setScene(SCENE::LOBBY);
+                sceneManager.setScene(SCENE::JOIN_GAME);
             else if (_choice == choice::QUIT)
                 sceneManager.setScene(SCENE::GAME_END);
     }
