@@ -36,6 +36,10 @@ void Engine::NetworkSystem::sendPackage(void const *package, int typePackage)
             throw EngineError("Network Error", "Package not sent !");
         }
         break;
+    case POSITION_PACKAGE:
+        if (_socketUdp.send(package, sizeof(position_t), _recipient, _port) != sf::Socket::Done) {
+            throw EngineError("Network Error", "Package not sent !");
+        }
     default:
         break;
     }
