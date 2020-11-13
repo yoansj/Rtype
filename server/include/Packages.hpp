@@ -12,6 +12,7 @@
 #include <cstddef>
 #include <vector>
 
+#include "Position.hpp"
 #include "PackagesType.hpp"
 
 constexpr std::size_t bufferSize = 4096;
@@ -56,5 +57,14 @@ typedef struct gameStarted_s {
     int type_struct = 6;
     char message[128];
 } gameStarted_t;
+
+/* UDP */
+
+typedef struct position_s {
+    int type_struct = 7;
+    int senderIndex;
+    int gameId;
+    Engine::Position pos;
+} position_t;
 
 #endif /* !PACKAGES_HPP_ */

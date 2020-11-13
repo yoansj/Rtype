@@ -26,7 +26,7 @@ set(SERVER_SRC
         server/src/UdpServer.cpp
         server/src/TcpHandler.cpp
         server/src/ServerEngine.cpp
-        server/src/TcpManager.cpp
+        server/src/ServerEngine.cpp
         server/src/ServerGame.cpp
 )
 
