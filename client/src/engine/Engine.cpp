@@ -9,7 +9,7 @@
 #include <fstream>
 
 Engine::Engine::Engine(std::string const &serverIp) :
-    _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1800, 1000), "R-Type")),
+    _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "R-Type")),
     _renderer(_window), _serverIp(serverIp)
 {
 }
@@ -31,7 +31,7 @@ void Engine::Engine::run()
     connectionToServer_t connection = {CONNECTION_TO_SERVER, "connection"};
 
     while (_window->isOpen()) {
-        _window->clear(sf::Color::Blue);
+        _window->clear(sf::Color::Black);
         _systems.networkSystem.receivePackageUdp();
         _systems.networkSystem.receivePackageTcp();
         while (_window->pollEvent(_event)) {
@@ -75,13 +75,13 @@ void Engine::Engine::updateSystems()
     }
     if (_sceneManager.getScene() == SCENE::MAIN_MENU) {
         if (!_systems.menuScreen.isCreated()) {
-            _systems.menuScreen.createSprites(_entityManager.create(), {_entityManager.create(), _entityManager.create(), _entityManager.create()});
+            _systems.menuScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()});
         }
         _systems.menuScreen.update(_entityManager, _sceneManager);
     }
     if (_sceneManager.getScene() == SCENE::LOBBY) {
         if (!_systems.lobbyScreen.isCreated()) {
-            _systems.lobbyScreen.createSprites(_entityManager.create(), {_entityManager.create(), _entityManager.create(), _entityManager.create()}, _entityManager.create());
+            _systems.lobbyScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()}, _entityManager.create());
         }
         _systems.lobbyScreen.update(_entityManager, _sceneManager);
     }
