@@ -23,18 +23,27 @@ namespace Engine {
      */
     class NetworkSystem : public System<Position> {
         public:
-            NetworkSystem() : System() {_serverSocket.setBlocking(false);};
+            NetworkSystem() : System() {
+                _recipient = "localhost";
+                _port = 7172;
+                _connectedTcp = true;
+                _socketTcp.connect(_recipient, _port);
+                _socketTcp.setBlocking(false);
+                _socketUdp.setBlocking(false);
+            };
             ~NetworkSystem() = default;
 
-            void send(void const *package);
+            void sendPackage(void const *package, int typePackage);
             void setPort(unsigned short port) {_port = port;};
             void setRecipient(sf::IpAddress recipient) {_recipient = recipient;};
             void update() {};
-            std::string receiveData();
+            std::string receivePackage();
         private:
-            sf::UdpSocket _serverSocket;
             sf::IpAddress _recipient;
             unsigned short _port;
+            sf::UdpSocket _socketUdp;
+            sf::TcpSocket _socketTcp;
+            bool _connectedTcp;
     };
 
 }
