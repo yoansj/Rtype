@@ -35,13 +35,13 @@ void Engine::LobbyScreenSystem::createSprites(Entity parallax, std::array<Entity
     // _spriteSystem.initSprite(buttons[2], "../client/assets/quit.png", false);
     // _spriteSystem.setScale(buttons[2], 2, 2);
 
-    // _positionSystem.create(text);
-    // _positionSystem.setPosition(text, 850, 400);
-    // _textSystem.create(text);
-    // _textSystem.initText(text, "ID: " + std::to_string(_id), 100);
+    _positionSystem.create(text);
+    _positionSystem.setPosition(text, 850, 400);
+    _textSystem.create(text);
+    _textSystem.initText(text, "ID: " + std::to_string(_id), 100);
 
     _lobbyScreenEntities.push_back(buttons[0]);
-    // _lobbyScreenEntities.push_back(text);
+    _lobbyScreenEntities.push_back(text);
     // _lobbyScreenEntities.push_back(buttons[0]);
     // _lobbyScreenEntities.push_back(buttons[1]);
     // _lobbyScreenEntities.push_back(buttons[2]);
@@ -51,25 +51,15 @@ void Engine::LobbyScreenSystem::createSprites(Entity parallax, std::array<Entity
 
 void Engine::LobbyScreenSystem::destroySprites(EntityManager &entityManager)
 {
-    // for (int i = 0; i != _lobbyScreenEntities.size(); i++) {
-    //     _spriteSystem.Exist(_lobbyScreenEntities[i]) == true ? _spriteSystem.destroy(_lobbyScreenEntities[i]) : true;
-    //     _textSystem.Exist(_lobbyScreenEntities[i]) == true ? _textSystem.destroy(_lobbyScreenEntities[i]) : true;
-
-    //     _spriteSystem.destroy(_lobbyScreenEntities[i]);
-    //     _velocitySystem.destroy(_lobbyScreenEntities[i]);
-    //     _positionSystem.destroy(_lobbyScreenEntities[i]);
-    //     _parallaxSystem.destroy(_lobbyScreenEntities[i]);
-    //     entityManager.remove(_lobbyScreenEntities[i]);
-    // }
-    // _spriteSystem.destroy(_lobbyScreenEntities[0]);
-    // _textSystem.destroy(_lobbyScreenEntities[0]);
-    // _velocitySystem.destroy(_lobbyScreenEntities[0]);
-    // _positionSystem.destroy(_lobbyScreenEntities[0]);
-    // _parallaxSystem.destroy(_lobbyScreenEntities[0]);
-    // entityManager.remove(_lobbyScreenEntities[0]);
-    // _textSystem.destroy(_lobbyScreenEntities[1]);
-    // _positionSystem.destroy(_lobbyScreenEntities[1]);
-    // entityManager.remove(_lobbyScreenEntities[1]);
+    for (int i = 0; i != _lobbyScreenEntities.size(); i++) {
+        _spriteSystem.Exist(_lobbyScreenEntities[i]) == true ? _spriteSystem.destroy(_lobbyScreenEntities[i]) : true;
+        _textSystem.Exist(_lobbyScreenEntities[i]) == true ? _textSystem.destroy(_lobbyScreenEntities[i]) : true;
+        _spriteSystem.Exist(_lobbyScreenEntities[i]) ? _spriteSystem.destroy(_lobbyScreenEntities[i]) : true;
+        _velocitySystem.Exist(_lobbyScreenEntities[i]) ? _velocitySystem.destroy(_lobbyScreenEntities[i]) : true;
+        _positionSystem.Exist(_lobbyScreenEntities[i]) ? _positionSystem.destroy(_lobbyScreenEntities[i]) : true;
+        entityManager.remove(_lobbyScreenEntities[i]);
+    }
+    //_parallaxSystem.removeParallax();
     _created = false;
 }
 

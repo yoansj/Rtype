@@ -48,14 +48,13 @@ typedef struct connectionGame_s {
 
 typedef struct startNewGame_s {
     int type_struct = 5;
-    std::size_t idGame;
+    std::size_t idGame = -1;
     char message[128];
 } startNewGame_t;
 
-typedef struct startedGame_s {
+typedef struct gameStarted_s {
     int type_struct = 6;
-    std::vector<sf::Sprite> players;
     char message[128];
-} startedGame_t;
+} gameStarted_t;
 
 #endif /* !PACKAGES_HPP_ */

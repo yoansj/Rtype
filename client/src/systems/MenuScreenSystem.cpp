@@ -45,23 +45,25 @@ void Engine::MenuScreenSystem::createSprites(Entity parallax, std::array<Entity,
 
 void Engine::MenuScreenSystem::destroySprites(EntityManager &entityManager)
 {
-    // for (int i = 0; i != _menuScreenEntities.size(); i++) {
-        _spriteSystem.destroy(_menuScreenEntities[0]);
-        _velocitySystem.destroy(_menuScreenEntities[0]);
-        _positionSystem.destroy(_menuScreenEntities[0]);
-        _parallaxSystem.destroy(_menuScreenEntities[0]);
-        entityManager.remove(_menuScreenEntities[0]);
-    // }
+    for (int i = 0; i != _menuScreenEntities.size(); i++) {
+        _spriteSystem.Exist(_menuScreenEntities[i]) ? _spriteSystem.destroy(_menuScreenEntities[i]) : false;
+        _velocitySystem.Exist(_menuScreenEntities[i]) ? _velocitySystem.destroy(_menuScreenEntities[i]) : false;
+        _positionSystem.Exist(_menuScreenEntities[i]) ? _positionSystem.destroy(_menuScreenEntities[i]) : false;
+        entityManager.remove(_menuScreenEntities[i]);
+    }
+    _parallaxSystem.removeParallax(_positionSystem, _velocitySystem, entityManager);
+    _menuScreenEntities.clear();
     _created = false;
 }
 
 void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
 {
     _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[0]), _velocitySystem.getComponent(_menuScreenEntities[0]));
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
             if (_choice == choice::CREATE) {
-                sceneManager.setScene(SCENE::LOBBY);
                 destroySprites(entityManager);
+                sceneManager.setScene(SCENE::LOBBY);
+                return;
             }
             else if (_choice == choice::JOIN)
                 sceneManager.setScene(SCENE::LOBBY);

@@ -9,8 +9,16 @@
 
 void ServerGame::run()
 {
-    std::cout << "Starting game " << _gameId << "Of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
+    std::cout << "Starting lobby " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
 
     while (1) {
     }
+}
+
+void ServerGame::startGame()
+{
+    std::cout << "Starting game " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
+
+    isOnLobby = false;
+    isPlaying = true;
 }

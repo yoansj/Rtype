@@ -23,6 +23,7 @@ class ServerGame {
         ~ServerGame() = default;
 
         void run();
+        void startGame();
         void addPlayer(tcpSocket &p) {_tcpPlayers.push_back(p);};
         std::size_t getId() const {return (_gameId);};
 

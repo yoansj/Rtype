@@ -29,8 +29,6 @@ void Engine::Renderer::doRender(SystemManager &sys)
         auto const &position = sys.positionSystem.getComponent(entity);
         auto &text = sys.textSystem.getComponents()[i];
         text.text.setPosition(position.x, position.y);
-        std::cout << "yes " << position.x << std::endl;
-        // text.text.setFont(text.font);
         _window->draw(text.text);
     }
 }

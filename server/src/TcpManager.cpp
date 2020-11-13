@@ -17,19 +17,6 @@ _ios(service), _packagesList(pkg), _acceptor(_ios, tcp::endpoint(tcp::v4(), 7172
     }
 }
 
-void TcpManager::connectionHandler(tcpSocket &newCli, const boost::system::error_code& error)
-{
-    // if (!error) {
-    //     std::cout << "New client received connection accepted !" << std::endl;
-    //     newCli->non_blocking(true);
-    //     _clients.push_back(newCli);
-    //     receivePackages();
-    //     std::cout << "Clients: " << _clients.size() << std::endl;
-    // } else {
-    //     std::cout << "Error : " << error.message() << std::endl;
-    // }
-    // acceptConnections();
-}
 
 void TcpManager::acceptConnections()
 {
@@ -56,26 +43,6 @@ void TcpManager::acceptConnections()
     }
 }
 
-void TcpManager::receiveTypeHandler(std::array<char, sizeof(int)> &type, tcpSocket &newCli, const boost::system::error_code& error, std::size_t bytes_transferred)
-{
-    if (!error) {
-        std::cout << "Received data" << std::endl;
-
-        int type_struct = 42;
-        std::memcpy(&type_struct, &_buffer, sizeof(int));
-
-        if (type_struct == CREATE_NEW_GAME) {
-            loadPkgType<createNewGame_t>(newCli, CREATE_NEW_GAME);
-        }
-        if (type_struct == START_NEW_GAME)
-            std::cout << "Start game !" << std::endl;
-
-    } else {
-        std::cout << "Error : " << error.message() << std::endl;
-    }
-    receivePackages();
-}
-
 void TcpManager::receivePackages()
 {
     // Boucle et reçoit les paquets tcp de tous les clients
@@ -83,12 +50,12 @@ void TcpManager::receivePackages()
         if (!_clients[i]->is_open()) {
             std::cout << "Client disconnected Ip: " << _clients[i]->remote_endpoint().address() << " Port: " << _clients[i]->remote_endpoint().port() << std::endl;
         } else {
-            getPackageType(_clients[i]);
+            getPackageType(_clients[i], i);
         }
     }
 }
 
-void TcpManager::getPackageType(tcpSocket &cli)
+void TcpManager::getPackageType(tcpSocket &cli, std::size_t index)
 {
     int type_struct;
     std::array<char, sizeof(int)> buffer;
@@ -96,43 +63,59 @@ void TcpManager::getPackageType(tcpSocket &cli)
     try {
         cli->receive(boost::asio::buffer(buffer.data(), sizeof(int)));
         std::memcpy(&type_struct, buffer.data(), sizeof(int));
-        if (type_struct == CREATE_NEW_GAME)
-            loadPkgType<createNewGame_t>(cli, CREATE_NEW_GAME);
-        if (type_struct == START_NEW_GAME)
-            std::cout << "Start game !" << std::endl;
+        if (type_struct == CREATE_NEW_GAME) {
+            auto pkg = loadPkgType<createNewGame_t>(cli);
+            handlePackage(pkg, cli);
+        }
+        if (type_struct == START_NEW_GAME) {
+            auto pkg = loadPkgType<startNewGame_t>(cli);
+            handlePackage(pkg, cli);
+        }
     } catch (boost::wrapexcept<boost::system::system_error> &err) {
         if (err.code() == boost::asio::error::try_again) {
             //std::cout << "Try again okay !" << std::endl;
-        } else {
+        } else if (err.code() == boost::asio::error::eof) {
+            std::cout << "Client disconnected Ip: " << cli->remote_endpoint().address() << " Port: " << cli->remote_endpoint().port() << std::endl;
+        } else
             throw err;
-        }
     }
 }
 
 template <class PkgType>
-void TcpManager::loadPkgType(tcpSocket &cli, PackagesType type)
+PkgType TcpManager::loadPkgType(tcpSocket &cli)
 {
     PkgType pkg;
 
     cli->receive(boost::asio::buffer(reinterpret_cast<char *>(&pkg) + sizeof(int), sizeof(PkgType) - sizeof(int)));
-    pkgHandler(pkg, cli, type);
+    return (pkg);
 }
 
-template <class PkgType>
-void TcpManager::pkgHandler(PkgType &package, tcpSocket &cli, PackagesType type)
+void TcpManager::handlePackage(createNewGame_t &package, tcpSocket &cli)
 {
-    if (type == CREATE_NEW_GAME) {
-        // Création de la partie
-        // Création du thread de la partie
-        // Ajout de la partie dans la liste des parties
-        auto newGame = std::make_shared<ServerGame>(cli, _games.size());
-        _games.insert(std::pair<std::size_t, std::shared_ptr<ServerGame>>(_games.size(), newGame));
-        std::thread gameThread(&ServerGame::run, &(*newGame.get()));
-        gameThread.detach();
+    // Création de la partie
+    // Création du thread de la partie
+    // Ajout de la partie dans la liste des parties
+    auto newGame = std::make_shared<ServerGame>(cli, _games.size());
+    _games.insert(std::pair<std::size_t, std::shared_ptr<ServerGame>>(_games.size(), newGame));
+    std::thread gameThread(&ServerGame::run, &(*newGame.get()));
+    gameThread.detach();
 
-        // Répondre a l'utilisateur que la partie a été créée avec l'id de la partie
-        replyGameCreated_t reply;
-        reply = (replyGameCreated_t){REPLY_GAME_CREATED, newGame->getId(), "REPLY_GAME_CREATED"};
-        cli->send(boost::asio::buffer(&reply, sizeof(replyGameCreated_t)));
+    // Répondre a l'utilisateur que la partie a été créée avec l'id de la partie
+    replyGameCreated_t reply = {REPLY_GAME_CREATED, newGame->getId(), "REPLY_GAME_CREATED"};
+    cli->send(boost::asio::buffer(&reply, sizeof(replyGameCreated_t)));
+}
+
+void TcpManager::handlePackage(startNewGame_t &package, tcpSocket &cli)
+{
+    // Récupérer la partie dans la map
+    // Commencer la partie
+    // Les paquets seront envoyés par la fonction start game à l'avenir
+
+    std::cout << "Game id: " << package.idGame << std::endl;
+    auto result = _games.find(package.idGame);
+    if (result != _games.end()) {
+        gameStarted_t reply = {STARTED_GAME, "GAME STARTED"};
+        result->second->startGame();
+        cli->send(boost::asio::buffer(&reply, sizeof(gameStarted_t)));
     }
 }

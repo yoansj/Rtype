@@ -30,15 +30,12 @@ class TcpManager {
         void receivePackages();
 
     private:
-        void connectionHandler(tcpSocket &newCli, const boost::system::error_code& error);
-        void receiveTypeHandler(std::array<char, sizeof(int)> &type, tcpSocket &newCli, const boost::system::error_code& error, std::size_t bytes_transferred);
-
-        void getPackageType(tcpSocket &cli);
+        void getPackageType(tcpSocket &cli, std::size_t index);
 
         template <class PkgType>
-        void loadPkgType(tcpSocket &cli, PackagesType type);
-        template <class PkgType>
-        void pkgHandler(PkgType &package, tcpSocket &cli, PackagesType type);
+        PkgType loadPkgType(tcpSocket &cli);
+        void handlePackage(createNewGame_t &package, tcpSocket &cli);
+        void handlePackage(startNewGame_t &package, tcpSocket &cli);
 
     private:
         boost::asio::io_service &_ios;

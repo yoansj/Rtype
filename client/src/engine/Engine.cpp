@@ -24,6 +24,8 @@ Engine::Engine::~Engine()
  */
 void Engine::Engine::run()
 {
+    //createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
+    //startNewGame_t package = {START_NEW_GAME, 0, "Start new game"};
     sf::Clock clock;
     createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
 

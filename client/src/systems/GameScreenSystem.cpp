@@ -27,7 +27,7 @@ void Engine::GameScreenSystem::destroySprites(EntityManager &entityManager)
         _spriteSystem.destroy(_gameScreenEntities[i]);
         _velocitySystem.destroy(_gameScreenEntities[i]);
         _positionSystem.destroy(_gameScreenEntities[i]);
-        _parallaxSystem.destroy(_gameScreenEntities[i]);
+        //_parallaxSystem.destroy(_gameScreenEntities[i]);
         entityManager.remove(_gameScreenEntities[i]);
     }
     _created = false;

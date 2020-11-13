@@ -43,7 +43,7 @@ class ComponentManager {
                     return (_components[i]);
                 }
             }
-            throw EngineError("Component error", "Component not found");
+            throw EngineError("Component error", "Component not found !");
         }
 
         std::vector<AbstractComponent> &getComponents() {
