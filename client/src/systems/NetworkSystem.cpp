@@ -44,7 +44,7 @@ void Engine::NetworkSystem::receivePackageUdp()
     }
 }
 
-void Engine::NetworkSystem::receivePackageTcp()
+void Engine::NetworkSystem::receivePackageTcp(SceneManager &smgr)
 {
     char buffer[sizeof(int)];
     int typePackage;
@@ -56,10 +56,21 @@ void Engine::NetworkSystem::receivePackageTcp()
     std::cout << typePackage << std::endl;
     switch (typePackage) {
         case REPLY_GAME_CREATED:
+        {
             auto pkg = loadPkgType<replyGameCreated_t>(false, nullptr);
             setIdGame(pkg.idGame);
+            setPlayerIndex(pkg.playerIndex);
             std::cout << "Game id: " << pkg.idGame << std::endl;
             break;
+        }
+        case CONNECTION_TO_GAME:
+        {
+            auto co = loadPkgType<connectionGame_t>(false, nullptr);
+            smgr.setScene(SCENE::LOBBY);
+            setIdGame(co.idGame);
+            setPlayerIndex(co.playerIndex);
+            break;
+        }
     }
 }
 
@@ -72,9 +83,14 @@ void Engine::NetworkSystem::sendPackage(void const *package, int typePackage)
             }
             break;
         case POSITION_PACKAGE:
-        if (_socketUdp.send(package, sizeof(position_t), _recipient, _port) != sf::Socket::Done) {
-            throw EngineError("Network Error", "Package not sent !");
-        }
+            if (_socketUdp.send(package, sizeof(position_t), _recipient, _port) != sf::Socket::Done) {
+                throw EngineError("Network Error", "Package not sent !");
+            }
+        case JOIN_GAME_PACKAGE:
+            std::cout << "JOIN GAME SENT !" << std::endl;
+            if (_socketTcp.send(package, sizeof(joinGame_t)) != sf::Socket::Done) {
+                throw EngineError("Network Error", "Package not sent !");
+            }
     default:
         break;
     }

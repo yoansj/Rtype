@@ -29,8 +29,9 @@ void Engine::Engine::run()
 
     while (_window->isOpen()) {
         _window->clear(sf::Color::Black);
-        _systems.networkSystem.receivePackageUdp();
-        _systems.networkSystem.receivePackageTcp();
+        // _systems.networkSystem.receivePackageUdp();
+        // _systems.networkSystem.receivePackageTcp();
+        _systems.networkSystem.update(_sceneManager);
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();
@@ -72,8 +73,9 @@ void Engine::Engine::updateSystems()
         if (!_systems.joinScreen.isCreated()) {
             _systems.joinScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()}, _entityManager.create());
         }
-        _systems.joinScreen.update(_entityManager, _sceneManager);
-    }
+        _systems.joinScreen.update(_entityManager, _sceneManager, _systems.networkSystem);
+    } else if (_sceneManager.getScene() != SCENE::JOIN_GAME && _systems.joinScreen.isCreated())
+        _systems.joinScreen.destroySprites(_entityManager);
     if (_sceneManager.getScene() == SCENE::LOBBY) {
         if (!_systems.lobbyScreen.isCreated()) {
             _systems.lobbyScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()}, _entityManager.create());

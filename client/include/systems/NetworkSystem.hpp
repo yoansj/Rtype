@@ -15,6 +15,7 @@
 #include "System.hpp"
 #include "Packages.hpp"
 #include "EngineError.hpp"
+#include "SceneManager.hpp"
 
 namespace Engine {
 
@@ -38,13 +39,17 @@ namespace Engine {
             void setPort(unsigned short port) {_port = port;};
             void setRecipient(sf::IpAddress recipient) {_recipient = recipient;};
             void setIdGame(std::size_t idGame) {_idGame = idGame;};
+            void setPlayerIndex(std::size_t id) {_playerId = id;};
 
             std::size_t getIdGame() {return _idGame;};
 
-            void update() {};
+            void update(SceneManager &smgr) {
+                receivePackageUdp();
+                receivePackageTcp(smgr);
+            };
 
             void receivePackageUdp();
-            void receivePackageTcp();
+            void receivePackageTcp(SceneManager &smgr);
             template <class PkgType>
             PkgType loadPkgType(bool typePackage, char *pkgUdp);
         private:
@@ -53,6 +58,7 @@ namespace Engine {
             sf::UdpSocket _socketUdp;
             sf::TcpSocket _socketTcp;
             std::size_t _idGame;
+            std::size_t _playerId;
             bool _connectedTcp;
     };
 

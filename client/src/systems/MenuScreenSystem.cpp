@@ -74,7 +74,7 @@ void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager
                 createNewGame_t package = {CREATE_NEW_GAME, "NewGame"};
                 destroySprites(entityManager);
                 sceneManager.setScene(SCENE::LOBBY);
-                networkSystem.sendPackage(static_cast<void *>(&package), CREATE_NEW_GAME);
+                networkSystem.sendPackage(reinterpret_cast<void *>(&package), CREATE_NEW_GAME);
                 return;
             }
             else if (_choice == choice::JOIN)

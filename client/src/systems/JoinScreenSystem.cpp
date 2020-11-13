@@ -67,7 +67,7 @@ void Engine::JoinScreenSystem::destroySprites(EntityManager &entityManager)
     _created = false;
 }
 
-void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
+void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager, NetworkSystem &networkSystem)
 {
     _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
     _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[1]), _velocitySystem.getComponent(_lobbyScreenEntities[1]));
@@ -78,13 +78,14 @@ void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         _id++;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-        sceneManager.setScene(SCENE::LOBBY);
-        destroySprites(entityManager);
+        joinGame_t package = {JOIN_GAME_PACKAGE, (std::size_t)_id};
+        std::cout << "REJOINDRE LE LOBBY ICI" << std::endl;
+        networkSystem.sendPackage(reinterpret_cast<void *>(&package), JOIN_GAME_PACKAGE);
         return;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
         sceneManager.setScene(SCENE::MAIN_MENU);
-        destroySprites(entityManager);
+        //destroySprites(entityManager);
         return;
     }
 
