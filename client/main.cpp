@@ -13,10 +13,10 @@
 
 int main(int argc, char **argv)
 {
-		if (argc != 2) {
-		    std::cout << "Try : ./run_client <port>" << std::endl;
-		    return 0;
-		}
+	if (argc != 2) {
+        std::cout << "Try : ./run_client <port>" << std::endl;
+        return 0;
+    }
 
 	Engine::Engine game(argv[1]);
 
