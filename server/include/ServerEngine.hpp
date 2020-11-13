@@ -44,8 +44,10 @@ class ServerEngine {
 
         template <class PkgType>
         PkgType loadPkgType(tcpSocket &cli);
+        // Tcp package handlers
         void handlePackage(createNewGame_t &package, tcpSocket &cli);
         void handlePackage(startNewGame_t &package, tcpSocket &cli);
+        void handlePackage(connectionGame_t &package, tcpSocket &cli);
 
     private:
         // Boost asio service

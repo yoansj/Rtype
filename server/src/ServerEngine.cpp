@@ -63,10 +63,10 @@ void ServerEngine::receiveUdpPackages()
     if (error == boost::asio::error::try_again)
         return;
 
-    int *code = reinterpret_cast<int *>(buffer.data());
+    int code = *reinterpret_cast<int *>(buffer.data());
 
     // Recevoir un paquet position
-    if (*code == POSITION_PACKAGE) {
+    if (code == POSITION_PACKAGE) {
         position_t *package = (position_t*)reinterpret_cast<char *>(buffer.data());
         auto game = _games.find(package->gameId);
         if (game != _games.end()) {
@@ -130,7 +130,7 @@ void ServerEngine::handlePackage(createNewGame_t &package, tcpSocket &cli)
     gameThread.detach();
 
     // Répondre a l'utilisateur que la partie a été créée avec l'id de la partie
-    replyGameCreated_t reply = {REPLY_GAME_CREATED, newGame->getId(), "REPLY_GAME_CREATED"};
+    replyGameCreated_t reply = {REPLY_GAME_CREATED, newGame->getId(), 0,"REPLY_GAME_CREATED"};
     cli->send(boost::asio::buffer(&reply, sizeof(replyGameCreated_t)));
 }
 
@@ -140,11 +140,25 @@ void ServerEngine::handlePackage(startNewGame_t &package, tcpSocket &cli)
     // Commencer la partie
     // Les paquets seront envoyés par la fonction start game à l'avenir
 
-    std::cout << "Game id: " << package.idGame << std::endl;
+    std::cout << "START GAME ID: " << package.idGame << std::endl;
     auto result = _games.find(package.idGame);
     if (result != _games.end()) {
         gameStarted_t reply = {STARTED_GAME, "GAME STARTED"};
         result->second->startGame();
+        cli->send(boost::asio::buffer(&reply, sizeof(gameStarted_t)));
+    }
+}
+
+void ServerEngine::handlePackage(connectionGame_t &package, tcpSocket &cli)
+{
+    // Récupérer la partie
+    // Ajouter le joueur dans la partie
+    // Répondre qu'il a rejoint la partie
+
+    std::cout << "CONNECTION TO GAME ID: " << package.idGame << std::endl;
+    auto result = _games.find(package.idGame);
+    if (result != _games.end()) {
+        connectionGame_t reply = {CONNECTION_TO_GAME, result->second->getId(), result->second->addPlayer(cli) ,"CONNECTED TO GAME"};
         cli->send(boost::asio::buffer(&reply, sizeof(gameStarted_t)));
     }
 }

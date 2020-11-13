@@ -28,7 +28,7 @@ class ServerGame {
         void readPackages();
 
         void addPackage(std::tuple<PackagesType, void *> pck) {_packages.push_back(pck);};
-        void addPlayer(tcpSocket &p) {_tcpPlayers.push_back(p);};
+        int addPlayer(tcpSocket &p) {_tcpPlayers.push_back(p); return(_tcpPlayers.size() - 1);};
         std::size_t getId() const {return (_gameId);};
 
     private:

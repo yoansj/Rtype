@@ -16,7 +16,7 @@ enum PackagesType {
     CONNECTION_TO_GAME,
     START_NEW_GAME,
     STARTED_GAME,
-    POSITION_PACKAGE
+    POSITION_PACKAGE,
 };
 
 #endif /* !PACKAGESTYPE_HPP_ */

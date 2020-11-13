@@ -24,7 +24,6 @@ set(INC_DIR server/include)
 set(SERVER_SRC
         server/main.cpp
         server/src/UdpServer.cpp
-        server/src/TcpHandler.cpp
         server/src/ServerEngine.cpp
         server/src/ServerEngine.cpp
         server/src/ServerGame.cpp

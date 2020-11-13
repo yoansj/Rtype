@@ -17,11 +17,6 @@
 
 constexpr std::size_t bufferSize = 4096;
 
-typedef struct connectionToServer_s {
-    int type_struct = 0;
-    char message[128];
-} connectionToServer_t;
-
 typedef struct dataPlayersConnected_s {
     int type_struct = 1;
     std::vector<sf::Sprite> players;
@@ -30,29 +25,47 @@ typedef struct dataPlayersConnected_s {
 
 /* ----TCP PACKAGE---- */
 
+// Paquet envoyé par le client
+// Lorsqu'il souhaite créer une partie
+// TCP
 typedef struct createNewGame_s {
     int type_struct = 2;
     char message[128];
 } createNewGame_t;
 
+// Paquet envoyé par le serveur
+// Lorsqu'un client a créé une partie
+// Contient l'ID de la partie et l'index du joueur
+// TCP
 typedef struct replyGameCreated_s {
     int type_struct = 3;
     std::size_t idGame;
+    int playerIndex;
     char message[128];
 } replyGameCreated_t;
 
+// Paquet envoyé par le serveur
+// Une fois qu'il s'est connecté à la partie
+// Lorsqu'il souhaite rejoindre une partie
+// Avec le bouton join lobby
+// TCP
 typedef struct connectionGame_s {
     int type_struct = 4;
     std::size_t idGame;
+    int playerIndex;
     char message[128];
 } connectionGame_t;
 
+// Paquet envoyé par le client
+// Lorsqu'il souhaite commencer une partie
+// TCP
 typedef struct startNewGame_s {
     int type_struct = 5;
     std::size_t idGame = -1;
     char message[128];
 } startNewGame_t;
 
+// Pas encore utilisé
 typedef struct gameStarted_s {
     int type_struct = 6;
     char message[128];
@@ -60,6 +73,7 @@ typedef struct gameStarted_s {
 
 /* UDP */
 
+// Paquet de position
 typedef struct position_s {
     int type_struct = 7;
     int senderIndex;
