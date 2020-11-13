@@ -40,7 +40,6 @@ namespace Engine {
             Renderer _renderer;
             SceneManager _sceneManager;
             std::string _serverIp;
-            TcpClient _tcpClient;
     };
 }
 

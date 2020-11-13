@@ -10,7 +10,7 @@
 
 Engine::Engine::Engine(std::string const &serverIp) :
     _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1800, 1000), "R-Type")),
-    _renderer(_window), _serverIp(serverIp), _tcpClient(serverIp, 7172)
+    _renderer(_window), _serverIp(serverIp)
 {
 }
 
@@ -32,7 +32,8 @@ void Engine::Engine::run()
 
     while (_window->isOpen()) {
         _window->clear(sf::Color::Blue);
-        _systems.networkSystem.receivePackage();
+        _systems.networkSystem.receivePackageUdp();
+        _systems.networkSystem.receivePackageTcp();
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();
