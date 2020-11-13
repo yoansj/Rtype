@@ -28,15 +28,20 @@ void Engine::Engine::run()
     //startNewGame_t package = {START_NEW_GAME, 0, "Start new game"};
     sf::Clock clock;
     createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
+    connectionToServer_t connection = {CONNECTION_TO_SERVER, "connection"};
 
     while (_window->isOpen()) {
         _window->clear(sf::Color::Black);
-        _tcpClient.receivePackage();
+        _systems.networkSystem.receivePackage();
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                _tcpClient.sendPackage(static_cast<void *>(&package));
+                _systems.networkSystem.sendPackage(static_cast<void *>(&package), CREATE_NEW_GAME);
+                std::cout << "ziak les paquets partent" << std::endl;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                _systems.networkSystem.sendPackage(static_cast<void *>(&connection), CONNECTION_TO_SERVER);
                 std::cout << "ziak les paquets partent" << std::endl;
             }
         }

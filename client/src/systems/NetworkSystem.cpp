@@ -5,23 +5,38 @@
 ** NetworkSystem
 */
 
+#include <cstring>
 #include "NetworkSystem.hpp"
+#include "Packages.hpp"
+#include "PackagesType.hpp"
 
-
-std::string Engine::NetworkSystem::receiveData()
+std::string Engine::NetworkSystem::receivePackage()
 {
-    char data[bufferSize];
+    char buffer[sizeof(int)];
+    int typePackage;
     std::size_t received;
     sf::IpAddress sender;
     unsigned short port;
 
-    _serverSocket.receive(data, bufferSize, received, sender, port);
-    return std::string(&data[0], received);
+    _socketUdp.receive(buffer, sizeof(int), received, sender, port);
+    std::memcpy(&typePackage, buffer, sizeof(int));
+    return std::string(&buffer[0], received);
 }
 
-void Engine::NetworkSystem::send(void const *package)
+void Engine::NetworkSystem::sendPackage(void const *package, int typePackage)
 {
-    if (_serverSocket.send(package, sizeof(connectionToServer_t), _recipient, _port) != sf::Socket::Done) {
-        throw EngineError("Network Error", "Package not sent !");
+    switch (typePackage) {
+    case CONNECTION_TO_SERVER:
+        if (_socketUdp.send(package, sizeof(connectionToServer_t), _recipient, _port) != sf::Socket::Done) {
+            throw EngineError("Network Error", "Package not sent !");
+        }
+        break;
+    case CREATE_NEW_GAME:
+        if (_socketTcp.send(package, sizeof(createNewGame_t)) != sf::Socket::Done) {
+            throw EngineError("Network Error", "Package not sent !");
+        }
+        break;
+    default:
+        break;
     }
 }
