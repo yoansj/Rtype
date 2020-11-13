@@ -38,6 +38,7 @@ namespace Engine {
 
             bool isCreated() const {return (_created);};
             void update(EntityManager &entityManager, SceneManager &sceneManager);
+            void setId(int id) {_id = id;};
 
         protected:
         private:

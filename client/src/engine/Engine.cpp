@@ -26,12 +26,6 @@ Engine::Engine::~Engine()
 void Engine::Engine::run()
 {
     sf::Clock clock;
-    createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
-    connectionToServer_t connection = {CONNECTION_TO_SERVER, "connection"};
-    Position wesh(1);
-    wesh.x = 12;
-    wesh.y = 13;
-    position_t pos = {POSITION_PACKAGE, 0, 0, wesh};
 
     while (_window->isOpen()) {
         _window->clear(sf::Color::Black);
@@ -40,14 +34,6 @@ void Engine::Engine::run()
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                _systems.networkSystem.sendPackage(static_cast<void *>(&package), CREATE_NEW_GAME);
-                std::cout << "ziak les paquets partent" << std::endl;
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                _systems.networkSystem.sendPackage(static_cast<void *>(&pos), POSITION_PACKAGE);
-                std::cout << "ziak les paquets partent" << std::endl;
-            }
         }
         if (clock.getElapsedTime().asMilliseconds() >= 1000.0 / 60.0) {
             updateSystems();
@@ -80,7 +66,7 @@ void Engine::Engine::updateSystems()
         if (!_systems.menuScreen.isCreated()) {
             _systems.menuScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()});
         }
-        _systems.menuScreen.update(_entityManager, _sceneManager);
+        _systems.menuScreen.update(_entityManager, _sceneManager, _systems.networkSystem);
     }
     if (_sceneManager.getScene() == SCENE::JOIN_GAME) {
         if (!_systems.joinScreen.isCreated()) {
@@ -96,7 +82,7 @@ void Engine::Engine::updateSystems()
     }
     if (_sceneManager.getScene() == SCENE::GAME_END)
             _window->close();
-
+    _systems.lobbyScreen.setId(_systems.networkSystem.getIdGame());
 
     /*auto player = _systems.playerSystem.getPlayer();
     auto bgEntity = _systems.parallaxSystem.getBackgroundEntity();

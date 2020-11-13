@@ -17,6 +17,7 @@
 #include "VelocitySystem.hpp"
 #include "PositionSystem.hpp"
 #include "ParallaxSystem.hpp"
+#include "NetworkSystem.hpp"
 #include <array>
 
 namespace Engine {
@@ -35,7 +36,7 @@ namespace Engine {
             void destroySprites(EntityManager &entityManager);
 
             bool isCreated() const {return (_created);};
-            void update(EntityManager &entityManager, SceneManager &sceneManager);
+            void update(EntityManager &entityManager, SceneManager &sceneManager, NetworkSystem &networkSystem);
 
         protected:
         private:

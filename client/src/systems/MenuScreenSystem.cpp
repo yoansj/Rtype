@@ -65,14 +65,16 @@ void Engine::MenuScreenSystem::destroySprites(EntityManager &entityManager)
     _created = false;
 }
 
-void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
+void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager, NetworkSystem &networkSystem)
 {
     _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[0]), _velocitySystem.getComponent(_menuScreenEntities[0]));
     _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[1]), _velocitySystem.getComponent(_menuScreenEntities[1]));
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
             if (_choice == choice::CREATE) {
+                createNewGame_t package = {CREATE_NEW_GAME, "NewGame"};
                 destroySprites(entityManager);
                 sceneManager.setScene(SCENE::LOBBY);
+                networkSystem.sendPackage(static_cast<void *>(&package), CREATE_NEW_GAME);
                 return;
             }
             else if (_choice == choice::JOIN)

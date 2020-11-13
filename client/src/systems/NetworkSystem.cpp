@@ -30,17 +30,17 @@ void Engine::NetworkSystem::receivePackageUdp()
 {
     char buffer[4096];
     std::size_t received;
-    int typePackage;
     sf::IpAddress sender;
     unsigned short port;
 
     _socketUdp.receive(buffer, 4096, received, sender, port);
-    std::memcpy(&typePackage, &buffer, sizeof(int));
-    switch (typePackage) {
-    case PLAYERS_CONNECTED:
-        auto pkg = loadPkgType<dataPlayersConnected_t>(true, reinterpret_cast<char *>(&buffer));
-        std::cout << "On a reçu en UDP: " << pkg.type_struct << std::endl;
-        break;
+    int code = *reinterpret_cast<int *>(buffer);
+    if (received == 0) return;
+    switch (code) {
+        case PLAYERS_CONNECTED:
+            auto pkg = loadPkgType<dataPlayersConnected_t>(true, reinterpret_cast<char *>(&buffer));
+            std::cout << "On a reçu en UDP: " << pkg.type_struct << std::endl;
+            break;
     }
 }
 
@@ -51,23 +51,21 @@ void Engine::NetworkSystem::receivePackageTcp()
     std::size_t received;
 
     _socketTcp.receive(buffer, sizeof(int), received);
+    if (received == 0) return;
     std::memcpy(&typePackage, buffer, sizeof(int));
+    std::cout << typePackage << std::endl;
     switch (typePackage) {
-    case REPLY_GAME_CREATED:
-        auto pkg = loadPkgType<replyGameCreated_t>(false, nullptr);
-        setIdGame(pkg.idGame);
-        break;
+        case REPLY_GAME_CREATED:
+            auto pkg = loadPkgType<replyGameCreated_t>(false, nullptr);
+            setIdGame(pkg.idGame);
+            std::cout << "Game id: " << pkg.idGame << std::endl;
+            break;
     }
 }
 
 void Engine::NetworkSystem::sendPackage(void const *package, int typePackage)
 {
     switch (typePackage) {
-        case CONNECTION_TO_SERVER:
-            if (_socketUdp.send(package, sizeof(connectionToServer_t), _recipient, _port) != sf::Socket::Done) {
-                throw EngineError("Network Error", "Package not sent !");
-            }
-            break;
         case CREATE_NEW_GAME:
             if (_socketTcp.send(package, sizeof(createNewGame_t)) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
