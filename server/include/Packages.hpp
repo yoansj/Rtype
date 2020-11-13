@@ -78,6 +78,8 @@ typedef struct gameStarted_s {
     char message[128];
 } gameStarted_t;
 
+
+
 /* UDP */
 
 // Paquet de position

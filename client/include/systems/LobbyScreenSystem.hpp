@@ -18,6 +18,7 @@
 #include "PositionSystem.hpp"
 #include "ParallaxSystem.hpp"
 #include "TextSystem.hpp"
+#include "NetworkSystem.hpp"
 #include <array>
 
 namespace Engine {
@@ -28,8 +29,9 @@ namespace Engine {
             QUIT
         };
         public:
-            LobbyScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem, TextSystem &textSystem) :
-            _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _textSystem(textSystem),
+            LobbyScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem, TextSystem &textSystem,
+            NetworkSystem &networkSystem) :
+            _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _textSystem(textSystem), _networkSystem(networkSystem),
             _created(false), _choice(choice::CREATE), _isPressed(false), _id(0) {};
             ~LobbyScreenSystem() = default;
 
@@ -52,6 +54,7 @@ namespace Engine {
             PositionSystem &_positionSystem;
             ParallaxSystem &_parallaxSystem;
             TextSystem &_textSystem;
+            NetworkSystem &_networkSystem;
     };
 }
 

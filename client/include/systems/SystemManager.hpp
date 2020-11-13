@@ -29,7 +29,7 @@ namespace Engine {
             SystemManager() : titleScreen(spriteSystem, velocitySystem, positionSystem),
             gameScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),
             menuScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),
-            lobbyScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem),
+            lobbyScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem, networkSystem),
             joinScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem) {};
             ~SystemManager() = default;
 

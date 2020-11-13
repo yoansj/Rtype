@@ -19,7 +19,11 @@ void ServerGame::run()
 void ServerGame::startGame()
 {
     std::cout << "Starting game " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
+    gameStarted_t reply = {STARTED_GAME, "GAME STARTED"};
 
+    for (std::size_t i = 0; i << _tcpPlayers.size(); i += 1) {
+        _tcpPlayers.at(i)->send(boost::asio::buffer(&reply, sizeof(gameStarted_t)));
+    }
     isOnLobby = false;
     isPlaying = true;
 }

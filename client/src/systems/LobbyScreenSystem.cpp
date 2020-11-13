@@ -82,6 +82,10 @@ void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManage
         destroySprites(entityManager);
         return;
     }
-
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+        startNewGame_t pkg = {START_NEW_GAME, (std::size_t)_id, "STARTED" };
+        _networkSystem.sendPackage(reinterpret_cast<void *>(&pkg), START_NEW_GAME);
+        return;
+    }
     _textSystem.setText(_lobbyScreenEntities[2], "LOBBY ID: " + std::to_string(_id));
 }

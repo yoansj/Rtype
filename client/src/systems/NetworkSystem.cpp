@@ -71,6 +71,12 @@ void Engine::NetworkSystem::receivePackageTcp(SceneManager &smgr)
             setPlayerIndex(co.playerIndex);
             break;
         }
+        case STARTED_GAME:
+        {
+            auto co = loadPkgType<gameStarted_t>(false, nullptr);
+            //smgr.setScene(SCENE::LOBBY); METTRE NEW SCENE
+            break;
+        }
     }
 }
 
