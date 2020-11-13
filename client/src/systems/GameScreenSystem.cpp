@@ -7,17 +7,27 @@
 
 #include "GameScreenSystem.hpp"
 
-void Engine::GameScreenSystem::createSprites(Entity parallax)
+void Engine::GameScreenSystem::createSprites(std::array<Entity, 2> parallax)
 {
-    _spriteSystem.create(parallax);
-    _positionSystem.create(parallax);
-    _positionSystem.setPosition(parallax, -1800, 0);
-    _spriteSystem.initSprite(parallax, "../client/assets/background.png", false);
-    _velocitySystem.create(parallax);
-    _velocitySystem.setVelocity(parallax, 5, 5);
-    _parallaxSystem.setBackgroundEntity(parallax);
+    _spriteSystem.create(parallax[0]);
+    _positionSystem.create(parallax[0]);
+    _positionSystem.setPosition(parallax[0], 0, 0);
+    _spriteSystem.initSprite(parallax[0], "../client/assets/parallax.png", false);
+    _velocitySystem.create(parallax[0]);
+    _velocitySystem.setVelocity(parallax[0], 3, 3);
+    _parallaxSystem.setBackgroundEntity(parallax[0]);
 
-    _gameScreenEntities.push_back(parallax);
+    _spriteSystem.create(parallax[1]);
+    _positionSystem.create(parallax[1]);
+    _positionSystem.setPosition(parallax[1], 3840, 0);
+    _spriteSystem.initSprite(parallax[1], "../client/assets/parallax.png", false);
+    _velocitySystem.create(parallax[1]);
+    _velocitySystem.setVelocity(parallax[1], 3, 3);
+    _parallaxSystem.setBackgroundEntity(parallax[1]);
+
+
+    _gameScreenEntities.push_back(parallax[0]);
+    _gameScreenEntities.push_back(parallax[1]);
     _created = true;
 }
 
@@ -36,5 +46,5 @@ void Engine::GameScreenSystem::destroySprites(EntityManager &entityManager)
 void Engine::GameScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
 {
     _parallaxSystem.update(_positionSystem.getComponent(_gameScreenEntities[0]), _velocitySystem.getComponent(_gameScreenEntities[0]));
-
+    _parallaxSystem.update(_positionSystem.getComponent(_gameScreenEntities[1]), _velocitySystem.getComponent(_gameScreenEntities[1]));
 }

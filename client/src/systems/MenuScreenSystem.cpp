@@ -19,7 +19,7 @@ void Engine::MenuScreenSystem::createSprites(std::array<Entity, 2> parallax, std
 
     _spriteSystem.create(parallax[1]);
     _positionSystem.create(parallax[1]);
-    _positionSystem.setPosition(parallax[1], 1920, 0);
+    _positionSystem.setPosition(parallax[1], 3840, 0);
     _spriteSystem.initSprite(parallax[1], "../client/assets/parallax.png", false);
     _velocitySystem.create(parallax[1]);
     _velocitySystem.setVelocity(parallax[1], 3, 3);

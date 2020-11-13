@@ -58,7 +58,7 @@ void Engine::Engine::updateSystems()
     }
     if (_sceneManager.getScene() == SCENE::GAME) {
         if (!_systems.gameScreen.isCreated()) {
-            _systems.gameScreen.createSprites(_entityManager.create());
+            _systems.gameScreen.createSprites({_entityManager.create(), _entityManager.create() });
         }
         _systems.gameScreen.update(_entityManager, _sceneManager);
     }
