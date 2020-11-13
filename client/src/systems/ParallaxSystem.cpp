@@ -9,8 +9,8 @@
 
 void Engine::ParallaxSystem::update(Position &pos, Velocity &vel)
 {
-    if (pos.x <= -1800)
-        pos.x = 0;
+    if (pos.x <= -1920)
+        pos.x = 1920;
     pos.x -= vel.x;
 }
 
