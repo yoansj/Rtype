@@ -10,8 +10,9 @@
 
 Engine::Engine::Engine(std::string const &serverIp) :
     _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "R-Type")),
-    _renderer(_window), _serverIp(serverIp), _tcpClient(serverIp, 7172)
+    _renderer(_window), _serverIp(serverIp)
 {
+    _systems.networkSystem.setRecipient(serverIp);
 }
 
 Engine::Engine::~Engine()
@@ -24,15 +25,18 @@ Engine::Engine::~Engine()
  */
 void Engine::Engine::run()
 {
-    //createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
-    //startNewGame_t package = {START_NEW_GAME, 0, "Start new game"};
     sf::Clock clock;
     createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
     connectionToServer_t connection = {CONNECTION_TO_SERVER, "connection"};
+    Position wesh(1);
+    wesh.x = 12;
+    wesh.y = 13;
+    position_t pos = {POSITION_PACKAGE, 0, 0, wesh};
 
     while (_window->isOpen()) {
         _window->clear(sf::Color::Black);
-        _systems.networkSystem.receivePackage();
+        _systems.networkSystem.receivePackageUdp();
+        _systems.networkSystem.receivePackageTcp();
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();
@@ -41,7 +45,7 @@ void Engine::Engine::run()
                 std::cout << "ziak les paquets partent" << std::endl;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                _systems.networkSystem.sendPackage(static_cast<void *>(&connection), CONNECTION_TO_SERVER);
+                _systems.networkSystem.sendPackage(static_cast<void *>(&pos), POSITION_PACKAGE);
                 std::cout << "ziak les paquets partent" << std::endl;
             }
         }

@@ -64,9 +64,14 @@ void ServerEngine::receiveUdpPackages()
         return;
 
     int *code = reinterpret_cast<int *>(buffer.data());
+
+    // Recevoir un paquet position
     if (*code == POSITION_PACKAGE) {
         position_t *package = (position_t*)reinterpret_cast<char *>(buffer.data());
-        std::cout << "Package " << package->gameId << " <> " << package->senderIndex << std::endl;
+        auto game = _games.find(package->gameId);
+        if (game != _games.end()) {
+            game->second->addPackage({POSITION_PACKAGE, package});
+        }
     }
 }
 
