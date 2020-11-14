@@ -41,7 +41,7 @@ namespace Engine {
             void setPlayerIdF(std::function<std::size_t()> f) {_getPlayerId = f;};
             void setPlayerNbF(std::function<std::size_t()> f) {_getPlayerNb = f;};
             void setCreateEntityF(std::function<Entity()> f) {_createEntity = f;};
-            void setSendPakageF(std::function<void(void const *package, int typePackage)> f) {_sendPackage = f;};
+            void setSendPakageF(std::function<void(char const *package, int typePackage)> f) {_sendPackage = f;};
             void setGameIdF(std::function<std::size_t()> f) {_getGameId = f;};
             void setHasFocus(std::function<bool()> f) { _hasFocus = f;};
 
@@ -62,7 +62,7 @@ namespace Engine {
             std::function<std::size_t()> _getPlayerId;
             std::function<std::size_t()> _getPlayerNb;
             std::function<std::size_t()> _getGameId;
-            std::function<void(void const *package, int typePackage)> _sendPackage;
+            std::function<void(char const *package, int typePackage)> _sendPackage;
             std::function<Entity()> _createEntity;
             std::function<bool()> _hasFocus;
     };

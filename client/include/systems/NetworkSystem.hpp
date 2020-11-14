@@ -37,7 +37,7 @@ namespace Engine {
             };
             ~NetworkSystem() = default;
 
-            void sendPackage(void const *package, int typePackage);
+            void sendPackage(char const *package, int typePackage);
 
             void setPort(unsigned short port) {_port = port;};
             void setRecipient(sf::IpAddress recipient) {_recipient = recipient;};

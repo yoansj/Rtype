@@ -83,7 +83,8 @@ void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
             joinGame_t package = {JOIN_GAME_PACKAGE, (std::size_t)_id};
-            networkSystem.sendPackage(reinterpret_cast<void *>(&package), JOIN_GAME_PACKAGE);
+            networkSystem.sendPackage(reinterpret_cast<char *>(&package), JOIN_GAME_PACKAGE);
+            std::cout << "je rejoins la partie" << std::endl;
             return;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
