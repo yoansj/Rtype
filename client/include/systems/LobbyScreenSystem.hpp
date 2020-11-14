@@ -35,7 +35,7 @@ namespace Engine {
             LobbyScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem, TextSystem &textSystem,
             NetworkSystem &networkSystem) :
             _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _textSystem(textSystem), _networkSystem(networkSystem),
-            _created(false), _choice(choice::CREATE), _isPressed(false), _id(0) {};
+            _created(false), _choice(choice::CREATE), _isPressed(true), _id(0) {};
             ~LobbyScreenSystem() = default;
 
             void createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons, Entity text);

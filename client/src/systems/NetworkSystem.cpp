@@ -102,7 +102,7 @@ void Engine::NetworkSystem::sendPackage(void const *package, int typePackage)
         case JOIN_GAME_PACKAGE:
         {
             std::size_t yo;
-            std::cout << "JOIN GAME SENT !" << std::endl;
+            // std::cout << "JOIN GAME SENT !" << std::endl;
             if (_socketTcp.send(package, sizeof(joinGame_t), yo) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
             }
@@ -110,7 +110,7 @@ void Engine::NetworkSystem::sendPackage(void const *package, int typePackage)
         case START_NEW_GAME:
         {
             std::size_t yo;
-            std::cout << "START GAME SENT !" << std::endl;
+            // std::cout << "START GAME SENT !" << std::endl;
             if (_socketTcp.send(package, sizeof(startNewGame_t), yo) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
             }

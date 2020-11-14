@@ -70,7 +70,7 @@ void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager
     _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[0]), _velocitySystem.getComponent(_menuScreenEntities[0]));
     _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[1]), _velocitySystem.getComponent(_menuScreenEntities[1]));
     if (_hasFocus()) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
             if (_choice == choice::CREATE) {
                 createNewGame_t package = {CREATE_NEW_GAME, "NewGame"};
                 destroySprites(entityManager);

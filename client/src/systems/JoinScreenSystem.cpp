@@ -73,10 +73,14 @@ void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager
     _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[1]), _velocitySystem.getComponent(_lobbyScreenEntities[1]));
 
     if (_hasFocus()) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _id > 0)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _id > 0 && _isPressed == false) {
+            _isPressed = true;
             _id--;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && _isPressed == false) {
+            _isPressed = true;
             _id++;
+        }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
             joinGame_t package = {JOIN_GAME_PACKAGE, (std::size_t)_id};
             std::cout << "REJOINDRE LE LOBBY ICI" << std::endl;
@@ -88,6 +92,8 @@ void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager
             //destroySprites(entityManager);
             return;
         }
+        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+            _isPressed = false;
     }
 
     _textSystem.setText(_lobbyScreenEntities[2], "JOIN ID: " + std::to_string(_id));

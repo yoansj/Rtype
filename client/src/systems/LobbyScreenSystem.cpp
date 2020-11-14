@@ -77,11 +77,15 @@ void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManage
             destroySprites(entityManager);
             return;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _networkSystem.getPlayerId() == 0) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && _networkSystem.getPlayerId() == 0 && _isPressed == false) {
             startNewGame_t pkg = {START_NEW_GAME, (std::size_t)_id, "STARTED" };
             _networkSystem.sendPackage(reinterpret_cast<void *>(&pkg), START_NEW_GAME);
+            std::cout << "INPUT INCROYABLE\n";
+            _isPressed = true;
             return;
         }
+        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+            _isPressed = false;
     }
     if (_textSystem.Exist(_lobbyScreenEntities[2]))
         _textSystem.setText(_lobbyScreenEntities[2], "Lobby Id: " + std::to_string(_id));
