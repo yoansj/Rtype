@@ -62,3 +62,9 @@ void Engine::SpriteSystem::setScale(Entity e, int x, int y)
     component.sprite.setScale(x ,y);
     //component.animatedSprite.play(component.animations[index]);
 }
+
+void Engine::SpriteSystem::setRect(Entity e, sf::IntRect rect)
+{
+    auto &component = _components.getComponent(e);
+    component.rect = rect;
+}

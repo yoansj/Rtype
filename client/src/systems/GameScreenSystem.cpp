@@ -101,25 +101,27 @@ void Engine::GameScreenSystem::update(EntityManager &entityManager, SceneManager
         auto &playerVelocity = _velocitySystem.getComponent(_playerEntities[_getPlayerId()]);
         auto &playerSprite = _spriteSystem.getComponent(_playerEntities[_getPlayerId()]);
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            playerPosition.x -= playerVelocity.x;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            playerPosition.x += playerVelocity.x;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            playerPosition.y -= playerVelocity.y;
-            playerSprite.rect.left = 320;
-            playerSprite.rect.width = 152;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            playerPosition.y += playerVelocity.y;
-            playerSprite.rect.left = 0;
-            playerSprite.rect.width = 160;
-        }
-        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            playerSprite.rect.left = 170;
-            playerSprite.rect.width = 148;
+        if (_hasFocus()) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                playerPosition.x -= playerVelocity.x;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                playerPosition.x += playerVelocity.x;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                playerPosition.y -= playerVelocity.y;
+                playerSprite.rect.left = 320;
+                playerSprite.rect.width = 152;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                playerPosition.y += playerVelocity.y;
+                playerSprite.rect.left = 0;
+                playerSprite.rect.width = 160;
+            }
+            if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                playerSprite.rect.left = 170;
+                playerSprite.rect.width = 148;
+            }
         }
         position_t package = {POSITION_PACKAGE, _getPlayerId(), _getGameId(), playerPosition};
         _sendPackage(reinterpret_cast<void *>(&package), POSITION_PACKAGE);

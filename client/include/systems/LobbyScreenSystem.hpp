@@ -21,6 +21,9 @@
 #include "NetworkSystem.hpp"
 #include <array>
 
+#include <functional>
+
+
 namespace Engine {
     class LobbyScreenSystem {
         enum choice {
@@ -42,6 +45,8 @@ namespace Engine {
             void update(EntityManager &entityManager, SceneManager &sceneManager);
             void setId(int id) {_id = id;};
 
+            void setHasFocus(std::function<bool()> f) { _hasFocus = f;};
+
         protected:
         private:
             std::vector<Entity> _lobbyScreenEntities;
@@ -55,6 +60,7 @@ namespace Engine {
             ParallaxSystem &_parallaxSystem;
             TextSystem &_textSystem;
             NetworkSystem &_networkSystem;
+            std::function<bool()> _hasFocus;
     };
 }
 

@@ -21,6 +21,8 @@
 #include "NetworkSystem.hpp"
 #include <array>
 
+#include <functional>
+
 namespace Engine {
     class JoinScreenSystem {
         enum choice {
@@ -40,6 +42,7 @@ namespace Engine {
             bool isCreated() const {return (_created);};
             void update(EntityManager &entityManager, SceneManager &sceneManager, NetworkSystem &networkSystem);
 
+            void setHasFocus(std::function<bool()> f) { _hasFocus = f;};
         protected:
         private:
             std::vector<Entity> _lobbyScreenEntities;
@@ -52,6 +55,7 @@ namespace Engine {
             PositionSystem &_positionSystem;
             ParallaxSystem &_parallaxSystem;
             TextSystem &_textSystem;
+            std::function<bool()> _hasFocus;
     };
 }
 

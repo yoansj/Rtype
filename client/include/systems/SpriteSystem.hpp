@@ -36,6 +36,8 @@ namespace Engine {
 
             void setScale(Entity e, int x, int y);
 
+            void setRect(Entity e, sf::IntRect rect);
+
         private:
             std::shared_ptr<sf::RenderWindow> _window;
             sf::Clock _clock;

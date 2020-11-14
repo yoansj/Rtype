@@ -7,7 +7,6 @@
 
 #include "TitleScreenSystem.hpp"
 
-
 void Engine::TitleScreenSystem::createSprites(Entity background, Entity logo)
 {
     _spriteSystem.create(background);
@@ -31,7 +30,8 @@ void Engine::TitleScreenSystem::createSprites(Entity background, Entity logo)
 
 void Engine::TitleScreenSystem::destroySprites(EntityManager &entityManager)
 {
-    for (int i = 0; i != _titleScreenEntities.size(); i++) {
+    for (int i = 0; i != _titleScreenEntities.size(); i++)
+    {
         _spriteSystem.destroy(_titleScreenEntities[i]);
         _velocitySystem.destroy(_titleScreenEntities[i]);
         _positionSystem.destroy(_titleScreenEntities[i]);
@@ -42,8 +42,11 @@ void Engine::TitleScreenSystem::destroySprites(EntityManager &entityManager)
 
 void Engine::TitleScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-        destroySprites(entityManager);
-        sceneManager.setScene(MAIN_MENU);
+    if (_hasFocus()) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+        {
+            destroySprites(entityManager);
+            sceneManager.setScene(MAIN_MENU);
+        }
     }
 }

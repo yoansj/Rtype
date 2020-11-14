@@ -71,16 +71,17 @@ void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManage
         _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
         _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[1]), _velocitySystem.getComponent(_lobbyScreenEntities[1]));
     }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-        sceneManager.setScene(SCENE::MAIN_MENU);
-        destroySprites(entityManager);
-        return;
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _networkSystem.getPlayerId() == 0) {
-        startNewGame_t pkg = {START_NEW_GAME, (std::size_t)_id, "STARTED" };
-        _networkSystem.sendPackage(reinterpret_cast<void *>(&pkg), START_NEW_GAME);
-        return;
+    if (_hasFocus()) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            sceneManager.setScene(SCENE::MAIN_MENU);
+            destroySprites(entityManager);
+            return;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _networkSystem.getPlayerId() == 0) {
+            startNewGame_t pkg = {START_NEW_GAME, (std::size_t)_id, "STARTED" };
+            _networkSystem.sendPackage(reinterpret_cast<void *>(&pkg), START_NEW_GAME);
+            return;
+        }
     }
     if (_textSystem.Exist(_lobbyScreenEntities[2]))
         _textSystem.setText(_lobbyScreenEntities[2], "Lobby Id: " + std::to_string(_id));

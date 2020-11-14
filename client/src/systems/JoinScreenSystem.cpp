@@ -72,21 +72,22 @@ void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager
     _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
     _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[1]), _velocitySystem.getComponent(_lobbyScreenEntities[1]));
 
-    // _parallaxSystem.update(_positionSystem.getComponent(_lobbyScreenEntities[0]), _velocitySystem.getComponent(_lobbyScreenEntities[0]));
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _id > 0)
-        _id--;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        _id++;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-        joinGame_t package = {JOIN_GAME_PACKAGE, (std::size_t)_id};
-        std::cout << "REJOINDRE LE LOBBY ICI" << std::endl;
-        networkSystem.sendPackage(reinterpret_cast<void *>(&package), JOIN_GAME_PACKAGE);
-        return;
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-        sceneManager.setScene(SCENE::MAIN_MENU);
-        //destroySprites(entityManager);
-        return;
+    if (_hasFocus()) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _id > 0)
+            _id--;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            _id++;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+            joinGame_t package = {JOIN_GAME_PACKAGE, (std::size_t)_id};
+            std::cout << "REJOINDRE LE LOBBY ICI" << std::endl;
+            networkSystem.sendPackage(reinterpret_cast<void *>(&package), JOIN_GAME_PACKAGE);
+            return;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            sceneManager.setScene(SCENE::MAIN_MENU);
+            //destroySprites(entityManager);
+            return;
+        }
     }
 
     _textSystem.setText(_lobbyScreenEntities[2], "JOIN ID: " + std::to_string(_id));

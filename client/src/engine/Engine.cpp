@@ -31,6 +31,21 @@ Engine::Engine::Engine(std::string const &serverIp) :
     _systems.gameScreen.setGameIdF([this]() {
         return (this->_systems.networkSystem.getIdGame());
     });
+    _systems.titleScreen.setHasFocus([this]() {
+        return (this->_window->hasFocus());
+    });
+    _systems.menuScreen.setHasFocus([this]() {
+        return (this->_window->hasFocus());
+    });
+    _systems.lobbyScreen.setHasFocus([this]() {
+        return (this->_window->hasFocus());
+    });
+    _systems.joinScreen.setHasFocus([this]() {
+        return (this->_window->hasFocus());
+    });
+    _systems.gameScreen.setHasFocus([this]() {
+        return (this->_window->hasFocus());
+    });
 }
 
 Engine::Engine::~Engine()

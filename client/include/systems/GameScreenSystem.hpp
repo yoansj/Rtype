@@ -43,6 +43,7 @@ namespace Engine {
             void setCreateEntityF(std::function<Entity()> f) {_createEntity = f;};
             void setSendPakageF(std::function<void(void const *package, int typePackage)> f) {_sendPackage = f;};
             void setGameIdF(std::function<std::size_t()> f) {_getGameId = f;};
+            void setHasFocus(std::function<bool()> f) { _hasFocus = f;};
 
         protected:
         private:
@@ -63,6 +64,7 @@ namespace Engine {
             std::function<std::size_t()> _getGameId;
             std::function<void(void const *package, int typePackage)> _sendPackage;
             std::function<Entity()> _createEntity;
+            std::function<bool()> _hasFocus;
     };
 }
 

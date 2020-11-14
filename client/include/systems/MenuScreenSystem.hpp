@@ -20,6 +20,9 @@
 #include "NetworkSystem.hpp"
 #include <array>
 
+#include <functional>
+
+
 namespace Engine {
     class MenuScreenSystem {
         enum choice {
@@ -38,6 +41,7 @@ namespace Engine {
             bool isCreated() const {return (_created);};
             void update(EntityManager &entityManager, SceneManager &sceneManager, NetworkSystem &networkSystem);
 
+            void setHasFocus(std::function<bool()> f) { _hasFocus = f;};
         protected:
         private:
             std::vector<Entity> _menuScreenEntities;
@@ -48,6 +52,7 @@ namespace Engine {
             VelocitySystem &_velocitySystem;
             PositionSystem &_positionSystem;
             ParallaxSystem &_parallaxSystem;
+            std::function<bool()> _hasFocus;
     };
 }
 

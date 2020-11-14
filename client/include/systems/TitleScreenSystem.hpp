@@ -16,6 +16,7 @@
 #include "SpriteSystem.hpp"
 #include "VelocitySystem.hpp"
 #include "PositionSystem.hpp"
+#include <functional>
 
 #include <vector>
 
@@ -36,6 +37,7 @@ namespace Engine {
             bool isCreated() const {return (_created);};
             void update(EntityManager &entityManager, SceneManager &sceneManager);
 
+            void setHasFocus(std::function<bool()> f) { _hasFocus = f;};
         private:
             std::vector<Entity> _titleScreenEntities;
             bool _created;
@@ -43,6 +45,7 @@ namespace Engine {
             SpriteSystem &_spriteSystem;
             VelocitySystem &_velocitySystem;
             PositionSystem &_positionSystem;
+            std::function<bool()> _hasFocus;
     };
 
 }

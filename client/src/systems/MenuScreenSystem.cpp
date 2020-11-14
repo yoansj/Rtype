@@ -69,6 +69,7 @@ void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager
 {
     _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[0]), _velocitySystem.getComponent(_menuScreenEntities[0]));
     _parallaxSystem.update(_positionSystem.getComponent(_menuScreenEntities[1]), _velocitySystem.getComponent(_menuScreenEntities[1]));
+    if (_hasFocus()) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
             if (_choice == choice::CREATE) {
                 createNewGame_t package = {CREATE_NEW_GAME, "NewGame"};
@@ -81,19 +82,20 @@ void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager
                 sceneManager.setScene(SCENE::JOIN_GAME);
             else if (_choice == choice::QUIT)
                 sceneManager.setScene(SCENE::GAME_END);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && _isPressed == false) {
-        _choice == 2 ? _choice = 0 : _choice++;
-        _isPressed = true;
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _isPressed == false) {
-        _choice == 0 ? _choice = 2 : _choice--;
-        _isPressed = true;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && _isPressed == false) {
+            _choice == 2 ? _choice = 0 : _choice++;
+            _isPressed = true;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _isPressed == false) {
+            _choice == 0 ? _choice = 2 : _choice--;
+            _isPressed = true;
+        }
+        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            _isPressed = false;
     }
     _choice == choice::CREATE ? _spriteSystem.changeTexture(_menuScreenEntities[2], "../client/assets/createPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[2], "../client/assets/create.png");
     _choice == choice::JOIN ? _spriteSystem.changeTexture(_menuScreenEntities[3], "../client/assets/joinPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[3], "../client/assets/join.png");
     _choice == choice::QUIT ? _spriteSystem.changeTexture(_menuScreenEntities[4], "../client/assets/quitPressed.png") : _spriteSystem.changeTexture(_menuScreenEntities[4], "../client/assets/quit.png");
-    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        _isPressed = false;
 }
 
