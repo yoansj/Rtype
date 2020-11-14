@@ -87,7 +87,7 @@ typedef struct gameStarted_s {
 typedef struct position_s {
     int type_struct = 7;
     int senderIndex;
-    int gameId;
+    std::size_t gameId;
     Engine::Position pos;
 } position_t;
 

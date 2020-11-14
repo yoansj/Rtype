@@ -32,7 +32,7 @@ Table of Contents
    3d.   Package Reply Join Lobby  . . . . . . . . . . . . . . . . . 2
    3e.   Package Game Started  . . . . . . . . . . . . . . . . . . . 3
    4.   Game UDP Packages . . . . . . . . . . . . . . . . . . . . .  3
-   4a.   Package sendDataPlayers . . . . . . . . . . . . . . . . . . 3
+   4a.   Package position . . . . . . . . . . . . . . . . . . . . .  3
 
 
 
@@ -193,15 +193,21 @@ RFC 2223       Protocol client/server communications      November 2020
    or with others, the game will start and all the requests that will
    now pass between the server and the client will be in UDP.
 
-   4a.  Package sendDataPlayers
+   4a.  Package position
 
       When the game is launched, the server will send the client the
       position of all the players present on the game, the package is
-      called sendDataPlayers.
+      called position.
 
       The first variable in the packet MUST contain the type of the
       packet.
 
-      The second variable MUST contain a std::size_t idGame to see
+      The second variable MUST contain a int senderIndex for the
+      identifier of the player in the game.
+
+      The third variable MUST contain a std::size_t idGame to see
       which game the client is in.
+
+      The fourth variable MUST contain a Engine::Position pos to know
+      the position of the entity.
 
