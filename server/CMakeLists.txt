@@ -24,7 +24,9 @@ set(INC_DIR server/include)
 set(SERVER_SRC
         server/main.cpp
         server/src/UdpServer.cpp
-        server/src/ServerEngine.cpp
+        ${PROJECT_SOURCE_DIR}/client/src/entities/Entity.cpp
+        ${PROJECT_SOURCE_DIR}/client/src/systems/PositionSystem.cpp
+        ${PROJECT_SOURCE_DIR}/client/src/systems/VelocitySystem.cpp
         server/src/ServerEngine.cpp
         server/src/ServerGame.cpp
 )
@@ -32,6 +34,10 @@ set(SERVER_SRC
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/server/include
+    ${PROJECT_SOURCE_DIR}/client/include
+    ${PROJECT_SOURCE_DIR}/client/include/component
+    ${PROJECT_SOURCE_DIR}/client/include/engine
+    ${PROJECT_SOURCE_DIR}/client/include/systems
 )
 
 add_executable(${PROJECT_NAME} ${SERVER_SRC} ${BSON_SRC})

@@ -59,10 +59,6 @@ class ComponentManager {
             return (false);
         }
 
-        /*const AbstractComponent &operator[](std::size_t size) {
-            return (_components[size]);
-        }*/
-
     private:
         std::vector<AbstractComponent> _components;
 };

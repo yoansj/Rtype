@@ -10,7 +10,6 @@
 
 #include "PositionSystem.hpp"
 #include "SpriteSystem.hpp"
-#include "PlayerSystem.hpp"
 #include "InputSystem.hpp"
 #include "VelocitySystem.hpp"
 #include "MonsterLoaderSystem.hpp"
@@ -35,7 +34,6 @@ namespace Engine {
 
             PositionSystem positionSystem;
             SpriteSystem spriteSystem;
-            PlayerSystem playerSystem;
             InputSystem inputSystem;
             VelocitySystem velocitySystem;
             MonsterLoaderSystem monsterLoaderSystem;

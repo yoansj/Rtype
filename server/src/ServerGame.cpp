@@ -61,6 +61,18 @@ void ServerGame::readPackages()
                     _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(package), sizeof(position_t)), endpoint->second, 0, error);
             }
         }
+        if (_packages[0].type == SHOOT_PACKAGE) {
+            // Crée l'entité bullet
+            // Set position de l'entité devant le vaisseau
+
+            // Paquet reçu
+            shoot_t *package = reinterpret_cast<shoot_t *>(_packages[0].package);
+            Entity bullet = _entityManager.create();
+            _positionSystem.create(bullet);
+            _velocitySystem.create(bullet);
+            _velocitySystem.setVelocity(bullet, 20, 0);
+            _positionSystem.setPosition(bullet, package->pos.x + 20, package->pos.y);
+        }
         _packages.erase(_packages.begin());
     }
 }

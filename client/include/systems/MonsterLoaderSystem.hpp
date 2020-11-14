@@ -11,7 +11,6 @@
 #include "System.hpp"
 #include "Position.hpp"
 #include "Entity.hpp"
-#include "Player.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <dlfcn.h>
@@ -33,12 +32,10 @@ namespace Engine {
     /**
      * @brief  Position system used on the Position component
      */
-    class MonsterLoaderSystem : public System<Player> {
+    class MonsterLoaderSystem  {
         public:
-            MonsterLoaderSystem() : System() {};
+            MonsterLoaderSystem() {};
             ~MonsterLoaderSystem() = default;
-
-            void update() override {};
 
             void load(std::vector<std::string> _libs);
 

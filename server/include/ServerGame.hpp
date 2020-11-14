@@ -10,6 +10,9 @@
 
 #include "PackagesType.hpp"
 #include "Packages.hpp"
+#include "Entity.hpp"
+#include "PositionSystem.hpp"
+#include "VelocitySystem.hpp"
 
 #include <vector>
 #include <iostream>
@@ -50,15 +53,29 @@ class ServerGame {
         std::size_t getId() const {return (_gameId);};
 
     private:
+
+        //Tcp variables
+        tcpSocket _creator;
+        std::vector<tcpSocket> _tcpPlayers;
+
+        //Udp variables
+        udp::socket &_udpServer;
+        std::map<std::size_t, udp::endpoint> _playersEndpoints;
+
+        //Tcp & Udp
         std::vector<package> _packages;
+        boost::asio::io_service &_ios;
+
+        //Game variables
         bool isOnLobby;
         bool isPlaying;
-        tcpSocket _creator;
         std::size_t _gameId;
-        udp::socket &_udpServer;
-        boost::asio::io_service &_ios;
-        std::vector<tcpSocket> _tcpPlayers;
-        std::map<std::size_t, udp::endpoint> _playersEndpoints;
+
+        //Game utils
+        Engine::EntityManager _entityManager;
+        std::vector<Entity> _serverEntities;
+        Engine::PositionSystem _positionSystem;
+        Engine::VelocitySystem _velocitySystem;
 };
 
 #endif /* !SERVERGAME_HPP_ */

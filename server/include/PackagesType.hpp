@@ -18,6 +18,7 @@ enum PackagesType {
     STARTED_GAME = 6,
     POSITION_PACKAGE = 7,
     JOIN_GAME_PACKAGE = 8,
+    SHOOT_PACKAGE = 9,
 };
 
 #endif /* !PACKAGESTYPE_HPP_ */

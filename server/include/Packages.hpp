@@ -81,7 +81,6 @@ typedef struct gameStarted_s {
 } gameStarted_t;
 
 
-
 /* UDP */
 
 // Paquet de position
@@ -92,6 +91,13 @@ typedef struct position_s {
     Engine::Position pos;
 } position_t;
 
+// Paquet de tir
+typedef struct shoot_s {
+    int type_struct = 9;
+    std::size_t senderIndex;
+    std::size_t gameId;
+    Engine::Position pos;
+} shoot_t;
 
 /* PACKAGE FOR GAME */
 using boost::asio::ip::udp;
@@ -100,4 +106,5 @@ struct package {
     void *package;
     udp::endpoint endpoint;
 };
+
 #endif /* !PACKAGES_HPP_ */
