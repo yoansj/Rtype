@@ -77,7 +77,7 @@ void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManage
         destroySprites(entityManager);
         return;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _networkSystem.getPlayerId() == 0) {
         startNewGame_t pkg = {START_NEW_GAME, (std::size_t)_id, "STARTED" };
         _networkSystem.sendPackage(reinterpret_cast<void *>(&pkg), START_NEW_GAME);
         return;

@@ -47,6 +47,8 @@ namespace Engine {
             void setDestroyLobby(std::function<void()> f) {_destroyLobby = f;};
 
             std::size_t getIdGame() {return _idGame;};
+            std::size_t getPlayerId() {return _playerId;};
+            int getPlayerNb() {return _playerNb;}
 
             void update(SceneManager &smgr, EntityManager &entityManager) {
                 receivePackageUdp();
@@ -58,12 +60,20 @@ namespace Engine {
             template <class PkgType>
             PkgType loadPkgType(bool typePackage, char *pkgUdp);
         private:
+            // Ip and port of server
             sf::IpAddress _recipient;
             unsigned short _port;
+
+            // Sockets
             sf::UdpSocket _socketUdp;
             sf::TcpSocket _socketTcp;
+
+            // Game variables
             std::size_t _idGame;
             std::size_t _playerId;
+            int _playerNb;
+
+            // Misc
             bool _connectedTcp;
             std::function<void()> _destroyLobby;
     };

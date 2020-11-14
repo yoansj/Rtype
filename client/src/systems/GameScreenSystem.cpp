@@ -29,6 +29,54 @@ void Engine::GameScreenSystem::createSprites(std::array<Entity, 2> parallax)
     _gameScreenEntities.push_back(parallax[0]);
     _gameScreenEntities.push_back(parallax[1]);
     _created = true;
+    initGame();
+}
+
+void Engine::GameScreenSystem::initGame()
+{
+    for (int i = 0; i != _getPlayerNb(); i++) {
+        if (i == 0) {
+            Entity p = _createEntity();
+            _spriteSystem.create(p);
+            _positionSystem.create(p);
+            _velocitySystem.create(p);
+            _spriteSystem.initSprite(p, "../client/assets/spaceship.png", false);
+            _positionSystem.setPosition(p, 20, 150);
+            _velocitySystem.setVelocity(p, 10, 10);
+            _playerEntities.push_back(p);
+        }
+        if (i == 1) {
+            Entity p = _createEntity();
+            _spriteSystem.create(p);
+            _positionSystem.create(p);
+            _velocitySystem.create(p);
+            _spriteSystem.initSprite(p, "../client/assets/spaceship.png", false);
+            _positionSystem.setPosition(p, 20, 300);
+            _velocitySystem.setVelocity(p, 10, 10);
+            _playerEntities.push_back(p);
+        }
+        if (i == 2) {
+            Entity p = _createEntity();
+            _spriteSystem.create(p);
+            _positionSystem.create(p);
+            _velocitySystem.create(p);
+            _spriteSystem.initSprite(p, "../client/assets/spaceship.png", false);
+            _positionSystem.setPosition(p, 20, 450);
+            _velocitySystem.setVelocity(p, 10, 10);
+            _playerEntities.push_back(p);
+        }
+        if (i == 3) {
+            Entity p = _createEntity();
+            _spriteSystem.create(p);
+            _positionSystem.create(p);
+            _velocitySystem.create(p);
+            _spriteSystem.initSprite(p, "../client/assets/spaceship.png", false);
+            _positionSystem.setPosition(p, 20, 600);
+            _velocitySystem.setVelocity(p, 10, 10);
+            _playerEntities.push_back(p);
+        }
+    }
+    _createdAllPlayers = true;
 }
 
 void Engine::GameScreenSystem::destroySprites(EntityManager &entityManager)
@@ -47,4 +95,33 @@ void Engine::GameScreenSystem::update(EntityManager &entityManager, SceneManager
 {
     _parallaxSystem.update(_positionSystem.getComponent(_gameScreenEntities[0]), _velocitySystem.getComponent(_gameScreenEntities[0]));
     _parallaxSystem.update(_positionSystem.getComponent(_gameScreenEntities[1]), _velocitySystem.getComponent(_gameScreenEntities[1]));
+
+    if (_createdAllPlayers) {
+        auto &playerPosition = _positionSystem.getComponent(_playerEntities[_getPlayerId()]);
+        auto &playerVelocity = _velocitySystem.getComponent(_playerEntities[_getPlayerId()]);
+        auto &playerSprite = _spriteSystem.getComponent(_playerEntities[_getPlayerId()]);
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+            playerPosition.x -= playerVelocity.x;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+            playerPosition.x += playerVelocity.x;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            playerPosition.y -= playerVelocity.y;
+            playerSprite.rect.left = 320;
+            playerSprite.rect.width = 152;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            playerPosition.y += playerVelocity.y;
+            playerSprite.rect.left = 0;
+            playerSprite.rect.width = 160;
+        }
+        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            playerSprite.rect.left = 170;
+            playerSprite.rect.width = 148;
+        }
+        position_t package = {POSITION_PACKAGE, _getPlayerId(), _getGameId(), playerPosition};
+        _sendPackage(reinterpret_cast<void *>(&package), POSITION_PACKAGE);
+    }
 }

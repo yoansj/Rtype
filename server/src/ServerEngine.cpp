@@ -89,6 +89,11 @@ void ServerEngine::getPackageType(tcpSocket &cli, std::size_t index)
     std::array<char, sizeof(int)> buffer;
 
     try {
+        /*
+            terminate called after throwing an instance of 'boost::wrapexcept<boost::system::system_error>'
+            what():  receive: Connection reset by peer
+            ./run_server: line 8: 12412 Aborted                 (core dumped) ./build/bin/r-type_server $1
+        */
         cli->receive(boost::asio::buffer(buffer.data(), sizeof(int)));
         std::memcpy(&type_struct, buffer.data(), sizeof(int));
         if (type_struct == CREATE_NEW_GAME) {
@@ -127,13 +132,15 @@ void ServerEngine::handlePackage(createNewGame_t &package, tcpSocket &cli)
     // Création de la partie
     // Création du thread de la partie
     // Ajout de la partie dans la liste des parties
+
     auto newGame = std::make_shared<ServerGame>(cli, _games.size());
+    newGame->addPlayer(cli);
     _games.insert(std::pair<std::size_t, std::shared_ptr<ServerGame>>(_games.size(), newGame));
     std::thread gameThread(&ServerGame::run, &(*newGame.get()));
     gameThread.detach();
 
     // Répondre a l'utilisateur que la partie a été créée avec l'id de la partie
-    replyGameCreated_t reply = {REPLY_GAME_CREATED, newGame->getId(), 0,"REPLY_GAME_CREATED"};
+    replyGameCreated_t reply = {REPLY_GAME_CREATED, newGame->getId(), 0, "REPLY_GAME_CREATED"};
     cli->send(boost::asio::buffer(&reply, sizeof(replyGameCreated_t)));
 }
 
@@ -146,9 +153,9 @@ void ServerEngine::handlePackage(startNewGame_t &package, tcpSocket &cli)
     std::cout << "START GAME ID: " << package.idGame << std::endl;
     auto result = _games.find(package.idGame);
     if (result != _games.end()) {
-        gameStarted_t reply = {STARTED_GAME, "GAME STARTED"};
         result->second->startGame();
-        cli->send(boost::asio::buffer(&reply, sizeof(gameStarted_t)));
+        //  gameStarted_t reply = {STARTED_GAME, 1, "GAME STARTED"};
+        // cli->send(boost::asio::buffer(&reply, sizeof(gameStarted_t)));
     }
 }
 

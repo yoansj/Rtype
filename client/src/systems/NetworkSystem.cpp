@@ -72,9 +72,10 @@ void Engine::NetworkSystem::receivePackageTcp(SceneManager &smgr, EntityManager 
         case STARTED_GAME:
         {
             auto co = loadPkgType<gameStarted_t>(false, nullptr);
-            smgr.setScene(SCENE::GAME);
+            _playerNb = co.nbPlayers;
             _destroyLobby();
-            std::cout << "Scene switch !" << std::endl;
+            std::cout << "Starting game for player " << _playerNb << std::endl;
+            smgr.setScene(SCENE::GAME);
             break;
         }
     }
@@ -84,24 +85,36 @@ void Engine::NetworkSystem::sendPackage(void const *package, int typePackage)
 {
     switch (typePackage) {
         case CREATE_NEW_GAME:
-            if (_socketTcp.send(package, sizeof(createNewGame_t)) != sf::Socket::Done) {
+        {
+            std::size_t yo;
+            if (_socketTcp.send(package, sizeof(createNewGame_t), yo) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
             }
             break;
+        }
         case POSITION_PACKAGE:
+        {
+            std::size_t yo;
             if (_socketUdp.send(package, sizeof(position_t), _recipient, _port) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
             }
+        }
         case JOIN_GAME_PACKAGE:
+        {
+            std::size_t yo;
             std::cout << "JOIN GAME SENT !" << std::endl;
-            if (_socketTcp.send(package, sizeof(joinGame_t)) != sf::Socket::Done) {
+            if (_socketTcp.send(package, sizeof(joinGame_t), yo) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
             }
+        }
         case START_NEW_GAME:
+        {
+            std::size_t yo;
             std::cout << "START GAME SENT !" << std::endl;
-            if (_socketTcp.send(package, sizeof(startNewGame_t)) != sf::Socket::Done) {
+            if (_socketTcp.send(package, sizeof(startNewGame_t), yo) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
             }
+        }
     default:
         break;
     }

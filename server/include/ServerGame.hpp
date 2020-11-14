@@ -20,15 +20,22 @@ typedef std::shared_ptr<tcp::socket> tcpSocket;
 
 class ServerGame {
     public:
-        ServerGame(tcpSocket &creator, std::size_t id) : _creator(creator), _tcpPlayers({creator}), _gameId(id) {};
+        ServerGame(tcpSocket &creator, std::size_t id) : _creator(creator), _gameId(id) {};
         ~ServerGame() = default;
 
         void run();
         void startGame();
         void readPackages();
+        void checkPlayers();
 
         void addPackage(std::tuple<PackagesType, void *> pck) {_packages.push_back(pck);};
-        int addPlayer(tcpSocket &p) {_tcpPlayers.push_back(p); return(_tcpPlayers.size() - 1);};
+
+        int addPlayer(tcpSocket &p) {
+            _tcpPlayers.push_back(p);
+            std::cout << "Added player to game: " << _gameId << " Size: " << _tcpPlayers.size() << std::endl;
+            return(_tcpPlayers.size() - 1);
+        };
+
         std::size_t getId() const {return (_gameId);};
 
     private:

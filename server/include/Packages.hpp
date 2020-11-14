@@ -75,6 +75,7 @@ typedef struct startNewGame_s {
 // Pas encore utilisé
 typedef struct gameStarted_s {
     int type_struct = 6;
+    int nbPlayers = 1;
     char message[128];
 } gameStarted_t;
 

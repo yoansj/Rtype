@@ -16,6 +16,21 @@ Engine::Engine::Engine(std::string const &serverIp) :
     _systems.networkSystem.setDestroyLobby([this]() {
         this->_systems.lobbyScreen.destroySprites(this->_entityManager);
     });
+    _systems.gameScreen.setPlayerIdF([this]() {
+        return (this->_systems.networkSystem.getPlayerId());
+    });
+    _systems.gameScreen.setPlayerNbF([this]() {
+        return (this->_systems.networkSystem.getPlayerNb());
+    });
+    _systems.gameScreen.setCreateEntityF([this]() {
+        return (this->_entityManager.create());
+    });
+    _systems.gameScreen.setSendPakageF([this](const void *p, int tp) {
+        this->_systems.networkSystem.sendPackage(p, tp);
+    });
+    _systems.gameScreen.setGameIdF([this]() {
+        return (this->_systems.networkSystem.getIdGame());
+    });
 }
 
 Engine::Engine::~Engine()
