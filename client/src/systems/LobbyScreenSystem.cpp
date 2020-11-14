@@ -38,9 +38,9 @@ void Engine::LobbyScreenSystem::createSprites(std::array<Entity, 2> parallax, st
     // _spriteSystem.setScale(buttons[2], 2, 2);
 
     _positionSystem.create(text);
-    _positionSystem.setPosition(text, 770, 900);
+    _positionSystem.setPosition(text, 680, 200);
     _textSystem.create(text);
-    _textSystem.initText(text, "ID: " + std::to_string(_id), 100);
+    _textSystem.initText(text, "LOBBY ID: " + std::to_string(_id), 100);
 
     _lobbyScreenEntities.push_back(parallax[0]);
     _lobbyScreenEntities.push_back(parallax[1]);
@@ -88,5 +88,5 @@ void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManage
             _isPressed = false;
     }
     if (_textSystem.Exist(_lobbyScreenEntities[2]))
-        _textSystem.setText(_lobbyScreenEntities[2], "Lobby Id: " + std::to_string(_id));
+        _textSystem.setText(_lobbyScreenEntities[2], "LOBBY ID: " + std::to_string(_id));
 }
