@@ -79,7 +79,6 @@ void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager
             _id++;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
             joinGame_t package = {JOIN_GAME_PACKAGE, (std::size_t)_id};
-            std::cout << "REJOINDRE LE LOBBY ICI" << std::endl;
             networkSystem.sendPackage(reinterpret_cast<void *>(&package), JOIN_GAME_PACKAGE);
             return;
         }
