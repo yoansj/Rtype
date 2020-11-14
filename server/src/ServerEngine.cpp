@@ -178,18 +178,23 @@ void ServerEngine::handlePackage(joinGame_t &package, tcpSocket &cli)
 
 void ServerEngine::run()
 {
-    std::cout << "Server start ! Ip : " << _acceptor.local_endpoint().address() << ":" << _acceptor.local_endpoint().port() << std::endl;
-    auto t1 = std::chrono::high_resolution_clock::now();
-    float duration;
+    // std::cout << "Server start ! Ip : " << _acceptor.local_endpoint().address() << ":" << _acceptor.local_endpoint().port() << std::endl;
+    // auto t1 = std::chrono::high_resolution_clock::now();
+    // float duration;
 
+    // while (1) {
+    //     auto t2 = std::chrono::high_resolution_clock::now();
+    //     duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+    //      if ((duration > 1000000.0 / 60.0)) {
+    //         t1 = std::chrono::high_resolution_clock::now();
+    //         acceptConnections();
+    //         receiveTcpPackages();
+    //         receiveUdpPackages();
+    //      }
+    // }
     while (1) {
-        auto t2 = std::chrono::high_resolution_clock::now();
-        duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
-         if ((duration > 1000000.0 / 60.0)) {
-            t1 = std::chrono::high_resolution_clock::now();
-            acceptConnections();
-            receiveTcpPackages();
-            receiveUdpPackages();
-         }
+        acceptConnections();
+        receiveTcpPackages();
+        receiveUdpPackages();
     }
 }

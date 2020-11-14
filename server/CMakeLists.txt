@@ -15,10 +15,6 @@ conan_basic_setup()
 
 message("after setting up")
 
-
-#set(NET_DIR server/src/network)
-#set(DB_DIR server/src/db)
-set(BSON_INC utils/include)
 set(INC_DIR server/include)
 
 set(SERVER_SRC
@@ -31,7 +27,6 @@ set(SERVER_SRC
         server/src/ServerGame.cpp
 )
 
-
 include_directories(
     ${PROJECT_SOURCE_DIR}/server/include
     ${PROJECT_SOURCE_DIR}/client/include
@@ -43,5 +38,3 @@ include_directories(
 add_executable(${PROJECT_NAME} ${SERVER_SRC} ${BSON_SRC})
 
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
-
-configure_file(./table.txt ./bin/table.txt COPYONLY)

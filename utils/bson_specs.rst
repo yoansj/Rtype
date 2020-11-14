@@ -1,1 +1,0 @@
-http://bsonspec.org/spec.html
