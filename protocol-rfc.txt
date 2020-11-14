@@ -23,31 +23,38 @@ Copyright Notice
 
 Table of Contents
 
-   1.   Introduction . . . . . . . . . . . . . . . . . . . . . . . . 2
-   2.   Secure Client Connection . . . . . . . . . . . . . . . . . . 2
-   3.   Lobby TCP Packages . . . . . . . . . . . . . . . . . . . . . 2
-   3a.   Package Creation Lobby  . . . . . . . . . . . . . . . . . . 2
-   3b.   Package Join Lobby . . . . . . . . . . . . . . . . . . . .  3
-   4.   Game Launch on UDP . . . . . . . . . . . . . . . . . . . . . 3
-   4a.   Loading the Game . . . . . . . . . . . . . . . . . . . . .  7
-   4b.   Running Header  . . . . . . . . . . . . . . . . . . . . . . 8
-   4c.   Running Footer  . . . . . . . . . . . . . . . . . . . . . . 8
-   5.   Status Section . . . . . . . . . . . . . . . . . . . . . . . 8
-   6.   Copyright Notice . . . . . . . . . . . . . . . . . . . . . . 9
-   7.   Introduction Section . . . . . . . . . . . . . . . . . . . . 9
-   8.   References Section . . . . . . . . . . . . . . . . . . . .  11
-   9.   Security Considerations Section  . . . . . . . . . . . . .  11
-   10.  Author's Address Section . . . . . . . . . . . . . . . . .  11
-   11.  Copyright Section  . . . . . . . . . . . . . . . . . . . .  11
-   12.  Relation to other RFCs . . . . . . . . . . . . . . . . . .  12
-   13.  Protocol Standards Process . . . . . . . . . . . . . . . .  13
-   14.  Contact  . . . . . . . . . . . . . . . . . . . . . . . . .  13
-   15.  Distribution Lists . . . . . . . . . . . . . . . . . . . .  14
-   16.  RFC Index  . . . . . . . . . . . . . . . . . . . . . . . .  14
-   17.  Security Considerations  . . . . . . . . . . . . . . . . .  14
-   18.  References . . . . . . . . . . . . . . . . . . . . . . . .  14
-   19.  Authors' Addresses . . . . . . . . . . . . . . . . . . . .  15
-   20.  Appendix - RFC "nroff macros"  . . . . . . . . . . . . . .  16
+   1.   Introduction . . . . . . . . . . . . . . . . . . . . . . . . 1
+   2.   Secure Client Connection . . . . . . . . . . . . . . . . . . 1
+   3.   Lobby TCP Packages . . . . . . . . . . . . . . . . . . . . . 1
+   3a.   Package Creation Lobby  . . . . . . . . . . . . . . . . . . 1
+   3b.   Package Reply Creation Lobby  . . . . . . . . . . . . . . . 2
+   3c.   Package Join Lobby . . . . . . . . . . . . . . . . . . . .  2
+   3d.   Package Reply Join Lobby  . . . . . . . . . . . . . . . . . 2
+   3e.   Package Game Started  . . . . . . . . . . . . . . . . . . . 3
+   4.   Game UDP Packages . . . . . . . . . . . . . . . . . . . . .  3
+   4a.   Package sendDataPlayers . . . . . . . . . . . . . . . . . . 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Belgacemi                    Informational                     [Page 1]
@@ -80,28 +87,29 @@ RFC 2223       Protocol client/server communications      November 2020
 
    Once the secure connection is established between the client and the
    server, the client MAY send two TCP types of packets to the server.
+   And MUST return two other types of packets for responses.
 
    3a.  Package Creation Lobby
 
       The first packet is to ask the server to create a new game, the
       packet is called createNewGame.
 
-      The createNewGame package contains a variable to store type of the
-      package.
+      The first variable in the packet MUST contain the type of the
+      packet.
 
-      Once the createNewGame packet arrives at the server, the latter
+      Once the createNewGame packet arrives at the server, the server
       will create a lobby for the client and send a packet confirming
       the creation of the lobby, the packet is called
       replyLobbyCreated.
 
-      The first variable in the package is the type of the package.
+      The first variable in the packet MUST contain the type of the
+      packet.
 
-      The second is a std :: size_t idLobby to see which lobby the
-      client is in.
+      The second variable MUST contain a std::size_t idGame to see
+      which lobby the client is in.
 
       The client MUST send this packet if they want to be the creator
       of the lobby.
-
 
 
 
@@ -111,28 +119,89 @@ Belgacemi                    Informational                     [Page 2]
 
 RFC 2223       Protocol client/server communications      November 2020
 
-   3b.  Package Join Lobby
+   3b.  Package Reply Creation Lobby
+
+      The first response packet concerns the createNewGame packet, as
+      soon as the server receives the createNewGame packet from the
+      client the server will create a lobby and send the
+      replyGameCreated packet back to the server
+
+      The first variable in the packet MUST contain the type of the
+      packet.
+
+      The second variable MUST contain a std :: size_t idGame for the
+      identifier of the lobby in which to connect.
+
+      The third variable MUST be the player's index in the lobby.
+
+   3c.  Package Join Lobby
 
       The second package is to ask the server to join an already
       existing lobby, the package is called connectionLobby.
 
-      The first variable in the package is the type of the package.
+      The first variable in the packet MUST contain the type of the
+      packet.
 
-      The second is a std :: size_t idLobby for the identifier of the
-      lobby in which to connect.
+      The second variable MUST contain a std::size_t idGame for the
+      identifier of the lobby in which to connect.
 
       The client MUST enter the lobby identifier if he wants to send
-      the packet.
+      the packet connectionLobby.
 
-4.  Game Launch on UDP
+   3d.  Package Reply Join Lobby
+
+      The second response packet concerns the connectionLobby packet,
+      as soon as the server receives the connectionLobby packet from
+      the client the server will make the client join the lobby
+      concerned by the first request.
+
+      The first variable in the packet MUST contain the type of the
+      packet.
+
+      The second variable MUST contain a std::size_t idGame for the
+      identifier of the lobby in which to connect.
+
+      The client MUST enter the lobby identifier if he wants to send
+      the packet connectionLobby.
+
+
+
+
+
+
+
+
+Belgacemi                    Informational                     [Page 3]
+
+RFC 2223       Protocol client/server communications      November 2020
+
+   3c.  Package Game Started
+
+      The last packet sent by TCP protocol will be the packet notifying
+      all clients that the game is now launched. The package is called
+      gameStarted.
+
+      The first variable in the packet MUST contain the type of the
+      packet.
+
+      Once the packet has been sent, all packets sent whether on the
+      server or client side MUST now be in UDP protocol.
+
+4.  Game UDP Packages
 
    Once the creator of the lobby has decided to launch the game alone
    or with others, the game will start and all the requests that will
    now pass between the server and the client will be in UDP.
 
-   4a.  Loading the Game
+   4a.  Package sendDataPlayers
 
       When the game is launched, the server will send the client the
-      position of all the players present on the game.
+      position of all the players present on the game, the package is
+      called sendDataPlayers.
 
+      The first variable in the packet MUST contain the type of the
+      packet.
+
+      The second variable MUST contain a std::size_t idGame to see
+      which game the client is in.
 

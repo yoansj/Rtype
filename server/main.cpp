@@ -14,7 +14,6 @@ int main(int argc, char **argv)
 {
     ServerEngine server;
 
-    server.serverLoop();
-
+    server.run();
     return 0;
 }

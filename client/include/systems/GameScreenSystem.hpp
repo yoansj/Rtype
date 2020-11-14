@@ -25,7 +25,7 @@ namespace Engine {
             _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false) {};
             ~GameScreenSystem() = default;
 
-            void createSprites(Entity parallax);
+            void createSprites(std::array<Entity, 2> parallax);
             void destroySprites(EntityManager &entityManager);
 
             bool isCreated() const {return (_created);};

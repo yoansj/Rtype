@@ -25,7 +25,8 @@ void TcpClient::sendPackage(void *package)
 
 std::size_t TcpClient::receivePackage(void)
 {
-    if (!connected) return(42);
+    if (!connected)
+        return(42);
 
     char package[bufferSize];
     replyGameCreated_t reply;

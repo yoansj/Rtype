@@ -8,10 +8,14 @@
 #include "Engine.hpp"
 #include <fstream>
 
-Engine::Engine::Engine() :
-    _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1800, 1000), "R-Type")),
-    _renderer(_window), _tcpClient("localhost", 7172)
+Engine::Engine::Engine(std::string const &serverIp) :
+    _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "R-Type")),
+    _renderer(_window), _serverIp(serverIp)
 {
+    _systems.networkSystem.setRecipient(serverIp);
+    _systems.networkSystem.setDestroyLobby([this]() {
+        this->_systems.lobbyScreen.destroySprites(this->_entityManager);
+    });
 }
 
 Engine::Engine::~Engine()
@@ -24,21 +28,14 @@ Engine::Engine::~Engine()
  */
 void Engine::Engine::run()
 {
-    //createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
-    //startNewGame_t package = {START_NEW_GAME, 0, "Start new game"};
     sf::Clock clock;
-    createNewGame_t package = {CREATE_NEW_GAME, "NewGamee e"};
 
     while (_window->isOpen()) {
-        _window->clear(sf::Color::Blue);
-        _tcpClient.receivePackage();
+        _window->clear(sf::Color::Black);
+        _systems.networkSystem.update(_sceneManager, _entityManager);
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                _tcpClient.sendPackage(static_cast<void *>(&package));
-                std::cout << "ziak les paquets partent" << std::endl;
-            }
         }
         if (clock.getElapsedTime().asMilliseconds() >= 1000.0 / 60.0) {
             updateSystems();
@@ -63,25 +60,32 @@ void Engine::Engine::updateSystems()
     }
     if (_sceneManager.getScene() == SCENE::GAME) {
         if (!_systems.gameScreen.isCreated()) {
-            _systems.gameScreen.createSprites(_entityManager.create());
+            _systems.gameScreen.createSprites({_entityManager.create(), _entityManager.create() });
         }
         _systems.gameScreen.update(_entityManager, _sceneManager);
     }
     if (_sceneManager.getScene() == SCENE::MAIN_MENU) {
         if (!_systems.menuScreen.isCreated()) {
-            _systems.menuScreen.createSprites(_entityManager.create(), {_entityManager.create(), _entityManager.create(), _entityManager.create()});
+            _systems.menuScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()});
         }
-        _systems.menuScreen.update(_entityManager, _sceneManager);
+        _systems.menuScreen.update(_entityManager, _sceneManager, _systems.networkSystem);
     }
+    if (_sceneManager.getScene() == SCENE::JOIN_GAME) {
+        if (!_systems.joinScreen.isCreated()) {
+            _systems.joinScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()}, _entityManager.create());
+        }
+        _systems.joinScreen.update(_entityManager, _sceneManager, _systems.networkSystem);
+    } else if (_sceneManager.getScene() != SCENE::JOIN_GAME && _systems.joinScreen.isCreated())
+        _systems.joinScreen.destroySprites(_entityManager);
     if (_sceneManager.getScene() == SCENE::LOBBY) {
         if (!_systems.lobbyScreen.isCreated()) {
-            _systems.lobbyScreen.createSprites(_entityManager.create(), {_entityManager.create(), _entityManager.create(), _entityManager.create()}, _entityManager.create());
+            _systems.lobbyScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()}, _entityManager.create());
         }
         _systems.lobbyScreen.update(_entityManager, _sceneManager);
     }
     if (_sceneManager.getScene() == SCENE::GAME_END)
             _window->close();
-
+    _systems.lobbyScreen.setId(_systems.networkSystem.getIdGame());
 
     /*auto player = _systems.playerSystem.getPlayer();
     auto bgEntity = _systems.parallaxSystem.getBackgroundEntity();

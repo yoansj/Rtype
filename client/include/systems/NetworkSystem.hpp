@@ -10,11 +10,15 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
+#include <cstring>
+#include <functional>
 
 #include "Position.hpp"
 #include "System.hpp"
 #include "Packages.hpp"
 #include "EngineError.hpp"
+#include "SceneManager.hpp"
+#include "PackagesType.hpp"
 
 namespace Engine {
 
@@ -23,18 +27,45 @@ namespace Engine {
      */
     class NetworkSystem : public System<Position> {
         public:
-            NetworkSystem() : System() {_serverSocket.setBlocking(false);};
+            NetworkSystem() : System() {
+                _recipient = "localhost";
+                _port = 7172;
+                _connectedTcp = true;
+                _socketTcp.connect(_recipient, _port);
+                _socketTcp.setBlocking(false);
+                _socketUdp.setBlocking(false);
+            };
             ~NetworkSystem() = default;
 
-            void send(void const *package);
+            void sendPackage(void const *package, int typePackage);
+
             void setPort(unsigned short port) {_port = port;};
             void setRecipient(sf::IpAddress recipient) {_recipient = recipient;};
-            void update() {};
-            std::string receiveData();
+            void setIdGame(std::size_t idGame) {_idGame = idGame;};
+            void setPlayerIndex(std::size_t id) {_playerId = id;};
+
+            void setDestroyLobby(std::function<void()> f) {_destroyLobby = f;};
+
+            std::size_t getIdGame() {return _idGame;};
+
+            void update(SceneManager &smgr, EntityManager &entityManager) {
+                receivePackageUdp();
+                receivePackageTcp(smgr, entityManager);
+            };
+
+            void receivePackageUdp();
+            void receivePackageTcp(SceneManager &smgr, EntityManager &entityManager);
+            template <class PkgType>
+            PkgType loadPkgType(bool typePackage, char *pkgUdp);
         private:
-            sf::UdpSocket _serverSocket;
             sf::IpAddress _recipient;
             unsigned short _port;
+            sf::UdpSocket _socketUdp;
+            sf::TcpSocket _socketTcp;
+            std::size_t _idGame;
+            std::size_t _playerId;
+            bool _connectedTcp;
+            std::function<void()> _destroyLobby;
     };
 
 }

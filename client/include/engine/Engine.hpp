@@ -27,7 +27,7 @@ namespace Engine {
 
     class Engine {
         public:
-            Engine();
+            Engine(std::string const &serverIp);
             ~Engine();
             void run();
 
@@ -39,7 +39,7 @@ namespace Engine {
             EntityManager _entityManager;
             Renderer _renderer;
             SceneManager _sceneManager;
-            TcpClient _tcpClient;
+            std::string _serverIp;
     };
 }
 
