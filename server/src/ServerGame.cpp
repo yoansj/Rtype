@@ -12,6 +12,9 @@ void ServerGame::run()
     std::cout << "Starting lobby " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
 
     while (1) {
+        //boost::asio::deadline_timer t(_ios, boost::posix_time::seconds(1000 / 60));
+        //t.wait();
+        //std::cout << "CLOCK" << std::endl;
         readPackages();
     }
 }
@@ -24,7 +27,7 @@ void ServerGame::checkPlayers()
 void ServerGame::startGame()
 {
     //std::cout << "Starting game " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
-    gameStarted_t reply = {STARTED_GAME, (int)_tcpPlayers.size(), "GAME STARTED"};
+    gameStarted_t reply = {STARTED_GAME, _tcpPlayers.size(), "GAME STARTED"};
 
     for (std::size_t i = 0; i != _tcpPlayers.size(); i += 1) {
         std::cout << "[" << _gameId << "] Sending start package " << std::endl;
@@ -37,12 +40,25 @@ void ServerGame::startGame()
 void ServerGame::readPackages()
 {
     while (!_packages.empty()) {
-        if (std::get<0>(_packages[0]) == POSITION_PACKAGE) {
-            position_t package = *(position_t*)reinterpret_cast<char *>(std::get<1>(_packages[0]));
-            std::cout << "Receive POSITION_PACKAGE from: " << package.senderIndex << std::endl;
+        if (_packages[0].type == POSITION_PACKAGE) {
+            // Recevoir le paquet position
+            // Renvoyer la position a tout le monde sauf a l'envoyeur du paquet
+            // Insérer l'endpoint dans la liste des endpoints
+
+            // Paquet reçu
+            position_t package = *(position_t*)reinterpret_cast<char *>(_packages[0].package);
+            // Update les endpoint
+            updateEndpoints(package.senderIndex, _packages[0].endpoint);
+
+            std::cout << "[" << _gameId << "] Receive POSITION_PACKAGE from: " << package.senderIndex << std::endl;
+
+            // Code d'erreur (inutilisé et endpoint)
+            boost::system::error_code error;
             for (int i = 0; i != _tcpPlayers.size(); i++) {
-                //if (i != package.senderIndex)
-                //
+                std::cout << "Send position package !" << std::endl;
+                auto endpoint = _playersEndpoints.find(i);
+                if (endpoint != _playersEndpoints.end())
+                    _udpServer.send_to(boost::asio::buffer(_packages[0].package, sizeof(position_t)), endpoint->second, 0, error);
             }
         }
         _packages.erase(_packages.begin());

@@ -70,7 +70,7 @@ void ServerEngine::receiveUdpPackages()
         position_t *package = (position_t*)reinterpret_cast<char *>(buffer.data());
         auto game = _games.find(package->gameId);
         if (game != _games.end()) {
-            game->second->addPackage({POSITION_PACKAGE, package});
+            game->second->addPackage({POSITION_PACKAGE, package, endpoint});
         }
     }
 }
@@ -133,7 +133,7 @@ void ServerEngine::handlePackage(createNewGame_t &package, tcpSocket &cli)
     // Création du thread de la partie
     // Ajout de la partie dans la liste des parties
 
-    auto newGame = std::make_shared<ServerGame>(cli, _games.size());
+    auto newGame = std::make_shared<ServerGame>(cli, _games.size(), _udpServer, _ios);
     newGame->addPlayer(cli);
     _games.insert(std::pair<std::size_t, std::shared_ptr<ServerGame>>(_games.size(), newGame));
     std::thread gameThread(&ServerGame::run, &(*newGame.get()));

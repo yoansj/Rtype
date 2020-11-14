@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <cstddef>
 #include <vector>
+#include <boost/asio.hpp>
 
 #include "Position.hpp"
 #include "PackagesType.hpp"
@@ -40,7 +41,7 @@ typedef struct createNewGame_s {
 typedef struct replyGameCreated_s {
     int type_struct = 3;
     std::size_t idGame;
-    int playerIndex;
+    std::size_t playerIndex;
     char message[128];
 } replyGameCreated_t;
 
@@ -52,7 +53,7 @@ typedef struct replyGameCreated_s {
 typedef struct connectionGame_s {
     int type_struct = 4;
     std::size_t idGame;
-    int playerIndex;
+    std::size_t playerIndex;
     char message[128];
 } connectionGame_t;
 
@@ -75,7 +76,7 @@ typedef struct startNewGame_s {
 // Pas encore utilisé
 typedef struct gameStarted_s {
     int type_struct = 6;
-    int nbPlayers = 1;
+    std::size_t nbPlayers = 1;
     char message[128];
 } gameStarted_t;
 
@@ -86,9 +87,17 @@ typedef struct gameStarted_s {
 // Paquet de position
 typedef struct position_s {
     int type_struct = 7;
-    int senderIndex;
+    std::size_t senderIndex;
     std::size_t gameId;
     Engine::Position pos;
 } position_t;
 
+
+/* PACKAGE FOR GAME */
+using boost::asio::ip::udp;
+struct package {
+    PackagesType type;
+    void *package;
+    udp::endpoint endpoint;
+};
 #endif /* !PACKAGES_HPP_ */

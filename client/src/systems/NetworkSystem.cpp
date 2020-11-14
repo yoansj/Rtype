@@ -26,19 +26,27 @@ PkgType Engine::NetworkSystem::loadPkgType(bool typePackage, char *pkgUdp)
 
 void Engine::NetworkSystem::receivePackageUdp()
 {
-    char buffer[4096];
+    char buffer[10000];
     std::size_t received;
     sf::IpAddress sender;
     unsigned short port;
 
-    _socketUdp.receive(buffer, 4096, received, sender, port);
+    _socketUdp.receive(buffer, 10000, received, sender, port);
     int code = *reinterpret_cast<int *>(buffer);
     if (received == 0) return;
     switch (code) {
         case PLAYERS_CONNECTED:
+        {
             auto pkg = loadPkgType<dataPlayersConnected_t>(true, reinterpret_cast<char *>(&buffer));
             std::cout << "On a reçu en UDP: " << pkg.type_struct << std::endl;
             break;
+        }
+        case POSITION_PACKAGE:
+        {
+            auto pkg = loadPkgType<position_t>(true, reinterpret_cast<char *>(&buffer));
+            std::cout << "PAQUET POSITION RECU | SENDER ID: " << pkg.senderIndex << std::endl;
+            break;
+        }
     }
 }
 
@@ -51,7 +59,6 @@ void Engine::NetworkSystem::receivePackageTcp(SceneManager &smgr, EntityManager 
     _socketTcp.receive(buffer, sizeof(int), received);
     if (received == 0) return;
     std::memcpy(&typePackage, buffer, sizeof(int));
-    std::cout << typePackage << std::endl;
     switch (typePackage) {
         case REPLY_GAME_CREATED:
         {
@@ -74,7 +81,7 @@ void Engine::NetworkSystem::receivePackageTcp(SceneManager &smgr, EntityManager 
             auto co = loadPkgType<gameStarted_t>(false, nullptr);
             _playerNb = co.nbPlayers;
             _destroyLobby();
-            std::cout << "Starting game for player " << _playerNb << std::endl;
+            std::cout << "Starting game for player " << _playerId << std::endl;
             smgr.setScene(SCENE::GAME);
             break;
         }
@@ -102,7 +109,7 @@ void Engine::NetworkSystem::sendPackage(void const *package, int typePackage)
         case JOIN_GAME_PACKAGE:
         {
             std::size_t yo;
-            // std::cout << "JOIN GAME SENT !" << std::endl;
+            //std::cout << "JOIN GAME SENT !" << std::endl;
             if (_socketTcp.send(package, sizeof(joinGame_t), yo) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
             }
@@ -110,7 +117,7 @@ void Engine::NetworkSystem::sendPackage(void const *package, int typePackage)
         case START_NEW_GAME:
         {
             std::size_t yo;
-            // std::cout << "START GAME SENT !" << std::endl;
+            //std::cout << "START GAME SENT !" << std::endl;
             if (_socketTcp.send(package, sizeof(startNewGame_t), yo) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
             }
