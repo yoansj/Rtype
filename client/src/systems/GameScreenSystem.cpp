@@ -40,9 +40,9 @@ void Engine::GameScreenSystem::initGame()
             _spriteSystem.create(p);
             _positionSystem.create(p);
             _velocitySystem.create(p);
-            _spriteSystem.initSprite(p, "../client/assets/bluePlayer.png", false);
+            _spriteSystem.initSprite(p, "../client/assets/bluePlayer.png", true);
             _spriteSystem.setScale(p, 4, 4);
-            // _spriteSystem.setRect(p, sf::IntRect(67, 0, 32, 100));
+            _spriteSystem.setRect(p, sf::IntRect(67, 0, 32, 100));
             _positionSystem.setPosition(p, 20, 150);
             _velocitySystem.setVelocity(p, 10, 10);
             _playerEntities.push_back(p);
@@ -128,17 +128,9 @@ void Engine::GameScreenSystem::update(EntityManager &entityManager, SceneManager
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                 playerPosition.y -= playerVelocity.y;
-                playerSprite.rect.left = 320;
-                playerSprite.rect.width = 152;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                 playerPosition.y += playerVelocity.y;
-                playerSprite.rect.left = 0;
-                playerSprite.rect.width = 160;
-            }
-            if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                playerSprite.rect.left = 170;
-                playerSprite.rect.width = 148;
             }
         }
         position_t package = {POSITION_PACKAGE, _getPlayerId(), _getGameId(), playerPosition};
