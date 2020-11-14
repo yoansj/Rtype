@@ -129,6 +129,6 @@ void Engine::GameScreenSystem::update(EntityManager &entityManager, SceneManager
             }
         }
         position_t package = {POSITION_PACKAGE, _getPlayerId(), _getGameId(), playerPosition};
-        _sendPackage(reinterpret_cast<void *>(&package), POSITION_PACKAGE);
+        _sendPackage(reinterpret_cast<char *>(&package), POSITION_PACKAGE);
     }
 }

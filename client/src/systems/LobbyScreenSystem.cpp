@@ -79,8 +79,7 @@ void Engine::LobbyScreenSystem::update(EntityManager &entityManager, SceneManage
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && _networkSystem.getPlayerId() == 0 && _isPressed == false) {
             startNewGame_t pkg = {START_NEW_GAME, (std::size_t)_id, "STARTED" };
-            _networkSystem.sendPackage(reinterpret_cast<void *>(&pkg), START_NEW_GAME);
-            std::cout << "INPUT INCROYABLE\n";
+            _networkSystem.sendPackage(reinterpret_cast<char *>(&pkg), START_NEW_GAME);
             _isPressed = true;
             return;
         }

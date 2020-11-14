@@ -25,7 +25,7 @@ Engine::Engine::Engine(std::string const &serverIp) :
     _systems.gameScreen.setCreateEntityF([this]() {
         return (this->_entityManager.create());
     });
-    _systems.gameScreen.setSendPakageF([this](const void *p, int tp) {
+    _systems.gameScreen.setSendPakageF([this](const char *p, int tp) {
         this->_systems.networkSystem.sendPackage(p, tp);
     });
     _systems.gameScreen.setGameIdF([this]() {

@@ -21,6 +21,8 @@ _udpServer(_ios, udp::endpoint(udp::v4(), 7172))
 
 void ServerEngine::acceptConnections()
 {
+    // Accepte les connections et ajoute le nouveau client
+    // Dans la liste des clients
     tcpSocket newCli = std::make_shared<tcp::socket>(_ios);
 
     try {
@@ -43,11 +45,7 @@ void ServerEngine::receiveTcpPackages()
 {
     // Boucle et reçoit les paquets tcp de tous les clients
     for (int i = 0; i != _clients.size(); i++) {
-        if (!_clients[i]->is_open()) {
-            std::cout << "Client disconnected Ip: " << _clients[i]->remote_endpoint().address() << " Port: " << _clients[i]->remote_endpoint().port() << std::endl;
-        } else {
-            getPackageType(_clients[i], i);
-        }
+        getPackageType(_clients[i], i);
     }
     disconnectClients();
 }
@@ -67,7 +65,8 @@ void ServerEngine::receiveUdpPackages()
 
     // Recevoir un paquet position
     if (code == POSITION_PACKAGE) {
-        position_t *package = (position_t*)reinterpret_cast<char *>(buffer.data());
+        position_t *package = reinterpret_cast<position_t *>(buffer.data());
+        std::cout << "Package sender :" << package->senderIndex << endpoint.address() << ":" << endpoint.port() << std::endl;
         auto game = _games.find(package->gameId);
         if (game != _games.end()) {
             game->second->addPackage({POSITION_PACKAGE, package, endpoint});
@@ -85,26 +84,22 @@ void ServerEngine::disconnectClients()
 
 void ServerEngine::getPackageType(tcpSocket &cli, std::size_t index)
 {
-    int type_struct;
+    int *type_struct;
     std::array<char, sizeof(int)> buffer;
 
     try {
-        /*
-            terminate called after throwing an instance of 'boost::wrapexcept<boost::system::system_error>'
-            what():  receive: Connection reset by peer
-            ./run_server: line 8: 12412 Aborted                 (core dumped) ./build/bin/r-type_server $1
-        */
         cli->receive(boost::asio::buffer(buffer.data(), sizeof(int)));
-        std::memcpy(&type_struct, buffer.data(), sizeof(int));
-        if (type_struct == CREATE_NEW_GAME) {
+        type_struct = reinterpret_cast<int *>(buffer.data());
+        //std::memcpy(&type_struct, buffer.data(), sizeof(int));
+        if (*type_struct == CREATE_NEW_GAME) {
             auto pkg = loadPkgType<createNewGame_t>(cli);
             handlePackage(pkg, cli);
         }
-        if (type_struct == START_NEW_GAME) {
+        if (*type_struct == START_NEW_GAME) {
             auto pkg = loadPkgType<startNewGame_t>(cli);
             handlePackage(pkg, cli);
         }
-        if (type_struct == JOIN_GAME_PACKAGE) {
+        if (*type_struct == JOIN_GAME_PACKAGE) {
             auto pkg = loadPkgType<joinGame_t>(cli);
             handlePackage(pkg, cli);
         }
@@ -113,8 +108,7 @@ void ServerEngine::getPackageType(tcpSocket &cli, std::size_t index)
         } else if (err.code() == boost::asio::error::eof) {
             std::cout << "Client disconnected Ip: " << cli->remote_endpoint().address() << " Port: " << cli->remote_endpoint().port() << std::endl;
             _clientsToDisconnect.push_back(index);
-        } else
-            throw err;
+        }
     }
 }
 
