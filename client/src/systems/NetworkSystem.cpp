@@ -44,7 +44,8 @@ void Engine::NetworkSystem::receivePackageUdp()
         case POSITION_PACKAGE:
         {
             auto pkg = loadPkgType<position_t>(true, reinterpret_cast<char *>(&buffer));
-            std::cout << "PAQUET POSITION RECU | SENDER ID: " << pkg.senderIndex << std::endl;
+            //std::cout << "PAQUET POSITION RECU | SENDER ID: " << pkg.senderIndex << std::endl;
+            _gameUpdatePlayerPos(pkg.senderIndex, pkg.pos);
             break;
         }
     }

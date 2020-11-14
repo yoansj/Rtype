@@ -95,6 +95,16 @@ void Engine::GameScreenSystem::destroySprites(EntityManager &entityManager)
     _created = false;
 }
 
+void Engine::GameScreenSystem::updatePlayerPosition(std::size_t index, Position pos)
+{
+    if (_getPlayerId() != index && _createdAllPlayers) {
+        auto &playerPosition = _positionSystem.getComponent(_playerEntities[index]);
+
+        playerPosition.x = pos.x;
+        playerPosition.y = pos.y;
+    }
+}
+
 void Engine::GameScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager)
 {
     _parallaxSystem.update(_positionSystem.getComponent(_gameScreenEntities[0]), _velocitySystem.getComponent(_gameScreenEntities[0]));

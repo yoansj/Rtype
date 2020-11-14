@@ -46,6 +46,9 @@ Engine::Engine::Engine(std::string const &serverIp) :
     _systems.gameScreen.setHasFocus([this]() {
         return (this->_window->hasFocus());
     });
+    _systems.networkSystem.setGameUpdatePlayerPos([this](std::size_t index, Position pos) {
+        this->_systems.gameScreen.updatePlayerPosition(index, pos);
+    });
 }
 
 Engine::Engine::~Engine()

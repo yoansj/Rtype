@@ -45,6 +45,7 @@ namespace Engine {
             void setPlayerIndex(std::size_t id) {_playerId = id;};
 
             void setDestroyLobby(std::function<void()> f) {_destroyLobby = f;};
+            void setGameUpdatePlayerPos(std::function<void(std::size_t index, Position pos)> f) {_gameUpdatePlayerPos = f;};
 
             std::size_t getIdGame() {return _idGame;};
             std::size_t getPlayerId() {return _playerId;};
@@ -76,6 +77,7 @@ namespace Engine {
             // Misc
             bool _connectedTcp;
             std::function<void()> _destroyLobby;
+            std::function<void(std::size_t index, Position pos)> _gameUpdatePlayerPos;
     };
 
 }

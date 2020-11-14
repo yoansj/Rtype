@@ -37,6 +37,8 @@ namespace Engine {
             bool isCreated() const {return (_created);};
             void update(EntityManager &entityManager, SceneManager &sceneManager);
 
+            void updatePlayerPosition(std::size_t index, Position pos);
+
             // Shortcuts functions
             void setPlayerIdF(std::function<std::size_t()> f) {_getPlayerId = f;};
             void setPlayerNbF(std::function<std::size_t()> f) {_getPlayerNb = f;};
