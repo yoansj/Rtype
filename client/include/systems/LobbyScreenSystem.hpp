@@ -23,7 +23,6 @@
 
 #include <functional>
 
-
 namespace Engine {
     class LobbyScreenSystem {
         enum choice {

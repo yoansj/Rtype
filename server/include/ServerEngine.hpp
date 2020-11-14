@@ -12,6 +12,7 @@
 #include <boost/bind.hpp>
 #include <memory>
 #include <iostream>
+#include <chrono>
 
 #include "Packages.hpp"
 #include "PackagesType.hpp"

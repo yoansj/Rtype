@@ -40,9 +40,9 @@ void Engine::GameScreenSystem::initGame()
             _spriteSystem.create(p);
             _positionSystem.create(p);
             _velocitySystem.create(p);
-            _spriteSystem.initSprite(p, "../client/assets/bluePlayer.png", true);
+            _spriteSystem.initSprite(p, "../client/assets/bluePlayer.png", false);
             _spriteSystem.setScale(p, 4, 4);
-            _spriteSystem.setRect(p, sf::IntRect(67, 0, 32, 100));
+            // _spriteSystem.setRect(p, sf::IntRect(67, 0, 32, 100));
             _positionSystem.setPosition(p, 20, 150);
             _velocitySystem.setVelocity(p, 10, 10);
             _playerEntities.push_back(p);
@@ -52,8 +52,9 @@ void Engine::GameScreenSystem::initGame()
             _spriteSystem.create(p);
             _positionSystem.create(p);
             _velocitySystem.create(p);
-            _spriteSystem.initSprite(p, "../client/assets/redPlayer.png", false);
+            _spriteSystem.initSprite(p, "../client/assets/redPlayer.png", true);
             _spriteSystem.setScale(p, 4, 4);
+            _spriteSystem.setRect(p, sf::IntRect(67, 0, 32, 100));
             _positionSystem.setPosition(p, 20, 300);
             _velocitySystem.setVelocity(p, 10, 10);
             _playerEntities.push_back(p);
@@ -63,8 +64,9 @@ void Engine::GameScreenSystem::initGame()
             _spriteSystem.create(p);
             _positionSystem.create(p);
             _velocitySystem.create(p);
-            _spriteSystem.initSprite(p, "../client/assets/greenPlayer.png", false);
+            _spriteSystem.initSprite(p, "../client/assets/greenPlayer.png", true);
             _spriteSystem.setScale(p, 4, 4);
+            _spriteSystem.setRect(p, sf::IntRect(67, 0, 32, 100));
             _positionSystem.setPosition(p, 20, 450);
             _velocitySystem.setVelocity(p, 10, 10);
             _playerEntities.push_back(p);
@@ -74,8 +76,9 @@ void Engine::GameScreenSystem::initGame()
             _spriteSystem.create(p);
             _positionSystem.create(p);
             _velocitySystem.create(p);
-            _spriteSystem.initSprite(p, "../client/assets/yellowPlayer.png", false);
+            _spriteSystem.initSprite(p, "../client/assets/yellowPlayer.png", true);
             _spriteSystem.setScale(p, 4, 4);
+            _spriteSystem.setRect(p, sf::IntRect(67, 0, 32, 100));
             _positionSystem.setPosition(p, 20, 600);
             _velocitySystem.setVelocity(p, 10, 10);
             _playerEntities.push_back(p);
