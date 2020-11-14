@@ -78,8 +78,11 @@ void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager
                 networkSystem.sendPackage(reinterpret_cast<char *>(&package), CREATE_NEW_GAME);
                 return;
             }
-            else if (_choice == choice::JOIN)
+            else if (_choice == choice::JOIN) {
+                // destroySprites(entityManager);
                 sceneManager.setScene(SCENE::JOIN_GAME);
+                return;
+            }
             else if (_choice == choice::QUIT)
                 sceneManager.setScene(SCENE::GAME_END);
         }

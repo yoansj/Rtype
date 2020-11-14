@@ -20,7 +20,7 @@ void Engine::JoinScreenSystem::createSprites(std::array<Entity, 2> parallax, std
 
     _spriteSystem.create(parallax[1]);
     _positionSystem.create(parallax[1]);
-    _positionSystem.setPosition(parallax[1], 1920, 0);
+    _positionSystem.setPosition(parallax[1], 3840, 0);
     _spriteSystem.initSprite(parallax[1], "../client/assets/parallax.png", false);
     _velocitySystem.create(parallax[1]);
     _velocitySystem.setVelocity(parallax[1], 3, 3);
@@ -82,6 +82,7 @@ void Engine::JoinScreenSystem::update(EntityManager &entityManager, SceneManager
             _id++;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+            _isPressed = true;
             joinGame_t package = {JOIN_GAME_PACKAGE, (std::size_t)_id};
             networkSystem.sendPackage(reinterpret_cast<char *>(&package), JOIN_GAME_PACKAGE);
             std::cout << "je rejoins la partie" << std::endl;
