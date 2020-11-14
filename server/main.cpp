@@ -7,7 +7,6 @@
 
 #include <boost/asio.hpp>
 #include <thread>
-#include "UdpServer.hpp"
 #include "ServerEngine.hpp"
 
 int main(int argc, char **argv)

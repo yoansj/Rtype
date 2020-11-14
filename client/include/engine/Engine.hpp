@@ -17,7 +17,6 @@
 #include "Renderer.hpp"
 #include "Scene.hpp"
 
-#include "TcpClient.hpp"
 #include "Packages.hpp"
 #include "PackagesType.hpp"
 
