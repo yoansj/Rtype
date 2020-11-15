@@ -14,6 +14,7 @@
 #include <boost/asio.hpp>
 
 #include "Position.hpp"
+#include "Hitbox.hpp"
 #include "PackagesType.hpp"
 
 constexpr std::size_t bufferSize = 4096;
@@ -98,6 +99,14 @@ typedef struct shoot_s {
     std::size_t gameId;
     Engine::Position pos;
 } shoot_t;
+
+// Paquet de tir entité (pour le client)
+typedef struct shootEntity_s {
+    int type_struct = 9;
+    Engine::Position pos;
+    Engine::Hitbox shootHitbox;
+    Entity serverEntityId;
+} shootEntity_t;
 
 /* PACKAGE FOR GAME */
 using boost::asio::ip::udp;
