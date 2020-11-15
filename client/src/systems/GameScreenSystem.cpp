@@ -128,9 +128,17 @@ void Engine::GameScreenSystem::update(EntityManager &entityManager, SceneManager
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                 playerPosition.y -= playerVelocity.y;
+                playerSprite.rect.left = 133;
+                playerSprite.rect.width = 33;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                 playerPosition.y += playerVelocity.y;
+                playerSprite.rect.left = 0;
+                playerSprite.rect.width = 34;
+            }
+            if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                playerSprite.rect.left = 67;
+                playerSprite.rect.width = 32;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && shooting == false) {
                 // Envoyer un paquet shoot
