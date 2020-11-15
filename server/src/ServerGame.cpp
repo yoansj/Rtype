@@ -103,16 +103,10 @@ void ServerGame::updateEntities()
             bulletStatus.type = Engine::DEAD;
         }
 
+        std::cout << bulletStatus.type << std::endl;
         iterateForCollision(_bulletEntities[i], bulletPos, bulletStatus);
-
-        if (bulletStatus.type == Engine::DEAD) {
-            _positionSystem.destroy(_bulletEntities[i]);
-            _velocitySystem.destroy(_bulletEntities[i]);
-            _hitboxSystem.destroy(_bulletEntities[i]);
-            _statusSystem.destroy(_bulletEntities[i]);
-            _entitiesToDestroy.push_back(i);
-        }
-
+        std::cout << bulletStatus.type << std::endl;
+        boost::system::error_code error;
         shootEntity_t package = {
             SHOOT_ENTITY_PACKAGE,
             bulletPos,
@@ -120,12 +114,18 @@ void ServerGame::updateEntities()
             bulletStatus,
             _bulletEntities[i]
         };
-
-        boost::system::error_code error;
         for (int i = 0; i != _tcpPlayers.size(); i++) {
             auto endpoint = _playersEndpoints.find(i);
             if (endpoint != _playersEndpoints.end())
                 _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(shootEntity_t)), endpoint->second, 0, error);
+        }
+
+        if (bulletStatus.type == Engine::DEAD) {
+            _positionSystem.destroy(_bulletEntities[i]);
+            _velocitySystem.destroy(_bulletEntities[i]);
+            _hitboxSystem.destroy(_bulletEntities[i]);
+            _statusSystem.destroy(_bulletEntities[i]);
+            _entitiesToDestroy.push_back(i);
         }
     }
     // Update des monstres
@@ -147,9 +147,10 @@ void ServerGame::updateEntities()
             monsterPos,
             monsterStatus,
             _ennemyEntities[i],
-            //_monsterLoaderSystem.getFilepath(0)[0]
             "../client/assets/monster.png"
         };
+
+        //std::memcpy(&package.filepath[0], )
 
         boost::system::error_code error;
         for (int i = 0; i != _tcpPlayers.size(); i++) {
@@ -166,6 +167,7 @@ void ServerGame::updateEntities()
             std::cout << "ERASED MONSTER : " << _ennemyEntities[i] << std::endl;
         }
     }
+    destroyEntities();
 }
 
 void ServerGame::destroyEntities()
@@ -199,9 +201,9 @@ void ServerGame::startGame()
         }
     }*/
 
-    /*_monsterLoaderSystem.load({
-        "libs/libfrog.so"
-    });*/
+    _monsterLoaderSystem.load({
+        "./build/lib/libfrog.so"
+    });
 
     for (std::size_t i = 0; i != _tcpPlayers.size(); i += 1) {
         std::cout << "[" << _gameId << "] Sending start package " << std::endl;
@@ -279,83 +281,3 @@ void ServerGame::readPackages()
         _packages.erase(_packages.begin());
     }
 }
-/*
-[COLLIDES] A.x: 50 A.y: 540 B.x: 710 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 70 A.y: 540 B.x: 700 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 90 A.y: 540 B.x: 690 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 110 A.y: 540 B.x: 680 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 130 A.y: 540 B.x: 670 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 150 A.y: 540 B.x: 660 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 170 A.y: 540 B.x: 650 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 190 A.y: 540 B.x: 640 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 210 A.y: 540 B.x: 630 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 230 A.y: 540 B.x: 620 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 250 A.y: 540 B.x: 610 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 270 A.y: 540 B.x: 600 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 290 A.y: 540 B.x: 590 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 310 A.y: 540 B.x: 580 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 330 A.y: 540 B.x: 570 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 350 A.y: 540 B.x: 560 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 370 A.y: 540 B.x: 550 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 390 A.y: 540 B.x: 540 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 410 A.y: 540 B.x: 530 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 430 A.y: 540 B.x: 520 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 450 A.y: 540 B.x: 510 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 470 A.y: 540 B.x: 500 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 490 A.y: 540 B.x: 490 B.y: 561 <---------------------------
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30 <----------------------
-[COLLIDES] A.x: 510 A.y: 540 B.x: 480 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 530 A.y: 540 B.x: 470 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 550 A.y: 540 B.x: 460 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 570 A.y: 540 B.x: 450 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 590 A.y: 540 B.x: 440 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 610 A.y: 540 B.x: 430 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 630 A.y: 540 B.x: 420 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 650 A.y: 540 B.x: 410 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 670 A.y: 540 B.x: 400 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 690 A.y: 540 B.x: 390 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 710 A.y: 540 B.x: 380 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 730 A.y: 540 B.x: 370 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 750 A.y: 540 B.x: 360 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 770 A.y: 540 B.x: 350 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 790 A.y: 540 B.x: 340 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-[COLLIDES] A.x: 810 A.y: 540 B.x: 330 B.y: 561
-[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
-*/
