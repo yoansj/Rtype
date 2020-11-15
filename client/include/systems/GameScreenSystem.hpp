@@ -25,7 +25,7 @@
 namespace Engine {
 
     /**
-     * @brief Scene game.
+     * @brief Game Screen System, display and manage the lobby.
      * 
      */
     class GameScreenSystem {
@@ -44,7 +44,7 @@ namespace Engine {
             ~GameScreenSystem() = default;
 
             /**
-             * @brief Create a Sprites Entity
+             * @brief Create a Sprites with Entities
              * 
              * @param std::array<Entity, 2> parallax 
              */
@@ -64,7 +64,7 @@ namespace Engine {
             void initGame();
 
             /**
-             * @brief Check if the game is created.
+             * @brief Check if the Entity is created.
              * 
              * @return bool 
              */

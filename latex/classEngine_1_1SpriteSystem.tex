@@ -19,22 +19,17 @@ Inheritance diagram for Engine\+::Sprite\+System\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{classEngine_1_1SpriteSystem_a0eeef1da3a8e6652cc71a46aa6fd229f}{update}} ()
-\item 
-\mbox{\Hypertarget{classEngine_1_1SpriteSystem_a71472eca585014bb6d22ef940a1d6418}\label{classEngine_1_1SpriteSystem_a71472eca585014bb6d22ef940a1d6418}} 
-bool {\bfseries init\+Sprite} (Entity e, std\+::string const \&filepath, bool is\+Animated)
-\item 
-\mbox{\Hypertarget{classEngine_1_1SpriteSystem_ac2cbca82051fe0c52ec2a2323be927e6}\label{classEngine_1_1SpriteSystem_ac2cbca82051fe0c52ec2a2323be927e6}} 
-void {\bfseries create\+Animation} (Entity e, sf\+::\+Int\+Rect rect)
-\item 
-\mbox{\Hypertarget{classEngine_1_1SpriteSystem_a581dc567cc19b1eff5fa1ada43c4ef24}\label{classEngine_1_1SpriteSystem_a581dc567cc19b1eff5fa1ada43c4ef24}} 
-void {\bfseries change\+Texture} (Entity e, std\+::string const \&filepath)
-\item 
-\mbox{\Hypertarget{classEngine_1_1SpriteSystem_a533916354c96e1ede346de768d1de108}\label{classEngine_1_1SpriteSystem_a533916354c96e1ede346de768d1de108}} 
-void {\bfseries set\+Scale} (Entity e, int x, int y)
-\item 
-\mbox{\Hypertarget{classEngine_1_1SpriteSystem_af9f81be107d558e271f6bf5d24a89593}\label{classEngine_1_1SpriteSystem_af9f81be107d558e271f6bf5d24a89593}} 
-void {\bfseries set\+Rect} (Entity e, sf\+::\+Int\+Rect rect)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Update the \mbox{\hyperlink{structEngine_1_1Sprite}{Sprite}} \mbox{\hyperlink{classEngine_1_1System}{System}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEngine_1_1SpriteSystem_a71472eca585014bb6d22ef940a1d6418}{init\+Sprite}} (Entity e, std\+::string const \&filepath, bool is\+Animated)
+\begin{DoxyCompactList}\small\item\em Init the \mbox{\hyperlink{structEngine_1_1Sprite}{Sprite}} with the Entity, the filepath and if is animated or not. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1SpriteSystem_ac2cbca82051fe0c52ec2a2323be927e6}{create\+Animation}} (Entity e, sf\+::\+Int\+Rect rect)
+\begin{DoxyCompactList}\small\item\em Create a Animation with the Entity set a Rect to the Entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1SpriteSystem_a581dc567cc19b1eff5fa1ada43c4ef24}{change\+Texture}} (Entity e, std\+::string const \&filepath)
+\begin{DoxyCompactList}\small\item\em Change the texture to a Entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1SpriteSystem_a533916354c96e1ede346de768d1de108}{set\+Scale}} (Entity e, int x, int y)
+\begin{DoxyCompactList}\small\item\em Set the Scale to a Entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1SpriteSystem_af9f81be107d558e271f6bf5d24a89593}{set\+Rect}} (Entity e, sf\+::\+Int\+Rect rect)
+\begin{DoxyCompactList}\small\item\em Set the Rect to a Entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -54,13 +49,109 @@ sf\+::\+Time {\bfseries \+\_\+time}
 \mbox{\hyperlink{structEngine_1_1Sprite}{Sprite}} system used on the \mbox{\hyperlink{structEngine_1_1Sprite}{Sprite}} component. 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEngine_1_1SpriteSystem_a581dc567cc19b1eff5fa1ada43c4ef24}\label{classEngine_1_1SpriteSystem_a581dc567cc19b1eff5fa1ada43c4ef24}} 
+\index{Engine::SpriteSystem@{Engine::SpriteSystem}!changeTexture@{changeTexture}}
+\index{changeTexture@{changeTexture}!Engine::SpriteSystem@{Engine::SpriteSystem}}
+\doxysubsubsection{\texorpdfstring{changeTexture()}{changeTexture()}}
+{\footnotesize\ttfamily void Engine\+::\+Sprite\+System\+::change\+Texture (\begin{DoxyParamCaption}\item[{Entity}]{e,  }\item[{std\+::string const \&}]{filepath }\end{DoxyParamCaption})}
+
+
+
+Change the texture to a Entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+{\em std\+::string} & const \&filepath \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1SpriteSystem_ac2cbca82051fe0c52ec2a2323be927e6}\label{classEngine_1_1SpriteSystem_ac2cbca82051fe0c52ec2a2323be927e6}} 
+\index{Engine::SpriteSystem@{Engine::SpriteSystem}!createAnimation@{createAnimation}}
+\index{createAnimation@{createAnimation}!Engine::SpriteSystem@{Engine::SpriteSystem}}
+\doxysubsubsection{\texorpdfstring{createAnimation()}{createAnimation()}}
+{\footnotesize\ttfamily void Engine\+::\+Sprite\+System\+::create\+Animation (\begin{DoxyParamCaption}\item[{Entity}]{e,  }\item[{sf\+::\+Int\+Rect}]{rect }\end{DoxyParamCaption})}
+
+
+
+Create a Animation with the Entity set a Rect to the Entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+{\em sf\+::\+Int\+Rect} & rect \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1SpriteSystem_a71472eca585014bb6d22ef940a1d6418}\label{classEngine_1_1SpriteSystem_a71472eca585014bb6d22ef940a1d6418}} 
+\index{Engine::SpriteSystem@{Engine::SpriteSystem}!initSprite@{initSprite}}
+\index{initSprite@{initSprite}!Engine::SpriteSystem@{Engine::SpriteSystem}}
+\doxysubsubsection{\texorpdfstring{initSprite()}{initSprite()}}
+{\footnotesize\ttfamily bool Engine\+::\+Sprite\+System\+::init\+Sprite (\begin{DoxyParamCaption}\item[{Entity}]{e,  }\item[{std\+::string const \&}]{filepath,  }\item[{bool}]{is\+Animated }\end{DoxyParamCaption})}
+
+
+
+Init the \mbox{\hyperlink{structEngine_1_1Sprite}{Sprite}} with the Entity, the filepath and if is animated or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+{\em std\+::string} & const \&filepath \\
+\hline
+{\em bool} & is\+Animated \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1SpriteSystem_af9f81be107d558e271f6bf5d24a89593}\label{classEngine_1_1SpriteSystem_af9f81be107d558e271f6bf5d24a89593}} 
+\index{Engine::SpriteSystem@{Engine::SpriteSystem}!setRect@{setRect}}
+\index{setRect@{setRect}!Engine::SpriteSystem@{Engine::SpriteSystem}}
+\doxysubsubsection{\texorpdfstring{setRect()}{setRect()}}
+{\footnotesize\ttfamily void Engine\+::\+Sprite\+System\+::set\+Rect (\begin{DoxyParamCaption}\item[{Entity}]{e,  }\item[{sf\+::\+Int\+Rect}]{rect }\end{DoxyParamCaption})}
+
+
+
+Set the Rect to a Entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+{\em sf\+::\+Int\+Rect} & rect \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1SpriteSystem_a533916354c96e1ede346de768d1de108}\label{classEngine_1_1SpriteSystem_a533916354c96e1ede346de768d1de108}} 
+\index{Engine::SpriteSystem@{Engine::SpriteSystem}!setScale@{setScale}}
+\index{setScale@{setScale}!Engine::SpriteSystem@{Engine::SpriteSystem}}
+\doxysubsubsection{\texorpdfstring{setScale()}{setScale()}}
+{\footnotesize\ttfamily void Engine\+::\+Sprite\+System\+::set\+Scale (\begin{DoxyParamCaption}\item[{Entity}]{e,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Set the Scale to a Entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+{\em int} & x \\
+\hline
+{\em int} & y \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classEngine_1_1SpriteSystem_a0eeef1da3a8e6652cc71a46aa6fd229f}\label{classEngine_1_1SpriteSystem_a0eeef1da3a8e6652cc71a46aa6fd229f}} 
 \index{Engine::SpriteSystem@{Engine::SpriteSystem}!update@{update}}
 \index{update@{update}!Engine::SpriteSystem@{Engine::SpriteSystem}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
 {\footnotesize\ttfamily void Engine\+::\+Sprite\+System\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-Update every function implement in system. 
+
+
+Update the \mbox{\hyperlink{structEngine_1_1Sprite}{Sprite}} \mbox{\hyperlink{classEngine_1_1System}{System}}. 
+
+
 
 Reimplemented from \mbox{\hyperlink{classEngine_1_1System_a77354dfeb647b52b098c1b74cb3ad9d4}{Engine\+::\+System$<$ Sprite $>$}}.
 

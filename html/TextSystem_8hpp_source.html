@@ -94,24 +94,26 @@ $(function() {
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="classEngine_1_1TextSystem.html">TextSystem</a>();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            ~<a class="code" href="classEngine_1_1TextSystem.html">TextSystem</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classEngine_1_1TextSystem.html#a005f3edf560b0846824c806ff7a042b6">update</a>();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordtype">bool</span> initText(Entity e, std::string <span class="keyword">const</span> &amp;text, <span class="keywordtype">int</span> <a class="code" href="classEngine_1_1System.html#aca96772d35326632eae2f3721fd5dd8c">size</a>);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordtype">void</span> setText(Entity e, std::string str);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classEngine_1_1TextSystem.html#a005f3edf560b0846824c806ff7a042b6">update</a>();</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            std::shared_ptr&lt;sf::RenderWindow&gt; _window;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    };</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !TEXTSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classEngine_1_1TextSystem.html#a2dad9b22d764342cba0f244ab8eabbd8">initText</a>(Entity e, std::string <span class="keyword">const</span> &amp;text, <span class="keywordtype">int</span> <a class="code" href="classEngine_1_1System.html#aca96772d35326632eae2f3721fd5dd8c">size</a>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classEngine_1_1TextSystem.html#a6d4e2bf8fca1ebbeec7b79152a4b9f1e">setText</a>(Entity e, std::string str);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            std::shared_ptr&lt;sf::RenderWindow&gt; _window;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    };</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !TEXTSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassEngine_1_1TextSystem_html_a6d4e2bf8fca1ebbeec7b79152a4b9f1e"><div class="ttname"><a href="classEngine_1_1TextSystem.html#a6d4e2bf8fca1ebbeec7b79152a4b9f1e">Engine::TextSystem::setText</a></div><div class="ttdeci">void setText(Entity e, std::string str)</div><div class="ttdoc">Set the Text to a Entity.</div></div>
 <div class="ttc" id="aclassEngine_1_1System_html_aca96772d35326632eae2f3721fd5dd8c"><div class="ttname"><a href="classEngine_1_1System.html#aca96772d35326632eae2f3721fd5dd8c">Engine::System&lt; Text &gt;::size</a></div><div class="ttdeci">size_t size()</div><div class="ttdef"><b>Definition:</b> System.hpp:60</div></div>
 <div class="ttc" id="aclassEngine_1_1TextSystem_html"><div class="ttname"><a href="classEngine_1_1TextSystem.html">Engine::TextSystem</a></div><div class="ttdoc">Sprite system used on the Sprite component.</div><div class="ttdef"><b>Definition:</b> TextSystem.hpp:24</div></div>
 <div class="ttc" id="aclassEngine_1_1System_html"><div class="ttname"><a href="classEngine_1_1System.html">Engine::System</a></div><div class="ttdoc">This class represents the Systems of our Engine Each system has its own Component type and contain a ...</div><div class="ttdef"><b>Definition:</b> System.hpp:24</div></div>
-<div class="ttc" id="aclassEngine_1_1TextSystem_html_a005f3edf560b0846824c806ff7a042b6"><div class="ttname"><a href="classEngine_1_1TextSystem.html#a005f3edf560b0846824c806ff7a042b6">Engine::TextSystem::update</a></div><div class="ttdeci">void update()</div></div>
+<div class="ttc" id="aclassEngine_1_1TextSystem_html_a005f3edf560b0846824c806ff7a042b6"><div class="ttname"><a href="classEngine_1_1TextSystem.html#a005f3edf560b0846824c806ff7a042b6">Engine::TextSystem::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Update the system.</div></div>
+<div class="ttc" id="aclassEngine_1_1TextSystem_html_a2dad9b22d764342cba0f244ab8eabbd8"><div class="ttname"><a href="classEngine_1_1TextSystem.html#a2dad9b22d764342cba0f244ab8eabbd8">Engine::TextSystem::initText</a></div><div class="ttdeci">bool initText(Entity e, std::string const &amp;text, int size)</div><div class="ttdoc">Init a text from a Entity.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

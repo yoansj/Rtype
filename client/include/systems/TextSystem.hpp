@@ -26,10 +26,28 @@ namespace Engine {
             TextSystem();
             ~TextSystem() = default;
 
+            /**
+             * @brief Update the system.
+             * 
+             */
             void update();
 
+            /**
+             * @brief Init a text from a Entity
+             * 
+             * @param Entity e 
+             * @param std::string const &text 
+             * @param int size 
+             * @return bool 
+             */
             bool initText(Entity e, std::string const &text, int size);
 
+            /**
+             * @brief Set the Text to a Entity
+             * 
+             * @param Entity e 
+             * @param std::string str 
+             */
             void setText(Entity e, std::string str);
 
         private:

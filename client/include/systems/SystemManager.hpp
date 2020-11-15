@@ -23,6 +23,11 @@
 #include "JoinScreenSystem.hpp"
 
 namespace Engine {
+
+    /**
+     * @brief Manage all the systems
+     * 
+     */
     class SystemManager {
         public:
             SystemManager() : titleScreen(spriteSystem, velocitySystem, positionSystem),

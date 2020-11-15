@@ -94,51 +94,52 @@ $(function() {
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;JoinScreenSystem.hpp&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span>Engine {</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classEngine_1_1SystemManager.html">   26</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classEngine_1_1SystemManager.html">SystemManager</a> {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="classEngine_1_1SystemManager.html">SystemManager</a>() : titleScreen(spriteSystem, velocitySystem, positionSystem),</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            gameScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            menuScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            lobbyScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem, networkSystem),</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            joinScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem) {};</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            ~<a class="code" href="classEngine_1_1SystemManager.html">SystemManager</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <a class="code" href="classEngine_1_1PositionSystem.html">PositionSystem</a> positionSystem;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="classEngine_1_1SpriteSystem.html">SpriteSystem</a> spriteSystem;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <a class="code" href="classEngine_1_1InputSystem.html">InputSystem</a> inputSystem;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <a class="code" href="classEngine_1_1VelocitySystem.html">VelocitySystem</a> velocitySystem;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <a class="code" href="classEngine_1_1MonsterLoaderSystem.html">MonsterLoaderSystem</a> monsterLoaderSystem;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="classEngine_1_1ParallaxSystem.html">ParallaxSystem</a> parallaxSystem;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <a class="code" href="classEngine_1_1TextSystem.html">TextSystem</a> textSystem;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="classEngine_1_1NetworkSystem.html">NetworkSystem</a> networkSystem;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <a class="code" href="classEngine_1_1TitleScreenSystem.html">TitleScreenSystem</a> titleScreen;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <a class="code" href="classEngine_1_1GameScreenSystem.html">GameScreenSystem</a> gameScreen;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <a class="code" href="classEngine_1_1MenuScreenSystem.html">MenuScreenSystem</a> menuScreen;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <a class="code" href="classEngine_1_1LobbyScreenSystem.html">LobbyScreenSystem</a> lobbyScreen;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="classEngine_1_1JoinScreenSystem.html">JoinScreenSystem</a> joinScreen;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    };</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classEngine_1_1SystemManager.html">   31</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classEngine_1_1SystemManager.html">SystemManager</a> {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <a class="code" href="classEngine_1_1SystemManager.html">SystemManager</a>() : titleScreen(spriteSystem, velocitySystem, positionSystem),</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            gameScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            menuScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            lobbyScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem, networkSystem),</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            joinScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem) {};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            ~<a class="code" href="classEngine_1_1SystemManager.html">SystemManager</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="classEngine_1_1PositionSystem.html">PositionSystem</a> positionSystem;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <a class="code" href="classEngine_1_1SpriteSystem.html">SpriteSystem</a> spriteSystem;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <a class="code" href="classEngine_1_1InputSystem.html">InputSystem</a> inputSystem;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="classEngine_1_1VelocitySystem.html">VelocitySystem</a> velocitySystem;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <a class="code" href="classEngine_1_1MonsterLoaderSystem.html">MonsterLoaderSystem</a> monsterLoaderSystem;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <a class="code" href="classEngine_1_1ParallaxSystem.html">ParallaxSystem</a> parallaxSystem;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <a class="code" href="classEngine_1_1TextSystem.html">TextSystem</a> textSystem;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="classEngine_1_1NetworkSystem.html">NetworkSystem</a> networkSystem;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="classEngine_1_1TitleScreenSystem.html">TitleScreenSystem</a> titleScreen;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="code" href="classEngine_1_1GameScreenSystem.html">GameScreenSystem</a> gameScreen;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="classEngine_1_1MenuScreenSystem.html">MenuScreenSystem</a> menuScreen;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="classEngine_1_1LobbyScreenSystem.html">LobbyScreenSystem</a> lobbyScreen;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <a class="code" href="classEngine_1_1JoinScreenSystem.html">JoinScreenSystem</a> joinScreen;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SYSTEM_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    };</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SYSTEM_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassEngine_1_1LobbyScreenSystem_html"><div class="ttname"><a href="classEngine_1_1LobbyScreenSystem.html">Engine::LobbyScreenSystem</a></div><div class="ttdef"><b>Definition:</b> LobbyScreenSystem.hpp:27</div></div>
-<div class="ttc" id="aclassEngine_1_1MonsterLoaderSystem_html"><div class="ttname"><a href="classEngine_1_1MonsterLoaderSystem.html">Engine::MonsterLoaderSystem</a></div><div class="ttdoc">Position system used on the Position component.</div><div class="ttdef"><b>Definition:</b> MonsterLoaderSystem.hpp:35</div></div>
-<div class="ttc" id="aclassEngine_1_1JoinScreenSystem_html"><div class="ttname"><a href="classEngine_1_1JoinScreenSystem.html">Engine::JoinScreenSystem</a></div><div class="ttdoc">Game scene that allows us to join a lobby.</div><div class="ttdef"><b>Definition:</b> JoinScreenSystem.hpp:31</div></div>
-<div class="ttc" id="aclassEngine_1_1SystemManager_html"><div class="ttname"><a href="classEngine_1_1SystemManager.html">Engine::SystemManager</a></div><div class="ttdef"><b>Definition:</b> SystemManager.hpp:26</div></div>
+<div class="ttc" id="aclassEngine_1_1LobbyScreenSystem_html"><div class="ttname"><a href="classEngine_1_1LobbyScreenSystem.html">Engine::LobbyScreenSystem</a></div><div class="ttdoc">Lobby System Screen, display and manage the lobby.</div><div class="ttdef"><b>Definition:</b> LobbyScreenSystem.hpp:31</div></div>
+<div class="ttc" id="aclassEngine_1_1MonsterLoaderSystem_html"><div class="ttname"><a href="classEngine_1_1MonsterLoaderSystem.html">Engine::MonsterLoaderSystem</a></div><div class="ttdoc">Position system used on the Position component.</div><div class="ttdef"><b>Definition:</b> MonsterLoaderSystem.hpp:48</div></div>
+<div class="ttc" id="aclassEngine_1_1JoinScreenSystem_html"><div class="ttname"><a href="classEngine_1_1JoinScreenSystem.html">Engine::JoinScreenSystem</a></div><div class="ttdoc">Join Screen System, display and manage the lobby.</div><div class="ttdef"><b>Definition:</b> JoinScreenSystem.hpp:31</div></div>
+<div class="ttc" id="aclassEngine_1_1SystemManager_html"><div class="ttname"><a href="classEngine_1_1SystemManager.html">Engine::SystemManager</a></div><div class="ttdoc">Manage all the systems.</div><div class="ttdef"><b>Definition:</b> SystemManager.hpp:31</div></div>
 <div class="ttc" id="aclassEngine_1_1InputSystem_html"><div class="ttname"><a href="classEngine_1_1InputSystem.html">Engine::InputSystem</a></div><div class="ttdoc">System used to get user input in the game.</div><div class="ttdef"><b>Definition:</b> InputSystem.hpp:25</div></div>
-<div class="ttc" id="aclassEngine_1_1ParallaxSystem_html"><div class="ttname"><a href="classEngine_1_1ParallaxSystem.html">Engine::ParallaxSystem</a></div><div class="ttdef"><b>Definition:</b> ParallaxSystem.hpp:19</div></div>
-<div class="ttc" id="aclassEngine_1_1NetworkSystem_html"><div class="ttname"><a href="classEngine_1_1NetworkSystem.html">Engine::NetworkSystem</a></div><div class="ttdoc">Position system used on the Position component.</div><div class="ttdef"><b>Definition:</b> NetworkSystem.hpp:28</div></div>
+<div class="ttc" id="aclassEngine_1_1ParallaxSystem_html"><div class="ttname"><a href="classEngine_1_1ParallaxSystem.html">Engine::ParallaxSystem</a></div><div class="ttdoc">Parallax System for the menu and the game.</div><div class="ttdef"><b>Definition:</b> ParallaxSystem.hpp:24</div></div>
+<div class="ttc" id="aclassEngine_1_1NetworkSystem_html"><div class="ttname"><a href="classEngine_1_1NetworkSystem.html">Engine::NetworkSystem</a></div><div class="ttdoc">Network system used on the Position component.</div><div class="ttdef"><b>Definition:</b> NetworkSystem.hpp:28</div></div>
 <div class="ttc" id="aclassEngine_1_1TextSystem_html"><div class="ttname"><a href="classEngine_1_1TextSystem.html">Engine::TextSystem</a></div><div class="ttdoc">Sprite system used on the Sprite component.</div><div class="ttdef"><b>Definition:</b> TextSystem.hpp:24</div></div>
-<div class="ttc" id="aclassEngine_1_1GameScreenSystem_html"><div class="ttname"><a href="classEngine_1_1GameScreenSystem.html">Engine::GameScreenSystem</a></div><div class="ttdoc">Scene game.</div><div class="ttdef"><b>Definition:</b> GameScreenSystem.hpp:31</div></div>
+<div class="ttc" id="aclassEngine_1_1GameScreenSystem_html"><div class="ttname"><a href="classEngine_1_1GameScreenSystem.html">Engine::GameScreenSystem</a></div><div class="ttdoc">Game Screen System, display and manage the lobby.</div><div class="ttdef"><b>Definition:</b> GameScreenSystem.hpp:31</div></div>
 <div class="ttc" id="aclassEngine_1_1TitleScreenSystem_html"><div class="ttname"><a href="classEngine_1_1TitleScreenSystem.html">Engine::TitleScreenSystem</a></div><div class="ttdoc">Title Screen Scene System.</div><div class="ttdef"><b>Definition:</b> TitleScreenSystem.hpp:28</div></div>
-<div class="ttc" id="aclassEngine_1_1VelocitySystem_html"><div class="ttname"><a href="classEngine_1_1VelocitySystem.html">Engine::VelocitySystem</a></div><div class="ttdoc">Position system used on the Position component.</div><div class="ttdef"><b>Definition:</b> VelocitySystem.hpp:20</div></div>
+<div class="ttc" id="aclassEngine_1_1VelocitySystem_html"><div class="ttname"><a href="classEngine_1_1VelocitySystem.html">Engine::VelocitySystem</a></div><div class="ttdoc">Velocity system used on the Velocity component.</div><div class="ttdef"><b>Definition:</b> VelocitySystem.hpp:20</div></div>
 <div class="ttc" id="aclassEngine_1_1PositionSystem_html"><div class="ttname"><a href="classEngine_1_1PositionSystem.html">Engine::PositionSystem</a></div><div class="ttdoc">Position system used on the Position component.</div><div class="ttdef"><b>Definition:</b> PositionSystem.hpp:20</div></div>
 <div class="ttc" id="aclassEngine_1_1SpriteSystem_html"><div class="ttname"><a href="classEngine_1_1SpriteSystem.html">Engine::SpriteSystem</a></div><div class="ttdoc">Sprite system used on the Sprite component.</div><div class="ttdef"><b>Definition:</b> SpriteSystem.hpp:24</div></div>
-<div class="ttc" id="aclassEngine_1_1MenuScreenSystem_html"><div class="ttname"><a href="classEngine_1_1MenuScreenSystem.html">Engine::MenuScreenSystem</a></div><div class="ttdef"><b>Definition:</b> MenuScreenSystem.hpp:27</div></div>
+<div class="ttc" id="aclassEngine_1_1MenuScreenSystem_html"><div class="ttname"><a href="classEngine_1_1MenuScreenSystem.html">Engine::MenuScreenSystem</a></div><div class="ttdoc">Menu Screen System, display and manage the lobby.</div><div class="ttdef"><b>Definition:</b> MenuScreenSystem.hpp:31</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

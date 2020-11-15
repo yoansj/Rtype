@@ -90,18 +90,21 @@ $(function() {
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="classEngine_1_1PositionSystem.html">PositionSystem</a>() : <a class="code" href="classEngine_1_1System.html">System</a>() {};</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            ~<a class="code" href="classEngine_1_1PositionSystem.html">PositionSystem</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classEngine_1_1PositionSystem.html#aceac9e7ac8bee9babdd679d0b2ea8c03">   25</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classEngine_1_1PositionSystem.html#aceac9e7ac8bee9babdd679d0b2ea8c03">update</a>()<span class="keyword"> override </span>{};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordtype">bool</span> setPosition(Entity e, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="structEngine_1_1Position.html">Position</a> &amp;getPosition(Entity e);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    };</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classEngine_1_1PositionSystem.html#aceac9e7ac8bee9babdd679d0b2ea8c03">   29</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classEngine_1_1PositionSystem.html#aceac9e7ac8bee9babdd679d0b2ea8c03">update</a>()<span class="keyword"> override </span>{};</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !POSITIONSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classEngine_1_1PositionSystem.html#af1aa9f3baadf49c1ac377b0859287118">setPosition</a>(Entity e, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <a class="code" href="structEngine_1_1Position.html">Position</a> &amp;<a class="code" href="classEngine_1_1PositionSystem.html#a3677c75ee4bf06dfc68862ea9b48983d">getPosition</a>(Entity e);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    };</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !POSITIONSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassEngine_1_1PositionSystem_html_a3677c75ee4bf06dfc68862ea9b48983d"><div class="ttname"><a href="classEngine_1_1PositionSystem.html#a3677c75ee4bf06dfc68862ea9b48983d">Engine::PositionSystem::getPosition</a></div><div class="ttdeci">Position &amp; getPosition(Entity e)</div><div class="ttdoc">Get the Position.</div></div>
 <div class="ttc" id="astructEngine_1_1Position_html"><div class="ttname"><a href="structEngine_1_1Position.html">Engine::Position</a></div><div class="ttdoc">Component position.</div><div class="ttdef"><b>Definition:</b> Position.hpp:19</div></div>
-<div class="ttc" id="aclassEngine_1_1PositionSystem_html_aceac9e7ac8bee9babdd679d0b2ea8c03"><div class="ttname"><a href="classEngine_1_1PositionSystem.html#aceac9e7ac8bee9babdd679d0b2ea8c03">Engine::PositionSystem::update</a></div><div class="ttdeci">void update() override</div><div class="ttdef"><b>Definition:</b> PositionSystem.hpp:25</div></div>
+<div class="ttc" id="aclassEngine_1_1PositionSystem_html_af1aa9f3baadf49c1ac377b0859287118"><div class="ttname"><a href="classEngine_1_1PositionSystem.html#af1aa9f3baadf49c1ac377b0859287118">Engine::PositionSystem::setPosition</a></div><div class="ttdeci">bool setPosition(Entity e, float x, float y)</div><div class="ttdoc">Set the Position.</div></div>
+<div class="ttc" id="aclassEngine_1_1PositionSystem_html_aceac9e7ac8bee9babdd679d0b2ea8c03"><div class="ttname"><a href="classEngine_1_1PositionSystem.html#aceac9e7ac8bee9babdd679d0b2ea8c03">Engine::PositionSystem::update</a></div><div class="ttdeci">void update() override</div><div class="ttdoc">Update the system.</div><div class="ttdef"><b>Definition:</b> PositionSystem.hpp:29</div></div>
 <div class="ttc" id="aclassEngine_1_1System_html"><div class="ttname"><a href="classEngine_1_1System.html">Engine::System</a></div><div class="ttdoc">This class represents the Systems of our Engine Each system has its own Component type and contain a ...</div><div class="ttdef"><b>Definition:</b> System.hpp:24</div></div>
 <div class="ttc" id="aclassEngine_1_1PositionSystem_html"><div class="ttname"><a href="classEngine_1_1PositionSystem.html">Engine::PositionSystem</a></div><div class="ttdoc">Position system used on the Position component.</div><div class="ttdef"><b>Definition:</b> PositionSystem.hpp:20</div></div>
 <!-- start footer part -->

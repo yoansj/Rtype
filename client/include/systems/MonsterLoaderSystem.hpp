@@ -17,12 +17,25 @@
 #include <memory>
 
 namespace Engine {
-
+    /**
+     * @brief Loader Monster error class
+     * 
+     */
     class MonsterLoaderError : public std::exception {
         public:
+            /**
+             * @brief Construct a new Monster Loader Error object
+             * 
+             * @param std::string const &message 
+             */
             MonsterLoaderError(std::string const &message) :
             _message(message) {};
 
+            /**
+             * @brief Return message error from what()
+             * 
+             * @return char const* 
+             */
             char const *what() const noexcept override { return _message.data();};
 
         private:

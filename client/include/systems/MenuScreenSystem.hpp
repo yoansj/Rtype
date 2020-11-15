@@ -24,6 +24,10 @@
 
 
 namespace Engine {
+    /**
+     * @brief Menu Screen System, display and manage the lobby.
+     * 
+     */
     class MenuScreenSystem {
         enum choice {
             CREATE,
@@ -31,16 +35,54 @@ namespace Engine {
             QUIT
         };
         public:
+            /**
+             * @brief Construct a new Menu Screen System object
+             * 
+             * @param SpriteSystem &spriteSystem 
+             * @param VelocitySystem &velocitySystem 
+             * @param PositionSystem &positionSystem 
+             * @param ParallaxSystem &parallaxSystem 
+             */
             MenuScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem) :
             _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false), _choice(choice::CREATE), _isPressed(true) {};
             ~MenuScreenSystem() = default;
 
+            /**
+             * @brief Create a Sprites object
+             * 
+             * @param std::array<Entity, 2> parallax 
+             * @param std::array<Entity, 3> buttons 
+             */
             void createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons);
+
+            /**
+             * @brief Destroy a Sprites object
+             * 
+             * @param EntityManager &entityManager 
+             */
             void destroySprites(EntityManager &entityManager);
 
+            /**
+             * @brief Check is the Screen is created
+             * 
+             * @return bool 
+             */
             bool isCreated() const {return (_created);};
+
+            /**
+             * @brief Update the scene Lobby Screen System.
+             * 
+             * @param EntityManager &entityManager 
+             * @param SceneManager &sceneManager 
+             * @param NetworkSystem &networkSystem 
+             */
             void update(EntityManager &entityManager, SceneManager &sceneManager, NetworkSystem &networkSystem);
 
+            /**
+             * @brief Set the Has Focus object
+             * 
+             * @param std::function<bool()> f 
+             */
             void setHasFocus(std::function<bool()> f) { _hasFocus = f;};
         protected:
         private:

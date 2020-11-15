@@ -22,9 +22,28 @@ namespace Engine {
             PositionSystem() : System() {};
             ~PositionSystem() = default;
 
+            /**
+             * @brief Update the system
+             * 
+             */
             void update() override {};
 
+            /**
+             * @brief Set the Position
+             * 
+             * @param Entity e 
+             * @param float x 
+             * @param float y 
+             * @return bool 
+             */
             bool setPosition(Entity e, float x, float y);
+
+            /**
+             * @brief Get the Position
+             * 
+             * @param Entity e 
+             * @return Position& 
+             */
             Position &getPosition(Entity e);
     };
 

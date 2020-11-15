@@ -90,23 +90,27 @@ $(function() {
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="classEngine_1_1VelocitySystem.html">VelocitySystem</a>() : <a class="code" href="classEngine_1_1System.html">System</a>() {};</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            ~<a class="code" href="classEngine_1_1VelocitySystem.html">VelocitySystem</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classEngine_1_1VelocitySystem.html#a39bf50799b3b334b27f81bc47a106787">   25</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classEngine_1_1VelocitySystem.html#a39bf50799b3b334b27f81bc47a106787">update</a>()<span class="keyword"> override </span>{};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordtype">bool</span> setVelocity(Entity e, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y) {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keyword">auto</span> &amp;pos = _components.getComponent(e);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                pos.x = x;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                pos.y = y;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <span class="keywordflow">return</span> (<span class="keyword">true</span>);};</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            Velocity &amp;getVelocity(Entity e);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    };</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !VELOCITYSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classEngine_1_1VelocitySystem.html#a39bf50799b3b334b27f81bc47a106787">   29</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classEngine_1_1VelocitySystem.html#a39bf50799b3b334b27f81bc47a106787">update</a>()<span class="keyword"> override </span>{};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classEngine_1_1VelocitySystem.html#aa1bf9e91f8d729c2aad725d68b8f4ae1">   39</a></span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classEngine_1_1VelocitySystem.html#aa1bf9e91f8d729c2aad725d68b8f4ae1">setVelocity</a>(Entity e, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keyword">auto</span> &amp;pos = _components.getComponent(e);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                pos.x = x;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                pos.y = y;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">return</span> (<span class="keyword">true</span>);};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="structEngine_1_1Velocity.html">Velocity</a> &amp;<a class="code" href="classEngine_1_1VelocitySystem.html#ac34338acd2f27b81ede9b1809e327ba3">getVelocity</a>(Entity e);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    };</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !VELOCITYSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassEngine_1_1VelocitySystem_html_a39bf50799b3b334b27f81bc47a106787"><div class="ttname"><a href="classEngine_1_1VelocitySystem.html#a39bf50799b3b334b27f81bc47a106787">Engine::VelocitySystem::update</a></div><div class="ttdeci">void update() override</div><div class="ttdef"><b>Definition:</b> VelocitySystem.hpp:25</div></div>
+<div class="ttc" id="aclassEngine_1_1VelocitySystem_html_ac34338acd2f27b81ede9b1809e327ba3"><div class="ttname"><a href="classEngine_1_1VelocitySystem.html#ac34338acd2f27b81ede9b1809e327ba3">Engine::VelocitySystem::getVelocity</a></div><div class="ttdeci">Velocity &amp; getVelocity(Entity e)</div><div class="ttdoc">Get the Velocity of a Entity.</div></div>
+<div class="ttc" id="aclassEngine_1_1VelocitySystem_html_aa1bf9e91f8d729c2aad725d68b8f4ae1"><div class="ttname"><a href="classEngine_1_1VelocitySystem.html#aa1bf9e91f8d729c2aad725d68b8f4ae1">Engine::VelocitySystem::setVelocity</a></div><div class="ttdeci">bool setVelocity(Entity e, float x, float y)</div><div class="ttdoc">Set the Velocity to a Entity.</div><div class="ttdef"><b>Definition:</b> VelocitySystem.hpp:39</div></div>
+<div class="ttc" id="aclassEngine_1_1VelocitySystem_html_a39bf50799b3b334b27f81bc47a106787"><div class="ttname"><a href="classEngine_1_1VelocitySystem.html#a39bf50799b3b334b27f81bc47a106787">Engine::VelocitySystem::update</a></div><div class="ttdeci">void update() override</div><div class="ttdoc">Update the system.</div><div class="ttdef"><b>Definition:</b> VelocitySystem.hpp:29</div></div>
 <div class="ttc" id="aclassEngine_1_1System_html"><div class="ttname"><a href="classEngine_1_1System.html">Engine::System</a></div><div class="ttdoc">This class represents the Systems of our Engine Each system has its own Component type and contain a ...</div><div class="ttdef"><b>Definition:</b> System.hpp:24</div></div>
-<div class="ttc" id="aclassEngine_1_1VelocitySystem_html"><div class="ttname"><a href="classEngine_1_1VelocitySystem.html">Engine::VelocitySystem</a></div><div class="ttdoc">Position system used on the Position component.</div><div class="ttdef"><b>Definition:</b> VelocitySystem.hpp:20</div></div>
+<div class="ttc" id="aclassEngine_1_1VelocitySystem_html"><div class="ttname"><a href="classEngine_1_1VelocitySystem.html">Engine::VelocitySystem</a></div><div class="ttdoc">Velocity system used on the Velocity component.</div><div class="ttdef"><b>Definition:</b> VelocitySystem.hpp:20</div></div>
+<div class="ttc" id="astructEngine_1_1Velocity_html"><div class="ttname"><a href="structEngine_1_1Velocity.html">Engine::Velocity</a></div><div class="ttdoc">Component Velocity.</div><div class="ttdef"><b>Definition:</b> Velocity.hpp:19</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
