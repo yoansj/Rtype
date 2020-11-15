@@ -169,13 +169,11 @@ void ServerGame::updateEntities()
 
 void ServerGame::destroyEntities()
 {
-    /*for (std::size_t i = 0; i != _entitiesToDestroy.size(); i++) {
-        std::cout << "Erasing bullet from bullet entities" << std::endl;
+    for (std::size_t i = 0; i != _entitiesToDestroy.size(); i++) {
         if (std::find(_bulletEntities.begin(), _bulletEntities.end(), _entitiesToDestroy[i]) != _bulletEntities.end())
             _bulletEntities.erase(_bulletEntities.begin() + _entitiesToDestroy[i]);
-        std::cout << "after !!" << std::endl;
     }
-    _entitiesToDestroy.empty();*/
+    _entitiesToDestroy.clear();
 }
 
 /** Start the game and send a packet to all the clients to signal it, create a player entity and set all the data necessary for its operation.
