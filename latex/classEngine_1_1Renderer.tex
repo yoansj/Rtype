@@ -1,20 +1,68 @@
 \hypertarget{classEngine_1_1Renderer}{}\doxysection{Engine\+::Renderer Class Reference}
 \label{classEngine_1_1Renderer}\index{Engine::Renderer@{Engine::Renderer}}
+
+
+Manage render.  
+
+
+
+
+{\ttfamily \#include $<$Renderer.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classEngine_1_1Renderer_a6400465c1bd0a501b0d12aa94a752c10}\label{classEngine_1_1Renderer_a6400465c1bd0a501b0d12aa94a752c10}} 
-{\bfseries Renderer} (const std\+::shared\+\_\+ptr$<$ sf\+::\+Render\+Window $>$ \&window)
-\item 
-\mbox{\Hypertarget{classEngine_1_1Renderer_af1429abd7eab43c29d5c632b1f636904}\label{classEngine_1_1Renderer_af1429abd7eab43c29d5c632b1f636904}} 
-void {\bfseries do\+Render} (System\+Manager \&sys)
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{classEngine_1_1Renderer_a6400465c1bd0a501b0d12aa94a752c10}{Renderer}} (const std\+::shared\+\_\+ptr$<$ sf\+::\+Render\+Window $>$ \&window)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classEngine_1_1Renderer}{Renderer}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1Renderer_af1429abd7eab43c29d5c632b1f636904}{do\+Render}} (\mbox{\hyperlink{classEngine_1_1SystemManager}{System\+Manager}} \&sys)
+\begin{DoxyCompactList}\small\item\em Show rendering. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classEngine_1_1Renderer_a077137fbcb8788705550738b71008b43}\label{classEngine_1_1Renderer_a077137fbcb8788705550738b71008b43}} 
 std\+::shared\+\_\+ptr$<$ sf\+::\+Render\+Window $>$ {\bfseries \+\_\+window}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manage render. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEngine_1_1Renderer_a6400465c1bd0a501b0d12aa94a752c10}\label{classEngine_1_1Renderer_a6400465c1bd0a501b0d12aa94a752c10}} 
+\index{Engine::Renderer@{Engine::Renderer}!Renderer@{Renderer}}
+\index{Renderer@{Renderer}!Engine::Renderer@{Engine::Renderer}}
+\doxysubsubsection{\texorpdfstring{Renderer()}{Renderer()}}
+{\footnotesize\ttfamily Engine\+::\+Renderer\+::\+Renderer (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ sf\+::\+Render\+Window $>$ \&}]{window }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{classEngine_1_1Renderer}{Renderer}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & std\+::shared\+\_\+ptr$<$sf\+::\+Render\+Window$>$ \&window \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEngine_1_1Renderer_af1429abd7eab43c29d5c632b1f636904}\label{classEngine_1_1Renderer_af1429abd7eab43c29d5c632b1f636904}} 
+\index{Engine::Renderer@{Engine::Renderer}!doRender@{doRender}}
+\index{doRender@{doRender}!Engine::Renderer@{Engine::Renderer}}
+\doxysubsubsection{\texorpdfstring{doRender()}{doRender()}}
+{\footnotesize\ttfamily void Engine\+::\+Renderer\+::do\+Render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEngine_1_1SystemManager}{System\+Manager}} \&}]{sys }\end{DoxyParamCaption})}
+
+
+
+Show rendering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classEngine_1_1SystemManager}{System\+Manager}}} & \&sys \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

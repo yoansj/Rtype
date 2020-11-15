@@ -1,0 +1,104 @@
+\hypertarget{classEngine_1_1NetworkSystem}{}\doxysection{Engine\+::Network\+System Class Reference}
+\label{classEngine_1_1NetworkSystem}\index{Engine::NetworkSystem@{Engine::NetworkSystem}}
+
+
+\mbox{\hyperlink{structEngine_1_1Position}{Position}} system used on the \mbox{\hyperlink{structEngine_1_1Position}{Position}} component.  
+
+
+
+
+{\ttfamily \#include $<$Network\+System.\+hpp$>$}
+
+Inheritance diagram for Engine\+::Network\+System\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classEngine_1_1NetworkSystem}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a7efc0eb4ff4b7ec1bd3584a4375c36e7}\label{classEngine_1_1NetworkSystem_a7efc0eb4ff4b7ec1bd3584a4375c36e7}} 
+void {\bfseries send\+Package} (char const $\ast$package, int type\+Package)
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_ab2f50397dd9854c2d5e5ef64f9089403}\label{classEngine_1_1NetworkSystem_ab2f50397dd9854c2d5e5ef64f9089403}} 
+void {\bfseries set\+Port} (unsigned short port)
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_aa733bc4ce2fefb071c7c7daa54c8f110}\label{classEngine_1_1NetworkSystem_aa733bc4ce2fefb071c7c7daa54c8f110}} 
+void {\bfseries set\+Recipient} (sf\+::\+Ip\+Address recipient)
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a2c6a02a82cc11315502388a44072cc20}\label{classEngine_1_1NetworkSystem_a2c6a02a82cc11315502388a44072cc20}} 
+void {\bfseries set\+Id\+Game} (std\+::size\+\_\+t id\+Game)
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a4faa7cf9813ccac11390ed0b3eb1b397}\label{classEngine_1_1NetworkSystem_a4faa7cf9813ccac11390ed0b3eb1b397}} 
+void {\bfseries set\+Player\+Index} (std\+::size\+\_\+t id)
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a712285931e69fac51fce8e650c99846a}\label{classEngine_1_1NetworkSystem_a712285931e69fac51fce8e650c99846a}} 
+void {\bfseries set\+Destroy\+Lobby} (std\+::function$<$ void()$>$ f)
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_aeb9fe70445996b42525f8b3eadefd4ed}\label{classEngine_1_1NetworkSystem_aeb9fe70445996b42525f8b3eadefd4ed}} 
+void {\bfseries set\+Game\+Update\+Player\+Pos} (std\+::function$<$ void(std\+::size\+\_\+t index, \mbox{\hyperlink{structEngine_1_1Position}{Position}} pos)$>$ f)
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a29018a4c75e8d8b4ddd7a7ad5265e479}\label{classEngine_1_1NetworkSystem_a29018a4c75e8d8b4ddd7a7ad5265e479}} 
+std\+::size\+\_\+t {\bfseries get\+Id\+Game} ()
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a3f49ed81149b1220d3dc35c7fb343784}\label{classEngine_1_1NetworkSystem_a3f49ed81149b1220d3dc35c7fb343784}} 
+std\+::size\+\_\+t {\bfseries get\+Player\+Id} ()
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a3e13a6571771797da2ed9d0cce9a3372}\label{classEngine_1_1NetworkSystem_a3e13a6571771797da2ed9d0cce9a3372}} 
+int {\bfseries get\+Player\+Nb} ()
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a81ed0e9e39b0eaedac4affd4902f03c7}\label{classEngine_1_1NetworkSystem_a81ed0e9e39b0eaedac4affd4902f03c7}} 
+void {\bfseries update} (\mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}} \&smgr, \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager)
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_ad629ba9bc1abe8a25a426ee1c35a58c0}\label{classEngine_1_1NetworkSystem_ad629ba9bc1abe8a25a426ee1c35a58c0}} 
+void {\bfseries receive\+Package\+Udp} ()
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_af8237b16a38d60dd3ae42c69c3551dde}\label{classEngine_1_1NetworkSystem_af8237b16a38d60dd3ae42c69c3551dde}} 
+void {\bfseries receive\+Package\+Tcp} (\mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}} \&smgr, \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager)
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a774040d22a5a26ee88a36464c81592e1}\label{classEngine_1_1NetworkSystem_a774040d22a5a26ee88a36464c81592e1}} 
+{\footnotesize template$<$class Pkg\+Type $>$ }\\Pkg\+Type {\bfseries load\+Pkg\+Type} (bool type\+Package, char $\ast$pkg\+Udp)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a57d910280cadb666c16b15a7709dcb13}\label{classEngine_1_1NetworkSystem_a57d910280cadb666c16b15a7709dcb13}} 
+sf\+::\+Ip\+Address {\bfseries \+\_\+recipient}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_aefd8a9299a7a6cef5f9cae41ebd8be8c}\label{classEngine_1_1NetworkSystem_aefd8a9299a7a6cef5f9cae41ebd8be8c}} 
+unsigned short {\bfseries \+\_\+port}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_ace3f8e6173734ced26114ac9e7799618}\label{classEngine_1_1NetworkSystem_ace3f8e6173734ced26114ac9e7799618}} 
+sf\+::\+Udp\+Socket {\bfseries \+\_\+socket\+Udp}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a76415699a810a5affb835d964974db03}\label{classEngine_1_1NetworkSystem_a76415699a810a5affb835d964974db03}} 
+sf\+::\+Tcp\+Socket {\bfseries \+\_\+socket\+Tcp}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a2964d6a16941463c541378183e4cafc9}\label{classEngine_1_1NetworkSystem_a2964d6a16941463c541378183e4cafc9}} 
+std\+::size\+\_\+t {\bfseries \+\_\+id\+Game}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_acebecb9289faec74f522e79074b98691}\label{classEngine_1_1NetworkSystem_acebecb9289faec74f522e79074b98691}} 
+std\+::size\+\_\+t {\bfseries \+\_\+player\+Id}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a1190ffc2d30b612a3cf6475858f670da}\label{classEngine_1_1NetworkSystem_a1190ffc2d30b612a3cf6475858f670da}} 
+int {\bfseries \+\_\+player\+Nb}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_a7f801637b7c6f03d81bcac1e9a29f309}\label{classEngine_1_1NetworkSystem_a7f801637b7c6f03d81bcac1e9a29f309}} 
+bool {\bfseries \+\_\+connected\+Tcp}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_abafe746ced7d6713e974cc9a6aa094dd}\label{classEngine_1_1NetworkSystem_abafe746ced7d6713e974cc9a6aa094dd}} 
+std\+::function$<$ void()$>$ {\bfseries \+\_\+destroy\+Lobby}
+\item 
+\mbox{\Hypertarget{classEngine_1_1NetworkSystem_ae396c059571c539984940c1a9b93a08c}\label{classEngine_1_1NetworkSystem_ae396c059571c539984940c1a9b93a08c}} 
+std\+::function$<$ void(std\+::size\+\_\+t index, \mbox{\hyperlink{structEngine_1_1Position}{Position}} pos)$>$ {\bfseries \+\_\+game\+Update\+Player\+Pos}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structEngine_1_1Position}{Position}} system used on the \mbox{\hyperlink{structEngine_1_1Position}{Position}} component. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+client/include/systems/Network\+System.\+hpp\end{DoxyCompactItemize}

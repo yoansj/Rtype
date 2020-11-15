@@ -1,0 +1,61 @@
+\hypertarget{classEngine_1_1TitleScreenSystem}{}\doxysection{Engine\+::Title\+Screen\+System Class Reference}
+\label{classEngine_1_1TitleScreenSystem}\index{Engine::TitleScreenSystem@{Engine::TitleScreenSystem}}
+
+
+Title Screen Scene \mbox{\hyperlink{classEngine_1_1System}{System}}.  
+
+
+
+
+{\ttfamily \#include $<$Title\+Screen\+System.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_aa454dfbaaea719afa1427ba65ee1eb88}\label{classEngine_1_1TitleScreenSystem_aa454dfbaaea719afa1427ba65ee1eb88}} 
+{\bfseries Title\+Screen\+System} (\mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}} \&sprite\+System, \mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \&velocity\+System, \mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \&position\+System)
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_a0acb1df5ddc7ba3e0a90fcfb8c7894e7}\label{classEngine_1_1TitleScreenSystem_a0acb1df5ddc7ba3e0a90fcfb8c7894e7}} 
+void {\bfseries create\+Sprites} (Entity background, Entity logo)
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_a2a048675bf2c9b75715f95c87a17ddad}\label{classEngine_1_1TitleScreenSystem_a2a048675bf2c9b75715f95c87a17ddad}} 
+void {\bfseries destroy\+Sprites} (\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager)
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_a87c3f15c17ba82721ce2a806e1ba0e7d}\label{classEngine_1_1TitleScreenSystem_a87c3f15c17ba82721ce2a806e1ba0e7d}} 
+bool {\bfseries is\+Created} () const
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_abe6862067ca24838d5db33ec11bd592a}\label{classEngine_1_1TitleScreenSystem_abe6862067ca24838d5db33ec11bd592a}} 
+void {\bfseries update} (\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager, \mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}} \&scene\+Manager)
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_a22e8a0ab3a870224b43d84465fbc5528}\label{classEngine_1_1TitleScreenSystem_a22e8a0ab3a870224b43d84465fbc5528}} 
+void {\bfseries set\+Has\+Focus} (std\+::function$<$ bool()$>$ f)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_aa113333e8f3a61f2ce5324f028458ea1}\label{classEngine_1_1TitleScreenSystem_aa113333e8f3a61f2ce5324f028458ea1}} 
+std\+::vector$<$ Entity $>$ {\bfseries \+\_\+title\+Screen\+Entities}
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_ace2c6385b6dedb15a682d80ef6702e9c}\label{classEngine_1_1TitleScreenSystem_ace2c6385b6dedb15a682d80ef6702e9c}} 
+bool {\bfseries \+\_\+created}
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_a07709556ad49e8c09affad7ac3371d90}\label{classEngine_1_1TitleScreenSystem_a07709556ad49e8c09affad7ac3371d90}} 
+\mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}} \& {\bfseries \+\_\+sprite\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_a6f54cd4a6811c3699bd875c5b288a808}\label{classEngine_1_1TitleScreenSystem_a6f54cd4a6811c3699bd875c5b288a808}} 
+\mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \& {\bfseries \+\_\+velocity\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_a2cb61e073a18b2a93fd0efd1e4f87b26}\label{classEngine_1_1TitleScreenSystem_a2cb61e073a18b2a93fd0efd1e4f87b26}} 
+\mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \& {\bfseries \+\_\+position\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1TitleScreenSystem_a3094e5adc897333ae292ee49e118b6ea}\label{classEngine_1_1TitleScreenSystem_a3094e5adc897333ae292ee49e118b6ea}} 
+std\+::function$<$ bool()$>$ {\bfseries \+\_\+has\+Focus}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Title Screen Scene \mbox{\hyperlink{classEngine_1_1System}{System}}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+client/include/systems/Title\+Screen\+System.\+hpp\end{DoxyCompactItemize}

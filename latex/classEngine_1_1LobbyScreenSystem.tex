@@ -1,0 +1,79 @@
+\hypertarget{classEngine_1_1LobbyScreenSystem}{}\doxysection{Engine\+::Lobby\+Screen\+System Class Reference}
+\label{classEngine_1_1LobbyScreenSystem}\index{Engine::LobbyScreenSystem@{Engine::LobbyScreenSystem}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a0fcef67f976c947f3f9fa07f3d2bf37d}\label{classEngine_1_1LobbyScreenSystem_a0fcef67f976c947f3f9fa07f3d2bf37d}} 
+{\bfseries Lobby\+Screen\+System} (\mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}} \&sprite\+System, \mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \&velocity\+System, \mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \&position\+System, \mbox{\hyperlink{classEngine_1_1ParallaxSystem}{Parallax\+System}} \&parallax\+System, \mbox{\hyperlink{classEngine_1_1TextSystem}{Text\+System}} \&text\+System, \mbox{\hyperlink{classEngine_1_1NetworkSystem}{Network\+System}} \&network\+System)
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a91f781c1bb45ff09cf646cbcfb58f1ca}\label{classEngine_1_1LobbyScreenSystem_a91f781c1bb45ff09cf646cbcfb58f1ca}} 
+void {\bfseries create\+Sprites} (std\+::array$<$ Entity, 2 $>$ parallax, std\+::array$<$ Entity, 3 $>$ buttons, Entity text)
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a61dd5c40e42f9184c05a52d708040ce6}\label{classEngine_1_1LobbyScreenSystem_a61dd5c40e42f9184c05a52d708040ce6}} 
+void {\bfseries destroy\+Sprites} (\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager)
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a63c9e618d446ebd6b903561876355774}\label{classEngine_1_1LobbyScreenSystem_a63c9e618d446ebd6b903561876355774}} 
+bool {\bfseries is\+Created} () const
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_aec1b44bff881cacd1885d19910d0b805}\label{classEngine_1_1LobbyScreenSystem_aec1b44bff881cacd1885d19910d0b805}} 
+void {\bfseries update} (\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager, \mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}} \&scene\+Manager)
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_ada1ce1765ead6288a86f5285a6072939}\label{classEngine_1_1LobbyScreenSystem_ada1ce1765ead6288a86f5285a6072939}} 
+void {\bfseries set\+Id} (int id)
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a9fced8dadca24c88aa0f11d0db530a73}\label{classEngine_1_1LobbyScreenSystem_a9fced8dadca24c88aa0f11d0db530a73}} 
+void {\bfseries set\+Has\+Focus} (std\+::function$<$ bool()$>$ f)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_ac25699de06e73c762da86f94cf12b4b3}\label{classEngine_1_1LobbyScreenSystem_ac25699de06e73c762da86f94cf12b4b3}} 
+enum {\bfseries choice} \{ {\bfseries C\+R\+E\+A\+TE}, 
+{\bfseries J\+O\+IN}, 
+{\bfseries Q\+U\+IT}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a5e369f1d3aba5efa997657654f222b5f}\label{classEngine_1_1LobbyScreenSystem_a5e369f1d3aba5efa997657654f222b5f}} 
+std\+::vector$<$ Entity $>$ {\bfseries \+\_\+lobby\+Screen\+Entities}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a055252bbdf9bce6f78fe55dae0bfca34}\label{classEngine_1_1LobbyScreenSystem_a055252bbdf9bce6f78fe55dae0bfca34}} 
+bool {\bfseries \+\_\+created}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a57890b21cc5c553f94cae6f527b10797}\label{classEngine_1_1LobbyScreenSystem_a57890b21cc5c553f94cae6f527b10797}} 
+int {\bfseries \+\_\+choice}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_ab89512996a977d184a7b594c1d8fb4b2}\label{classEngine_1_1LobbyScreenSystem_ab89512996a977d184a7b594c1d8fb4b2}} 
+bool {\bfseries \+\_\+is\+Pressed}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_ac63f29891439992505a52902994e5579}\label{classEngine_1_1LobbyScreenSystem_ac63f29891439992505a52902994e5579}} 
+int {\bfseries \+\_\+id}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_afe92f75f644f9bc12eea42e209d8f03e}\label{classEngine_1_1LobbyScreenSystem_afe92f75f644f9bc12eea42e209d8f03e}} 
+\mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}} \& {\bfseries \+\_\+sprite\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a76ca3d187649ab5f7a058782e3e2c3ca}\label{classEngine_1_1LobbyScreenSystem_a76ca3d187649ab5f7a058782e3e2c3ca}} 
+\mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \& {\bfseries \+\_\+velocity\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a51fcf8822e54c19b2dabb423d3bff9c6}\label{classEngine_1_1LobbyScreenSystem_a51fcf8822e54c19b2dabb423d3bff9c6}} 
+\mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \& {\bfseries \+\_\+position\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_abc5cc64be873d1de9c31e1ec4c2ad75c}\label{classEngine_1_1LobbyScreenSystem_abc5cc64be873d1de9c31e1ec4c2ad75c}} 
+\mbox{\hyperlink{classEngine_1_1ParallaxSystem}{Parallax\+System}} \& {\bfseries \+\_\+parallax\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a7e2a0056c11652b12b582b25b0c528ab}\label{classEngine_1_1LobbyScreenSystem_a7e2a0056c11652b12b582b25b0c528ab}} 
+\mbox{\hyperlink{classEngine_1_1TextSystem}{Text\+System}} \& {\bfseries \+\_\+text\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_a2805544b6773fd59cc69e87bf2b881b3}\label{classEngine_1_1LobbyScreenSystem_a2805544b6773fd59cc69e87bf2b881b3}} 
+\mbox{\hyperlink{classEngine_1_1NetworkSystem}{Network\+System}} \& {\bfseries \+\_\+network\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1LobbyScreenSystem_ae16c60e730909f843d83f40629106aa9}\label{classEngine_1_1LobbyScreenSystem_ae16c60e730909f843d83f40629106aa9}} 
+std\+::function$<$ bool()$>$ {\bfseries \+\_\+has\+Focus}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+client/include/systems/Lobby\+Screen\+System.\+hpp\end{DoxyCompactItemize}

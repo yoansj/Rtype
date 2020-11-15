@@ -87,18 +87,21 @@ $(function() {
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classEngineError.html#a9cc9b77c73ba9f3bfe58693688664fd1">   26</a></span>&#160;        <a class="code" href="classEngineError.html#a9cc9b77c73ba9f3bfe58693688664fd1">EngineError</a>(std::string <span class="keyword">const</span> &amp;type, std::string <span class="keyword">const</span> &amp;message) :</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        _message(message), _type(type) {};</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">char</span> <span class="keyword">const</span> *what() const noexcept<span class="keyword"> override </span>{ <span class="keywordflow">return</span> _message.data();};</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        std::string getType()<span class="keyword"> const</span>{ <span class="keywordflow">return</span> _type;};</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        std::string _message;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        std::string _type;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;};</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ENGINEERROR_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classEngineError.html#a3b215b26f5184a058d2c65c2116081c4">   34</a></span>&#160;        <span class="keywordtype">char</span> <span class="keyword">const</span> *<a class="code" href="classEngineError.html#a3b215b26f5184a058d2c65c2116081c4">what</a>() const noexcept<span class="keyword"> override </span>{ <span class="keywordflow">return</span> _message.data();};</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classEngineError.html#a060db484d375ecb99e75bbb0939a2feb">   41</a></span>&#160;        std::string <a class="code" href="classEngineError.html#a060db484d375ecb99e75bbb0939a2feb">getType</a>()<span class="keyword"> const</span>{ <span class="keywordflow">return</span> _type;};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        std::string _message;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        std::string _type;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ENGINEERROR_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassEngineError_html_a060db484d375ecb99e75bbb0939a2feb"><div class="ttname"><a href="classEngineError.html#a060db484d375ecb99e75bbb0939a2feb">EngineError::getType</a></div><div class="ttdeci">std::string getType() const</div><div class="ttdoc">Get the Type object.</div><div class="ttdef"><b>Definition:</b> EngineError.hpp:41</div></div>
 <div class="ttc" id="aclassEngineError_html"><div class="ttname"><a href="classEngineError.html">EngineError</a></div><div class="ttdoc">Game Engine managing error.</div><div class="ttdef"><b>Definition:</b> EngineError.hpp:18</div></div>
 <div class="ttc" id="aclassEngineError_html_a9cc9b77c73ba9f3bfe58693688664fd1"><div class="ttname"><a href="classEngineError.html#a9cc9b77c73ba9f3bfe58693688664fd1">EngineError::EngineError</a></div><div class="ttdeci">EngineError(std::string const &amp;type, std::string const &amp;message)</div><div class="ttdoc">Construct a new Engine Error object.</div><div class="ttdef"><b>Definition:</b> EngineError.hpp:26</div></div>
+<div class="ttc" id="aclassEngineError_html_a3b215b26f5184a058d2c65c2116081c4"><div class="ttname"><a href="classEngineError.html#a3b215b26f5184a058d2c65c2116081c4">EngineError::what</a></div><div class="ttdeci">const char * what() const noexcept override</div><div class="ttdoc">Return message error from what()</div><div class="ttdef"><b>Definition:</b> EngineError.hpp:34</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -24,6 +24,10 @@
 #include <functional>
 
 namespace Engine {
+    /**
+     * @brief Game scene that allows us to join a lobby.
+     * 
+     */
     class JoinScreenSystem {
         enum choice {
             CREATE,
@@ -31,17 +35,57 @@ namespace Engine {
             QUIT
         };
         public:
+            /**
+             * @brief Construct a new Join Screen System object
+             * 
+             * @param SpriteSystem &spriteSystem 
+             * @param VelocitySystem &velocitySystem 
+             * @param PositionSystem &positionSystem 
+             * @param ParallaxSystem &parallaxSystem 
+             * @param TextSystem &textSystem 
+             */
             JoinScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem, TextSystem &textSystem) :
             _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _textSystem(textSystem),
             _created(false), _choice(choice::CREATE), _isPressed(false), _id(0) {};
             ~JoinScreenSystem() = default;
 
+            /**
+             * @brief Create a Sprites Entity
+             * 
+             * @param std::array<Entity, 2> parallax 
+             * @param std::array<Entity, 3> buttons 
+             * @param Entity text 
+             */
             void createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons, Entity text);
+
+            /**
+             * @brief Destroy a Sprites Entity
+             * 
+             * @param EntityManager &entityManager 
+             */
             void destroySprites(EntityManager &entityManager);
 
+            /**
+             * @brief Check if the game is created.
+             * 
+             * @return bool 
+             */
             bool isCreated() const {return (_created);};
+
+            /**
+             * @brief Update the scene Join Screen System.
+             * 
+             * @param EntityManager &entityManager 
+             * @param SceneManager &sceneManager 
+             * @param NetworkSystem &networkSystem 
+             */
             void update(EntityManager &entityManager, SceneManager &sceneManager, NetworkSystem &networkSystem);
 
+            /**
+             * @brief Set the Has Focus object
+             * 
+             * @param std::function<bool()> f 
+             */
             void setHasFocus(std::function<bool()> f) { _hasFocus = f;};
         protected:
         private:
