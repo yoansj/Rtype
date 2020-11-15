@@ -39,7 +39,7 @@ void Engine::JoinScreenSystem::createSprites(std::array<Entity, 2> parallax, std
     // _spriteSystem.setScale(buttons[2], 2, 2);
 
     _positionSystem.create(text);
-    _positionSystem.setPosition(text, 850, 400);
+    _positionSystem.setPosition(text, 750, 200);
     _textSystem.create(text);
     _textSystem.initText(text, "ID: " + std::to_string(_id), 100);
 

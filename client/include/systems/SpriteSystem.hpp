@@ -38,6 +38,8 @@ namespace Engine {
 
             void setRect(Entity e, sf::IntRect rect);
 
+            void setPath(Entity e, std::string const &filepath);
+
         private:
             std::shared_ptr<sf::RenderWindow> _window;
             sf::Clock _clock;

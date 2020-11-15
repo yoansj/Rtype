@@ -21,6 +21,8 @@
 #include "MenuScreenSystem.hpp"
 #include "LobbyScreenSystem.hpp"
 #include "JoinScreenSystem.hpp"
+#include "HitboxSystem.hpp"
+#include "StatusSystem.hpp"
 
 namespace Engine {
     class SystemManager {
@@ -39,6 +41,8 @@ namespace Engine {
             MonsterLoaderSystem monsterLoaderSystem;
             ParallaxSystem parallaxSystem;
             TextSystem textSystem;
+            HitboxSystem hitboxSystem;
+            StatusSystem statusSystem;
 
             NetworkSystem networkSystem;
             TitleScreenSystem titleScreen;

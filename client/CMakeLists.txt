@@ -31,6 +31,9 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/engine/include/components
     ${PROJECT_SOURCE_DIR}/engine/include/entities
     ${PROJECT_SOURCE_DIR}/engine/include/systems
+    ${PROJECT_SOURCE_DIR}/server/include/systems
+    ${PROJECT_SOURCE_DIR}/server/include/components
+
 )
 
 add_compile_definitions(ROOT_PATH="${PROJECT_SOURCE_DIR}/")
