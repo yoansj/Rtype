@@ -95,11 +95,12 @@ void Engine::Engine::updateSystems()
         if (!_systems.gameScreen.isCreated()) {
             _systems.gameScreen.createSprites({_entityManager.create(), _entityManager.create() });
         }
+        _systems.menuScreen.stopMenuMusic();
         _systems.gameScreen.update(_entityManager, _sceneManager);
     }
     if (_sceneManager.getScene() == SCENE::MAIN_MENU) {
         if (!_systems.menuScreen.isCreated()) {
-            _systems.menuScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()});
+            _systems.menuScreen.createSprites({_entityManager.create(), _entityManager.create() }, {_entityManager.create(), _entityManager.create(), _entityManager.create()}, _entityManager.create());
         }
         _systems.menuScreen.update(_entityManager, _sceneManager, _systems.networkSystem);
     }

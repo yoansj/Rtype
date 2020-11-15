@@ -7,7 +7,7 @@
 
 #include "MenuScreenSystem.hpp"
 
-void Engine::MenuScreenSystem::createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons)
+void Engine::MenuScreenSystem::createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons, Entity sound)
 {
     _spriteSystem.create(parallax[0]);
     _positionSystem.create(parallax[0]);
@@ -43,11 +43,16 @@ void Engine::MenuScreenSystem::createSprites(std::array<Entity, 2> parallax, std
     _spriteSystem.initSprite(buttons[2], "../client/assets/quit.png", false);
     _spriteSystem.setScale(buttons[2], 2, 2);
 
+    _soundSystem.create(sound);
+    _soundSystem.setSound(sound, "");
+    _soundSystem.playSound(sound);
     _menuScreenEntities.push_back(parallax[0]);
     _menuScreenEntities.push_back(parallax[1]);
     _menuScreenEntities.push_back(buttons[0]);
     _menuScreenEntities.push_back(buttons[1]);
     _menuScreenEntities.push_back(buttons[2]);
+    _soundEntity = sound;
+    // _menuScreenEntities.push_back(sound);
 
     _created = true;
 }
@@ -63,6 +68,11 @@ void Engine::MenuScreenSystem::destroySprites(EntityManager &entityManager)
     _parallaxSystem.removeParallax(_positionSystem, _velocitySystem, entityManager);
     _menuScreenEntities.clear();
     _created = false;
+}
+
+void Engine::MenuScreenSystem::stopMenuMusic()
+{
+    _soundSystem.stopSound(_soundEntity);
 }
 
 void Engine::MenuScreenSystem::update(EntityManager &entityManager, SceneManager &sceneManager, NetworkSystem &networkSystem)
