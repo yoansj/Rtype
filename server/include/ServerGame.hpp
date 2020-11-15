@@ -138,6 +138,7 @@ class ServerGame {
         std::vector<Entity> _bulletEntities;
         std::vector<Entity> _ennemyEntities;
         std::vector<std::string> _libsToLoad;
+        std::map<Entity, std::string> _monstersFilepath;
 
         //Game utils
         Clock clock;

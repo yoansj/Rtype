@@ -19,3 +19,4 @@ include_directories(
 )
 
 add_library("frog" SHARED ${MONSTERS_DIR}/Frog.cpp)
+add_library("dog" SHARED ${MONSTERS_DIR}/Dog.cpp)

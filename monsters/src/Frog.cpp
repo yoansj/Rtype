@@ -12,7 +12,7 @@ extern "C" {
 
         positionSystem.create(frog);
         velocitySystem.create(frog);
-        velocitySystem.setVelocity(frog, -10, -10);
+        velocitySystem.setVelocity(frog, -10, 0);
         hitboxSystem.create(frog);
         hitboxSystem.setHitbox(frog, 70, 30, Engine::HitboxType::MONSTER);
         statusSystem.create(frog);
