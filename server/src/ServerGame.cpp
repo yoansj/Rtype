@@ -124,7 +124,7 @@ void ServerGame::updateEntities()
             _statusSystem.destroy(_bulletEntities[i]);
             _entitiesToDestroy.push_back(i);
         }
-        iterateForCollision(_bulletEntities[i], bulletPos, bulletStatus);
+        //iterateForCollision(_bulletEntities[i], bulletPos, bulletStatus);
     }
     // Update des monstres
     for (std::size_t i = 0; i != _ennemyEntities.size(); i++) {
