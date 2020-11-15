@@ -13,7 +13,7 @@
 namespace Engine {
 
     /**
-     * @brief Manage Scene.
+     * @brief Manage all the scenes.
      * 
      */
     class SceneManager {

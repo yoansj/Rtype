@@ -2,7 +2,7 @@
 \label{classEngine_1_1MonsterLoaderSystem}\index{Engine::MonsterLoaderSystem@{Engine::MonsterLoaderSystem}}
 
 
-\mbox{\hyperlink{structEngine_1_1Position}{Position}} system used on the \mbox{\hyperlink{structEngine_1_1Position}{Position}} component.  
+Monster load manager from a library.  
 
 
 
@@ -12,12 +12,10 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classEngine_1_1MonsterLoaderSystem_aa757d40301c5faaa5297b4b48105d377}\label{classEngine_1_1MonsterLoaderSystem_aa757d40301c5faaa5297b4b48105d377}} 
-void {\bfseries load} (std\+::vector$<$ std\+::string $>$ \+\_\+libs)
-\item 
-\mbox{\Hypertarget{classEngine_1_1MonsterLoaderSystem_a58b8167bace1eecd43227cb27b883d76}\label{classEngine_1_1MonsterLoaderSystem_a58b8167bace1eecd43227cb27b883d76}} 
-void $\ast$ {\bfseries get\+Factory} (int index)
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classEngine_1_1MonsterLoaderSystem_aa757d40301c5faaa5297b4b48105d377}{load}} (std\+::vector$<$ std\+::string $>$ \+\_\+libs)
+\begin{DoxyCompactList}\small\item\em Load a monster from libraries. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{classEngine_1_1MonsterLoaderSystem_a58b8167bace1eecd43227cb27b883d76}{get\+Factory}} (int index)
+\begin{DoxyCompactList}\small\item\em Get the Factory for Monster. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -30,7 +28,43 @@ std\+::vector$<$ void $\ast$ $>$ {\bfseries \+\_\+monsters\+Factories}
 
 
 \doxysubsection{Detailed Description}
-\mbox{\hyperlink{structEngine_1_1Position}{Position}} system used on the \mbox{\hyperlink{structEngine_1_1Position}{Position}} component. 
+Monster load manager from a library. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEngine_1_1MonsterLoaderSystem_a58b8167bace1eecd43227cb27b883d76}\label{classEngine_1_1MonsterLoaderSystem_a58b8167bace1eecd43227cb27b883d76}} 
+\index{Engine::MonsterLoaderSystem@{Engine::MonsterLoaderSystem}!getFactory@{getFactory}}
+\index{getFactory@{getFactory}!Engine::MonsterLoaderSystem@{Engine::MonsterLoaderSystem}}
+\doxysubsubsection{\texorpdfstring{getFactory()}{getFactory()}}
+{\footnotesize\ttfamily void$\ast$ Engine\+::\+Monster\+Loader\+System\+::get\+Factory (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Factory for Monster. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1MonsterLoaderSystem_aa757d40301c5faaa5297b4b48105d377}\label{classEngine_1_1MonsterLoaderSystem_aa757d40301c5faaa5297b4b48105d377}} 
+\index{Engine::MonsterLoaderSystem@{Engine::MonsterLoaderSystem}!load@{load}}
+\index{load@{load}!Engine::MonsterLoaderSystem@{Engine::MonsterLoaderSystem}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily void Engine\+::\+Monster\+Loader\+System\+::load (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{\+\_\+libs }\end{DoxyParamCaption})}
+
+
+
+Load a monster from libraries. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::vector$<$std\+::string$>$} & \+\_\+libs \\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

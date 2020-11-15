@@ -25,7 +25,7 @@
 
 namespace Engine {
     /**
-     * @brief Menu Screen System, display and manage the lobby.
+     * @brief Menu Screen System to manage the scene Menu.
      * 
      */
     class MenuScreenSystem {

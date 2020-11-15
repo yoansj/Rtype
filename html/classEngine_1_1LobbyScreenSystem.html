@@ -75,7 +75,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Lobby <a class="el" href="classEngine_1_1System.html" title="This class represents the Systems of our Engine Each system has its own Component type and contain a ...">System</a> Screen, display and manage the lobby.  
+<p>Lobby <a class="el" href="classEngine_1_1System.html" title="This class represents the Systems of our Engine Each system has its own Component type and contain a ...">System</a> Screen to manage the scene Lobby.  
  <a href="classEngine_1_1LobbyScreenSystem.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="LobbyScreenSystem_8hpp_source.html">LobbyScreenSystem.hpp</a>&gt;</code></p>
@@ -89,7 +89,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a91f781c1bb45ff09cf646cbcfb58f1ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Sprites with Entities.  <a href="classEngine_1_1LobbyScreenSystem.html#a91f781c1bb45ff09cf646cbcfb58f1ca">More...</a><br /></td></tr>
 <tr class="separator:a91f781c1bb45ff09cf646cbcfb58f1ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61dd5c40e42f9184c05a52d708040ce6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine_1_1LobbyScreenSystem.html#a61dd5c40e42f9184c05a52d708040ce6">destroySprites</a> (<a class="el" href="classEngine_1_1EntityManager.html">EntityManager</a> &amp;entityManager)</td></tr>
-<tr class="memdesc:a61dd5c40e42f9184c05a52d708040ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy a Sprites with the <a class="el" href="classEngine_1_1EntityManager.html" title="Manager for Entity, create and remove.">EntityManager</a>.  <a href="classEngine_1_1LobbyScreenSystem.html#a61dd5c40e42f9184c05a52d708040ce6">More...</a><br /></td></tr>
+<tr class="memdesc:a61dd5c40e42f9184c05a52d708040ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy a Sprites with the <a class="el" href="classEngine_1_1EntityManager.html" title="Manager for Entity.">EntityManager</a>.  <a href="classEngine_1_1LobbyScreenSystem.html#a61dd5c40e42f9184c05a52d708040ce6">More...</a><br /></td></tr>
 <tr class="separator:a61dd5c40e42f9184c05a52d708040ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63c9e618d446ebd6b903561876355774"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine_1_1LobbyScreenSystem.html#a63c9e618d446ebd6b903561876355774">isCreated</a> () const</td></tr>
 <tr class="memdesc:a63c9e618d446ebd6b903561876355774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check is the <a class="el" href="classEngine_1_1System.html" title="This class represents the Systems of our Engine Each system has its own Component type and contain a ...">System</a> is created.  <a href="classEngine_1_1LobbyScreenSystem.html#a63c9e618d446ebd6b903561876355774">More...</a><br /></td></tr>
@@ -152,7 +152,7 @@ std::function&lt; bool()&gt;&#160;</td><td class="memItemRight" valign="bottom">
 <tr class="separator:ae16c60e730909f843d83f40629106aa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Lobby <a class="el" href="classEngine_1_1System.html" title="This class represents the Systems of our Engine Each system has its own Component type and contain a ...">System</a> Screen, display and manage the lobby. </p>
+<div class="textblock"><p>Lobby <a class="el" href="classEngine_1_1System.html" title="This class represents the Systems of our Engine Each system has its own Component type and contain a ...">System</a> Screen to manage the scene Lobby. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0fcef67f976c947f3f9fa07f3d2bf37d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0fcef67f976c947f3f9fa07f3d2bf37d">&#9670;&nbsp;</a></span>LobbyScreenSystem()</h2>
@@ -288,10 +288,10 @@ std::function&lt; bool()&gt;&#160;</td><td class="memItemRight" valign="bottom">
       </table>
 </div><div class="memdoc">
 
-<p>Destroy a Sprites with the <a class="el" href="classEngine_1_1EntityManager.html" title="Manager for Entity, create and remove.">EntityManager</a>. </p>
+<p>Destroy a Sprites with the <a class="el" href="classEngine_1_1EntityManager.html" title="Manager for Entity.">EntityManager</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="classEngine_1_1EntityManager.html" title="Manager for Entity, create and remove.">EntityManager</a></td><td>&amp;entityManager </td></tr>
+    <tr><td class="paramname"><a class="el" href="classEngine_1_1EntityManager.html" title="Manager for Entity.">EntityManager</a></td><td>&amp;entityManager </td></tr>
   </table>
   </dd>
 </dl>
@@ -423,8 +423,8 @@ std::function&lt; bool()&gt;&#160;</td><td class="memItemRight" valign="bottom">
 <p>Update the <a class="el" href="classEngine_1_1System.html" title="This class represents the Systems of our Engine Each system has its own Component type and contain a ...">System</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="classEngine_1_1EntityManager.html" title="Manager for Entity, create and remove.">EntityManager</a></td><td>&amp;entityManager </td></tr>
-    <tr><td class="paramname"><a class="el" href="classEngine_1_1SceneManager.html" title="Manage Scene.">SceneManager</a></td><td>&amp;sceneManager </td></tr>
+    <tr><td class="paramname"><a class="el" href="classEngine_1_1EntityManager.html" title="Manager for Entity.">EntityManager</a></td><td>&amp;entityManager </td></tr>
+    <tr><td class="paramname"><a class="el" href="classEngine_1_1SceneManager.html" title="Manage all the scenes.">SceneManager</a></td><td>&amp;sceneManager </td></tr>
     <tr><td class="paramname"><a class="el" href="classEngine_1_1NetworkSystem.html" title="Network system used on the Position component.">NetworkSystem</a></td><td>&amp;networkSystem </td></tr>
   </table>
   </dd>

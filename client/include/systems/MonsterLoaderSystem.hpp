@@ -18,7 +18,7 @@
 
 namespace Engine {
     /**
-     * @brief Loader Monster error class
+     * @brief Monster Loader Error for managing error.
      * 
      */
     class MonsterLoaderError : public std::exception {
@@ -43,15 +43,26 @@ namespace Engine {
     };
 
     /**
-     * @brief  Position system used on the Position component
+     * @brief Monster load manager from a library
      */
     class MonsterLoaderSystem  {
         public:
             MonsterLoaderSystem() {};
             ~MonsterLoaderSystem() = default;
 
+            /**
+             * @brief Load a monster from libraries
+             * 
+             * @param std::vector<std::string> _libs 
+             */
             void load(std::vector<std::string> _libs);
 
+            /**
+             * @brief Get the Factory for Monster
+             * 
+             * @param int index 
+             * @return void* 
+             */
             void *getFactory(int index) { return (_monstersFactories[index]); };
 
         private:

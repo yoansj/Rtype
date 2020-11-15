@@ -74,18 +74,18 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="structEngine_1_1Position.html" title="Component position.">Position</a> system used on the <a class="el" href="structEngine_1_1Position.html" title="Component position.">Position</a> component.  
+<p>Monster load manager from a library.  
  <a href="classEngine_1_1MonsterLoaderSystem.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="MonsterLoaderSystem_8hpp_source.html">MonsterLoaderSystem.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa757d40301c5faaa5297b4b48105d377"><td class="memItemLeft" align="right" valign="top"><a id="aa757d40301c5faaa5297b4b48105d377"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> (std::vector&lt; std::string &gt; _libs)</td></tr>
+<tr class="memitem:aa757d40301c5faaa5297b4b48105d377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine_1_1MonsterLoaderSystem.html#aa757d40301c5faaa5297b4b48105d377">load</a> (std::vector&lt; std::string &gt; _libs)</td></tr>
+<tr class="memdesc:aa757d40301c5faaa5297b4b48105d377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a monster from libraries.  <a href="classEngine_1_1MonsterLoaderSystem.html#aa757d40301c5faaa5297b4b48105d377">More...</a><br /></td></tr>
 <tr class="separator:aa757d40301c5faaa5297b4b48105d377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58b8167bace1eecd43227cb27b883d76"><td class="memItemLeft" align="right" valign="top"><a id="a58b8167bace1eecd43227cb27b883d76"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>getFactory</b> (int index)</td></tr>
+<tr class="memitem:a58b8167bace1eecd43227cb27b883d76"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine_1_1MonsterLoaderSystem.html#a58b8167bace1eecd43227cb27b883d76">getFactory</a> (int index)</td></tr>
+<tr class="memdesc:a58b8167bace1eecd43227cb27b883d76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Factory for Monster.  <a href="classEngine_1_1MonsterLoaderSystem.html#a58b8167bace1eecd43227cb27b883d76">More...</a><br /></td></tr>
 <tr class="separator:a58b8167bace1eecd43227cb27b883d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -98,8 +98,70 @@ std::vector&lt; void * &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="separator:ac7a2b5d6e91e4c06638e5ef73c61e694"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="structEngine_1_1Position.html" title="Component position.">Position</a> system used on the <a class="el" href="structEngine_1_1Position.html" title="Component position.">Position</a> component. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p>Monster load manager from a library. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a58b8167bace1eecd43227cb27b883d76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58b8167bace1eecd43227cb27b883d76">&#9670;&nbsp;</a></span>getFactory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* Engine::MonsterLoaderSystem::getFactory </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Factory for Monster. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td>index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void* </dd></dl>
+
+</div>
+</div>
+<a id="aa757d40301c5faaa5297b4b48105d377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa757d40301c5faaa5297b4b48105d377">&#9670;&nbsp;</a></span>load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::MonsterLoaderSystem::load </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt;&#160;</td>
+          <td class="paramname"><em>_libs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load a monster from libraries. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">std::vector&lt;std::string&gt;</td><td>_libs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>client/include/systems/<a class="el" href="MonsterLoaderSystem_8hpp_source.html">MonsterLoaderSystem.hpp</a></li>
 </ul>
 </div><!-- contents -->

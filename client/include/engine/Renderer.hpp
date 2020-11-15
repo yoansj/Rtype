@@ -12,7 +12,7 @@
 
 namespace Engine {
     /**
-     * @brief Manage render
+     * @brief Manage the displays
      * 
      */
     class Renderer {

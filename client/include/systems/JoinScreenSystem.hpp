@@ -25,7 +25,7 @@
 
 namespace Engine {
     /**
-     * @brief Join Screen System, display and manage the lobby.
+     * @brief Join Screen System to manage the scene Join
      * 
      */
     class JoinScreenSystem {

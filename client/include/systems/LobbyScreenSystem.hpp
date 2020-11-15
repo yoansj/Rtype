@@ -25,7 +25,7 @@
 
 namespace Engine {
     /**
-     * @brief Lobby System Screen, display and manage the lobby.
+     * @brief Lobby System Screen to manage the scene Lobby.
      * 
      */
     class LobbyScreenSystem {

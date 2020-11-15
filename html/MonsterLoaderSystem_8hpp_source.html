@@ -104,23 +104,25 @@ $(function() {
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="code" href="classEngine_1_1MonsterLoaderSystem.html">MonsterLoaderSystem</a>() {};</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            ~<a class="code" href="classEngine_1_1MonsterLoaderSystem.html">MonsterLoaderSystem</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordtype">void</span> load(std::vector&lt;std::string&gt; _libs);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordtype">void</span> *getFactory(<span class="keywordtype">int</span> index) { <span class="keywordflow">return</span> (_monstersFactories[index]); };</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            std::vector&lt;void *&gt; _monstersLib;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            std::vector&lt;void *&gt; _monstersFactories;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    };</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !LIBLOADERSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classEngine_1_1MonsterLoaderSystem.html#aa757d40301c5faaa5297b4b48105d377">load</a>(std::vector&lt;std::string&gt; _libs);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classEngine_1_1MonsterLoaderSystem.html#a58b8167bace1eecd43227cb27b883d76">   66</a></span>&#160;            <span class="keywordtype">void</span> *<a class="code" href="classEngine_1_1MonsterLoaderSystem.html#a58b8167bace1eecd43227cb27b883d76">getFactory</a>(<span class="keywordtype">int</span> index) { <span class="keywordflow">return</span> (_monstersFactories[index]); };</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            std::vector&lt;void *&gt; _monstersLib;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            std::vector&lt;void *&gt; _monstersFactories;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    };</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !LIBLOADERSYSTEM_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassEngine_1_1MonsterLoaderSystem_html"><div class="ttname"><a href="classEngine_1_1MonsterLoaderSystem.html">Engine::MonsterLoaderSystem</a></div><div class="ttdoc">Position system used on the Position component.</div><div class="ttdef"><b>Definition:</b> MonsterLoaderSystem.hpp:48</div></div>
+<div class="ttc" id="aclassEngine_1_1MonsterLoaderSystem_html_aa757d40301c5faaa5297b4b48105d377"><div class="ttname"><a href="classEngine_1_1MonsterLoaderSystem.html#aa757d40301c5faaa5297b4b48105d377">Engine::MonsterLoaderSystem::load</a></div><div class="ttdeci">void load(std::vector&lt; std::string &gt; _libs)</div><div class="ttdoc">Load a monster from libraries.</div></div>
+<div class="ttc" id="aclassEngine_1_1MonsterLoaderSystem_html"><div class="ttname"><a href="classEngine_1_1MonsterLoaderSystem.html">Engine::MonsterLoaderSystem</a></div><div class="ttdoc">Monster load manager from a library.</div><div class="ttdef"><b>Definition:</b> MonsterLoaderSystem.hpp:48</div></div>
 <div class="ttc" id="aclassEngine_1_1MonsterLoaderError_html_acc803bba1e7e726de9e38c313da94c33"><div class="ttname"><a href="classEngine_1_1MonsterLoaderError.html#acc803bba1e7e726de9e38c313da94c33">Engine::MonsterLoaderError::MonsterLoaderError</a></div><div class="ttdeci">MonsterLoaderError(std::string const &amp;message)</div><div class="ttdoc">Construct a new Monster Loader Error object.</div><div class="ttdef"><b>Definition:</b> MonsterLoaderSystem.hpp:31</div></div>
+<div class="ttc" id="aclassEngine_1_1MonsterLoaderSystem_html_a58b8167bace1eecd43227cb27b883d76"><div class="ttname"><a href="classEngine_1_1MonsterLoaderSystem.html#a58b8167bace1eecd43227cb27b883d76">Engine::MonsterLoaderSystem::getFactory</a></div><div class="ttdeci">void * getFactory(int index)</div><div class="ttdoc">Get the Factory for Monster.</div><div class="ttdef"><b>Definition:</b> MonsterLoaderSystem.hpp:66</div></div>
 <div class="ttc" id="aclassEngine_1_1MonsterLoaderError_html_a545db6cc50860bc48fc9ee8e7340adf0"><div class="ttname"><a href="classEngine_1_1MonsterLoaderError.html#a545db6cc50860bc48fc9ee8e7340adf0">Engine::MonsterLoaderError::what</a></div><div class="ttdeci">const char * what() const noexcept override</div><div class="ttdoc">Return message error from what()</div><div class="ttdef"><b>Definition:</b> MonsterLoaderSystem.hpp:39</div></div>
-<div class="ttc" id="aclassEngine_1_1MonsterLoaderError_html"><div class="ttname"><a href="classEngine_1_1MonsterLoaderError.html">Engine::MonsterLoaderError</a></div><div class="ttdoc">Loader Monster error class.</div><div class="ttdef"><b>Definition:</b> MonsterLoaderSystem.hpp:24</div></div>
+<div class="ttc" id="aclassEngine_1_1MonsterLoaderError_html"><div class="ttname"><a href="classEngine_1_1MonsterLoaderError.html">Engine::MonsterLoaderError</a></div><div class="ttdoc">Monster Loader Error for managing error.</div><div class="ttdef"><b>Definition:</b> MonsterLoaderSystem.hpp:24</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

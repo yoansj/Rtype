@@ -25,7 +25,7 @@
 namespace Engine {
 
     /**
-     * @brief Manage all the systems
+     * @brief Manager for all the systems
      * 
      */
     class SystemManager {

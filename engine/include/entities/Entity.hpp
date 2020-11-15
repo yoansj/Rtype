@@ -18,7 +18,7 @@ typedef std::size_t Entity;
 namespace Engine {
 
     /**
-     * @brief Manager for Entity, create and remove.
+     * @brief Manager for Entity
      * 
      */
     class EntityManager {
