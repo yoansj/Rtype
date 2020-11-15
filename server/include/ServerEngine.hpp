@@ -23,7 +23,11 @@ using boost::asio::ip::udp;
 
 class ServerEngine {
     public:
+        /** typedef for std::shared_ptr<tcp::socket>
+         */
         typedef std::shared_ptr<tcp::socket> tcpSocket;
+        /** typedef for std::shared_ptr<udp::socket>
+         */
         typedef std::shared_ptr<udp::socket> udpSocket;
 
         ServerEngine();

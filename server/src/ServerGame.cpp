@@ -7,6 +7,8 @@
 
 #include "ServerGame.hpp"
 
+/** Launch loop, call the functions necessary to read packets.
+*/
 void ServerGame::run()
 {
     std::cout << "Starting lobby " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
@@ -23,6 +25,8 @@ void ServerGame::checkPlayers()
 {
 }
 
+/** Starts the game and sends all connected clients a packet informing them that the game has started.
+*/
 void ServerGame::startGame()
 {
     //std::cout << "Starting game " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
@@ -36,6 +40,8 @@ void ServerGame::startGame()
     isPlaying = true;
 }
 
+/** Read the packets and act accordingly according to the received packet.
+*/
 void ServerGame::readPackages()
 {
     while (!_packages.empty()) {

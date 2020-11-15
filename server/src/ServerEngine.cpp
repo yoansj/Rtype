@@ -7,6 +7,9 @@
 
 #include "ServerEngine.hpp"
 
+/** Constructor for the class ServerEngine.
+ * Set _acceptor for TCP packets and the _udpServer for all UDP packets.
+*/
 ServerEngine::ServerEngine() :
 _acceptor(_ios, tcp::endpoint(tcp::v4(), 7172)),
 _udpServer(_ios, udp::endpoint(udp::v4(), 7172))
@@ -19,6 +22,9 @@ _udpServer(_ios, udp::endpoint(udp::v4(), 7172))
     }
 }
 
+/** Accepts all incoming connections from clients.
+ * Once the connection is made with the client, the server adds it to the client list.
+*/
 void ServerEngine::acceptConnections()
 {
     // Accepte les connections et ajoute le nouveau client
@@ -41,6 +47,8 @@ void ServerEngine::acceptConnections()
     }
 }
 
+/** Loops and receives all packets sent by the client over TCP.
+*/
 void ServerEngine::receiveTcpPackages()
 {
     // Boucle et reçoit les paquets tcp de tous les clients
@@ -50,6 +58,9 @@ void ServerEngine::receiveTcpPackages()
     disconnectClients();
 }
 
+/** Loops and receives all packets sent by the client over UDP.
+ * Then dispatch the right package to the right game.
+*/
 void ServerEngine::receiveUdpPackages()
 {
     std::array<char, 10000> buffer;
@@ -83,6 +94,9 @@ void ServerEngine::receiveUdpPackages()
     }
 }
 
+/** Loops and checks if a client has disconnected.
+ * If a client has disconnected, its socket is deleted from the server.
+*/
 void ServerEngine::disconnectClients()
 {
     for (int i = 0; i != _clientsToDisconnect.size(); i++) {
@@ -91,6 +105,10 @@ void ServerEngine::disconnectClients()
     _clientsToDisconnect.clear();
 }
 
+/** Receive the type of packet and dispatch it to the correct function to be cast and processed.
+    @param param1 tcpSocket &cli
+    @param param2 std::size_t index
+*/
 void ServerEngine::getPackageType(tcpSocket &cli, std::size_t index)
 {
     int *type_struct;
@@ -121,6 +139,10 @@ void ServerEngine::getPackageType(tcpSocket &cli, std::size_t index)
     }
 }
 
+/** Class template which loads the packages and executes them according to the client's request.
+    @param param1 tcpSocket &cli
+    @return value PkgType
+*/
 template <class PkgType>
 PkgType ServerEngine::loadPkgType(tcpSocket &cli)
 {
@@ -130,6 +152,10 @@ PkgType ServerEngine::loadPkgType(tcpSocket &cli)
     return (pkg);
 }
 
+/** Creates the game and the game's thread and adds the game to the list.
+    @param param1 createNewGame_t &package
+    @param param2 tcpSocket &cli
+*/
 void ServerEngine::handlePackage(createNewGame_t &package, tcpSocket &cli)
 {
     // Création de la partie
@@ -147,6 +173,10 @@ void ServerEngine::handlePackage(createNewGame_t &package, tcpSocket &cli)
     cli->send(boost::asio::buffer(&reply, sizeof(replyGameCreated_t)));
 }
 
+/** Get the game from the game map, start the game and set it to send packets to the startGame function.
+    @param param1 startNewGame_t &package
+    @param param2 tcpSocket &cli
+*/
 void ServerEngine::handlePackage(startNewGame_t &package, tcpSocket &cli)
 {
     // Récupérer la partie dans la map
@@ -162,6 +192,10 @@ void ServerEngine::handlePackage(startNewGame_t &package, tcpSocket &cli)
     }
 }
 
+/** Retrieve the game from the game map, adds the player to the game and sends the client that he has joined the game.
+    @param param1 joinGame_t &package
+    @param param2 tcpSocket &cli
+*/
 void ServerEngine::handlePackage(joinGame_t &package, tcpSocket &cli)
 {
     // Récupérer la partie
@@ -176,6 +210,8 @@ void ServerEngine::handlePackage(joinGame_t &package, tcpSocket &cli)
     }
 }
 
+/** Launch loop, call the functions necessary to send and receive packets.
+*/
 void ServerEngine::run()
 {
     // auto t1 = std::chrono::high_resolution_clock::now();

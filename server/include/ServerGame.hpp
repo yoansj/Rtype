@@ -31,6 +31,12 @@ typedef std::shared_ptr<tcp::socket> tcpSocket;
 
 class ServerGame {
     public:
+        /** Constructor for the class ServerGame.
+            @param param1 tcpSocket &creator
+            @param param2 std::size_t id
+            @param param3 udp::socket &serverSocket
+            @param param4 boost::asio::io_service &service
+        */
         ServerGame(tcpSocket &creator, std::size_t id, udp::socket &serverSocket, boost::asio::io_service &service)
         : _creator(creator), _gameId(id), _udpServer(serverSocket), _ios(service) {};
         ~ServerGame() = default;
@@ -40,19 +46,33 @@ class ServerGame {
         void readPackages();
         void checkPlayers();
 
+        /** Updates player sockets in the game.
+            @param param1 std::size_t index
+            @param param2 udp::endpoint ep
+        */
         void updateEndpoints(std::size_t index, udp::endpoint ep)
         {
             _playersEndpoints.insert({index, ep});
         }
 
+        /** Add a package to the game package list.
+            @param param1 package const &pck
+        */
         void addPackage(package const &pck) {_packages.push_back(pck);};
 
+        /** Add a player to the game
+            @param param1 tcpSocket &p
+            @return value std::size_t
+        */
         std::size_t addPlayer(tcpSocket &p) {
             _tcpPlayers.push_back(p);
             std::cout << "Added player to game: " << _gameId << " Size: " << _tcpPlayers.size() << std::endl;
             return(_tcpPlayers.size() - 1);
         };
 
+        /** Return the gameId
+            @return value std::size_t
+        */
         std::size_t getId() const {return (_gameId);};
 
     private:

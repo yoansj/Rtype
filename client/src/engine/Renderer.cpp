@@ -12,6 +12,11 @@ Engine::Renderer::Renderer(const std::shared_ptr<sf::RenderWindow> &window)
     _window = window;
 }
 
+/** My function doing something...
+    @param param1 first parameter
+    @param param2 second parameter
+    @return value return value
+*/
 void Engine::Renderer::doRender(SystemManager &sys)
 {
     for (int i = 0; i != sys.spriteSystem.size(); i++) {

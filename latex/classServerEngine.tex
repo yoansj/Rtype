@@ -1,0 +1,191 @@
+\hypertarget{classServerEngine}{}\doxysection{Server\+Engine Class Reference}
+\label{classServerEngine}\index{ServerEngine@{ServerEngine}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ tcp\+::socket $>$ \mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ udp\+::socket $>$ \mbox{\hyperlink{classServerEngine_ad7f854a89e9cc404d4d83aa18b7d3f9b}{udp\+Socket}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classServerEngine_a02bd1093c93180ca5e4bb8d14ed9addb}{Server\+Engine}} ()
+\item 
+void \mbox{\hyperlink{classServerEngine_a57a697dcc39494da13100e51be070769}{accept\+Connections}} ()
+\item 
+void \mbox{\hyperlink{classServerEngine_addc398cc71c33819a00cbce8b9a069d3}{receive\+Tcp\+Packages}} ()
+\item 
+void \mbox{\hyperlink{classServerEngine_ae9b28ab4519e0bfbfbb6e3f912dff311}{disconnect\+Clients}} ()
+\item 
+void \mbox{\hyperlink{classServerEngine_ac10d1cf750a879d31a85c0c5a6c7fc65}{run}} ()
+\item 
+void \mbox{\hyperlink{classServerEngine_a982adf3b6dabbc2c03c06ecfb6dabda9}{receive\+Udp\+Packages}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classServerEngine_a38ebb7796e2c0597ac6effe2f7ed1be3}{get\+Package\+Type}} (\mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} \&cli, std\+::size\+\_\+t index)
+\item 
+{\footnotesize template$<$class Pkg\+Type $>$ }\\Pkg\+Type \mbox{\hyperlink{classServerEngine_a323ddeb07de288f6f7dbdd00965c3b18}{load\+Pkg\+Type}} (\mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} \&cli)
+\item 
+void \mbox{\hyperlink{classServerEngine_a9ee2f1918e3608443a869058f3e8b2d1}{handle\+Package}} (create\+New\+Game\+\_\+t \&package, \mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} \&cli)
+\item 
+void \mbox{\hyperlink{classServerEngine_a4abba634e96d2ceafdba979254c9df29}{handle\+Package}} (start\+New\+Game\+\_\+t \&package, \mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} \&cli)
+\item 
+void \mbox{\hyperlink{classServerEngine_a97caa1040f9de6368babfd7c0daf603e}{handle\+Package}} (join\+Game\+\_\+t \&package, \mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} \&cli)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classServerEngine_a774efe90758739435f01ccdfddc46dff}\label{classServerEngine_a774efe90758739435f01ccdfddc46dff}} 
+boost\+::asio\+::io\+\_\+service {\bfseries \+\_\+ios}
+\item 
+\mbox{\Hypertarget{classServerEngine_a980f58a036fade0487873844db48bb7a}\label{classServerEngine_a980f58a036fade0487873844db48bb7a}} 
+std\+::map$<$ std\+::size\+\_\+t, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classServerGame}{Server\+Game}} $>$ $>$ {\bfseries \+\_\+games}
+\item 
+\mbox{\Hypertarget{classServerEngine_a3d67187598662f0974347c377e7a7b7d}\label{classServerEngine_a3d67187598662f0974347c377e7a7b7d}} 
+tcp\+::acceptor {\bfseries \+\_\+acceptor}
+\item 
+\mbox{\Hypertarget{classServerEngine_a986fce1977f84684c5a01e5f4007ddd2}\label{classServerEngine_a986fce1977f84684c5a01e5f4007ddd2}} 
+std\+::vector$<$ \mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} $>$ {\bfseries \+\_\+clients}
+\item 
+\mbox{\Hypertarget{classServerEngine_ac24ffbcaf2a38ba5db3fe29715138757}\label{classServerEngine_ac24ffbcaf2a38ba5db3fe29715138757}} 
+std\+::vector$<$ std\+::size\+\_\+t $>$ {\bfseries \+\_\+clients\+To\+Disconnect}
+\item 
+\mbox{\Hypertarget{classServerEngine_a54e19729a9d291fc77fd1c2786d1d3af}\label{classServerEngine_a54e19729a9d291fc77fd1c2786d1d3af}} 
+std\+::array$<$ char, sizeof(int)$>$ {\bfseries \+\_\+buffer}
+\item 
+\mbox{\Hypertarget{classServerEngine_a5d41436fc102e5d3cc7da1376a7f8fc0}\label{classServerEngine_a5d41436fc102e5d3cc7da1376a7f8fc0}} 
+udp\+::socket {\bfseries \+\_\+udp\+Server}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}\label{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}} 
+\index{ServerEngine@{ServerEngine}!tcpSocket@{tcpSocket}}
+\index{tcpSocket@{tcpSocket}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{tcpSocket}{tcpSocket}}
+{\footnotesize\ttfamily typedef std\+::shared\+\_\+ptr$<$tcp\+::socket$>$ \mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{Server\+Engine\+::tcp\+Socket}}}
+
+typedef for std\+::shared\+\_\+ptr$<$tcp\+::socket$>$ \mbox{\Hypertarget{classServerEngine_ad7f854a89e9cc404d4d83aa18b7d3f9b}\label{classServerEngine_ad7f854a89e9cc404d4d83aa18b7d3f9b}} 
+\index{ServerEngine@{ServerEngine}!udpSocket@{udpSocket}}
+\index{udpSocket@{udpSocket}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{udpSocket}{udpSocket}}
+{\footnotesize\ttfamily typedef std\+::shared\+\_\+ptr$<$udp\+::socket$>$ \mbox{\hyperlink{classServerEngine_ad7f854a89e9cc404d4d83aa18b7d3f9b}{Server\+Engine\+::udp\+Socket}}}
+
+typedef for std\+::shared\+\_\+ptr$<$udp\+::socket$>$ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classServerEngine_a02bd1093c93180ca5e4bb8d14ed9addb}\label{classServerEngine_a02bd1093c93180ca5e4bb8d14ed9addb}} 
+\index{ServerEngine@{ServerEngine}!ServerEngine@{ServerEngine}}
+\index{ServerEngine@{ServerEngine}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{ServerEngine()}{ServerEngine()}}
+{\footnotesize\ttfamily Server\+Engine\+::\+Server\+Engine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Constructor for the class \mbox{\hyperlink{classServerEngine}{Server\+Engine}}. Set \+\_\+acceptor for T\+CP packets and the \+\_\+udp\+Server for all U\+DP packets. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classServerEngine_a57a697dcc39494da13100e51be070769}\label{classServerEngine_a57a697dcc39494da13100e51be070769}} 
+\index{ServerEngine@{ServerEngine}!acceptConnections@{acceptConnections}}
+\index{acceptConnections@{acceptConnections}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{acceptConnections()}{acceptConnections()}}
+{\footnotesize\ttfamily void Server\+Engine\+::accept\+Connections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accepts all incoming connections from clients. Once the connection is made with the client, the server adds it to the client list. \mbox{\Hypertarget{classServerEngine_ae9b28ab4519e0bfbfbb6e3f912dff311}\label{classServerEngine_ae9b28ab4519e0bfbfbb6e3f912dff311}} 
+\index{ServerEngine@{ServerEngine}!disconnectClients@{disconnectClients}}
+\index{disconnectClients@{disconnectClients}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{disconnectClients()}{disconnectClients()}}
+{\footnotesize\ttfamily void Server\+Engine\+::disconnect\+Clients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Loops and checks if a client has disconnected. If a client has disconnected, its socket is deleted from the server. \mbox{\Hypertarget{classServerEngine_a38ebb7796e2c0597ac6effe2f7ed1be3}\label{classServerEngine_a38ebb7796e2c0597ac6effe2f7ed1be3}} 
+\index{ServerEngine@{ServerEngine}!getPackageType@{getPackageType}}
+\index{getPackageType@{getPackageType}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{getPackageType()}{getPackageType()}}
+{\footnotesize\ttfamily void Server\+Engine\+::get\+Package\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} \&}]{cli,  }\item[{std\+::size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Receive the type of packet and dispatch it to the correct function to be cast and processed. 
+\begin{DoxyParams}{Parameters}
+{\em param1} & tcp\+Socket \&cli \\
+\hline
+{\em param2} & std\+::size\+\_\+t index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classServerEngine_a9ee2f1918e3608443a869058f3e8b2d1}\label{classServerEngine_a9ee2f1918e3608443a869058f3e8b2d1}} 
+\index{ServerEngine@{ServerEngine}!handlePackage@{handlePackage}}
+\index{handlePackage@{handlePackage}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{handlePackage()}{handlePackage()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Server\+Engine\+::handle\+Package (\begin{DoxyParamCaption}\item[{create\+New\+Game\+\_\+t \&}]{package,  }\item[{\mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} \&}]{cli }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Creates the game and the game\textquotesingle{}s thread and adds the game to the list. 
+\begin{DoxyParams}{Parameters}
+{\em param1} & create\+New\+Game\+\_\+t \&package \\
+\hline
+{\em param2} & tcp\+Socket \&cli \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classServerEngine_a97caa1040f9de6368babfd7c0daf603e}\label{classServerEngine_a97caa1040f9de6368babfd7c0daf603e}} 
+\index{ServerEngine@{ServerEngine}!handlePackage@{handlePackage}}
+\index{handlePackage@{handlePackage}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{handlePackage()}{handlePackage()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Server\+Engine\+::handle\+Package (\begin{DoxyParamCaption}\item[{join\+Game\+\_\+t \&}]{package,  }\item[{\mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} \&}]{cli }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Retrieve the game from the game map, adds the player to the game and sends the client that he has joined the game. 
+\begin{DoxyParams}{Parameters}
+{\em param1} & join\+Game\+\_\+t \&package \\
+\hline
+{\em param2} & tcp\+Socket \&cli \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classServerEngine_a4abba634e96d2ceafdba979254c9df29}\label{classServerEngine_a4abba634e96d2ceafdba979254c9df29}} 
+\index{ServerEngine@{ServerEngine}!handlePackage@{handlePackage}}
+\index{handlePackage@{handlePackage}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{handlePackage()}{handlePackage()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Server\+Engine\+::handle\+Package (\begin{DoxyParamCaption}\item[{start\+New\+Game\+\_\+t \&}]{package,  }\item[{\mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} \&}]{cli }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Get the game from the game map, start the game and set it to send packets to the start\+Game function. 
+\begin{DoxyParams}{Parameters}
+{\em param1} & start\+New\+Game\+\_\+t \&package \\
+\hline
+{\em param2} & tcp\+Socket \&cli \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classServerEngine_a323ddeb07de288f6f7dbdd00965c3b18}\label{classServerEngine_a323ddeb07de288f6f7dbdd00965c3b18}} 
+\index{ServerEngine@{ServerEngine}!loadPkgType@{loadPkgType}}
+\index{loadPkgType@{loadPkgType}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{loadPkgType()}{loadPkgType()}}
+{\footnotesize\ttfamily template$<$class Pkg\+Type $>$ \\
+Pkg\+Type Server\+Engine\+::load\+Pkg\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}{tcp\+Socket}} \&}]{cli }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Class template which loads the packages and executes them according to the client\textquotesingle{}s request. 
+\begin{DoxyParams}{Parameters}
+{\em param1} & tcp\+Socket \&cli \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value Pkg\+Type 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classServerEngine_addc398cc71c33819a00cbce8b9a069d3}\label{classServerEngine_addc398cc71c33819a00cbce8b9a069d3}} 
+\index{ServerEngine@{ServerEngine}!receiveTcpPackages@{receiveTcpPackages}}
+\index{receiveTcpPackages@{receiveTcpPackages}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{receiveTcpPackages()}{receiveTcpPackages()}}
+{\footnotesize\ttfamily void Server\+Engine\+::receive\+Tcp\+Packages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Loops and receives all packets sent by the client over T\+CP. \mbox{\Hypertarget{classServerEngine_a982adf3b6dabbc2c03c06ecfb6dabda9}\label{classServerEngine_a982adf3b6dabbc2c03c06ecfb6dabda9}} 
+\index{ServerEngine@{ServerEngine}!receiveUdpPackages@{receiveUdpPackages}}
+\index{receiveUdpPackages@{receiveUdpPackages}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{receiveUdpPackages()}{receiveUdpPackages()}}
+{\footnotesize\ttfamily void Server\+Engine\+::receive\+Udp\+Packages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Loops and receives all packets sent by the client over U\+DP. Then dispatch the right package to the right game. \mbox{\Hypertarget{classServerEngine_ac10d1cf750a879d31a85c0c5a6c7fc65}\label{classServerEngine_ac10d1cf750a879d31a85c0c5a6c7fc65}} 
+\index{ServerEngine@{ServerEngine}!run@{run}}
+\index{run@{run}!ServerEngine@{ServerEngine}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Server\+Engine\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Launch loop, call the functions necessary to send and receive packets. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+server/include/Server\+Engine.\+hpp\item 
+server/src/Server\+Engine.\+cpp\end{DoxyCompactItemize}
