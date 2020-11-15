@@ -13,6 +13,8 @@
 namespace Engine {
 
     struct Position : public Component {
+        Position(Entity e) : Component(e) {entity = e;};
+        Position() = default;
         float x;
         float y;
     };

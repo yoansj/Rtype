@@ -13,6 +13,7 @@
 namespace Engine {
 
     struct Velocity : public Component {
+        Velocity(Entity e) : Component(e) {entity = e;};
         float x;
         float y;
     };

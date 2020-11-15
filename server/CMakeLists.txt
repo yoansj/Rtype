@@ -17,13 +17,14 @@ message("after setting up")
 
 set(INC_DIR server/include)
 
-set(SERVER_SRC
+file(GLOB SRC
         server/main.cpp
         ${PROJECT_SOURCE_DIR}/client/src/entities/Entity.cpp
         ${PROJECT_SOURCE_DIR}/client/src/systems/PositionSystem.cpp
         ${PROJECT_SOURCE_DIR}/client/src/systems/VelocitySystem.cpp
-        server/src/ServerEngine.cpp
-        server/src/ServerGame.cpp
+        ${PROJECT_SOURCE_DIR}/server/src/ServerEngine.cpp
+        ${PROJECT_SOURCE_DIR}/server/src/ServerGame.cpp
+        ${PROJECT_SOURCE_DIR}/engine/src/entities/*
 )
 
 include_directories(
@@ -32,8 +33,11 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/client/include/component
     ${PROJECT_SOURCE_DIR}/client/include/engine
     ${PROJECT_SOURCE_DIR}/client/include/systems
+    ${PROJECT_SOURCE_DIR}/engine/include/components
+    ${PROJECT_SOURCE_DIR}/engine/include/entities
+    ${PROJECT_SOURCE_DIR}/engine/include/systems
 )
 
-add_executable(${PROJECT_NAME} ${SERVER_SRC} ${BSON_SRC})
+add_executable(${PROJECT_NAME} ${SRC})
 
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})

@@ -18,6 +18,7 @@ file(GLOB SRC
     ${PROJECT_SOURCE_DIR}/client/src/entities/*
     ${PROJECT_SOURCE_DIR}/client/src/systems/*
     ${PROJECT_SOURCE_DIR}/client/src/engine/*
+    ${PROJECT_SOURCE_DIR}/engine/src/entities/*
 )
 
 include_directories(${CMAKE_INCLUDE_PATH})
@@ -27,6 +28,9 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/client/include/component/
     ${PROJECT_SOURCE_DIR}/client/include/systems/
     ${PROJECT_SOURCE_DIR}/client/include/engine/
+    ${PROJECT_SOURCE_DIR}/engine/include/components
+    ${PROJECT_SOURCE_DIR}/engine/include/entities
+    ${PROJECT_SOURCE_DIR}/engine/include/systems
 )
 
 add_compile_definitions(ROOT_PATH="${PROJECT_SOURCE_DIR}/")
