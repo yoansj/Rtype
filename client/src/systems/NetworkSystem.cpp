@@ -44,7 +44,6 @@ void Engine::NetworkSystem::receivePackageUdp(EntityManager &entityManager, Posi
         case POSITION_PACKAGE:
         {
             auto pkg = loadPkgType<position_t>(true, reinterpret_cast<char *>(&buffer));
-            //std::cout << "PAQUET POSITION RECU | SENDER ID: " << pkg.senderIndex << std::endl;
             _gameUpdatePlayerPos(pkg.senderIndex, pkg.pos);
             break;
         }
@@ -59,6 +58,20 @@ void Engine::NetworkSystem::receivePackageUdp(EntityManager &entityManager, Posi
             auto pkg = loadPkgType<monsterEntity_t>(true, reinterpret_cast<char *>(&buffer));
             manageServerEntities(pkg, entityManager, positionSystem, spriteSystem, velocitySystem);
             break;
+        }
+        case END_OF_GAME_PACKAGE:
+        {
+            auto pkg = loadPkgType<endOfGame_t>(true, reinterpret_cast<char *>(&buffer));
+
+            if (pkg.senderIndex == _playerId) {
+                std::cout << "You lost :( no end screen for you" << std::endl;
+                exit(0);
+            } else {
+                Position negative;
+                negative.x = -1000;
+                negative.y = -1000;
+                _gameUpdatePlayerPos(pkg.senderIndex, negative);
+            }
         }
     }
 }

@@ -21,6 +21,7 @@ enum PackagesType {
     SHOOT_PACKAGE = 9,
     SHOOT_ENTITY_PACKAGE = 10,
     MONSTER_ENTITY_PACKAGE = 11,
+    END_OF_GAME_PACKAGE = 12,
 };
 
 #endif /* !PACKAGESTYPE_HPP_ */

@@ -119,6 +119,11 @@ typedef struct monsterEntity_s {
     char filepath[120];
 } monsterEntity_t;
 
+//Paquet partie perdue
+typedef struct endOfGame_s {
+    int type_struct = 11;
+    std::size_t senderIndex;
+} endOfGame_t;
 /* PACKAGE FOR GAME */
 using boost::asio::ip::udp;
 struct package {

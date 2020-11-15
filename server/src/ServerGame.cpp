@@ -51,7 +51,7 @@ void ServerGame::checkCollisions()
 
 void ServerGame::spawnMonsters()
 {
-    if (monstersClock.duration() >= 3,5 * 1000) {
+    if (monstersClock.duration() >= 4.5 * 1000) {
         if (std::rand() % 1 + 2 == 1) {
             monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_monsterLoaderSystem.getFactory(0));
             auto frog = frogFactory(_entityManager, _positionSystem, _velocitySystem, _hitboxSystem, _statusSystem);
@@ -78,6 +78,16 @@ void ServerGame::spawnMonsters()
 void ServerGame::iterateForCollision(Entity e, Engine::Position &pos, Engine::Status &status)
 {
     for (std::size_t i = 0; i != _ennemyEntities.size(); i++) {
+        for (auto it = _players.begin(); it != _players.end(); it++) {
+            if (_hitboxSystem.collides(it->second, _positionSystem.getComponent(it->second), _ennemyEntities[i], _positionSystem.getComponent(_ennemyEntities[i])) == true) {
+                _statusSystem.setStatus(_ennemyEntities[i], Engine::DEAD);
+                endOfGame_t package = {END_OF_GAME_PACKAGE, it->first};
+                auto endpoint = _playersEndpoints.find(it->first);
+                boost::system::error_code error;
+                if (endpoint != _playersEndpoints.end())
+                    _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(endOfGame_t)), endpoint->second, 0, error);
+            }
+        }
         //std::cout << "Bullet id is: " << e << " Ennemy id is: " << _ennemyEntities[i] << std::endl;
         if (!_statusSystem.Exist(_ennemyEntities[i])) continue; // Si l'ennemi a pas de status on skip
         if (status.type == Engine::DEAD || _statusSystem.getComponent(_ennemyEntities[i]).type == Engine::DEAD) continue; //Si un des deux est mort on skip
@@ -196,15 +206,6 @@ void ServerGame::startGame()
     std::cout << "Starting game " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
     gameStarted_t reply = {STARTED_GAME, _tcpPlayers.size(), "GAME STARTED"};
 
-    /*std::string path = "./lib";
-    std::smatch m;
-
-    for (auto const &e : std::filesystem::directory_iterator(path)) {
-        std::string path = e.path.string();
-        if (std::regex_search(path, m, std::basic_regex<char>(REGEX_MONSTERS))) {
-            std::cout << m[2] << std::endl;
-        }
-    }*/
 
     _monsterLoaderSystem.load({
         "./build/lib/libfrog.so",
@@ -247,8 +248,7 @@ void ServerGame::readPackages()
             auto playerEntity = _players.find(package->senderIndex);
             if (playerEntity != _players.end()) {
                 auto &playerPos = _positionSystem.getComponent(playerEntity->second);
-                playerPos.x = package->pos.x;
-                playerPos.y = package->pos.y;
+                _positionSystem.setPosition(playerEntity->second, package->pos.x, package->pos.y);
             }
             boost::system::error_code error;
             for (int i = 0; i != _tcpPlayers.size(); i++) {
