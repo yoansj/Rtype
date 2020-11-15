@@ -12,13 +12,31 @@
 
 namespace Engine {
 
+    /**
+     * @brief Enum to know the status of an entity.
+     * 
+     */
     enum StatusType {
         ALIVE,
         DEAD,
     };
 
+    /**
+     * @brief Status component.
+     * 
+     */
     struct Status : public Component {
+        /**
+         * @brief Construct a new Status object
+         * 
+         * @param params1 Entity e 
+         */
         Status(Entity e) : Component(e) {entity = e;};
+
+        /**
+         * @brief Construct a new Status object
+         * 
+         */
         Status() = default;
         StatusType type;
     };

@@ -13,7 +13,7 @@
 namespace Engine {
 
     /**
-     * @brief  Base class for all of our components
+     * Base class for all of our components
      * A component is a data structure that belongs to an entity
      * All components must inherit this class
      */

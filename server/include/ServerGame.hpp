@@ -31,6 +31,10 @@ using boost::asio::ip::udp;
 typedef std::shared_ptr<udp::socket> udpSocket;
 typedef std::shared_ptr<tcp::socket> tcpSocket;
 
+/**
+ * @brief Clock class to manage the ServerGame part of the server.
+ * 
+ */
 class Clock {
     public:
         Clock() : _t0(std::chrono::high_resolution_clock::now()), _t1(std::chrono::high_resolution_clock::now()) {};
@@ -43,9 +47,13 @@ class Clock {
         std::chrono::time_point<std::chrono::high_resolution_clock> _t1;
 };
 
+/**
+ * @brief ServerGame managing all the parts launched by the clients.
+ * 
+ */
 class ServerGame {
     public:
-        /** Constructor for the class ServerGame.
+        /** @brief Constructor for the class ServerGame.
             @param param1 tcpSocket &creator
             @param param2 std::size_t id
             @param param3 udp::socket &serverSocket

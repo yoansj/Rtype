@@ -12,14 +12,32 @@
 
 namespace Engine {
 
+    /**
+     * @brief Enum to know the type of hitbox for an entity.
+     * 
+     */
     enum HitboxType {
         BULLET,
         MONSTER,
         PLAYER,
     };
 
+    /**
+     * @brief Hitbox component.
+     * 
+     */
     struct Hitbox : public Component {
+        /**
+         * @brief Construct a new Hitbox object
+         * 
+         * @param params1 Entity e 
+         */
         Hitbox(Entity e) : Component(e) {entity = e;};
+
+        /**
+         * @brief Construct a new Hitbox object
+         * 
+         */
         Hitbox() = default;
         float width;
         float height;

@@ -87,82 +87,107 @@ $(function() {
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;Entity.hpp&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;PositionSystem.hpp&quot;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;VelocitySystem.hpp&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;boost/asio.hpp&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">using</span> boost::asio::ip::tcp;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using</span> boost::asio::ip::udp;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;udp::socket&gt; udpSocket;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;tcp::socket&gt; tcpSocket;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classServerGame.html">   32</a></span>&#160;<span class="keyword">class </span><a class="code" href="classServerGame.html">ServerGame</a> {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classServerGame.html#a6289742e368e9689ca7c9dd9a2fbc156">   40</a></span>&#160;        <a class="code" href="classServerGame.html#a6289742e368e9689ca7c9dd9a2fbc156">ServerGame</a>(tcpSocket &amp;creator, std::size_t <span class="keywordtype">id</span>, udp::socket &amp;serverSocket, boost::asio::io_service &amp;service)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        : _creator(creator), _gameId(id), _udpServer(serverSocket), _ios(service) {};</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        ~<a class="code" href="classServerGame.html">ServerGame</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#ac27868b13aa57110f741a6e4f22c57f6">run</a>();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#ad831815b91e7ee0182107be3507b5f2f">startGame</a>();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#aeefa6506e7e3051012e2a430e5d9c587">readPackages</a>();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">void</span> checkPlayers();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classServerGame.html#afe1d6d6f191c00f5c44c6c8f78bb716c">   53</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#afe1d6d6f191c00f5c44c6c8f78bb716c">updateEndpoints</a>(std::size_t index, udp::endpoint ep)</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            _playersEndpoints.insert({index, ep});</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classServerGame.html#a2f37b1e8a83d55344fa6d7e53288786c">   61</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#a2f37b1e8a83d55344fa6d7e53288786c">addPackage</a>(package <span class="keyword">const</span> &amp;pck) {_packages.push_back(pck);};</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classServerGame.html#a53ea9c6bf3ae7760c4e3c6e565dec750">   67</a></span>&#160;        std::size_t <a class="code" href="classServerGame.html#a53ea9c6bf3ae7760c4e3c6e565dec750">addPlayer</a>(tcpSocket &amp;p) {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            _tcpPlayers.push_back(p);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Added player to game: &quot;</span> &lt;&lt; _gameId &lt;&lt; <span class="stringliteral">&quot; Size: &quot;</span> &lt;&lt; _tcpPlayers.size() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">return</span>(_tcpPlayers.size() - 1);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        };</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classServerGame.html#a68deab5c2ce431249cea1a32043d9590">   76</a></span>&#160;        std::size_t <a class="code" href="classServerGame.html#a68deab5c2ce431249cea1a32043d9590">getId</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> (_gameId);};</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">//Tcp variables</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        tcpSocket _creator;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        std::vector&lt;tcpSocket&gt; _tcpPlayers;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">//Udp variables</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        udp::socket &amp;_udpServer;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        std::map&lt;std::size_t, udp::endpoint&gt; _playersEndpoints;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="comment">//Tcp &amp; Udp</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        std::vector&lt;package&gt; _packages;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        boost::asio::io_service &amp;_ios;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="comment">//Game variables</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">bool</span> isOnLobby;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">bool</span> isPlaying;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        std::size_t _gameId;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="comment">//Game utils</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        Engine::EntityManager _entityManager;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        std::vector&lt;Entity&gt; _serverEntities;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        Engine::PositionSystem _positionSystem;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        Engine::VelocitySystem _velocitySystem;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SERVERGAME_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;HitboxSystem.hpp&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;StatusSystem.hpp&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;boost/asio.hpp&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using</span> boost::asio::ip::tcp;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">using</span> boost::asio::ip::udp;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;udp::socket&gt; udpSocket;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;tcp::socket&gt; tcpSocket;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classClock.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classClock.html">Clock</a> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="classClock.html">Clock</a>() : _t0(std::chrono::high_resolution_clock::now()), _t1(std::chrono::high_resolution_clock::now()) {};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        ~<a class="code" href="classClock.html">Clock</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">void</span> reset() { _t0 = std::chrono::high_resolution_clock::now(); _t1 = std::chrono::high_resolution_clock::now();}</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">void</span> setTime() {_t1 = std::chrono::high_resolution_clock::now();};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">int</span> duration()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;( _t1 - _t0 ).count());};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        std::chrono::time_point&lt;std::chrono::high_resolution_clock&gt; _t0;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        std::chrono::time_point&lt;std::chrono::high_resolution_clock&gt; _t1;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classServerGame.html">   54</a></span>&#160;<span class="keyword">class </span><a class="code" href="classServerGame.html">ServerGame</a> {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classServerGame.html#a6289742e368e9689ca7c9dd9a2fbc156">   62</a></span>&#160;        <a class="code" href="classServerGame.html#a6289742e368e9689ca7c9dd9a2fbc156">ServerGame</a>(tcpSocket &amp;creator, std::size_t <span class="keywordtype">id</span>, udp::socket &amp;serverSocket, boost::asio::io_service &amp;service)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        : _creator(creator), _gameId(id), _udpServer(serverSocket), _ios(service) {};</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        ~<a class="code" href="classServerGame.html">ServerGame</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#ac27868b13aa57110f741a6e4f22c57f6">run</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#ad831815b91e7ee0182107be3507b5f2f">startGame</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#aeefa6506e7e3051012e2a430e5d9c587">readPackages</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> checkPlayers();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#a4c9b69d07ea954bf201977296d350a01">updateEntities</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classServerGame.html#afe1d6d6f191c00f5c44c6c8f78bb716c">   76</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#afe1d6d6f191c00f5c44c6c8f78bb716c">updateEndpoints</a>(std::size_t index, udp::endpoint ep)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            _playersEndpoints.insert({index, ep});</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classServerGame.html#a2f37b1e8a83d55344fa6d7e53288786c">   84</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerGame.html#a2f37b1e8a83d55344fa6d7e53288786c">addPackage</a>(package <span class="keyword">const</span> &amp;pck) {_packages.push_back(pck);};</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classServerGame.html#a53ea9c6bf3ae7760c4e3c6e565dec750">   90</a></span>&#160;        std::size_t <a class="code" href="classServerGame.html#a53ea9c6bf3ae7760c4e3c6e565dec750">addPlayer</a>(tcpSocket &amp;p) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            _tcpPlayers.push_back(p);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Added player to game: &quot;</span> &lt;&lt; _gameId &lt;&lt; <span class="stringliteral">&quot; Size: &quot;</span> &lt;&lt; _tcpPlayers.size() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="keywordflow">return</span>(_tcpPlayers.size() - 1);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        };</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classServerGame.html#a68deab5c2ce431249cea1a32043d9590">   99</a></span>&#160;        std::size_t <a class="code" href="classServerGame.html#a68deab5c2ce431249cea1a32043d9590">getId</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> (_gameId);};</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="comment">//Tcp variables</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        tcpSocket _creator;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        std::vector&lt;tcpSocket&gt; _tcpPlayers;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment">//Udp variables</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        udp::socket &amp;_udpServer;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        std::map&lt;std::size_t, udp::endpoint&gt; _playersEndpoints;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="comment">//Tcp &amp; Udp</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        std::vector&lt;package&gt; _packages;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        boost::asio::io_service &amp;_ios;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="comment">//Game variables</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordtype">bool</span> isOnLobby;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordtype">bool</span> isPlaying;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        std::size_t _gameId;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="comment">//Game utils</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="classClock.html">Clock</a> clock;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="classEngine_1_1EntityManager.html">Engine::EntityManager</a> _entityManager;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        std::vector&lt;Entity&gt; _serverEntities;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        std::vector&lt;Entity&gt; _bulletEntities;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        std::map&lt;std::size_t, Entity&gt; _players;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        Engine::PositionSystem _positionSystem;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        Engine::VelocitySystem _velocitySystem;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="classEngine_1_1HitboxSystem.html">Engine::HitboxSystem</a> _hitboxSystem;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="classEngine_1_1StatusSystem.html">Engine::StatusSystem</a> _statusSystem;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;};</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SERVERGAME_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassServerGame_html_a6289742e368e9689ca7c9dd9a2fbc156"><div class="ttname"><a href="classServerGame.html#a6289742e368e9689ca7c9dd9a2fbc156">ServerGame::ServerGame</a></div><div class="ttdeci">ServerGame(tcpSocket &amp;creator, std::size_t id, udp::socket &amp;serverSocket, boost::asio::io_service &amp;service)</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:40</div></div>
-<div class="ttc" id="aclassServerGame_html_a2f37b1e8a83d55344fa6d7e53288786c"><div class="ttname"><a href="classServerGame.html#a2f37b1e8a83d55344fa6d7e53288786c">ServerGame::addPackage</a></div><div class="ttdeci">void addPackage(package const &amp;pck)</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:61</div></div>
-<div class="ttc" id="aclassServerGame_html_afe1d6d6f191c00f5c44c6c8f78bb716c"><div class="ttname"><a href="classServerGame.html#afe1d6d6f191c00f5c44c6c8f78bb716c">ServerGame::updateEndpoints</a></div><div class="ttdeci">void updateEndpoints(std::size_t index, udp::endpoint ep)</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:53</div></div>
-<div class="ttc" id="aclassServerGame_html_ad831815b91e7ee0182107be3507b5f2f"><div class="ttname"><a href="classServerGame.html#ad831815b91e7ee0182107be3507b5f2f">ServerGame::startGame</a></div><div class="ttdeci">void startGame()</div><div class="ttdef"><b>Definition:</b> ServerGame.cpp:30</div></div>
+<div class="ttc" id="aclassClock_html"><div class="ttname"><a href="classClock.html">Clock</a></div><div class="ttdoc">Clock class to manage the ServerGame part of the server.</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:38</div></div>
+<div class="ttc" id="aclassServerGame_html_a6289742e368e9689ca7c9dd9a2fbc156"><div class="ttname"><a href="classServerGame.html#a6289742e368e9689ca7c9dd9a2fbc156">ServerGame::ServerGame</a></div><div class="ttdeci">ServerGame(tcpSocket &amp;creator, std::size_t id, udp::socket &amp;serverSocket, boost::asio::io_service &amp;service)</div><div class="ttdoc">Constructor for the class ServerGame.</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:62</div></div>
+<div class="ttc" id="aclassEngine_1_1HitboxSystem_html"><div class="ttname"><a href="classEngine_1_1HitboxSystem.html">Engine::HitboxSystem</a></div><div class="ttdoc">System used for collisions.</div><div class="ttdef"><b>Definition:</b> HitboxSystem.hpp:19</div></div>
+<div class="ttc" id="aclassEngine_1_1StatusSystem_html"><div class="ttname"><a href="classEngine_1_1StatusSystem.html">Engine::StatusSystem</a></div><div class="ttdoc">System used for collisions.</div><div class="ttdef"><b>Definition:</b> StatusSystem.hpp:19</div></div>
+<div class="ttc" id="aclassEngine_1_1EntityManager_html"><div class="ttname"><a href="classEngine_1_1EntityManager.html">Engine::EntityManager</a></div><div class="ttdef"><b>Definition:</b> Entity.hpp:22</div></div>
+<div class="ttc" id="aclassServerGame_html_a2f37b1e8a83d55344fa6d7e53288786c"><div class="ttname"><a href="classServerGame.html#a2f37b1e8a83d55344fa6d7e53288786c">ServerGame::addPackage</a></div><div class="ttdeci">void addPackage(package const &amp;pck)</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:84</div></div>
+<div class="ttc" id="aclassServerGame_html_afe1d6d6f191c00f5c44c6c8f78bb716c"><div class="ttname"><a href="classServerGame.html#afe1d6d6f191c00f5c44c6c8f78bb716c">ServerGame::updateEndpoints</a></div><div class="ttdeci">void updateEndpoints(std::size_t index, udp::endpoint ep)</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:76</div></div>
+<div class="ttc" id="aclassServerGame_html_ad831815b91e7ee0182107be3507b5f2f"><div class="ttname"><a href="classServerGame.html#ad831815b91e7ee0182107be3507b5f2f">ServerGame::startGame</a></div><div class="ttdeci">void startGame()</div><div class="ttdef"><b>Definition:</b> ServerGame.cpp:56</div></div>
 <div class="ttc" id="aclassServerGame_html_ac27868b13aa57110f741a6e4f22c57f6"><div class="ttname"><a href="classServerGame.html#ac27868b13aa57110f741a6e4f22c57f6">ServerGame::run</a></div><div class="ttdeci">void run()</div><div class="ttdef"><b>Definition:</b> ServerGame.cpp:12</div></div>
-<div class="ttc" id="aclassServerGame_html"><div class="ttname"><a href="classServerGame.html">ServerGame</a></div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:32</div></div>
-<div class="ttc" id="aclassServerGame_html_aeefa6506e7e3051012e2a430e5d9c587"><div class="ttname"><a href="classServerGame.html#aeefa6506e7e3051012e2a430e5d9c587">ServerGame::readPackages</a></div><div class="ttdeci">void readPackages()</div><div class="ttdef"><b>Definition:</b> ServerGame.cpp:45</div></div>
-<div class="ttc" id="aclassServerGame_html_a53ea9c6bf3ae7760c4e3c6e565dec750"><div class="ttname"><a href="classServerGame.html#a53ea9c6bf3ae7760c4e3c6e565dec750">ServerGame::addPlayer</a></div><div class="ttdeci">std::size_t addPlayer(tcpSocket &amp;p)</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:67</div></div>
-<div class="ttc" id="aclassServerGame_html_a68deab5c2ce431249cea1a32043d9590"><div class="ttname"><a href="classServerGame.html#a68deab5c2ce431249cea1a32043d9590">ServerGame::getId</a></div><div class="ttdeci">std::size_t getId() const</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:76</div></div>
+<div class="ttc" id="aclassServerGame_html_a4c9b69d07ea954bf201977296d350a01"><div class="ttname"><a href="classServerGame.html#a4c9b69d07ea954bf201977296d350a01">ServerGame::updateEntities</a></div><div class="ttdeci">void updateEntities()</div><div class="ttdef"><b>Definition:</b> ServerGame.cpp:33</div></div>
+<div class="ttc" id="aclassServerGame_html"><div class="ttname"><a href="classServerGame.html">ServerGame</a></div><div class="ttdoc">ServerGame managing all the parts launched by the clients.</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:54</div></div>
+<div class="ttc" id="aclassServerGame_html_aeefa6506e7e3051012e2a430e5d9c587"><div class="ttname"><a href="classServerGame.html#aeefa6506e7e3051012e2a430e5d9c587">ServerGame::readPackages</a></div><div class="ttdeci">void readPackages()</div><div class="ttdef"><b>Definition:</b> ServerGame.cpp:79</div></div>
+<div class="ttc" id="aclassServerGame_html_a53ea9c6bf3ae7760c4e3c6e565dec750"><div class="ttname"><a href="classServerGame.html#a53ea9c6bf3ae7760c4e3c6e565dec750">ServerGame::addPlayer</a></div><div class="ttdeci">std::size_t addPlayer(tcpSocket &amp;p)</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:90</div></div>
+<div class="ttc" id="aclassServerGame_html_a68deab5c2ce431249cea1a32043d9590"><div class="ttname"><a href="classServerGame.html#a68deab5c2ce431249cea1a32043d9590">ServerGame::getId</a></div><div class="ttdeci">std::size_t getId() const</div><div class="ttdef"><b>Definition:</b> ServerGame.hpp:99</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

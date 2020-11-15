@@ -21,6 +21,10 @@
 using boost::asio::ip::tcp;
 using boost::asio::ip::udp;
 
+/**
+ * @brief ServerEngine handle connection, receive and send package.
+ * 
+ */
 class ServerEngine {
     public:
         /** typedef for std::shared_ptr<tcp::socket>

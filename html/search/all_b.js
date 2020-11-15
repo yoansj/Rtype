@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['udpsocket_21',['udpSocket',['../classServerEngine.html#ad7f854a89e9cc404d4d83aa18b7d3f9b',1,'ServerEngine']]]
+  ['_7ehitboxsystem_40',['~HitboxSystem',['../classEngine_1_1HitboxSystem.html#abb20f7919cb656314c076237eaf1693a',1,'Engine::HitboxSystem']]],
+  ['_7estatussystem_41',['~StatusSystem',['../classEngine_1_1StatusSystem.html#a7635efa664419e729c568ecd70cec945',1,'Engine::StatusSystem']]]
 ];

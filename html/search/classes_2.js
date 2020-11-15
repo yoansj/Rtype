@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['gamestarted_5fs_25',['gameStarted_s',['../structgameStarted__s.html',1,'']]]
+  ['hitbox_46',['Hitbox',['../structEngine_1_1Hitbox.html',1,'Engine']]],
+  ['hitboxsystem_47',['HitboxSystem',['../classEngine_1_1HitboxSystem.html',1,'Engine']]]
 ];

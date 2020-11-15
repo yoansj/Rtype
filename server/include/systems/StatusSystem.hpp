@@ -18,17 +18,38 @@ namespace Engine {
      */
     class StatusSystem : public System<Status> {
         public:
+            /**
+             * @brief Construct a new Status System object
+             * 
+             */
             StatusSystem() : System() {};
+
+            /**
+             * @brief Destroy the Status System object
+             * 
+             */
             ~StatusSystem() = default;
 
             void update() override {};
 
+            /**
+             * @brief Set the Status Entity
+             * 
+             * @param params1 Entity e
+             * @param params2 StatusType type
+             */
             void setStatus(Entity e, StatusType type) {
                 auto &hb = _components.getComponent(e);
 
                 hb.type = type;
             }
 
+            /**
+             * @brief Get the Status Entity
+             * 
+             * @param params1 Entity e
+             * @return value Status&
+             */
             Status &getStatus(Entity e) {
                 return (
                     _components.getComponent(e)

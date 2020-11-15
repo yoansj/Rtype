@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['getid_4',['getId',['../classServerGame.html#a68deab5c2ce431249cea1a32043d9590',1,'ServerGame']]],
-  ['getpackagetype_5',['getPackageType',['../classServerEngine.html#a38ebb7796e2c0597ac6effe2f7ed1be3',1,'ServerEngine']]]
+  ['destroy_8',['destroy',['../classComponentManager.html#a9db4b8d089bc48431894befdd21c3cb5',1,'ComponentManager']]],
+  ['disconnectclients_9',['disconnectClients',['../classServerEngine.html#ae9b28ab4519e0bfbfbb6e3f912dff311',1,'ServerEngine']]]
 ];

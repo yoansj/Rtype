@@ -51,6 +51,8 @@ void ServerGame::updateEntities()
     }
 }
 
+/** Start the game and send a packet to all the clients to signal it, create a player entity and set all the data necessary for its operation.
+*/
 void ServerGame::startGame()
 {
     //std::cout << "Starting game " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;

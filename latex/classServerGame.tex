@@ -1,10 +1,19 @@
 \hypertarget{classServerGame}{}\doxysection{Server\+Game Class Reference}
 \label{classServerGame}\index{ServerGame@{ServerGame}}
+
+
+\mbox{\hyperlink{classServerGame}{Server\+Game}} managing all the parts launched by the clients.  
+
+
+
+
+{\ttfamily \#include $<$Server\+Game.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classServerGame_a6289742e368e9689ca7c9dd9a2fbc156}{Server\+Game}} (tcp\+Socket \&creator, std\+::size\+\_\+t id, udp\+::socket \&server\+Socket, boost\+::asio\+::io\+\_\+service \&service)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor for the class \mbox{\hyperlink{classServerGame}{Server\+Game}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classServerGame_ac27868b13aa57110f741a6e4f22c57f6}{run}} ()
 \item 
 void \mbox{\hyperlink{classServerGame_ad831815b91e7ee0182107be3507b5f2f}{start\+Game}} ()
@@ -13,6 +22,8 @@ void \mbox{\hyperlink{classServerGame_aeefa6506e7e3051012e2a430e5d9c587}{read\+P
 \item 
 \mbox{\Hypertarget{classServerGame_a71a6581224aa8a57a3881bdf383da38b}\label{classServerGame_a71a6581224aa8a57a3881bdf383da38b}} 
 void {\bfseries check\+Players} ()
+\item 
+void \mbox{\hyperlink{classServerGame_a4c9b69d07ea954bf201977296d350a01}{update\+Entities}} ()
 \item 
 void \mbox{\hyperlink{classServerGame_afe1d6d6f191c00f5c44c6c8f78bb716c}{update\+Endpoints}} (std\+::size\+\_\+t index, udp\+::endpoint ep)
 \item 
@@ -52,18 +63,38 @@ bool {\bfseries is\+Playing}
 \mbox{\Hypertarget{classServerGame_aa4c3fa57f7bf39aa20d7cf6a2ebf6730}\label{classServerGame_aa4c3fa57f7bf39aa20d7cf6a2ebf6730}} 
 std\+::size\+\_\+t {\bfseries \+\_\+game\+Id}
 \item 
+\mbox{\Hypertarget{classServerGame_a4699c164160062981fc071bf227ebfd0}\label{classServerGame_a4699c164160062981fc071bf227ebfd0}} 
+\mbox{\hyperlink{classClock}{Clock}} {\bfseries clock}
+\item 
 \mbox{\Hypertarget{classServerGame_a32a17c9c575ddca25c75e9f8c3855740}\label{classServerGame_a32a17c9c575ddca25c75e9f8c3855740}} 
-Engine\+::\+Entity\+Manager {\bfseries \+\_\+entity\+Manager}
+\mbox{\hyperlink{classEngine_1_1EntityManager}{Engine\+::\+Entity\+Manager}} {\bfseries \+\_\+entity\+Manager}
 \item 
 \mbox{\Hypertarget{classServerGame_a79591e2466e4b4fe25ed91f2dc07c957}\label{classServerGame_a79591e2466e4b4fe25ed91f2dc07c957}} 
 std\+::vector$<$ Entity $>$ {\bfseries \+\_\+server\+Entities}
+\item 
+\mbox{\Hypertarget{classServerGame_ac9f163850eee075d43bf21e5a3e70dbe}\label{classServerGame_ac9f163850eee075d43bf21e5a3e70dbe}} 
+std\+::vector$<$ Entity $>$ {\bfseries \+\_\+bullet\+Entities}
+\item 
+\mbox{\Hypertarget{classServerGame_a2f29b3492484f91f763a99655d4cd8c4}\label{classServerGame_a2f29b3492484f91f763a99655d4cd8c4}} 
+std\+::map$<$ std\+::size\+\_\+t, Entity $>$ {\bfseries \+\_\+players}
 \item 
 \mbox{\Hypertarget{classServerGame_a087e6705965ba88ec59655df13b11dd1}\label{classServerGame_a087e6705965ba88ec59655df13b11dd1}} 
 Engine\+::\+Position\+System {\bfseries \+\_\+position\+System}
 \item 
 \mbox{\Hypertarget{classServerGame_ae384050a2437e7ce4d178e5d77ac4392}\label{classServerGame_ae384050a2437e7ce4d178e5d77ac4392}} 
 Engine\+::\+Velocity\+System {\bfseries \+\_\+velocity\+System}
+\item 
+\mbox{\Hypertarget{classServerGame_a6df936ce9a0d159daf385f7cd3c436eb}\label{classServerGame_a6df936ce9a0d159daf385f7cd3c436eb}} 
+\mbox{\hyperlink{classEngine_1_1HitboxSystem}{Engine\+::\+Hitbox\+System}} {\bfseries \+\_\+hitbox\+System}
+\item 
+\mbox{\Hypertarget{classServerGame_a3927b6d1e5380db1a52231447a37b9d9}\label{classServerGame_a3927b6d1e5380db1a52231447a37b9d9}} 
+\mbox{\hyperlink{classEngine_1_1StatusSystem}{Engine\+::\+Status\+System}} {\bfseries \+\_\+status\+System}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classServerGame}{Server\+Game}} managing all the parts launched by the clients. 
+
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -73,7 +104,11 @@ Engine\+::\+Velocity\+System {\bfseries \+\_\+velocity\+System}
 \doxysubsubsection{\texorpdfstring{ServerGame()}{ServerGame()}}
 {\footnotesize\ttfamily Server\+Game\+::\+Server\+Game (\begin{DoxyParamCaption}\item[{tcp\+Socket \&}]{creator,  }\item[{std\+::size\+\_\+t}]{id,  }\item[{udp\+::socket \&}]{server\+Socket,  }\item[{boost\+::asio\+::io\+\_\+service \&}]{service }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Constructor for the class \mbox{\hyperlink{classServerGame}{Server\+Game}}. 
+
+
 \begin{DoxyParams}{Parameters}
 {\em param1} & tcp\+Socket \&creator \\
 \hline
@@ -139,7 +174,7 @@ Launch loop, call the functions necessary to read packets. \mbox{\Hypertarget{cl
 \doxysubsubsection{\texorpdfstring{startGame()}{startGame()}}
 {\footnotesize\ttfamily void Server\+Game\+::start\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Starts the game and sends all connected clients a packet informing them that the game has started. \mbox{\Hypertarget{classServerGame_afe1d6d6f191c00f5c44c6c8f78bb716c}\label{classServerGame_afe1d6d6f191c00f5c44c6c8f78bb716c}} 
+Start the game and send a packet to all the clients to signal it, create a player entity and set all the data necessary for its operation. \mbox{\Hypertarget{classServerGame_afe1d6d6f191c00f5c44c6c8f78bb716c}\label{classServerGame_afe1d6d6f191c00f5c44c6c8f78bb716c}} 
 \index{ServerGame@{ServerGame}!updateEndpoints@{updateEndpoints}}
 \index{updateEndpoints@{updateEndpoints}!ServerGame@{ServerGame}}
 \doxysubsubsection{\texorpdfstring{updateEndpoints()}{updateEndpoints()}}
@@ -152,7 +187,13 @@ Updates player sockets in the game.
 {\em param2} & udp\+::endpoint ep \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classServerGame_a4c9b69d07ea954bf201977296d350a01}\label{classServerGame_a4c9b69d07ea954bf201977296d350a01}} 
+\index{ServerGame@{ServerGame}!updateEntities@{updateEntities}}
+\index{updateEntities@{updateEntities}!ServerGame@{ServerGame}}
+\doxysubsubsection{\texorpdfstring{updateEntities()}{updateEntities()}}
+{\footnotesize\ttfamily void Server\+Game\+::update\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Starts the game and sends all connected clients a packet informing them that the game has started. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
