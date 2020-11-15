@@ -76,12 +76,10 @@ void ServerGame::iterateForCollision(Entity e, Engine::Position &pos, Engine::St
         //std::cout << "Bullet id is: " << e << " Ennemy id is: " << _ennemyEntities[i] << std::endl;
         if (!_statusSystem.Exist(_ennemyEntities[i])) continue; // Si l'ennemi a pas de status on skip
         if (status.type == Engine::DEAD || _statusSystem.getComponent(_ennemyEntities[i]).type == Engine::DEAD) continue; //Si un des deux est mort on skip
-        if (_hitboxSystem.collides(e, pos, _ennemyEntities[i], _positionSystem.getComponent(_ennemyEntities[i]))) {
-            if (!_statusSystem.Exist(_ennemyEntities[i])) {
-                std::cout << "collision !!!" << std::endl;
-                _statusSystem.setStatus(_ennemyEntities[i], Engine::DEAD);
-                status.type = Engine::DEAD;
-            }
+        if (_hitboxSystem.collides(e, pos, _ennemyEntities[i], _positionSystem.getComponent(_ennemyEntities[i])) == true) {
+            std::cout << "collision !!!" << std::endl;
+            _statusSystem.setStatus(_ennemyEntities[i], Engine::DEAD);
+            _statusSystem.setStatus(e, Engine::DEAD);
         }
     }
 }
@@ -267,7 +265,7 @@ void ServerGame::readPackages()
             _hitboxSystem.create(bullet);
             _statusSystem.create(bullet);
             // Les initialiser
-            _hitboxSystem.setHitbox(bullet, 64, 64, Engine::HitboxType::BULLET);
+            _hitboxSystem.setHitbox(bullet, 35, 15, Engine::HitboxType::BULLET);
             _velocitySystem.setVelocity(bullet, 20, 0);
             _positionSystem.setPosition(bullet, package->pos.x + 10, package->pos.y);
             _statusSystem.setStatus(bullet, Engine::ALIVE);
@@ -279,3 +277,83 @@ void ServerGame::readPackages()
         _packages.erase(_packages.begin());
     }
 }
+/*
+[COLLIDES] A.x: 50 A.y: 540 B.x: 710 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 70 A.y: 540 B.x: 700 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 90 A.y: 540 B.x: 690 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 110 A.y: 540 B.x: 680 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 130 A.y: 540 B.x: 670 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 150 A.y: 540 B.x: 660 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 170 A.y: 540 B.x: 650 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 190 A.y: 540 B.x: 640 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 210 A.y: 540 B.x: 630 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 230 A.y: 540 B.x: 620 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 250 A.y: 540 B.x: 610 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 270 A.y: 540 B.x: 600 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 290 A.y: 540 B.x: 590 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 310 A.y: 540 B.x: 580 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 330 A.y: 540 B.x: 570 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 350 A.y: 540 B.x: 560 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 370 A.y: 540 B.x: 550 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 390 A.y: 540 B.x: 540 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 410 A.y: 540 B.x: 530 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 430 A.y: 540 B.x: 520 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 450 A.y: 540 B.x: 510 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 470 A.y: 540 B.x: 500 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 490 A.y: 540 B.x: 490 B.y: 561 <---------------------------
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30 <----------------------
+[COLLIDES] A.x: 510 A.y: 540 B.x: 480 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 530 A.y: 540 B.x: 470 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 550 A.y: 540 B.x: 460 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 570 A.y: 540 B.x: 450 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 590 A.y: 540 B.x: 440 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 610 A.y: 540 B.x: 430 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 630 A.y: 540 B.x: 420 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 650 A.y: 540 B.x: 410 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 670 A.y: 540 B.x: 400 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 690 A.y: 540 B.x: 390 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 710 A.y: 540 B.x: 380 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 730 A.y: 540 B.x: 370 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 750 A.y: 540 B.x: 360 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 770 A.y: 540 B.x: 350 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 790 A.y: 540 B.x: 340 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+[COLLIDES] A.x: 810 A.y: 540 B.x: 330 B.y: 561
+[COLLIDES] Ahitbox.x: 3000 Ahitbox.y: 3000 Bhitbox.x: 70 Bhitbox.y: 30
+*/
