@@ -16,18 +16,32 @@
 #include "Entity.hpp"
 #include "PositionSystem.hpp"
 #include "VelocitySystem.hpp"
+#include "HitboxSystem.hpp"
+#include "StatusSystem.hpp"
 
 #include <vector>
 #include <iostream>
 #include <map>
 #include <boost/asio.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
+#include <chrono>
 
 using boost::asio::ip::tcp;
 using boost::asio::ip::udp;
 
 typedef std::shared_ptr<udp::socket> udpSocket;
 typedef std::shared_ptr<tcp::socket> tcpSocket;
+
+class Clock {
+    public:
+        Clock() : _t0(std::chrono::high_resolution_clock::now()), _t1(std::chrono::high_resolution_clock::now()) {};
+        ~Clock() = default;
+        void reset() { _t0 = std::chrono::high_resolution_clock::now(); _t1 = std::chrono::high_resolution_clock::now();}
+        void setTime() {_t1 = std::chrono::high_resolution_clock::now();};
+        int duration() const { return (std::chrono::duration_cast<std::chrono::milliseconds>( _t1 - _t0 ).count());};
+    private:
+        std::chrono::time_point<std::chrono::high_resolution_clock> _t0;
+        std::chrono::time_point<std::chrono::high_resolution_clock> _t1;
+};
 
 class ServerGame {
     public:
@@ -39,6 +53,7 @@ class ServerGame {
         void startGame();
         void readPackages();
         void checkPlayers();
+        void updateEntities();
 
         void updateEndpoints(std::size_t index, udp::endpoint ep)
         {
@@ -75,10 +90,15 @@ class ServerGame {
         std::size_t _gameId;
 
         //Game utils
+        Clock clock;
         Engine::EntityManager _entityManager;
         std::vector<Entity> _serverEntities;
+        std::vector<Entity> _bulletEntities;
+        std::map<std::size_t, Entity> _players;
         Engine::PositionSystem _positionSystem;
         Engine::VelocitySystem _velocitySystem;
+        Engine::HitboxSystem _hitboxSystem;
+        Engine::StatusSystem _statusSystem;
 };
 
 #endif /* !SERVERGAME_HPP_ */

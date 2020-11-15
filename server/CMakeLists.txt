@@ -29,6 +29,8 @@ file(GLOB SRC
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/server/include
+    ${PROJECT_SOURCE_DIR}/server/include/systems
+    ${PROJECT_SOURCE_DIR}/server/include/components
     ${PROJECT_SOURCE_DIR}/client/include
     ${PROJECT_SOURCE_DIR}/client/include/component
     ${PROJECT_SOURCE_DIR}/client/include/engine
