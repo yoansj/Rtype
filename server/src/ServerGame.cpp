@@ -73,7 +73,7 @@ void ServerGame::iterateForCollision(Entity e, Engine::Position &pos, Engine::St
 {
     for (std::size_t i = 0; i != _ennemyEntities.size(); i++) {
         if (!_statusSystem.Exist(_ennemyEntities[i])) continue; // Si l'ennemi a pas de status on skip
-        if (status.type == Engine::DEAD || _statusSystem.getComponent(_ennemyEntities[i]).type == Engine::DEAD) continue; //Si un des deux est mort on skip
+        //if (status.type == Engine::DEAD || _statusSystem.getComponent(_ennemyEntities[i]).type == Engine::DEAD) continue; //Si un des deux est mort on skip
         if (_hitboxSystem.collides(e, pos, _ennemyEntities[i], _positionSystem.getComponent(_ennemyEntities[i]))) {
             if (!_statusSystem.Exist(_ennemyEntities[i])) {
                 std::cout << "collision !!!" << std::endl;
@@ -100,7 +100,6 @@ void ServerGame::updateEntities()
 
         if (bulletPos.x >= 2000) {
             bulletStatus.type = Engine::DEAD;
-            std::cout << "Bullet is outside of the screen !" << std::endl;
         }
         shootEntity_t package = {
             SHOOT_ENTITY_PACKAGE,
@@ -117,14 +116,13 @@ void ServerGame::updateEntities()
                 _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(shootEntity_t)), endpoint->second, 0, error);
         }
         if (bulletStatus.type == Engine::DEAD) {
-            std::cout << "Destroying components of bullet !" << std::endl;
             _positionSystem.destroy(_bulletEntities[i]);
             _velocitySystem.destroy(_bulletEntities[i]);
             _hitboxSystem.destroy(_bulletEntities[i]);
             _statusSystem.destroy(_bulletEntities[i]);
             _entitiesToDestroy.push_back(i);
         }
-        //iterateForCollision(_bulletEntities[i], bulletPos, bulletStatus);
+        iterateForCollision(_bulletEntities[i], bulletPos, bulletStatus);
     }
     // Update des monstres
     for (std::size_t i = 0; i != _ennemyEntities.size(); i++) {
@@ -138,7 +136,6 @@ void ServerGame::updateEntities()
 
         if (monsterPos.x <= -100) {
             monsterStatus.type = Engine::DEAD;
-            std::cout << "Monster is outside of the screen !" << std::endl;
         }
 
         monsterEntity_t package = {
@@ -157,12 +154,11 @@ void ServerGame::updateEntities()
                 _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(monsterEntity_t)), endpoint->second, 0, error);
         }
         if (monsterStatus.type == Engine::DEAD) {
-            std::cout << "Destroying components of monster !" << std::endl;
             _positionSystem.destroy(_ennemyEntities[i]);
             _velocitySystem.destroy(_ennemyEntities[i]);
             _hitboxSystem.destroy(_ennemyEntities[i]);
             _statusSystem.destroy(_ennemyEntities[i]);
-            //_entitiesToDestroy.push_back(i);
+            _ennemiesToDestroy.push_back(i);
         }
     }
 }
@@ -174,6 +170,11 @@ void ServerGame::destroyEntities()
             _bulletEntities.erase(_bulletEntities.begin() + _entitiesToDestroy[i]);
     }
     _entitiesToDestroy.clear();
+    for (std::size_t i = 0; i != _ennemiesToDestroy.size(); i++) {
+        if (std::find(_ennemyEntities.begin(), _ennemyEntities.end(), _ennemiesToDestroy[i]) != _ennemyEntities.end())
+            _ennemyEntities.erase(_ennemyEntities.begin() + _entitiesToDestroy[i]);
+    }
+    _ennemiesToDestroy.clear();
 }
 
 /** Start the game and send a packet to all the clients to signal it, create a player entity and set all the data necessary for its operation.

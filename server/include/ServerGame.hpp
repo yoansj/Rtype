@@ -134,6 +134,7 @@ class ServerGame {
         bool isPlaying;
         std::size_t _gameId;
         std::vector<std::size_t> _entitiesToDestroy;
+        std::vector<std::size_t> _ennemiesToDestroy;
         std::vector<Entity> _bulletEntities;
         std::vector<Entity> _ennemyEntities;
         std::vector<std::string> _libsToLoad;

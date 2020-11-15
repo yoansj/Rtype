@@ -8,6 +8,7 @@
 #ifndef SYSTEM_HPP_
 #define SYSTEM_HPP_
 
+#include <iostream>
 #include "ComponentManager.hpp"
 
 namespace Engine {
@@ -50,6 +51,7 @@ namespace Engine {
              * @return AbstractComponent &
              */
             AbstractComponent &getComponent(Entity e) {
+                std::cout << "Get of component: " << e << std::endl;
                 return (_components.getComponent(e));
             }
 
