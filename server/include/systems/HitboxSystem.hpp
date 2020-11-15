@@ -61,6 +61,15 @@ namespace Engine {
                 auto &aHitbox = _components.getComponent(a);
                 auto &bHitbox = _components.getComponent(b);
 
+                std::cout << "[COLLIDES] A.x: " << aPos.x << " A.y: " << aPos.y << " B.x: " << bPos.x << " B.y: " << bPos.y << std::endl;
+                if (aPos.x < bPos.x + bHitbox.width &&
+                    aPos.x + aHitbox.width > bPos.x &&
+                    aPos.y < bPos.y + bHitbox.height &&
+                    aHitbox.height + aPos.y > bPos.y) {
+                    return (true);
+                }
+                return (false);
+
                 if (aPos.x < bPos.x + bHitbox.width &&
                 aPos.x + aHitbox.width > bPos.x &&
                 aPos.y < bPos.y + bHitbox.height &&
