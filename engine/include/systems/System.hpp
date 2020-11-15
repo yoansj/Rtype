@@ -13,9 +13,12 @@
 namespace Engine {
 
     /**
-     * This class represents the Systems of our engine
-     * Each system has its own component type and contain a vector of components
+     * @brief
+     * This class represents the Systems of our Engine
+     * Each system has its own Component type and contain a vector of components
      * The systems that inherit this class must implement the update function
+     * 
+     * @tparam AbstractComponent
      */
     template<class AbstractComponent>
     class System {
@@ -25,8 +28,8 @@ namespace Engine {
 
             /**
              * Create a entity.
-             * @param params1 Entity e
-             * @return value AbstractComponent &
+             * @param Entity e
+             * @return AbstractComponent &
              */
             AbstractComponent &create(Entity e) {
                 return (_components.create(e));
@@ -34,8 +37,8 @@ namespace Engine {
 
             /**
              * Destroy a entity.
-             * @param params1 Entity e
-             * @return value bool
+             * @param Entity e
+             * @return bool
              */
             bool destroy(Entity e) {
                 return (_components.destroy(e));
@@ -43,8 +46,8 @@ namespace Engine {
 
             /**
              * Get component entity
-             * @param params1 Entity e
-             * @return value AbstractComponent &
+             * @param Entity e
+             * @return AbstractComponent &
              */
             AbstractComponent &getComponent(Entity e) {
                 return (_components.getComponent(e));
@@ -52,7 +55,7 @@ namespace Engine {
 
             /**
              * Get all component entity.
-             * @return value size_t
+             * @return size_t
              */
             size_t size() {
                 return (_components.size());
@@ -68,7 +71,7 @@ namespace Engine {
 
             /**
              * Get all components.
-             * @return value std::vector<AbstractComponent>
+             * @return std::vector<AbstractComponent>
              */
             std::vector<AbstractComponent> &getComponents() {
                 return (_components.getComponents());

@@ -245,7 +245,7 @@ Engine::VelocitySystem&#160;</td><td class="memItemRight" valign="bottom"><b>_ve
 </div><div class="memdoc">
 <p>Add a package to the game package list. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>package const &amp;pck </td></tr>
+    <tr><td class="paramname">package</td><td>const &amp;pck </td></tr>
   </table>
   </dd>
 </dl>
@@ -277,11 +277,11 @@ Engine::VelocitySystem&#160;</td><td class="memItemRight" valign="bottom"><b>_ve
 </div><div class="memdoc">
 <p>Add a player to the game </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>tcpSocket &amp;p </td></tr>
+    <tr><td class="paramname">tcpSocket</td><td>&amp;p </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>value std::size_t </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>std::size_t </dd></dl>
 
 </div>
 </div>
@@ -307,7 +307,7 @@ Engine::VelocitySystem&#160;</td><td class="memItemRight" valign="bottom"><b>_ve
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Return the gameId </p><dl class="section return"><dt>Returns</dt><dd>value std::size_t </dd></dl>
+<p>Return the gameId </p><dl class="section return"><dt>Returns</dt><dd>std::size_t </dd></dl>
 
 </div>
 </div>
@@ -400,8 +400,8 @@ Engine::VelocitySystem&#160;</td><td class="memItemRight" valign="bottom"><b>_ve
 </div><div class="memdoc">
 <p>Updates player sockets in the game. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>std::size_t index </td></tr>
-    <tr><td class="paramname">param2</td><td>udp::endpoint ep </td></tr>
+    <tr><td class="paramname">std::size_t</td><td>index </td></tr>
+    <tr><td class="paramname">udp::endpoint</td><td>ep </td></tr>
   </table>
   </dd>
 </dl>

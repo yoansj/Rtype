@@ -30,7 +30,7 @@ namespace Engine {
         /**
          * @brief Construct a new Hitbox object
          * 
-         * @param params1 Entity e 
+         * @param Entity e 
          */
         Hitbox(Entity e) : Component(e) {entity = e;};
 

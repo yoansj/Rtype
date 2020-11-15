@@ -130,7 +130,7 @@ Constructor for the class \mbox{\hyperlink{classServerGame}{Server\+Game}}.
 
 Add a package to the game package list. 
 \begin{DoxyParams}{Parameters}
-{\em param1} & package const \&pck \\
+{\em package} & const \&pck \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classServerGame_a53ea9c6bf3ae7760c4e3c6e565dec750}\label{classServerGame_a53ea9c6bf3ae7760c4e3c6e565dec750}} 
@@ -141,11 +141,11 @@ Add a package to the game package list.
 
 Add a player to the game 
 \begin{DoxyParams}{Parameters}
-{\em param1} & tcp\+Socket \&p \\
+{\em tcp\+Socket} & \&p \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-value std\+::size\+\_\+t 
+std\+::size\+\_\+t 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classServerGame_a68deab5c2ce431249cea1a32043d9590}\label{classServerGame_a68deab5c2ce431249cea1a32043d9590}} 
 \index{ServerGame@{ServerGame}!getId@{getId}}
@@ -154,7 +154,7 @@ value std\+::size\+\_\+t
 {\footnotesize\ttfamily std\+::size\+\_\+t Server\+Game\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Return the game\+Id \begin{DoxyReturn}{Returns}
-value std\+::size\+\_\+t 
+std\+::size\+\_\+t 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classServerGame_aeefa6506e7e3051012e2a430e5d9c587}\label{classServerGame_aeefa6506e7e3051012e2a430e5d9c587}} 
 \index{ServerGame@{ServerGame}!readPackages@{readPackages}}
@@ -182,9 +182,9 @@ Start the game and send a packet to all the clients to signal it, create a playe
 
 Updates player sockets in the game. 
 \begin{DoxyParams}{Parameters}
-{\em param1} & std\+::size\+\_\+t index \\
+{\em std\+::size\+\_\+t} & index \\
 \hline
-{\em param2} & udp\+::endpoint ep \\
+{\em udp\+::endpoint} & ep \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classServerGame_a4c9b69d07ea954bf201977296d350a01}\label{classServerGame_a4c9b69d07ea954bf201977296d350a01}} 

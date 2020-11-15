@@ -35,10 +35,10 @@ namespace Engine {
             /**
              * @brief Set the Hitbox object
              * 
-             * @param params1 Entity e 
-             * @param params2 float w 
-             * @param params3 float h 
-             * @param params4 HitboxType type 
+             * @param Entity e 
+             * @param float w 
+             * @param float h 
+             * @param HitboxType type 
              */
             void setHitbox(Entity e, float w, float h, HitboxType type) {
                 auto &hb = _components.getComponent(e);

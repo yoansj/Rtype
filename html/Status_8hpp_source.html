@@ -81,9 +81,9 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;Component.hpp&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceEngine.html">Engine</a> {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span>Engine {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespaceEngine.html#a80a8ba8b9f6858b589c7feae583b5539">   19</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="namespaceEngine.html#a80a8ba8b9f6858b589c7feae583b5539">StatusType</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">enum</span> StatusType {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        ALIVE,</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        DEAD,</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    };</div>
@@ -92,7 +92,7 @@ $(function() {
 <div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structEngine_1_1Status.html#aed7b4e0e802fc7b3169d1d7176470a96">   34</a></span>&#160;        <a class="code" href="structEngine_1_1Status.html#aed7b4e0e802fc7b3169d1d7176470a96">Status</a>(Entity e) : <a class="code" href="classEngine_1_1Component.html">Component</a>(e) {entity = e;};</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="structEngine_1_1Status.html#abc3b3baea044e766788d4be64f283635">Status</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="namespaceEngine.html#a80a8ba8b9f6858b589c7feae583b5539">StatusType</a> type;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        StatusType type;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    };</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
@@ -100,11 +100,9 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !STATUS_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astructEngine_1_1Status_html_abc3b3baea044e766788d4be64f283635"><div class="ttname"><a href="structEngine_1_1Status.html#abc3b3baea044e766788d4be64f283635">Engine::Status::Status</a></div><div class="ttdeci">Status()=default</div><div class="ttdoc">Construct a new Status object.</div></div>
-<div class="ttc" id="aclassEngine_1_1Component_html"><div class="ttname"><a href="classEngine_1_1Component.html">Engine::Component</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:20</div></div>
+<div class="ttc" id="aclassEngine_1_1Component_html"><div class="ttname"><a href="classEngine_1_1Component.html">Engine::Component</a></div><div class="ttdoc">Base class for all of our components A Component is a data structure that belongs to an entity All co...</div><div class="ttdef"><b>Definition:</b> Component.hpp:21</div></div>
 <div class="ttc" id="astructEngine_1_1Status_html_aed7b4e0e802fc7b3169d1d7176470a96"><div class="ttname"><a href="structEngine_1_1Status.html#aed7b4e0e802fc7b3169d1d7176470a96">Engine::Status::Status</a></div><div class="ttdeci">Status(Entity e)</div><div class="ttdoc">Construct a new Status object.</div><div class="ttdef"><b>Definition:</b> Status.hpp:34</div></div>
-<div class="ttc" id="anamespaceEngine_html_a80a8ba8b9f6858b589c7feae583b5539"><div class="ttname"><a href="namespaceEngine.html#a80a8ba8b9f6858b589c7feae583b5539">Engine::StatusType</a></div><div class="ttdeci">StatusType</div><div class="ttdoc">Enum to know the status of an entity.</div><div class="ttdef"><b>Definition:</b> Status.hpp:19</div></div>
 <div class="ttc" id="astructEngine_1_1Status_html"><div class="ttname"><a href="structEngine_1_1Status.html">Engine::Status</a></div><div class="ttdoc">Status component.</div><div class="ttdef"><b>Definition:</b> Status.hpp:28</div></div>
-<div class="ttc" id="anamespaceEngine_html"><div class="ttname"><a href="namespaceEngine.html">Engine</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:13</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

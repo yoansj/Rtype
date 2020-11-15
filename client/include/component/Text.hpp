@@ -16,6 +16,10 @@
 
 namespace Engine {
 
+    /**
+     * @brief Component Text
+     * 
+     */
     struct Text : public Component {
         //Filepath of the texture
         std::string filepath;

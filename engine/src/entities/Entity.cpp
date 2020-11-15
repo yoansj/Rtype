@@ -25,8 +25,8 @@ Entity Engine::EntityManager::create() {
 /**
  * @brief Remove a entity from the engine.
  * 
- * @param params1 Entity e
- * @return value bool 
+ * @param Entity e
+ * @return bool 
  */
 bool Engine::EntityManager::remove(Entity e) {
     const auto it = std::find(begin(_entityList), end(_entityList), e);

@@ -35,8 +35,8 @@ namespace Engine {
             /**
              * @brief Set the Status Entity
              * 
-             * @param params1 Entity e
-             * @param params2 StatusType type
+             * @param Entity e
+             * @param StatusType type
              */
             void setStatus(Entity e, StatusType type) {
                 auto &hb = _components.getComponent(e);
@@ -47,8 +47,8 @@ namespace Engine {
             /**
              * @brief Get the Status Entity
              * 
-             * @param params1 Entity e
-             * @return value Status&
+             * @param Entity e
+             * @return Status&
              */
             Status &getStatus(Entity e) {
                 return (

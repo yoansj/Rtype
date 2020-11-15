@@ -1,0 +1,150 @@
+\hypertarget{classEngine_1_1System}{}\doxysection{Engine\+::System$<$ Abstract\+Component $>$ Class Template Reference}
+\label{classEngine_1_1System}\index{Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}}
+
+
+This class represents the Systems of our \mbox{\hyperlink{classEngine_1_1Engine}{Engine}} Each system has its own \mbox{\hyperlink{classEngine_1_1Component}{Component}} type and contain a vector of components The systems that inherit this class must implement the update function.  
+
+
+
+
+{\ttfamily \#include $<$System.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Abstract\+Component \& \mbox{\hyperlink{classEngine_1_1System_a942017971f4e725db09c7f1cb5a83c69}{create}} (Entity e)
+\item 
+bool \mbox{\hyperlink{classEngine_1_1System_afdc866095b8224a694c94bfc7609006a}{destroy}} (Entity e)
+\item 
+Abstract\+Component \& \mbox{\hyperlink{classEngine_1_1System_a215170ab1c06bb461c2b770112fa3bdc}{get\+Component}} (Entity e)
+\item 
+size\+\_\+t \mbox{\hyperlink{classEngine_1_1System_aca96772d35326632eae2f3721fd5dd8c}{size}} ()
+\item 
+virtual void \mbox{\hyperlink{classEngine_1_1System_a77354dfeb647b52b098c1b74cb3ad9d4}{update}} ()
+\item 
+std\+::vector$<$ Abstract\+Component $>$ \& \mbox{\hyperlink{classEngine_1_1System_a971960afffac25d8e28c6edb3f3c37d7}{get\+Components}} ()
+\item 
+bool \mbox{\hyperlink{classEngine_1_1System_a00278e7b6d44ed3910712c13cc00fb2f}{Exist}} (Entity e)
+\begin{DoxyCompactList}\small\item\em Check if a component exist. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1System_ae6bdce466be86552b4261bcf7b465016}\label{classEngine_1_1System_ae6bdce466be86552b4261bcf7b465016}} 
+\mbox{\hyperlink{classComponentManager}{Component\+Manager}}$<$ Abstract\+Component $>$ {\bfseries \+\_\+components}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Abstract\+Component$>$\newline
+class Engine\+::\+System$<$ Abstract\+Component $>$}
+
+This class represents the Systems of our \mbox{\hyperlink{classEngine_1_1Engine}{Engine}} Each system has its own \mbox{\hyperlink{classEngine_1_1Component}{Component}} type and contain a vector of components The systems that inherit this class must implement the update function. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Abstract\+Component} & \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEngine_1_1System_a942017971f4e725db09c7f1cb5a83c69}\label{classEngine_1_1System_a942017971f4e725db09c7f1cb5a83c69}} 
+\index{Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}!create@{create}}
+\index{create@{create}!Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+Abstract\+Component\& \mbox{\hyperlink{classEngine_1_1System}{Engine\+::\+System}}$<$ Abstract\+Component $>$\+::create (\begin{DoxyParamCaption}\item[{Entity}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a entity. 
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Abstract\+Component \& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1System_afdc866095b8224a694c94bfc7609006a}\label{classEngine_1_1System_afdc866095b8224a694c94bfc7609006a}} 
+\index{Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}!destroy@{destroy}}
+\index{destroy@{destroy}!Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{destroy()}{destroy()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+bool \mbox{\hyperlink{classEngine_1_1System}{Engine\+::\+System}}$<$ Abstract\+Component $>$\+::destroy (\begin{DoxyParamCaption}\item[{Entity}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destroy a entity. 
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1System_a00278e7b6d44ed3910712c13cc00fb2f}\label{classEngine_1_1System_a00278e7b6d44ed3910712c13cc00fb2f}} 
+\index{Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}!Exist@{Exist}}
+\index{Exist@{Exist}!Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{Exist()}{Exist()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+bool \mbox{\hyperlink{classEngine_1_1System}{Engine\+::\+System}}$<$ Abstract\+Component $>$\+::Exist (\begin{DoxyParamCaption}\item[{Entity}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if a component exist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params1} & Entity e \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1System_a215170ab1c06bb461c2b770112fa3bdc}\label{classEngine_1_1System_a215170ab1c06bb461c2b770112fa3bdc}} 
+\index{Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}!getComponent@{getComponent}}
+\index{getComponent@{getComponent}!Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+Abstract\+Component\& \mbox{\hyperlink{classEngine_1_1System}{Engine\+::\+System}}$<$ Abstract\+Component $>$\+::get\+Component (\begin{DoxyParamCaption}\item[{Entity}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get component entity 
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Abstract\+Component \& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1System_a971960afffac25d8e28c6edb3f3c37d7}\label{classEngine_1_1System_a971960afffac25d8e28c6edb3f3c37d7}} 
+\index{Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}!getComponents@{getComponents}}
+\index{getComponents@{getComponents}!Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{getComponents()}{getComponents()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+std\+::vector$<$Abstract\+Component$>$\& \mbox{\hyperlink{classEngine_1_1System}{Engine\+::\+System}}$<$ Abstract\+Component $>$\+::get\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get all components. \begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Abstract\+Component$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1System_aca96772d35326632eae2f3721fd5dd8c}\label{classEngine_1_1System_aca96772d35326632eae2f3721fd5dd8c}} 
+\index{Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}!size@{size}}
+\index{size@{size}!Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+size\+\_\+t \mbox{\hyperlink{classEngine_1_1System}{Engine\+::\+System}}$<$ Abstract\+Component $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get all component entity. \begin{DoxyReturn}{Returns}
+size\+\_\+t 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1System_a77354dfeb647b52b098c1b74cb3ad9d4}\label{classEngine_1_1System_a77354dfeb647b52b098c1b74cb3ad9d4}} 
+\index{Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}!update@{update}}
+\index{update@{update}!Engine::System$<$ AbstractComponent $>$@{Engine::System$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+virtual void \mbox{\hyperlink{classEngine_1_1System}{Engine\+::\+System}}$<$ Abstract\+Component $>$\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update every function implement in system. 
+
+Reimplemented in \mbox{\hyperlink{classEngine_1_1HitboxSystem_a36e4d445884e4153bc3e26e7a17f7b0e}{Engine\+::\+Hitbox\+System}}, and \mbox{\hyperlink{classEngine_1_1StatusSystem_ac1465d97a8c3588826e2fdf5b81c1136}{Engine\+::\+Status\+System}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/include/systems/System.\+hpp\end{DoxyCompactItemize}

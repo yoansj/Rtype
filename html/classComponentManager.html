@@ -70,6 +70,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classComponentManager.html" title="ComponentManager which manages the creation, destruction of Component.">ComponentManager</a> which manages the creation, destruction of Component.  
+ <a href="classComponentManager.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ComponentManager_8hpp_source.html">ComponentManager.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -98,7 +101,13 @@ std::vector&lt; AbstractComponent &gt;&#160;</td><td class="memItemRight" valign
 <div class="textblock"><h3>template&lt;class AbstractComponent&gt;<br />
 class ComponentManager&lt; AbstractComponent &gt;</h3>
 
-<p><a class="el" href="classComponentManager.html">ComponentManager</a> which manages the creation, destruction of components. </p>
+<p><a class="el" href="classComponentManager.html" title="ComponentManager which manages the creation, destruction of Component.">ComponentManager</a> which manages the creation, destruction of Component. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">AbstractComponent</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae6235b3959d3df07b25766f18621b0e6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae6235b3959d3df07b25766f18621b0e6">&#9670;&nbsp;</a></span>create()</h2>
@@ -127,11 +136,11 @@ template&lt;class AbstractComponent &gt; </div>
 </div><div class="memdoc">
 <p>Create Entity and return it. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>Entity e </td></tr>
+    <tr><td class="paramname">Entity</td><td>e </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>value AbstractComponent </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>AbstractComponent </dd></dl>
 
 </div>
 </div>
@@ -162,11 +171,11 @@ template&lt;class AbstractComponent &gt; </div>
 </div><div class="memdoc">
 <p>Delete Entity and confirm deletion. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>Entity &amp;e </td></tr>
+    <tr><td class="paramname">Entity</td><td>&amp;e </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>value bool </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
 
 </div>
 </div>
@@ -197,11 +206,11 @@ template&lt;class AbstractComponent &gt; </div>
 </div><div class="memdoc">
 <p>Check if a component entity exist. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>Entity e </td></tr>
+    <tr><td class="paramname">Entity</td><td>e </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>value bool </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
 
 </div>
 </div>
@@ -257,7 +266,7 @@ template&lt;class AbstractComponent &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Return the size of components. </p><dl class="section return"><dt>Returns</dt><dd>value size_t </dd></dl>
+<p>Return the size of components. </p><dl class="section return"><dt>Returns</dt><dd>size_t </dd></dl>
 
 </div>
 </div>

@@ -15,7 +15,10 @@
 #include "Component.hpp"
 
 /**
- * ComponentManager which manages the creation, destruction of components.
+ * @brief
+ * ComponentManager which manages the creation, destruction of Component.
+ * 
+ * @tparam AbstractComponent 
  */
 template<class AbstractComponent>
 class ComponentManager {
@@ -24,8 +27,8 @@ class ComponentManager {
         ~ComponentManager() = default;
 
         /** Create Entity and return it.
-            @param param1 Entity e
-            @return value AbstractComponent
+            @param Entity e
+            @return AbstractComponent
         */
         AbstractComponent &create(Entity e) {
             _components.push_back(AbstractComponent(e));
@@ -34,8 +37,8 @@ class ComponentManager {
         }
 
         /** Delete Entity and confirm deletion.
-            @param param1 Entity &e
-            @return value bool
+            @param Entity &e
+            @return bool
         */
         bool destroy(Entity &e) {
             for (int i = 0; i != _components.size(); i++) {
@@ -48,7 +51,7 @@ class ComponentManager {
         }
 
         /** Return the size of components.
-            @return value size_t
+            @return size_t
         */
         size_t size() {return(_components.size());};
 
@@ -69,8 +72,8 @@ class ComponentManager {
         }
 
         /** Check if a component entity exist.
-         * @param param1 Entity e
-         * @return value bool
+         * @param Entity e
+         * @return bool
         */
         bool Exist(Entity e) {
             for (int i = 0; i != _components.size(); i++) {

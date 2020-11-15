@@ -2,6 +2,11 @@
 \label{classComponentManager}\index{ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}}
 
 
+\mbox{\hyperlink{classComponentManager}{Component\+Manager}} which manages the creation, destruction of Component.  
+
+
+
+
 {\ttfamily \#include $<$Component\+Manager.\+hpp$>$}
 
 \doxysubsection*{Public Member Functions}
@@ -32,7 +37,14 @@ std\+::vector$<$ Abstract\+Component $>$ {\bfseries \+\_\+components}
 \subsubsection*{template$<$class Abstract\+Component$>$\newline
 class Component\+Manager$<$ Abstract\+Component $>$}
 
-\mbox{\hyperlink{classComponentManager}{Component\+Manager}} which manages the creation, destruction of components. 
+\mbox{\hyperlink{classComponentManager}{Component\+Manager}} which manages the creation, destruction of Component. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Abstract\+Component} & \\
+\hline
+\end{DoxyTemplParams}
+
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classComponentManager_ae6235b3959d3df07b25766f18621b0e6}\label{classComponentManager_ae6235b3959d3df07b25766f18621b0e6}} 
@@ -44,11 +56,11 @@ Abstract\+Component\& \mbox{\hyperlink{classComponentManager}{Component\+Manager
 
 Create Entity and return it. 
 \begin{DoxyParams}{Parameters}
-{\em param1} & Entity e \\
+{\em Entity} & e \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-value Abstract\+Component 
+Abstract\+Component 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classComponentManager_a9db4b8d089bc48431894befdd21c3cb5}\label{classComponentManager_a9db4b8d089bc48431894befdd21c3cb5}} 
 \index{ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}!destroy@{destroy}}
@@ -59,11 +71,11 @@ bool \mbox{\hyperlink{classComponentManager}{Component\+Manager}}$<$ Abstract\+C
 
 Delete Entity and confirm deletion. 
 \begin{DoxyParams}{Parameters}
-{\em param1} & Entity \&e \\
+{\em Entity} & \&e \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-value bool 
+bool 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classComponentManager_a0780b55d03e391ed22c59fbab94de55c}\label{classComponentManager_a0780b55d03e391ed22c59fbab94de55c}} 
 \index{ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}!Exist@{Exist}}
@@ -74,11 +86,11 @@ bool \mbox{\hyperlink{classComponentManager}{Component\+Manager}}$<$ Abstract\+C
 
 Check if a component entity exist. 
 \begin{DoxyParams}{Parameters}
-{\em param1} & Entity e \\
+{\em Entity} & e \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-value bool 
+bool 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classComponentManager_a15b96bb688c1a07421973a5bcd2c5765}\label{classComponentManager_a15b96bb688c1a07421973a5bcd2c5765}} 
 \index{ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}!getComponents@{getComponents}}
@@ -98,7 +110,7 @@ std\+::vector$<$\+Abstract\+Component$>$
 size\+\_\+t \mbox{\hyperlink{classComponentManager}{Component\+Manager}}$<$ Abstract\+Component $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Return the size of components. \begin{DoxyReturn}{Returns}
-value size\+\_\+t 
+size\+\_\+t 
 \end{DoxyReturn}
 
 

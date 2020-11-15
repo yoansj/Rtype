@@ -2,7 +2,7 @@
 \label{classEngine_1_1HitboxSystem}\index{Engine::HitboxSystem@{Engine::HitboxSystem}}
 
 
-System used for collisions.  
+\mbox{\hyperlink{classEngine_1_1System}{System}} used for collisions.  
 
 
 
@@ -19,20 +19,20 @@ Inheritance diagram for Engine\+::Hitbox\+System\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classEngine_1_1HitboxSystem_a711151d71b577ac1705dcb2076df4bf0}{Hitbox\+System}} ()
-\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} System object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} \mbox{\hyperlink{classEngine_1_1System}{System}} object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classEngine_1_1HitboxSystem_abb20f7919cb656314c076237eaf1693a}{$\sim$\+Hitbox\+System}} ()=default
-\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} System object. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classEngine_1_1HitboxSystem_a36e4d445884e4153bc3e26e7a17f7b0e}\label{classEngine_1_1HitboxSystem_a36e4d445884e4153bc3e26e7a17f7b0e}} 
-void {\bfseries update} () override
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} \mbox{\hyperlink{classEngine_1_1System}{System}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1HitboxSystem_a36e4d445884e4153bc3e26e7a17f7b0e}{update}} () override
 \item 
-void \mbox{\hyperlink{classEngine_1_1HitboxSystem_abd30de7bb3a5e4c2412008f56d1eb93d}{set\+Hitbox}} (Entity e, float w, float h, \mbox{\hyperlink{namespaceEngine_a94379d0fc8485befcc85c42c18cce395}{Hitbox\+Type}} type)
+void \mbox{\hyperlink{classEngine_1_1HitboxSystem_abd30de7bb3a5e4c2412008f56d1eb93d}{set\+Hitbox}} (Entity e, float w, float h, Hitbox\+Type type)
 \begin{DoxyCompactList}\small\item\em Set the \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} object. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classEngine_1_1HitboxSystem_adf37ce3325f75a55aecfb8c91ada1e34}{collides}} (Entity a, Position a\+Pos, Entity b, Position b\+Pos)
+bool \mbox{\hyperlink{classEngine_1_1HitboxSystem_adf37ce3325f75a55aecfb8c91ada1e34}{collides}} (Entity a, \mbox{\hyperlink{structEngine_1_1Position}{Position}} a\+Pos, Entity b, \mbox{\hyperlink{structEngine_1_1Position}{Position}} b\+Pos)
 \begin{DoxyCompactList}\small\item\em Checks if the entity collides with another entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
-System used for collisions. 
+\mbox{\hyperlink{classEngine_1_1System}{System}} used for collisions. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classEngine_1_1HitboxSystem_a711151d71b577ac1705dcb2076df4bf0}\label{classEngine_1_1HitboxSystem_a711151d71b577ac1705dcb2076df4bf0}} 
@@ -43,7 +43,7 @@ System used for collisions.
 
 
 
-Construct a new \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} System object. 
+Construct a new \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} \mbox{\hyperlink{classEngine_1_1System}{System}} object. 
 
 \mbox{\Hypertarget{classEngine_1_1HitboxSystem_abb20f7919cb656314c076237eaf1693a}\label{classEngine_1_1HitboxSystem_abb20f7919cb656314c076237eaf1693a}} 
 \index{Engine::HitboxSystem@{Engine::HitboxSystem}!````~HitboxSystem@{$\sim$HitboxSystem}}
@@ -53,7 +53,7 @@ Construct a new \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} System object.
 
 
 
-Destroy the \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} System object. 
+Destroy the \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} \mbox{\hyperlink{classEngine_1_1System}{System}} object. 
 
 
 
@@ -62,7 +62,7 @@ Destroy the \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} System object.
 \index{Engine::HitboxSystem@{Engine::HitboxSystem}!collides@{collides}}
 \index{collides@{collides}!Engine::HitboxSystem@{Engine::HitboxSystem}}
 \doxysubsubsection{\texorpdfstring{collides()}{collides()}}
-{\footnotesize\ttfamily bool Engine\+::\+Hitbox\+System\+::collides (\begin{DoxyParamCaption}\item[{Entity}]{a,  }\item[{Position}]{a\+Pos,  }\item[{Entity}]{b,  }\item[{Position}]{b\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool Engine\+::\+Hitbox\+System\+::collides (\begin{DoxyParamCaption}\item[{Entity}]{a,  }\item[{\mbox{\hyperlink{structEngine_1_1Position}{Position}}}]{a\+Pos,  }\item[{Entity}]{b,  }\item[{\mbox{\hyperlink{structEngine_1_1Position}{Position}}}]{b\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -72,11 +72,11 @@ Checks if the entity collides with another entity.
 \begin{DoxyParams}{Parameters}
 {\em params1} & Entity a \\
 \hline
-{\em params2} & Position a\+Pos \\
+{\em params2} & \mbox{\hyperlink{structEngine_1_1Position}{Position}} a\+Pos \\
 \hline
 {\em params3} & Entity b \\
 \hline
-{\em params4} & Position b\+Pos \\
+{\em params4} & \mbox{\hyperlink{structEngine_1_1Position}{Position}} b\+Pos \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -86,7 +86,7 @@ value bool
 \index{Engine::HitboxSystem@{Engine::HitboxSystem}!setHitbox@{setHitbox}}
 \index{setHitbox@{setHitbox}!Engine::HitboxSystem@{Engine::HitboxSystem}}
 \doxysubsubsection{\texorpdfstring{setHitbox()}{setHitbox()}}
-{\footnotesize\ttfamily void Engine\+::\+Hitbox\+System\+::set\+Hitbox (\begin{DoxyParamCaption}\item[{Entity}]{e,  }\item[{float}]{w,  }\item[{float}]{h,  }\item[{\mbox{\hyperlink{namespaceEngine_a94379d0fc8485befcc85c42c18cce395}{Hitbox\+Type}}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Engine\+::\+Hitbox\+System\+::set\+Hitbox (\begin{DoxyParamCaption}\item[{Entity}]{e,  }\item[{float}]{w,  }\item[{float}]{h,  }\item[{Hitbox\+Type}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -94,15 +94,25 @@ Set the \mbox{\hyperlink{structEngine_1_1Hitbox}{Hitbox}} object.
 
 
 \begin{DoxyParams}{Parameters}
-{\em params1} & Entity e \\
+{\em Entity} & e \\
 \hline
-{\em params2} & float w \\
+{\em float} & w \\
 \hline
-{\em params3} & float h \\
+{\em float} & h \\
 \hline
-{\em params4} & Hitbox\+Type type \\
+{\em Hitbox\+Type} & type \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1HitboxSystem_a36e4d445884e4153bc3e26e7a17f7b0e}\label{classEngine_1_1HitboxSystem_a36e4d445884e4153bc3e26e7a17f7b0e}} 
+\index{Engine::HitboxSystem@{Engine::HitboxSystem}!update@{update}}
+\index{update@{update}!Engine::HitboxSystem@{Engine::HitboxSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Engine\+::\+Hitbox\+System\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Update every function implement in system. 
+
+Reimplemented from \mbox{\hyperlink{classEngine_1_1System_a77354dfeb647b52b098c1b74cb3ad9d4}{Engine\+::\+System$<$ Hitbox $>$}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

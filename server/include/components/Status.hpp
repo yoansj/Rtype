@@ -29,7 +29,7 @@ namespace Engine {
         /**
          * @brief Construct a new Status object
          * 
-         * @param params1 Entity e 
+         * @param Entity e 
          */
         Status(Entity e) : Component(e) {entity = e;};
 
