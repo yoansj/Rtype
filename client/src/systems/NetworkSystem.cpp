@@ -54,6 +54,12 @@ void Engine::NetworkSystem::receivePackageUdp(EntityManager &entityManager, Posi
             manageServerEntities(pkg, entityManager, positionSystem, spriteSystem, velocitySystem);
             break;
         }
+        case MONSTER_ENTITY_PACKAGE:
+        {
+            auto pkg = loadPkgType<monsterEntity_t>(true, reinterpret_cast<char *>(&buffer));
+            manageServerEntities(pkg, entityManager, positionSystem, spriteSystem, velocitySystem);
+            break;
+        }
     }
 }
 
@@ -78,6 +84,31 @@ void Engine::NetworkSystem::manageServerEntities(shootEntity_t &bulletPackage, E
         spriteSystem.initSprite(newbullet, "../client/assets/bullet.png", false);
 
         _serverEntities.insert({bulletPackage.serverEntityId, newbullet});
+    }
+}
+
+void Engine::NetworkSystem::manageServerEntities(monsterEntity_t &monsterPackage, EntityManager &entityManager, PositionSystem &positionSystem, SpriteSystem &spriteSystem, VelocitySystem &velocitySystem)
+{
+    auto mEntity = _serverEntities.find(monsterPackage.serverEntityId);
+
+    if (mEntity != _serverEntities.end()) {
+        // Update une entité existante
+        auto oldbullet = mEntity->second;
+
+        positionSystem.setPosition(oldbullet, monsterPackage.pos.x, monsterPackage.pos.y);
+    } else {
+        // Créer l'entité
+        auto newMonster = entityManager.create();
+
+        std::cout << "GOT MONSTER WITH FILEPATH: " << monsterPackage.filepath << std::endl;
+        positionSystem.create(newMonster);
+        velocitySystem.create(newMonster);
+        spriteSystem.create(newMonster);
+        positionSystem.setPosition(newMonster, monsterPackage.pos.x, monsterPackage.pos.y);
+        velocitySystem.setVelocity(newMonster, 0, 0);
+        spriteSystem.initSprite(newMonster, monsterPackage.filepath, false);
+
+        _serverEntities.insert({monsterPackage.serverEntityId, newMonster});
     }
 }
 

@@ -14,16 +14,17 @@ void ServerGame::run()
     std::cout << "Starting lobby " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
 
     clock.reset();
+    monstersClock.reset();
     while (1) {
         readPackages();
         clock.setTime();
         monstersClock.setTime();
         if (clock.duration() >= 1000.0 / 60.0) {
             updateEntities();
-            destroyEntities();
             clock.reset();
         }
-        spawnMonsters();
+        if (isPlaying)
+            spawnMonsters();
     }
 }
 
@@ -31,12 +32,25 @@ void ServerGame::checkPlayers()
 {
 }
 
+void ServerGame::checkCollisions()
+{
+    //for (std::size_t i = 0; )
+}
+
 void ServerGame::spawnMonsters()
 {
-    if (monstersClock.duration() * 1000 >= spawnTime) {
+    if (monstersClock.duration() >= 5 * 1000) {
         std::cout << "Spawn monster" << std::endl;
-        monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_monsterLoaderSystem.getFactory(0));
-        auto frog = frogFactory(_entityManager, _positionSystem, _velocitySystem, _hitboxSystem, _statusSystem);
+        //monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_monsterLoaderSystem.getFactory(0));
+        //auto frog = frogFactory(_entityManager, _positionSystem, _velocitySystem, _hitboxSystem, _statusSystem);
+        auto frog = _entityManager.create();
+        _positionSystem.create(frog);
+        _velocitySystem.create(frog);
+        _velocitySystem.setVelocity(frog, -10, 0);
+        _hitboxSystem.create(frog);
+        _hitboxSystem.setHitbox(frog, 70, 30, Engine::HitboxType::MONSTER);
+        _statusSystem.create(frog);
+        _statusSystem.setStatus(frog, Engine::ALIVE);
         _positionSystem.setPosition(frog, std::rand() % 2000 + 1900,  std::rand() % 900 + 100);
         _ennemyEntities.push_back(frog);
         monstersClock.reset();
@@ -94,7 +108,7 @@ void ServerGame::updateEntities()
         monsterPos.x += monsterVel.x;
         monsterPos.y += monsterVel.y;
 
-        if (monsterPos.x <= 100) {
+        if (monsterPos.x <= -100) {
             monsterStatus.type = Engine::DEAD;
             std::cout << "Monster is outside of the screen !" << std::endl;
         }
@@ -104,7 +118,8 @@ void ServerGame::updateEntities()
             monsterPos,
             monsterStatus,
             _ennemyEntities[i],
-            _monsterLoaderSystem.getFilepath(0)[0]
+            //_monsterLoaderSystem.getFilepath(0)[0]
+            "../client/assets/monster.png"
         };
 
         boost::system::error_code error;
@@ -114,7 +129,7 @@ void ServerGame::updateEntities()
                 _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(monsterEntity_t)), endpoint->second, 0, error);
         }
         if (monsterStatus.type == Engine::DEAD) {
-            std::cout << "Destroying components of mosnter !" << std::endl;
+            std::cout << "Destroying components of monster !" << std::endl;
             _positionSystem.destroy(_ennemyEntities[i]);
             _velocitySystem.destroy(_ennemyEntities[i]);
             _hitboxSystem.destroy(_ennemyEntities[i]);
@@ -122,13 +137,16 @@ void ServerGame::updateEntities()
             //_entitiesToDestroy.push_back(i);
         }
     }
+    destroyEntities();
 }
 
 void ServerGame::destroyEntities()
 {
     /*for (std::size_t i = 0; i != _entitiesToDestroy.size(); i++) {
         std::cout << "Erasing bullet from bullet entities" << std::endl;
-        _bulletEntities.erase(_bulletEntities.begin() + _entitiesToDestroy[i]);
+        if (std::find(_bulletEntities.begin(), _bulletEntities.end(), _entitiesToDestroy[i]) != _bulletEntities.end())
+            _bulletEntities.erase(_bulletEntities.begin() + _entitiesToDestroy[i]);
+        std::cout << "after !!" << std::endl;
     }
     _entitiesToDestroy.empty();*/
 }
@@ -150,9 +168,9 @@ void ServerGame::startGame()
         }
     }*/
 
-    _monsterLoaderSystem.load({
+    /*_monsterLoaderSystem.load({
         "libs/libfrog.so"
-    });
+    });*/
 
     for (std::size_t i = 0; i != _tcpPlayers.size(); i += 1) {
         std::cout << "[" << _gameId << "] Sending start package " << std::endl;

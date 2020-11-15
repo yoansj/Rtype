@@ -135,6 +135,7 @@ namespace Engine {
             template <class PkgType>
             PkgType loadPkgType(bool typePackage, char *pkgUdp);
             void manageServerEntities(shootEntity_t &bullet, EntityManager &entityManager, PositionSystem &positionSystem, SpriteSystem &spriteSystem, VelocitySystem &velocitySystem);
+            void manageServerEntities(monsterEntity_t &monster, EntityManager &entityManager, PositionSystem &positionSystem, SpriteSystem &spriteSystem, VelocitySystem &velocitySystem);
         private:
             // Ip and port of server
             sf::IpAddress _recipient;

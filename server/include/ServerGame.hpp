@@ -80,6 +80,7 @@ class ServerGame {
         void checkPlayers();
         void updateEntities();
         void spawnMonsters();
+        void checkCollisions();
 
         void destroyEntities();
 
