@@ -24,7 +24,7 @@ PkgType Engine::NetworkSystem::loadPkgType(bool typePackage, char *pkgUdp)
 }
 
 
-void Engine::NetworkSystem::receivePackageUdp()
+void Engine::NetworkSystem::receivePackageUdp(EntityManager &entityManager, PositionSystem &positionSystem, SpriteSystem &spriteSystem, VelocitySystem &velocitySystem)
 {
     char buffer[10000];
     std::size_t received;
@@ -48,6 +48,36 @@ void Engine::NetworkSystem::receivePackageUdp()
             _gameUpdatePlayerPos(pkg.senderIndex, pkg.pos);
             break;
         }
+        case SHOOT_ENTITY_PACKAGE:
+        {
+            auto pkg = loadPkgType<shootEntity_t>(true, reinterpret_cast<char *>(&buffer));
+            manageServerEntities(pkg, entityManager, positionSystem, spriteSystem, velocitySystem);
+            break;
+        }
+    }
+}
+
+void Engine::NetworkSystem::manageServerEntities(shootEntity_t &bulletPackage, EntityManager &entityManager, PositionSystem &positionSystem, SpriteSystem &spriteSystem, VelocitySystem &velocitySystem)
+{
+    auto bulletEntity = _serverEntities.find(bulletPackage.serverEntityId);
+
+    if (bulletEntity != _serverEntities.end()) {
+        // Update une entité existante
+        auto oldbullet = bulletEntity->second;
+
+        positionSystem.setPosition(oldbullet, bulletPackage.pos.x, bulletPackage.pos.y);
+    } else {
+        // Créer l'entité
+        auto newbullet = entityManager.create();
+
+        positionSystem.create(newbullet);
+        velocitySystem.create(newbullet);
+        spriteSystem.create(newbullet);
+        positionSystem.setPosition(newbullet, bulletPackage.pos.x, bulletPackage.pos.y);
+        velocitySystem.setVelocity(newbullet, 0, 0);
+        spriteSystem.initSprite(newbullet, "../client/assets/bullet.png", false);
+
+        _serverEntities.insert({bulletPackage.serverEntityId, newbullet});
     }
 }
 

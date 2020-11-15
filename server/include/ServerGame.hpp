@@ -18,12 +18,19 @@
 #include "VelocitySystem.hpp"
 #include "HitboxSystem.hpp"
 #include "StatusSystem.hpp"
+#include "MonsterLoaderSystem.hpp"
 
 #include <vector>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include <map>
 #include <boost/asio.hpp>
 #include <chrono>
+#include <filesystem>
+#include <regex>
+
+#define REGEX_MONSTERS "(\\./lib/lib)(.+)(\\.so)"
 
 using boost::asio::ip::tcp;
 using boost::asio::ip::udp;
@@ -52,7 +59,10 @@ class ServerGame {
             @param param4 boost::asio::io_service &service
         */
         ServerGame(tcpSocket &creator, std::size_t id, udp::socket &serverSocket, boost::asio::io_service &service)
-        : _creator(creator), _gameId(id), _udpServer(serverSocket), _ios(service) {};
+        : _creator(creator), _gameId(id), _udpServer(serverSocket), _ios(service) {
+            std::srand(std::time(nullptr));
+            spawnTime = std::rand() % 10 + 1;
+        };
         ~ServerGame() = default;
 
         void run();
@@ -60,6 +70,9 @@ class ServerGame {
         void readPackages();
         void checkPlayers();
         void updateEntities();
+        void spawnMonsters();
+
+        void destroyEntities();
 
         /** Updates player sockets in the game.
             @param param1 std::size_t index
@@ -108,17 +121,21 @@ class ServerGame {
         bool isOnLobby;
         bool isPlaying;
         std::size_t _gameId;
+        std::vector<std::size_t> _entitiesToDestroy;
+        std::vector<Entity> _bulletEntities;
+        std::vector<std::string> _libsToLoad;
 
         //Game utils
         Clock clock;
+        Clock monstersClock;
+        float spawnTime;
         Engine::EntityManager _entityManager;
-        std::vector<Entity> _serverEntities;
-        std::vector<Entity> _bulletEntities;
         std::map<std::size_t, Entity> _players;
         Engine::PositionSystem _positionSystem;
         Engine::VelocitySystem _velocitySystem;
         Engine::HitboxSystem _hitboxSystem;
         Engine::StatusSystem _statusSystem;
+        Engine::MonsterLoaderSystem _monsterLoaderSystem;
 };
 
 #endif /* !SERVERGAME_HPP_ */

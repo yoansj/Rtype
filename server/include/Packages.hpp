@@ -15,6 +15,7 @@
 
 #include "Position.hpp"
 #include "Hitbox.hpp"
+#include "Status.hpp"
 #include "PackagesType.hpp"
 
 constexpr std::size_t bufferSize = 4096;
@@ -102,11 +103,22 @@ typedef struct shoot_s {
 
 // Paquet de tir entité (pour le client)
 typedef struct shootEntity_s {
-    int type_struct = 9;
+    int type_struct = 10;
     Engine::Position pos;
     Engine::Hitbox shootHitbox;
+    Engine::Status status;
     Entity serverEntityId;
 } shootEntity_t;
+
+// Paquet monstre entité (pour le client)
+typedef struct monsterEntity_s {
+    int type_struct = 11;
+    Engine::Position pos;
+    Engine::Hitbox shootHitbox;
+    Engine::Status status;
+    Entity serverEntityId;
+    char filepath[120];
+} monsterEntity_t;
 
 /* PACKAGE FOR GAME */
 using boost::asio::ip::udp;

@@ -22,6 +22,7 @@ file(GLOB SRC
         ${PROJECT_SOURCE_DIR}/client/src/entities/Entity.cpp
         ${PROJECT_SOURCE_DIR}/client/src/systems/PositionSystem.cpp
         ${PROJECT_SOURCE_DIR}/client/src/systems/VelocitySystem.cpp
+        ${PROJECT_SOURCE_DIR}/client/src/systems/MonsterLoaderSystem.cpp
         ${PROJECT_SOURCE_DIR}/server/src/ServerEngine.cpp
         ${PROJECT_SOURCE_DIR}/server/src/ServerGame.cpp
         ${PROJECT_SOURCE_DIR}/engine/src/entities/*

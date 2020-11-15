@@ -19,6 +19,9 @@
 #include "EngineError.hpp"
 #include "SceneManager.hpp"
 #include "PackagesType.hpp"
+#include "PositionSystem.hpp"
+#include "SpriteSystem.hpp"
+#include "VelocitySystem.hpp"
 
 namespace Engine {
 
@@ -51,15 +54,17 @@ namespace Engine {
             std::size_t getPlayerId() {return _playerId;};
             int getPlayerNb() {return _playerNb;}
 
-            void update(SceneManager &smgr, EntityManager &entityManager) {
-                receivePackageUdp();
+            void update(SceneManager &smgr, EntityManager &entityManager,
+            PositionSystem &positionSystem, SpriteSystem &spriteSystem, VelocitySystem &velocitySystem) {
+                receivePackageUdp(entityManager, positionSystem, spriteSystem, velocitySystem);
                 receivePackageTcp(smgr, entityManager);
             };
 
-            void receivePackageUdp();
+            void receivePackageUdp(EntityManager &entityManager, PositionSystem &positionSystem, SpriteSystem &spriteSystem, VelocitySystem &velocitySystem);
             void receivePackageTcp(SceneManager &smgr, EntityManager &entityManager);
             template <class PkgType>
             PkgType loadPkgType(bool typePackage, char *pkgUdp);
+            void manageServerEntities(shootEntity_t &bullet, EntityManager &entityManager, PositionSystem &positionSystem, SpriteSystem &spriteSystem, VelocitySystem &velocitySystem);
         private:
             // Ip and port of server
             sf::IpAddress _recipient;
@@ -73,6 +78,7 @@ namespace Engine {
             std::size_t _idGame;
             std::size_t _playerId;
             int _playerNb;
+            std::map<Entity, Entity> _serverEntities;
 
             // Misc
             bool _connectedTcp;

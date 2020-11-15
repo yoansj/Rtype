@@ -65,11 +65,11 @@ void Engine::Engine::run()
 
     while (_window->isOpen()) {
         _window->clear(sf::Color::Black);
-        _systems.networkSystem.update(_sceneManager, _entityManager);
         while (_window->pollEvent(_event)) {
             if (_event.type == sf::Event::Closed)
                 _window->close();
         }
+        _systems.networkSystem.update(_sceneManager, _entityManager, _systems.positionSystem, _systems.spriteSystem, _systems.velocitySystem);
         if (clock.getElapsedTime().asMilliseconds() >= 1000.0 / 60.0) {
             updateSystems();
             _renderer.doRender(_systems);
@@ -119,7 +119,6 @@ void Engine::Engine::updateSystems()
     if (_sceneManager.getScene() == SCENE::GAME_END)
             _window->close();
     _systems.lobbyScreen.setId(_systems.networkSystem.getIdGame());
-
     /*auto player = _systems.playerSystem.getPlayer();
     auto bgEntity = _systems.parallaxSystem.getBackgroundEntity();
     _systems.positionSystem.update();

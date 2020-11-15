@@ -20,6 +20,7 @@ enum PackagesType {
     JOIN_GAME_PACKAGE = 8,
     SHOOT_PACKAGE = 9,
     SHOOT_ENTITY_PACKAGE = 10,
+    MONSTER_ENTITY_PACKAGE = 11,
 };
 
 #endif /* !PACKAGESTYPE_HPP_ */
