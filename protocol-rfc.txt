@@ -33,7 +33,7 @@ Table of Contents
    3e.   Package Game Started  . . . . . . . . . . . . . . . . . . . 3
    4.   Game UDP Packages . . . . . . . . . . . . . . . . . . . . .  3
    4a.   Package position . . . . . . . . . . . . . . . . . . . . .  3
-
+   4b.   Package shoot . . . . . . . . . . . . . . . . . . . . .  .  3
 
 
 
@@ -209,5 +209,23 @@ RFC 2223       Protocol client/server communications      November 2020
       which game the client is in.
 
       The fourth variable MUST contain a Engine::Position pos to know
-      the position of the entity.
+      the position of the player entity.
+
+   4b.  Package shoot
+
+      When the player presses space the client MUST send a packet to
+      notify the server that the client has shot, the packet is named
+      shoot.
+
+      The first variable in the packet MUST contain the type of the
+      packet.
+
+      The second variable MUST contain a int senderIndex for the
+      identifier of the player in the game.
+
+      The third variable MUST contain a std::size_t idGame to see
+      which game the client is in.
+
+      The fourth variable MUST contain a Engine::Position pos to know
+      the position of the shoot entity.
 
