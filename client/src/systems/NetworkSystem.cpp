@@ -72,6 +72,7 @@ void Engine::NetworkSystem::receivePackageUdp(EntityManager &entityManager, Posi
                 negative.y = -1000;
                 _gameUpdatePlayerPos(pkg.senderIndex, negative);
             }
+            break;
         }
     }
 }

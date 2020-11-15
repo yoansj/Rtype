@@ -71,6 +71,7 @@ class ServerGame {
         : _creator(creator), _gameId(id), _udpServer(serverSocket), _ios(service) {
             std::srand(std::time(nullptr));
             spawnTime = std::rand() % 10 + 1;
+            dog = true;
         };
         ~ServerGame() = default;
 
@@ -139,6 +140,7 @@ class ServerGame {
         std::vector<Entity> _ennemyEntities;
         std::vector<std::string> _libsToLoad;
         std::map<Entity, std::string> _monstersFilepath;
+        bool dog;
 
         //Game utils
         Clock clock;

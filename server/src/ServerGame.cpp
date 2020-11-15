@@ -52,7 +52,7 @@ void ServerGame::checkCollisions()
 void ServerGame::spawnMonsters()
 {
     if (monstersClock.duration() >= 4.5 * 1000) {
-        if (std::rand() % 1 + 2 == 1) {
+        if (dog) {
             monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_monsterLoaderSystem.getFactory(0));
             auto frog = frogFactory(_entityManager, _positionSystem, _velocitySystem, _hitboxSystem, _statusSystem);
             std::cout << "Spawn monster ENTITY: " << frog << std::endl;
@@ -61,16 +61,18 @@ void ServerGame::spawnMonsters()
             _monstersFilepath.insert({frog, _monsterLoaderSystem.getFilepath(0)});
             _ennemyEntities.push_back(frog);
             monstersClock.reset();
+            dog = false;
         }
-        if (std::rand() % 1 + 2 == 2) {
+        if (!dog) {
             monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_monsterLoaderSystem.getFactory(1));
             auto frog = frogFactory(_entityManager, _positionSystem, _velocitySystem, _hitboxSystem, _statusSystem);
             std::cout << "Spawn monster ENTITY: " << frog << std::endl;
 
-            _positionSystem.setPosition(frog, std::rand() % 2000 + 1900,  std::rand() % 900 + 100);
+            _positionSystem.setPosition(frog, 1900,  std::rand() % 500 + 100);
             _monstersFilepath.insert({frog, _monsterLoaderSystem.getFilepath(1)});
             _ennemyEntities.push_back(frog);
             monstersClock.reset();
+            dog = true;
         }
     }
 }
@@ -78,7 +80,7 @@ void ServerGame::spawnMonsters()
 void ServerGame::iterateForCollision(Entity e, Engine::Position &pos, Engine::Status &status)
 {
     for (std::size_t i = 0; i != _ennemyEntities.size(); i++) {
-        for (auto it = _players.begin(); it != _players.end(); it++) {
+        /*for (auto it = _players.begin(); it != _players.end(); it++) {
             if (_hitboxSystem.collides(it->second, _positionSystem.getComponent(it->second), _ennemyEntities[i], _positionSystem.getComponent(_ennemyEntities[i])) == true) {
                 _statusSystem.setStatus(_ennemyEntities[i], Engine::DEAD);
                 endOfGame_t package = {END_OF_GAME_PACKAGE, it->first};
@@ -87,7 +89,7 @@ void ServerGame::iterateForCollision(Entity e, Engine::Position &pos, Engine::St
                 if (endpoint != _playersEndpoints.end())
                     _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(endOfGame_t)), endpoint->second, 0, error);
             }
-        }
+        }*/
         //std::cout << "Bullet id is: " << e << " Ennemy id is: " << _ennemyEntities[i] << std::endl;
         if (!_statusSystem.Exist(_ennemyEntities[i])) continue; // Si l'ennemi a pas de status on skip
         if (status.type == Engine::DEAD || _statusSystem.getComponent(_ennemyEntities[i]).type == Engine::DEAD) continue; //Si un des deux est mort on skip
