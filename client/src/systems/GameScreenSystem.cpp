@@ -7,7 +7,7 @@
 
 #include "GameScreenSystem.hpp"
 
-void Engine::GameScreenSystem::createSprites(std::array<Entity, 2> parallax)
+void Engine::GameScreenSystem::createSprites(std::array<Entity, 2> parallax, std::array<Entity, 2> sounds)
 {
     _spriteSystem.create(parallax[0]);
     _positionSystem.create(parallax[0]);
@@ -25,9 +25,23 @@ void Engine::GameScreenSystem::createSprites(std::array<Entity, 2> parallax)
     _velocitySystem.setVelocity(parallax[1], 3, 3);
     _parallaxSystem.setBackgroundEntity(parallax[1]);
 
+    _soundSystem.create(sounds[0]);
+    _soundSystem.setSound(sounds[0], "../client/assets/sounds/game_music.ogg", true);
+    _soundSystem.playSound(sounds[0]);
 
+    // _soundSystem.create(sounds[1]);
+    // _soundSystem.setSound(sounds[1], "../client/assets/sounds/shooting.wav", true);
+    
     _gameScreenEntities.push_back(parallax[0]);
     _gameScreenEntities.push_back(parallax[1]);
+    _gameScreenEntities.push_back(sounds[0]);
+    _gameScreenEntities.push_back(sounds[1]);
+
+
+
+    // _soundEntities.push_back(sounds[0]);
+    // _soundEntities.push_back(sounds[1]);
+
     _created = true;
     initGame();
 }
@@ -141,6 +155,7 @@ void Engine::GameScreenSystem::update(EntityManager &entityManager, SceneManager
                 playerSprite.rect.width = 32;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && shooting == false) {
+                // _soundSystem.playEffect(_gameScreenEntities[2]);
                 // Envoyer un paquet shoot
                 shoot_t package = {SHOOT_PACKAGE, _getPlayerId(), _getGameId(), playerPosition};
                 _sendPackage(reinterpret_cast<char *>(&package), SHOOT_PACKAGE);

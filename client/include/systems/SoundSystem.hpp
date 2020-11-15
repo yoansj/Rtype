@@ -25,7 +25,7 @@ class SoundSystem : public System<Sound> {
 
         void update() {};
 
-        void setSound(Entity e, std::string const &filepath);
+        void setSound(Entity e, std::string const &filepath, bool isLoop);
 
         void playSound(Entity e);
 

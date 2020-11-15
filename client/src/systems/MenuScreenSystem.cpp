@@ -44,7 +44,7 @@ void Engine::MenuScreenSystem::createSprites(std::array<Entity, 2> parallax, std
     _spriteSystem.setScale(buttons[2], 2, 2);
 
     _soundSystem.create(sound);
-    _soundSystem.setSound(sound, "");
+    _soundSystem.setSound(sound, "../client/assets/sounds/lobby_music.wav", true);
     _soundSystem.playSound(sound);
     _menuScreenEntities.push_back(parallax[0]);
     _menuScreenEntities.push_back(parallax[1]);

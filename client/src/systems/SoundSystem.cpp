@@ -11,13 +11,13 @@ Engine::SoundSystem::SoundSystem() : System()
 {
 }
 
-void Engine::SoundSystem::setSound(Entity e, std::string const &filepath)
+void Engine::SoundSystem::setSound(Entity e, std::string const &filepath, bool isLoop)
 {
     auto &component = _components.getComponent(e);
 
-    component.buffer.loadFromFile("../client/assets/sounds/lobby_music.wav");
+    component.buffer.loadFromFile(filepath);
     component.sound.setBuffer(component.buffer);
-    component.sound.setLoop(true);
+    component.sound.setLoop(isLoop);
     component.sound.setVolume(20);
 }
 
