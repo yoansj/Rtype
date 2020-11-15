@@ -17,6 +17,7 @@
 #include "VelocitySystem.hpp"
 #include "PositionSystem.hpp"
 #include "ParallaxSystem.hpp"
+#include "SoundSystem.hpp"
 #include "NetworkSystem.hpp"
 #include <array>
 
@@ -43,8 +44,8 @@ namespace Engine {
              * @param PositionSystem &positionSystem 
              * @param ParallaxSystem &parallaxSystem 
              */
-            MenuScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem) :
-            _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false), _choice(choice::CREATE), _isPressed(true) {};
+            MenuScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem, SoundSystem &soundSystem) :
+            _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _soundSystem(soundSystem) ,_created(false), _choice(choice::CREATE), _isPressed(true) {};
             ~MenuScreenSystem() = default;
 
             /**
@@ -53,7 +54,7 @@ namespace Engine {
              * @param std::array<Entity, 2> parallax 
              * @param std::array<Entity, 3> buttons 
              */
-            void createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons);
+            void createSprites(std::array<Entity, 2> parallax, std::array<Entity, 3> buttons, Entity sound);
 
             /**
              * @brief Destroy a Sprites object
@@ -84,6 +85,8 @@ namespace Engine {
              * @param std::function<bool()> f 
              */
             void setHasFocus(std::function<bool()> f) { _hasFocus = f;};
+
+            void stopMenuMusic();
         protected:
         private:
             std::vector<Entity> _menuScreenEntities;
@@ -94,7 +97,9 @@ namespace Engine {
             VelocitySystem &_velocitySystem;
             PositionSystem &_positionSystem;
             ParallaxSystem &_parallaxSystem;
+            SoundSystem &_soundSystem;
             std::function<bool()> _hasFocus;
+            Entity _soundEntity;
     };
 }
 

@@ -23,6 +23,7 @@
 #include "JoinScreenSystem.hpp"
 #include "HitboxSystem.hpp"
 #include "StatusSystem.hpp"
+#include "SoundSystem.hpp"
 
 namespace Engine {
 
@@ -34,7 +35,7 @@ namespace Engine {
         public:
             SystemManager() : titleScreen(spriteSystem, velocitySystem, positionSystem),
             gameScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),
-            menuScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem),
+            menuScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem, soundSystem),
             lobbyScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem, networkSystem),
             joinScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem) {};
             ~SystemManager() = default;
@@ -48,6 +49,7 @@ namespace Engine {
             TextSystem textSystem;
             HitboxSystem hitboxSystem;
             StatusSystem statusSystem;
+            SoundSystem soundSystem;
 
             NetworkSystem networkSystem;
             TitleScreenSystem titleScreen;
