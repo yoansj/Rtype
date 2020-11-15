@@ -102,10 +102,7 @@ void ServerGame::updateEntities()
         if (bulletPos.x >= 2000) {
             bulletStatus.type = Engine::DEAD;
         }
-
-        std::cout << bulletStatus.type << std::endl;
         iterateForCollision(_bulletEntities[i], bulletPos, bulletStatus);
-        std::cout << bulletStatus.type << std::endl;
         boost::system::error_code error;
         shootEntity_t package = {
             SHOOT_ENTITY_PACKAGE,
@@ -119,7 +116,6 @@ void ServerGame::updateEntities()
             if (endpoint != _playersEndpoints.end())
                 _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(shootEntity_t)), endpoint->second, 0, error);
         }
-
         if (bulletStatus.type == Engine::DEAD) {
             _positionSystem.destroy(_bulletEntities[i]);
             _velocitySystem.destroy(_bulletEntities[i]);
@@ -179,7 +175,7 @@ void ServerGame::destroyEntities()
     _entitiesToDestroy.clear();
     for (std::size_t i = 0; i != _ennemiesToDestroy.size(); i++) {
         if (std::find(_ennemyEntities.begin(), _ennemyEntities.end(), _ennemiesToDestroy[i]) != _ennemyEntities.end())
-            _ennemyEntities.erase(_ennemyEntities.begin() + _entitiesToDestroy[i]);
+            _ennemyEntities.erase(_ennemyEntities.begin() + _ennemiesToDestroy[i]);
     }
     _ennemiesToDestroy.clear();
 }
