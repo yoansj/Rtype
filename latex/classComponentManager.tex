@@ -1,0 +1,119 @@
+\hypertarget{classComponentManager}{}\doxysection{Component\+Manager$<$ Abstract\+Component $>$ Class Template Reference}
+\label{classComponentManager}\index{ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}}
+
+
+\mbox{\hyperlink{classComponentManager}{Component\+Manager}} which manages the creation, destruction of Component.  
+
+
+
+
+{\ttfamily \#include $<$Component\+Manager.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Abstract\+Component \& \mbox{\hyperlink{classComponentManager_ae6235b3959d3df07b25766f18621b0e6}{create}} (Entity e)
+\item 
+bool \mbox{\hyperlink{classComponentManager_a9db4b8d089bc48431894befdd21c3cb5}{destroy}} (Entity \&e)
+\item 
+size\+\_\+t \mbox{\hyperlink{classComponentManager_a0cbb18ef35044dddc0924048cf45a94e}{size}} ()
+\item 
+\mbox{\Hypertarget{classComponentManager_a7d887d50120b33cbd8c6566e06287b4f}\label{classComponentManager_a7d887d50120b33cbd8c6566e06287b4f}} 
+Abstract\+Component \& {\bfseries get\+Component} (Entity \&e)
+\item 
+std\+::vector$<$ Abstract\+Component $>$ \& \mbox{\hyperlink{classComponentManager_a15b96bb688c1a07421973a5bcd2c5765}{get\+Components}} ()
+\item 
+bool \mbox{\hyperlink{classComponentManager_a0780b55d03e391ed22c59fbab94de55c}{Exist}} (Entity e)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classComponentManager_ab84da38cce9c844a367bf5093c663206}\label{classComponentManager_ab84da38cce9c844a367bf5093c663206}} 
+std\+::vector$<$ Abstract\+Component $>$ {\bfseries \+\_\+components}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Abstract\+Component$>$\newline
+class Component\+Manager$<$ Abstract\+Component $>$}
+
+\mbox{\hyperlink{classComponentManager}{Component\+Manager}} which manages the creation, destruction of Component. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Abstract\+Component} & \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classComponentManager_ae6235b3959d3df07b25766f18621b0e6}\label{classComponentManager_ae6235b3959d3df07b25766f18621b0e6}} 
+\index{ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}!create@{create}}
+\index{create@{create}!ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+Abstract\+Component\& \mbox{\hyperlink{classComponentManager}{Component\+Manager}}$<$ Abstract\+Component $>$\+::create (\begin{DoxyParamCaption}\item[{Entity}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create Entity and return it. 
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Abstract\+Component 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classComponentManager_a9db4b8d089bc48431894befdd21c3cb5}\label{classComponentManager_a9db4b8d089bc48431894befdd21c3cb5}} 
+\index{ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}!destroy@{destroy}}
+\index{destroy@{destroy}!ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{destroy()}{destroy()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+bool \mbox{\hyperlink{classComponentManager}{Component\+Manager}}$<$ Abstract\+Component $>$\+::destroy (\begin{DoxyParamCaption}\item[{Entity \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Delete Entity and confirm deletion. 
+\begin{DoxyParams}{Parameters}
+{\em Entity} & \&e \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classComponentManager_a0780b55d03e391ed22c59fbab94de55c}\label{classComponentManager_a0780b55d03e391ed22c59fbab94de55c}} 
+\index{ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}!Exist@{Exist}}
+\index{Exist@{Exist}!ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{Exist()}{Exist()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+bool \mbox{\hyperlink{classComponentManager}{Component\+Manager}}$<$ Abstract\+Component $>$\+::Exist (\begin{DoxyParamCaption}\item[{Entity}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if a component entity exist. 
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classComponentManager_a15b96bb688c1a07421973a5bcd2c5765}\label{classComponentManager_a15b96bb688c1a07421973a5bcd2c5765}} 
+\index{ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}!getComponents@{getComponents}}
+\index{getComponents@{getComponents}!ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{getComponents()}{getComponents()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+std\+::vector$<$Abstract\+Component$>$\& \mbox{\hyperlink{classComponentManager}{Component\+Manager}}$<$ Abstract\+Component $>$\+::get\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return all the components. \begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Abstract\+Component$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classComponentManager_a0cbb18ef35044dddc0924048cf45a94e}\label{classComponentManager_a0cbb18ef35044dddc0924048cf45a94e}} 
+\index{ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}!size@{size}}
+\index{size@{size}!ComponentManager$<$ AbstractComponent $>$@{ComponentManager$<$ AbstractComponent $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$class Abstract\+Component $>$ \\
+size\+\_\+t \mbox{\hyperlink{classComponentManager}{Component\+Manager}}$<$ Abstract\+Component $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the size of components. \begin{DoxyReturn}{Returns}
+size\+\_\+t 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/include/components/Component\+Manager.\+hpp\end{DoxyCompactItemize}

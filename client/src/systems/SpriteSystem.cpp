@@ -68,3 +68,9 @@ void Engine::SpriteSystem::setRect(Entity e, sf::IntRect rect)
     auto &component = _components.getComponent(e);
     component.rect = rect;
 }
+
+void Engine::SpriteSystem::setPath(Entity e, std::string const &filepath)
+{
+    auto &component = _components.getComponent(e);
+    component.filepath = filepath;
+}

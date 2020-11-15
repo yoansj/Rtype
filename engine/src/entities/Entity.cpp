@@ -6,15 +6,11 @@
 */
 
 #include "Entity.hpp"
-
-Engine::EntityManager::EntityManager()
-{
-}
-
-Engine::EntityManager::~EntityManager()
-{
-}
-
+/**
+ * @brief Create a entity from the engine.
+ * 
+ * @return Entity 
+ */
 Entity Engine::EntityManager::create() {
     const auto it = std::adjacent_find(begin(_entityList), end(_entityList), [](Entity l, Entity r) { return (l+1 != r);});
     if (it == end(_entityList)) {
@@ -26,6 +22,12 @@ Entity Engine::EntityManager::create() {
     }
 }
 
+/**
+ * @brief Remove a entity from the engine.
+ * 
+ * @param Entity e
+ * @return bool 
+ */
 bool Engine::EntityManager::remove(Entity e) {
     const auto it = std::find(begin(_entityList), end(_entityList), e);
     if (it != end(_entityList)) {

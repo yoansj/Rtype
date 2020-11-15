@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['readpackages_8',['readPackages',['../classServerGame.html#aeefa6506e7e3051012e2a430e5d9c587',1,'ServerGame']]],
-  ['receivetcppackages_9',['receiveTcpPackages',['../classServerEngine.html#addc398cc71c33819a00cbce8b9a069d3',1,'ServerEngine']]],
-  ['receiveudppackages_10',['receiveUdpPackages',['../classServerEngine.html#a982adf3b6dabbc2c03c06ecfb6dabda9',1,'ServerEngine']]],
-  ['run_11',['run',['../classServerGame.html#ac27868b13aa57110f741a6e4f22c57f6',1,'ServerGame::run()'],['../classServerEngine.html#ac10d1cf750a879d31a85c0c5a6c7fc65',1,'ServerEngine::run()']]]
+  ['handlepackage_40',['handlePackage',['../classServerEngine.html#a9ee2f1918e3608443a869058f3e8b2d1',1,'ServerEngine::handlePackage(createNewGame_t &amp;package, tcpSocket &amp;cli)'],['../classServerEngine.html#a4abba634e96d2ceafdba979254c9df29',1,'ServerEngine::handlePackage(startNewGame_t &amp;package, tcpSocket &amp;cli)'],['../classServerEngine.html#a97caa1040f9de6368babfd7c0daf603e',1,'ServerEngine::handlePackage(joinGame_t &amp;package, tcpSocket &amp;cli)']]],
+  ['hitbox_41',['Hitbox',['../structEngine_1_1Hitbox.html',1,'Engine::Hitbox'],['../structEngine_1_1Hitbox.html#a40795bc523c1d7a27977982bf6203f52',1,'Engine::Hitbox::Hitbox(Entity e)'],['../structEngine_1_1Hitbox.html#a87a27cd4a0c513c9e5a736f46950de8e',1,'Engine::Hitbox::Hitbox()=default']]],
+  ['hitboxsystem_42',['HitboxSystem',['../classEngine_1_1HitboxSystem.html',1,'Engine::HitboxSystem'],['../classEngine_1_1HitboxSystem.html#a711151d71b577ac1705dcb2076df4bf0',1,'Engine::HitboxSystem::HitboxSystem()']]]
 ];

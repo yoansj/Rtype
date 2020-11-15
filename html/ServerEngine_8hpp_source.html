@@ -92,53 +92,53 @@ $(function() {
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">using</span> boost::asio::ip::tcp;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">using</span> boost::asio::ip::udp;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classServerEngine.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="classServerEngine.html">ServerEngine</a> {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">   28</a></span>&#160;        <span class="keyword">typedef</span> std::shared_ptr&lt;tcp::socket&gt; <a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classServerEngine.html#ad7f854a89e9cc404d4d83aa18b7d3f9b">   31</a></span>&#160;        <span class="keyword">typedef</span> std::shared_ptr&lt;udp::socket&gt; <a class="code" href="classServerEngine.html#ad7f854a89e9cc404d4d83aa18b7d3f9b">udpSocket</a>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="classServerEngine.html#a02bd1093c93180ca5e4bb8d14ed9addb">ServerEngine</a>();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        ~<a class="code" href="classServerEngine.html">ServerEngine</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="comment">// Tcp</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a57a697dcc39494da13100e51be070769">acceptConnections</a>();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#addc398cc71c33819a00cbce8b9a069d3">receiveTcpPackages</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#ae9b28ab4519e0bfbfbb6e3f912dff311">disconnectClients</a>();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">// Server main loop</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#ac10d1cf750a879d31a85c0c5a6c7fc65">run</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// Udp</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a982adf3b6dabbc2c03c06ecfb6dabda9">receiveUdpPackages</a>();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a38ebb7796e2c0597ac6effe2f7ed1be3">getPackageType</a>(<a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a> &amp;cli, std::size_t index);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">class</span> PkgType&gt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        PkgType <a class="code" href="classServerEngine.html#a323ddeb07de288f6f7dbdd00965c3b18">loadPkgType</a>(<a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a> &amp;cli);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">// Tcp package handlers</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a9ee2f1918e3608443a869058f3e8b2d1">handlePackage</a>(createNewGame_t &amp;package, <a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a> &amp;cli);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a9ee2f1918e3608443a869058f3e8b2d1">handlePackage</a>(startNewGame_t &amp;package, <a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a> &amp;cli);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a9ee2f1918e3608443a869058f3e8b2d1">handlePackage</a>(joinGame_t &amp;package, <a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a> &amp;cli);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">// Boost asio service</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        boost::asio::io_service _ios;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classServerEngine.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="classServerEngine.html">ServerEngine</a> {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">   32</a></span>&#160;        <span class="keyword">typedef</span> std::shared_ptr&lt;tcp::socket&gt; <a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classServerEngine.html#ad7f854a89e9cc404d4d83aa18b7d3f9b">   35</a></span>&#160;        <span class="keyword">typedef</span> std::shared_ptr&lt;udp::socket&gt; <a class="code" href="classServerEngine.html#ad7f854a89e9cc404d4d83aa18b7d3f9b">udpSocket</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="classServerEngine.html#a02bd1093c93180ca5e4bb8d14ed9addb">ServerEngine</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        ~<a class="code" href="classServerEngine.html">ServerEngine</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">// Tcp</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a57a697dcc39494da13100e51be070769">acceptConnections</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#addc398cc71c33819a00cbce8b9a069d3">receiveTcpPackages</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#ae9b28ab4519e0bfbfbb6e3f912dff311">disconnectClients</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="comment">// Server main loop</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#ac10d1cf750a879d31a85c0c5a6c7fc65">run</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">// Udp</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a982adf3b6dabbc2c03c06ecfb6dabda9">receiveUdpPackages</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a38ebb7796e2c0597ac6effe2f7ed1be3">getPackageType</a>(<a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a> &amp;cli, std::size_t index);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">class</span> PkgType&gt;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        PkgType <a class="code" href="classServerEngine.html#a323ddeb07de288f6f7dbdd00965c3b18">loadPkgType</a>(<a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a> &amp;cli);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="comment">// Tcp package handlers</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a9ee2f1918e3608443a869058f3e8b2d1">handlePackage</a>(createNewGame_t &amp;package, <a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a> &amp;cli);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a9ee2f1918e3608443a869058f3e8b2d1">handlePackage</a>(startNewGame_t &amp;package, <a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a> &amp;cli);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classServerEngine.html#a9ee2f1918e3608443a869058f3e8b2d1">handlePackage</a>(joinGame_t &amp;package, <a class="code" href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">tcpSocket</a> &amp;cli);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// List of games</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        std::map&lt;std::size_t, std::shared_ptr&lt;ServerGame&gt;&gt; _games;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// Tcp Variables</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        tcp::acceptor _acceptor;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        std::vector&lt;tcpSocket&gt; _clients;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        std::vector&lt;std::size_t&gt; _clientsToDisconnect;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        std::array&lt;char, <span class="keyword">sizeof</span>(int)&gt; _buffer;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="comment">// Udp Variables</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        udp::socket _udpServer;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="comment">// Boost asio service</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        boost::asio::io_service _ios;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="comment">// List of games</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        std::map&lt;std::size_t, std::shared_ptr&lt;ServerGame&gt;&gt; _games;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="comment">// Tcp Variables</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        tcp::acceptor _acceptor;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        std::vector&lt;tcpSocket&gt; _clients;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        std::vector&lt;std::size_t&gt; _clientsToDisconnect;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        std::array&lt;char, <span class="keyword">sizeof</span>(int)&gt; _buffer;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ServerEngine_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="comment">// Udp Variables</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        udp::socket _udpServer;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ServerEngine_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassServerEngine_html_a323ddeb07de288f6f7dbdd00965c3b18"><div class="ttname"><a href="classServerEngine.html#a323ddeb07de288f6f7dbdd00965c3b18">ServerEngine::loadPkgType</a></div><div class="ttdeci">PkgType loadPkgType(tcpSocket &amp;cli)</div><div class="ttdef"><b>Definition:</b> ServerEngine.cpp:147</div></div>
 <div class="ttc" id="aclassServerEngine_html_a02bd1093c93180ca5e4bb8d14ed9addb"><div class="ttname"><a href="classServerEngine.html#a02bd1093c93180ca5e4bb8d14ed9addb">ServerEngine::ServerEngine</a></div><div class="ttdeci">ServerEngine()</div><div class="ttdef"><b>Definition:</b> ServerEngine.cpp:13</div></div>
@@ -148,10 +148,10 @@ $(function() {
 <div class="ttc" id="aclassServerEngine_html_addc398cc71c33819a00cbce8b9a069d3"><div class="ttname"><a href="classServerEngine.html#addc398cc71c33819a00cbce8b9a069d3">ServerEngine::receiveTcpPackages</a></div><div class="ttdeci">void receiveTcpPackages()</div><div class="ttdef"><b>Definition:</b> ServerEngine.cpp:52</div></div>
 <div class="ttc" id="aclassServerEngine_html_ac10d1cf750a879d31a85c0c5a6c7fc65"><div class="ttname"><a href="classServerEngine.html#ac10d1cf750a879d31a85c0c5a6c7fc65">ServerEngine::run</a></div><div class="ttdeci">void run()</div><div class="ttdef"><b>Definition:</b> ServerEngine.cpp:215</div></div>
 <div class="ttc" id="aclassServerEngine_html_a9ee2f1918e3608443a869058f3e8b2d1"><div class="ttname"><a href="classServerEngine.html#a9ee2f1918e3608443a869058f3e8b2d1">ServerEngine::handlePackage</a></div><div class="ttdeci">void handlePackage(createNewGame_t &amp;package, tcpSocket &amp;cli)</div><div class="ttdef"><b>Definition:</b> ServerEngine.cpp:159</div></div>
-<div class="ttc" id="aclassServerEngine_html"><div class="ttname"><a href="classServerEngine.html">ServerEngine</a></div><div class="ttdef"><b>Definition:</b> ServerEngine.hpp:24</div></div>
+<div class="ttc" id="aclassServerEngine_html"><div class="ttname"><a href="classServerEngine.html">ServerEngine</a></div><div class="ttdoc">ServerEngine handle connection, receive and send package.</div><div class="ttdef"><b>Definition:</b> ServerEngine.hpp:28</div></div>
 <div class="ttc" id="aclassServerEngine_html_ae9b28ab4519e0bfbfbb6e3f912dff311"><div class="ttname"><a href="classServerEngine.html#ae9b28ab4519e0bfbfbb6e3f912dff311">ServerEngine::disconnectClients</a></div><div class="ttdeci">void disconnectClients()</div><div class="ttdef"><b>Definition:</b> ServerEngine.cpp:100</div></div>
-<div class="ttc" id="aclassServerEngine_html_a65eb975fc6726e3f287eb925d8b32b04"><div class="ttname"><a href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">ServerEngine::tcpSocket</a></div><div class="ttdeci">std::shared_ptr&lt; tcp::socket &gt; tcpSocket</div><div class="ttdef"><b>Definition:</b> ServerEngine.hpp:28</div></div>
-<div class="ttc" id="aclassServerEngine_html_ad7f854a89e9cc404d4d83aa18b7d3f9b"><div class="ttname"><a href="classServerEngine.html#ad7f854a89e9cc404d4d83aa18b7d3f9b">ServerEngine::udpSocket</a></div><div class="ttdeci">std::shared_ptr&lt; udp::socket &gt; udpSocket</div><div class="ttdef"><b>Definition:</b> ServerEngine.hpp:31</div></div>
+<div class="ttc" id="aclassServerEngine_html_a65eb975fc6726e3f287eb925d8b32b04"><div class="ttname"><a href="classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04">ServerEngine::tcpSocket</a></div><div class="ttdeci">std::shared_ptr&lt; tcp::socket &gt; tcpSocket</div><div class="ttdef"><b>Definition:</b> ServerEngine.hpp:32</div></div>
+<div class="ttc" id="aclassServerEngine_html_ad7f854a89e9cc404d4d83aa18b7d3f9b"><div class="ttname"><a href="classServerEngine.html#ad7f854a89e9cc404d4d83aa18b7d3f9b">ServerEngine::udpSocket</a></div><div class="ttdeci">std::shared_ptr&lt; udp::socket &gt; udpSocket</div><div class="ttdef"><b>Definition:</b> ServerEngine.hpp:35</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

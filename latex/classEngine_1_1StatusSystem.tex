@@ -1,0 +1,110 @@
+\hypertarget{classEngine_1_1StatusSystem}{}\doxysection{Engine\+::Status\+System Class Reference}
+\label{classEngine_1_1StatusSystem}\index{Engine::StatusSystem@{Engine::StatusSystem}}
+
+
+\mbox{\hyperlink{classEngine_1_1System}{System}} used for collisions.  
+
+
+
+
+{\ttfamily \#include $<$Status\+System.\+hpp$>$}
+
+Inheritance diagram for Engine\+::Status\+System\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classEngine_1_1StatusSystem}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEngine_1_1StatusSystem_abe80ec9c4db6de1a4d72f4b9df12e435}{Status\+System}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{structEngine_1_1Status}{Status}} \mbox{\hyperlink{classEngine_1_1System}{System}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEngine_1_1StatusSystem_a7635efa664419e729c568ecd70cec945}{$\sim$\+Status\+System}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{structEngine_1_1Status}{Status}} \mbox{\hyperlink{classEngine_1_1System}{System}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1StatusSystem_ac1465d97a8c3588826e2fdf5b81c1136}{update}} () override
+\item 
+void \mbox{\hyperlink{classEngine_1_1StatusSystem_a4b56d396360d852c707eca7a61dfa326}{set\+Status}} (Entity e, Status\+Type type)
+\begin{DoxyCompactList}\small\item\em Set the \mbox{\hyperlink{structEngine_1_1Status}{Status}} Entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structEngine_1_1Status}{Status}} \& \mbox{\hyperlink{classEngine_1_1StatusSystem_a20b2253a3a8bb86034f67e9a180d51f4}{get\+Status}} (Entity e)
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{structEngine_1_1Status}{Status}} Entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classEngine_1_1System}{System}} used for collisions. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEngine_1_1StatusSystem_abe80ec9c4db6de1a4d72f4b9df12e435}\label{classEngine_1_1StatusSystem_abe80ec9c4db6de1a4d72f4b9df12e435}} 
+\index{Engine::StatusSystem@{Engine::StatusSystem}!StatusSystem@{StatusSystem}}
+\index{StatusSystem@{StatusSystem}!Engine::StatusSystem@{Engine::StatusSystem}}
+\doxysubsubsection{\texorpdfstring{StatusSystem()}{StatusSystem()}}
+{\footnotesize\ttfamily Engine\+::\+Status\+System\+::\+Status\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{structEngine_1_1Status}{Status}} \mbox{\hyperlink{classEngine_1_1System}{System}} object. 
+
+\mbox{\Hypertarget{classEngine_1_1StatusSystem_a7635efa664419e729c568ecd70cec945}\label{classEngine_1_1StatusSystem_a7635efa664419e729c568ecd70cec945}} 
+\index{Engine::StatusSystem@{Engine::StatusSystem}!````~StatusSystem@{$\sim$StatusSystem}}
+\index{````~StatusSystem@{$\sim$StatusSystem}!Engine::StatusSystem@{Engine::StatusSystem}}
+\doxysubsubsection{\texorpdfstring{$\sim$StatusSystem()}{~StatusSystem()}}
+{\footnotesize\ttfamily Engine\+::\+Status\+System\+::$\sim$\+Status\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destroy the \mbox{\hyperlink{structEngine_1_1Status}{Status}} \mbox{\hyperlink{classEngine_1_1System}{System}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEngine_1_1StatusSystem_a20b2253a3a8bb86034f67e9a180d51f4}\label{classEngine_1_1StatusSystem_a20b2253a3a8bb86034f67e9a180d51f4}} 
+\index{Engine::StatusSystem@{Engine::StatusSystem}!getStatus@{getStatus}}
+\index{getStatus@{getStatus}!Engine::StatusSystem@{Engine::StatusSystem}}
+\doxysubsubsection{\texorpdfstring{getStatus()}{getStatus()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structEngine_1_1Status}{Status}}\& Engine\+::\+Status\+System\+::get\+Status (\begin{DoxyParamCaption}\item[{Entity}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the \mbox{\hyperlink{structEngine_1_1Status}{Status}} Entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structEngine_1_1Status}{Status}}\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1StatusSystem_a4b56d396360d852c707eca7a61dfa326}\label{classEngine_1_1StatusSystem_a4b56d396360d852c707eca7a61dfa326}} 
+\index{Engine::StatusSystem@{Engine::StatusSystem}!setStatus@{setStatus}}
+\index{setStatus@{setStatus}!Engine::StatusSystem@{Engine::StatusSystem}}
+\doxysubsubsection{\texorpdfstring{setStatus()}{setStatus()}}
+{\footnotesize\ttfamily void Engine\+::\+Status\+System\+::set\+Status (\begin{DoxyParamCaption}\item[{Entity}]{e,  }\item[{Status\+Type}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the \mbox{\hyperlink{structEngine_1_1Status}{Status}} Entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Entity} & e \\
+\hline
+{\em Status\+Type} & type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1StatusSystem_ac1465d97a8c3588826e2fdf5b81c1136}\label{classEngine_1_1StatusSystem_ac1465d97a8c3588826e2fdf5b81c1136}} 
+\index{Engine::StatusSystem@{Engine::StatusSystem}!update@{update}}
+\index{update@{update}!Engine::StatusSystem@{Engine::StatusSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Engine\+::\+Status\+System\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Update every function implement in system. 
+
+Reimplemented from \mbox{\hyperlink{classEngine_1_1System_a77354dfeb647b52b098c1b74cb3ad9d4}{Engine\+::\+System$<$ Status $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+server/include/systems/Status\+System.\+hpp\end{DoxyCompactItemize}

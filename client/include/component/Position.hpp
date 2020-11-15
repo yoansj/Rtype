@@ -12,7 +12,16 @@
 
 namespace Engine {
 
+    /**
+     * @brief Component position
+     * 
+     */
     struct Position : public Component {
+        /**
+         * @brief Construct a new Position Component
+         * 
+         * @param Entity e 
+         */
         Position(Entity e) : Component(e) {entity = e;};
         Position() = default;
         float x;

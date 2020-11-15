@@ -11,11 +11,25 @@
 #include "SystemManager.hpp"
 
 namespace Engine {
+    /**
+     * @brief Manage the displays
+     * 
+     */
     class Renderer {
         public:
+        /**
+         * @brief Construct a new Renderer object.
+         * 
+         * @param const std::shared_ptr<sf::RenderWindow> &window 
+         */
             Renderer(const std::shared_ptr<sf::RenderWindow> &window);
             ~Renderer() = default;
 
+            /**
+             * @brief Show rendering.
+             * 
+             * @param SystemManager &sys 
+             */
             void doRender(SystemManager &sys);
         protected:
         private:

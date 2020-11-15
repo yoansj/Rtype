@@ -16,10 +16,15 @@
 typedef std::size_t Entity;
 
 namespace Engine {
+
+    /**
+     * @brief Manager for Entity
+     * 
+     */
     class EntityManager {
         public:
-            EntityManager();
-            ~EntityManager();
+            EntityManager() = default;
+            ~EntityManager() = default;
 
             Entity create();
             bool remove(Entity e);

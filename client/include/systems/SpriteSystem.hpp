@@ -26,17 +26,56 @@ namespace Engine {
             SpriteSystem();
             ~SpriteSystem() = default;
 
+            /**
+             * @brief Update the Sprite System
+             * 
+             */
             void update();
 
+            /**
+             * @brief Init the Sprite with the Entity, the filepath and if is animated or not.
+             * 
+             * @param Entity e 
+             * @param std::string const &filepath 
+             * @param bool isAnimated 
+             * @return bool 
+             */
             bool initSprite(Entity e, std::string const &filepath, bool isAnimated);
 
+            /**
+             * @brief Create a Animation with the Entity set a Rect to the Entity.
+             * 
+             * @param Entity e 
+             * @param sf::IntRect rect 
+             */
             void createAnimation(Entity e, sf::IntRect rect);
 
+            /**
+             * @brief Change the texture to a Entity.
+             * 
+             * @param Entity e 
+             * @param std::string const &filepath 
+             */
             void changeTexture(Entity e, std::string const &filepath);
 
+            /**
+             * @brief Set the Scale to a Entity
+             * 
+             * @param Entity e 
+             * @param int x 
+             * @param int y 
+             */
             void setScale(Entity e, int x, int y);
 
+            /**
+             * @brief Set the Rect to a Entity
+             * 
+             * @param Entity e 
+             * @param sf::IntRect rect 
+             */
             void setRect(Entity e, sf::IntRect rect);
+
+            void setPath(Entity e, std::string const &filepath);
 
         private:
             std::shared_ptr<sf::RenderWindow> _window;

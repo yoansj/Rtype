@@ -34,10 +34,15 @@
 
 using boost::asio::ip::tcp;
 using boost::asio::ip::udp;
+using monsterGenerator = Entity (*) (Engine::EntityManager &, Engine::PositionSystem &, Engine::VelocitySystem &, Engine::HitboxSystem &, Engine::StatusSystem &);
 
 typedef std::shared_ptr<udp::socket> udpSocket;
 typedef std::shared_ptr<tcp::socket> tcpSocket;
 
+/**
+ * @brief Clock class to manage the ServerGame part of the server.
+ * 
+ */
 class Clock {
     public:
         Clock() : _t0(std::chrono::high_resolution_clock::now()), _t1(std::chrono::high_resolution_clock::now()) {};
@@ -50,9 +55,13 @@ class Clock {
         std::chrono::time_point<std::chrono::high_resolution_clock> _t1;
 };
 
+/**
+ * @brief ServerGame managing all the parts launched by the clients.
+ * 
+ */
 class ServerGame {
     public:
-        /** Constructor for the class ServerGame.
+        /** @brief Constructor for the class ServerGame.
             @param param1 tcpSocket &creator
             @param param2 std::size_t id
             @param param3 udp::socket &serverSocket
@@ -75,8 +84,8 @@ class ServerGame {
         void destroyEntities();
 
         /** Updates player sockets in the game.
-            @param param1 std::size_t index
-            @param param2 udp::endpoint ep
+            @param std::size_t index
+            @param udp::endpoint ep
         */
         void updateEndpoints(std::size_t index, udp::endpoint ep)
         {
@@ -84,13 +93,13 @@ class ServerGame {
         }
 
         /** Add a package to the game package list.
-            @param param1 package const &pck
+            @param package const &pck
         */
         void addPackage(package const &pck) {_packages.push_back(pck);};
 
         /** Add a player to the game
-            @param param1 tcpSocket &p
-            @return value std::size_t
+            @param tcpSocket &p
+            @return std::size_t
         */
         std::size_t addPlayer(tcpSocket &p) {
             _tcpPlayers.push_back(p);
@@ -99,7 +108,7 @@ class ServerGame {
         };
 
         /** Return the gameId
-            @return value std::size_t
+            @return std::size_t
         */
         std::size_t getId() const {return (_gameId);};
 
@@ -123,6 +132,7 @@ class ServerGame {
         std::size_t _gameId;
         std::vector<std::size_t> _entitiesToDestroy;
         std::vector<Entity> _bulletEntities;
+        std::vector<Entity> _ennemyEntities;
         std::vector<std::string> _libsToLoad;
 
         //Game utils

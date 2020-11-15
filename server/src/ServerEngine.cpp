@@ -106,8 +106,8 @@ void ServerEngine::disconnectClients()
 }
 
 /** Receive the type of packet and dispatch it to the correct function to be cast and processed.
-    @param param1 tcpSocket &cli
-    @param param2 std::size_t index
+    @param tcpSocket &cli
+    @param std::size_t index
 */
 void ServerEngine::getPackageType(tcpSocket &cli, std::size_t index)
 {
@@ -140,8 +140,8 @@ void ServerEngine::getPackageType(tcpSocket &cli, std::size_t index)
 }
 
 /** Class template which loads the packages and executes them according to the client's request.
-    @param param1 tcpSocket &cli
-    @return value PkgType
+    @param tcpSocket &cli
+    @return PkgType
 */
 template <class PkgType>
 PkgType ServerEngine::loadPkgType(tcpSocket &cli)
@@ -153,8 +153,8 @@ PkgType ServerEngine::loadPkgType(tcpSocket &cli)
 }
 
 /** Creates the game and the game's thread and adds the game to the list.
-    @param param1 createNewGame_t &package
-    @param param2 tcpSocket &cli
+    @param createNewGame_t &package
+    @param tcpSocket &cli
 */
 void ServerEngine::handlePackage(createNewGame_t &package, tcpSocket &cli)
 {
@@ -174,8 +174,8 @@ void ServerEngine::handlePackage(createNewGame_t &package, tcpSocket &cli)
 }
 
 /** Get the game from the game map, start the game and set it to send packets to the startGame function.
-    @param param1 startNewGame_t &package
-    @param param2 tcpSocket &cli
+    @param startNewGame_t &package
+    @param tcpSocket &cli
 */
 void ServerEngine::handlePackage(startNewGame_t &package, tcpSocket &cli)
 {
@@ -193,8 +193,8 @@ void ServerEngine::handlePackage(startNewGame_t &package, tcpSocket &cli)
 }
 
 /** Retrieve the game from the game map, adds the player to the game and sends the client that he has joined the game.
-    @param param1 joinGame_t &package
-    @param param2 tcpSocket &cli
+    @param joinGame_t &package
+    @param tcpSocket &cli
 */
 void ServerEngine::handlePackage(joinGame_t &package, tcpSocket &cli)
 {

@@ -24,12 +24,30 @@ namespace Engine {
 
     using monsterGenerator = Entity (*) (EntityManager &, SystemManager &);
 
+    /**
+     * @brief Game Engine
+     * 
+     */
     class Engine {
         public:
+            /**
+             * @brief Construct a new Engine object.
+             * 
+             * @param std::string const & serverIp 
+             */
             Engine(std::string const &serverIp);
             ~Engine();
+
+            /**
+             * @brief Loop for the game Engine.
+             * 
+             */
             void run();
 
+            /**
+             * @brief Update all systems.
+             * 
+             */
             void updateSystems();
         private:
             std::shared_ptr<sf::RenderWindow> _window;

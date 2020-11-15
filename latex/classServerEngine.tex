@@ -1,5 +1,14 @@
 \hypertarget{classServerEngine}{}\doxysection{Server\+Engine Class Reference}
 \label{classServerEngine}\index{ServerEngine@{ServerEngine}}
+
+
+\mbox{\hyperlink{classServerEngine}{Server\+Engine}} handle connection, receive and send package.  
+
+
+
+
+{\ttfamily \#include $<$Server\+Engine.\+hpp$>$}
+
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -61,6 +70,11 @@ udp\+::socket {\bfseries \+\_\+udp\+Server}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classServerEngine}{Server\+Engine}} handle connection, receive and send package. 
+
+
+
 \doxysubsection{Member Typedef Documentation}
 \mbox{\Hypertarget{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}\label{classServerEngine_a65eb975fc6726e3f287eb925d8b32b04}} 
 \index{ServerEngine@{ServerEngine}!tcpSocket@{tcpSocket}}
@@ -106,9 +120,9 @@ Loops and checks if a client has disconnected. If a client has disconnected, its
 
 Receive the type of packet and dispatch it to the correct function to be cast and processed. 
 \begin{DoxyParams}{Parameters}
-{\em param1} & tcp\+Socket \&cli \\
+{\em tcp\+Socket} & \&cli \\
 \hline
-{\em param2} & std\+::size\+\_\+t index \\
+{\em std\+::size\+\_\+t} & index \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classServerEngine_a9ee2f1918e3608443a869058f3e8b2d1}\label{classServerEngine_a9ee2f1918e3608443a869058f3e8b2d1}} 
@@ -119,9 +133,9 @@ Receive the type of packet and dispatch it to the correct function to be cast an
 
 Creates the game and the game\textquotesingle{}s thread and adds the game to the list. 
 \begin{DoxyParams}{Parameters}
-{\em param1} & create\+New\+Game\+\_\+t \&package \\
+{\em create\+New\+Game\+\_\+t} & \&package \\
 \hline
-{\em param2} & tcp\+Socket \&cli \\
+{\em tcp\+Socket} & \&cli \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classServerEngine_a97caa1040f9de6368babfd7c0daf603e}\label{classServerEngine_a97caa1040f9de6368babfd7c0daf603e}} 
@@ -132,9 +146,9 @@ Creates the game and the game\textquotesingle{}s thread and adds the game to the
 
 Retrieve the game from the game map, adds the player to the game and sends the client that he has joined the game. 
 \begin{DoxyParams}{Parameters}
-{\em param1} & join\+Game\+\_\+t \&package \\
+{\em join\+Game\+\_\+t} & \&package \\
 \hline
-{\em param2} & tcp\+Socket \&cli \\
+{\em tcp\+Socket} & \&cli \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classServerEngine_a4abba634e96d2ceafdba979254c9df29}\label{classServerEngine_a4abba634e96d2ceafdba979254c9df29}} 
@@ -145,9 +159,9 @@ Retrieve the game from the game map, adds the player to the game and sends the c
 
 Get the game from the game map, start the game and set it to send packets to the start\+Game function. 
 \begin{DoxyParams}{Parameters}
-{\em param1} & start\+New\+Game\+\_\+t \&package \\
+{\em start\+New\+Game\+\_\+t} & \&package \\
 \hline
-{\em param2} & tcp\+Socket \&cli \\
+{\em tcp\+Socket} & \&cli \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classServerEngine_a323ddeb07de288f6f7dbdd00965c3b18}\label{classServerEngine_a323ddeb07de288f6f7dbdd00965c3b18}} 
@@ -159,11 +173,11 @@ Pkg\+Type Server\+Engine\+::load\+Pkg\+Type (\begin{DoxyParamCaption}\item[{\mbo
 
 Class template which loads the packages and executes them according to the client\textquotesingle{}s request. 
 \begin{DoxyParams}{Parameters}
-{\em param1} & tcp\+Socket \&cli \\
+{\em tcp\+Socket} & \&cli \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-value Pkg\+Type 
+Pkg\+Type 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classServerEngine_addc398cc71c33819a00cbce8b9a069d3}\label{classServerEngine_addc398cc71c33819a00cbce8b9a069d3}} 
 \index{ServerEngine@{ServerEngine}!receiveTcpPackages@{receiveTcpPackages}}

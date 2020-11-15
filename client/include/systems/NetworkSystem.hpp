@@ -26,10 +26,14 @@
 namespace Engine {
 
     /**
-     * @brief  Position system used on the Position component
+     * @brief  Network system used on the Position component
      */
     class NetworkSystem : public System<Position> {
         public:
+            /**
+             * @brief Construct a new Network System object
+             * 
+             */
             NetworkSystem() : System() {
                 _recipient = "localhost";
                 _port = 7172;
@@ -40,18 +44,75 @@ namespace Engine {
             };
             ~NetworkSystem() = default;
 
+            /**
+             * @brief sendPackage in UDP and TCP
+             * 
+             * @param char const *package 
+             * @param int typePackage 
+             */
             void sendPackage(char const *package, int typePackage);
 
+            /**
+             * @brief Set the Port variable
+             * 
+             * @param unsigned short port 
+             */
             void setPort(unsigned short port) {_port = port;};
+
+            /**
+             * @brief Set the Recipient variable
+             * 
+             * @param sf::IpAddress recipient 
+             */
             void setRecipient(sf::IpAddress recipient) {_recipient = recipient;};
+
+            /**
+             * @brief Set the Id Game variable
+             * 
+             * @param std::size_t idGame 
+             */
             void setIdGame(std::size_t idGame) {_idGame = idGame;};
+
+            /**
+             * @brief Set the Player Index variable
+             * 
+             * @param std::size_t id 
+             */
             void setPlayerIndex(std::size_t id) {_playerId = id;};
 
+            /**
+             * @brief Set the Destroy Lobby object
+             * 
+             * @param std::function<void()> f 
+             */
             void setDestroyLobby(std::function<void()> f) {_destroyLobby = f;};
+
+            /**
+             * @brief Set the Game Update Player Pos object
+             * 
+             * @param std::function<void(std::size_t index, Position pos)> f 
+             */
             void setGameUpdatePlayerPos(std::function<void(std::size_t index, Position pos)> f) {_gameUpdatePlayerPos = f;};
 
+            /**
+             * @brief Get the Id Game object
+             * 
+             * @return std::size_t 
+             */
             std::size_t getIdGame() {return _idGame;};
+
+            /**
+             * @brief Get the Player Id object
+             * 
+             * @return std::size_t 
+             */
             std::size_t getPlayerId() {return _playerId;};
+
+            /**
+             * @brief Get the Player Nb object
+             * 
+             * @return int 
+             */
             int getPlayerNb() {return _playerNb;}
 
             void update(SceneManager &smgr, EntityManager &entityManager,
@@ -62,6 +123,15 @@ namespace Engine {
 
             void receivePackageUdp(EntityManager &entityManager, PositionSystem &positionSystem, SpriteSystem &spriteSystem, VelocitySystem &velocitySystem);
             void receivePackageTcp(SceneManager &smgr, EntityManager &entityManager);
+
+            /**
+             * @brief Load and charge a package.
+             * 
+             * @tparam PkgType 
+             * @param bool typePackage 
+             * @param char *pkgUdp 
+             * @return PkgType 
+             */
             template <class PkgType>
             PkgType loadPkgType(bool typePackage, char *pkgUdp);
             void manageServerEntities(shootEntity_t &bullet, EntityManager &entityManager, PositionSystem &positionSystem, SpriteSystem &spriteSystem, VelocitySystem &velocitySystem);

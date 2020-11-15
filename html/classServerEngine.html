@@ -71,6 +71,11 @@ $(function() {
 <div class="title">ServerEngine Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="classServerEngine.html" title="ServerEngine handle connection, receive and send package.">ServerEngine</a> handle connection, receive and send package.  
+ <a href="classServerEngine.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ServerEngine_8hpp_source.html">ServerEngine.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -132,7 +137,9 @@ std::array&lt; char, sizeof(int)&gt;&#160;</td><td class="memItemRight" valign="
 udp::socket&#160;</td><td class="memItemRight" valign="bottom"><b>_udpServer</b></td></tr>
 <tr class="separator:a5d41436fc102e5d3cc7da1376a7f8fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classServerEngine.html" title="ServerEngine handle connection, receive and send package.">ServerEngine</a> handle connection, receive and send package. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a65eb975fc6726e3f287eb925d8b32b04"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a65eb975fc6726e3f287eb925d8b32b04">&#9670;&nbsp;</a></span>tcpSocket</h2>
 
@@ -178,7 +185,7 @@ udp::socket&#160;</td><td class="memItemRight" valign="bottom"><b>_udpServer</b>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor for the class <a class="el" href="classServerEngine.html">ServerEngine</a>. Set _acceptor for TCP packets and the _udpServer for all UDP packets. </p>
+<p>Constructor for the class <a class="el" href="classServerEngine.html" title="ServerEngine handle connection, receive and send package.">ServerEngine</a>. Set _acceptor for TCP packets and the _udpServer for all UDP packets. </p>
 
 </div>
 </div>
@@ -254,8 +261,8 @@ udp::socket&#160;</td><td class="memItemRight" valign="bottom"><b>_udpServer</b>
 </div><div class="memdoc">
 <p>Receive the type of packet and dispatch it to the correct function to be cast and processed. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>tcpSocket &amp;cli </td></tr>
-    <tr><td class="paramname">param2</td><td>std::size_t index </td></tr>
+    <tr><td class="paramname">tcpSocket</td><td>&amp;cli </td></tr>
+    <tr><td class="paramname">std::size_t</td><td>index </td></tr>
   </table>
   </dd>
 </dl>
@@ -297,8 +304,8 @@ udp::socket&#160;</td><td class="memItemRight" valign="bottom"><b>_udpServer</b>
 </div><div class="memdoc">
 <p>Creates the game and the game's thread and adds the game to the list. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>createNewGame_t &amp;package </td></tr>
-    <tr><td class="paramname">param2</td><td>tcpSocket &amp;cli </td></tr>
+    <tr><td class="paramname">createNewGame_t</td><td>&amp;package </td></tr>
+    <tr><td class="paramname">tcpSocket</td><td>&amp;cli </td></tr>
   </table>
   </dd>
 </dl>
@@ -340,8 +347,8 @@ udp::socket&#160;</td><td class="memItemRight" valign="bottom"><b>_udpServer</b>
 </div><div class="memdoc">
 <p>Retrieve the game from the game map, adds the player to the game and sends the client that he has joined the game. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>joinGame_t &amp;package </td></tr>
-    <tr><td class="paramname">param2</td><td>tcpSocket &amp;cli </td></tr>
+    <tr><td class="paramname">joinGame_t</td><td>&amp;package </td></tr>
+    <tr><td class="paramname">tcpSocket</td><td>&amp;cli </td></tr>
   </table>
   </dd>
 </dl>
@@ -383,8 +390,8 @@ udp::socket&#160;</td><td class="memItemRight" valign="bottom"><b>_udpServer</b>
 </div><div class="memdoc">
 <p>Get the game from the game map, start the game and set it to send packets to the startGame function. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>startNewGame_t &amp;package </td></tr>
-    <tr><td class="paramname">param2</td><td>tcpSocket &amp;cli </td></tr>
+    <tr><td class="paramname">startNewGame_t</td><td>&amp;package </td></tr>
+    <tr><td class="paramname">tcpSocket</td><td>&amp;cli </td></tr>
   </table>
   </dd>
 </dl>
@@ -418,11 +425,11 @@ template&lt;class PkgType &gt; </div>
 </div><div class="memdoc">
 <p>Class template which loads the packages and executes them according to the client's request. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param1</td><td>tcpSocket &amp;cli </td></tr>
+    <tr><td class="paramname">tcpSocket</td><td>&amp;cli </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>value PkgType </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>PkgType </dd></dl>
 
 </div>
 </div>

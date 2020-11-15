@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updateendpoints_35',['updateEndpoints',['../classServerGame.html#afe1d6d6f191c00f5c44c6c8f78bb716c',1,'ServerGame']]]
+  ['joinscreensystem_207',['JoinScreenSystem',['../classEngine_1_1JoinScreenSystem.html#a81c2d863e40495e9226866b53bbaa6e7',1,'Engine::JoinScreenSystem']]]
 ];

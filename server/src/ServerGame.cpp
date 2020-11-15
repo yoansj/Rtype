@@ -6,7 +6,6 @@
 */
 
 #include "ServerGame.hpp"
-#include <fstream>
 
 /** Launch loop, call the functions necessary to read packets.
 */
@@ -35,7 +34,11 @@ void ServerGame::checkPlayers()
 void ServerGame::spawnMonsters()
 {
     if (monstersClock.duration() * 1000 >= spawnTime) {
-
+        std::cout << "Spawn monster" << std::endl;
+        monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_monsterLoaderSystem.getFactory(0));
+        auto frog = frogFactory(_entityManager, _positionSystem, _velocitySystem, _hitboxSystem, _statusSystem);
+        _positionSystem.setPosition(frog, std::rand() % 2000 + 1900,  std::rand() % 900 + 100);
+        _ennemyEntities.push_back(frog);
         monstersClock.reset();
     }
 }
@@ -44,6 +47,7 @@ void ServerGame::spawnMonsters()
 */
 void ServerGame::updateEntities()
 {
+    // Update des balles
     for (std::size_t i = 0; i != _bulletEntities.size(); i++) {
         if (!_positionSystem.Exist(_bulletEntities[i])) continue;
         auto &bulletPos = _positionSystem.getComponent(_bulletEntities[i]);
@@ -57,7 +61,6 @@ void ServerGame::updateEntities()
             bulletStatus.type = Engine::DEAD;
             std::cout << "Bullet is outside of the screen !" << std::endl;
         }
-
         shootEntity_t package = {
             SHOOT_ENTITY_PACKAGE,
             bulletPos,
@@ -68,7 +71,6 @@ void ServerGame::updateEntities()
 
         boost::system::error_code error;
         for (int i = 0; i != _tcpPlayers.size(); i++) {
-            std::cout << "Send bullet package" << std::endl;
             auto endpoint = _playersEndpoints.find(i);
             if (endpoint != _playersEndpoints.end())
                 _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(shootEntity_t)), endpoint->second, 0, error);
@@ -82,6 +84,44 @@ void ServerGame::updateEntities()
             _entitiesToDestroy.push_back(i);
         }
     }
+    // Update des monstres
+    for (std::size_t i = 0; i != _ennemyEntities.size(); i++) {
+        if (!_positionSystem.Exist(_ennemyEntities[i])) continue;
+        auto &monsterPos = _positionSystem.getComponent(_ennemyEntities[i]);
+        auto &monsterVel = _velocitySystem.getComponent(_ennemyEntities[i]);
+        auto &monsterStatus = _statusSystem.getComponent(_ennemyEntities[i]);
+
+        monsterPos.x += monsterVel.x;
+        monsterPos.y += monsterVel.y;
+
+        if (monsterPos.x <= 100) {
+            monsterStatus.type = Engine::DEAD;
+            std::cout << "Monster is outside of the screen !" << std::endl;
+        }
+
+        monsterEntity_t package = {
+            MONSTER_ENTITY_PACKAGE,
+            monsterPos,
+            monsterStatus,
+            _ennemyEntities[i],
+            _monsterLoaderSystem.getFilepath(0)[0]
+        };
+
+        boost::system::error_code error;
+        for (int i = 0; i != _tcpPlayers.size(); i++) {
+            auto endpoint = _playersEndpoints.find(i);
+            if (endpoint != _playersEndpoints.end())
+                _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(monsterEntity_t)), endpoint->second, 0, error);
+        }
+        if (monsterStatus.type == Engine::DEAD) {
+            std::cout << "Destroying components of mosnter !" << std::endl;
+            _positionSystem.destroy(_ennemyEntities[i]);
+            _velocitySystem.destroy(_ennemyEntities[i]);
+            _hitboxSystem.destroy(_ennemyEntities[i]);
+            _statusSystem.destroy(_ennemyEntities[i]);
+            //_entitiesToDestroy.push_back(i);
+        }
+    }
 }
 
 void ServerGame::destroyEntities()
@@ -93,9 +133,11 @@ void ServerGame::destroyEntities()
     _entitiesToDestroy.empty();*/
 }
 
+/** Start the game and send a packet to all the clients to signal it, create a player entity and set all the data necessary for its operation.
+*/
 void ServerGame::startGame()
 {
-    //std::cout << "Starting game " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
+    std::cout << "Starting game " << _gameId << " of owner: " << _creator->remote_endpoint().address() << ":" << _creator->remote_endpoint().port() << std::endl;
     gameStarted_t reply = {STARTED_GAME, _tcpPlayers.size(), "GAME STARTED"};
 
     /*std::string path = "./lib";
@@ -107,12 +149,6 @@ void ServerGame::startGame()
             std::cout << m[2] << std::endl;
         }
     }*/
-
-    std::ifstream f("libs/libfrog.so");
-    if (f.good())
-        std::cout << "Good filepath !" << std::endl;
-    else
-        std::cout << "Bad filepath !" << std::endl;
 
     _monsterLoaderSystem.load({
         "libs/libfrog.so"

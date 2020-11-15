@@ -114,7 +114,6 @@ typedef struct shootEntity_s {
 typedef struct monsterEntity_s {
     int type_struct = 11;
     Engine::Position pos;
-    Engine::Hitbox shootHitbox;
     Engine::Status status;
     Entity serverEntityId;
     char filepath[120];

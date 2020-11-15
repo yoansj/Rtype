@@ -1,0 +1,111 @@
+\hypertarget{classEngine_1_1ParallaxSystem}{}\doxysection{Engine\+::Parallax\+System Class Reference}
+\label{classEngine_1_1ParallaxSystem}\index{Engine::ParallaxSystem@{Engine::ParallaxSystem}}
+
+
+Parallax \mbox{\hyperlink{classEngine_1_1System}{System}} for the menu and the game.  
+
+
+
+
+{\ttfamily \#include $<$Parallax\+System.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classEngine_1_1ParallaxSystem_a73b80aec128e396b281f26b0d70402bc}{update}} (\mbox{\hyperlink{structEngine_1_1Position}{Position}} \&pos, \mbox{\hyperlink{structEngine_1_1Velocity}{Velocity}} \&vel)
+\begin{DoxyCompactList}\small\item\em Update the \mbox{\hyperlink{structEngine_1_1Position}{Position}} and the \mbox{\hyperlink{structEngine_1_1Velocity}{Velocity}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1ParallaxSystem_a37528c68cd063cd78d6a6c12b8233105}{set\+Background\+Entity}} (Entity background)
+\begin{DoxyCompactList}\small\item\em Set the Background Entity. \end{DoxyCompactList}\item 
+Entity \mbox{\hyperlink{classEngine_1_1ParallaxSystem_ab4d80433480f30aac7d96196e8c8b402}{get\+Background\+Entity}} () const
+\begin{DoxyCompactList}\small\item\em Get the Background Entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1ParallaxSystem_aa42680a19156d9aae02eaa3cb8de9575}{remove\+Parallax}} (\mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \&position\+System, \mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \&velocity\+Sytem, \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager)
+\begin{DoxyCompactList}\small\item\em Remove the parallax active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1ParallaxSystem_a527991af975afc3e09e2decc21af4c8b}\label{classEngine_1_1ParallaxSystem_a527991af975afc3e09e2decc21af4c8b}} 
+sf\+::\+Clock {\bfseries \+\_\+clock}
+\item 
+\mbox{\Hypertarget{classEngine_1_1ParallaxSystem_a30b81b13d427b5f2c1395b87b6372bec}\label{classEngine_1_1ParallaxSystem_a30b81b13d427b5f2c1395b87b6372bec}} 
+sf\+::\+Time {\bfseries \+\_\+time}
+\item 
+\mbox{\Hypertarget{classEngine_1_1ParallaxSystem_af167e2acedc873a6404425aae9b8f0c5}\label{classEngine_1_1ParallaxSystem_af167e2acedc873a6404425aae9b8f0c5}} 
+Entity {\bfseries \+\_\+background}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parallax \mbox{\hyperlink{classEngine_1_1System}{System}} for the menu and the game. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEngine_1_1ParallaxSystem_ab4d80433480f30aac7d96196e8c8b402}\label{classEngine_1_1ParallaxSystem_ab4d80433480f30aac7d96196e8c8b402}} 
+\index{Engine::ParallaxSystem@{Engine::ParallaxSystem}!getBackgroundEntity@{getBackgroundEntity}}
+\index{getBackgroundEntity@{getBackgroundEntity}!Engine::ParallaxSystem@{Engine::ParallaxSystem}}
+\doxysubsubsection{\texorpdfstring{getBackgroundEntity()}{getBackgroundEntity()}}
+{\footnotesize\ttfamily Entity Engine\+::\+Parallax\+System\+::get\+Background\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Background Entity. 
+
+\begin{DoxyReturn}{Returns}
+Entity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1ParallaxSystem_aa42680a19156d9aae02eaa3cb8de9575}\label{classEngine_1_1ParallaxSystem_aa42680a19156d9aae02eaa3cb8de9575}} 
+\index{Engine::ParallaxSystem@{Engine::ParallaxSystem}!removeParallax@{removeParallax}}
+\index{removeParallax@{removeParallax}!Engine::ParallaxSystem@{Engine::ParallaxSystem}}
+\doxysubsubsection{\texorpdfstring{removeParallax()}{removeParallax()}}
+{\footnotesize\ttfamily void Engine\+::\+Parallax\+System\+::remove\+Parallax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \&}]{position\+System,  }\item[{\mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \&}]{velocity\+Sytem,  }\item[{\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&}]{entity\+Manager }\end{DoxyParamCaption})}
+
+
+
+Remove the parallax active. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}}} & \&position\+System \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}}} & \&velocity\+Sytem \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}}} & \&entity\+Manager \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1ParallaxSystem_a37528c68cd063cd78d6a6c12b8233105}\label{classEngine_1_1ParallaxSystem_a37528c68cd063cd78d6a6c12b8233105}} 
+\index{Engine::ParallaxSystem@{Engine::ParallaxSystem}!setBackgroundEntity@{setBackgroundEntity}}
+\index{setBackgroundEntity@{setBackgroundEntity}!Engine::ParallaxSystem@{Engine::ParallaxSystem}}
+\doxysubsubsection{\texorpdfstring{setBackgroundEntity()}{setBackgroundEntity()}}
+{\footnotesize\ttfamily void Engine\+::\+Parallax\+System\+::set\+Background\+Entity (\begin{DoxyParamCaption}\item[{Entity}]{background }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the Background Entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Entity} & background \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1ParallaxSystem_a73b80aec128e396b281f26b0d70402bc}\label{classEngine_1_1ParallaxSystem_a73b80aec128e396b281f26b0d70402bc}} 
+\index{Engine::ParallaxSystem@{Engine::ParallaxSystem}!update@{update}}
+\index{update@{update}!Engine::ParallaxSystem@{Engine::ParallaxSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Engine\+::\+Parallax\+System\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEngine_1_1Position}{Position}} \&}]{pos,  }\item[{\mbox{\hyperlink{structEngine_1_1Velocity}{Velocity}} \&}]{vel }\end{DoxyParamCaption})}
+
+
+
+Update the \mbox{\hyperlink{structEngine_1_1Position}{Position}} and the \mbox{\hyperlink{structEngine_1_1Velocity}{Velocity}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structEngine_1_1Position}{Position}}} & \&pos \\
+\hline
+{\em \mbox{\hyperlink{structEngine_1_1Velocity}{Velocity}}} & \&vel \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+client/include/systems/Parallax\+System.\+hpp\end{DoxyCompactItemize}

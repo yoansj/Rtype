@@ -14,15 +14,10 @@
 
 int main(int argc, char **argv)
 {
-	Engine::MonsterLoaderSystem monsterLoaderSystem;
 	if (argc != 2) {
         std::cout << "Try : ./run_client <port>" << std::endl;
         return 0;
     }
-
-	monsterLoaderSystem.load({
-        "../libs/libfrog.so"
-    });
 
 	Engine::Engine game(argv[1]);
 

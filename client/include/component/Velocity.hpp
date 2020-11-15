@@ -12,7 +12,16 @@
 
 namespace Engine {
 
+    /**
+     * @brief Component Velocity
+     * 
+     */
     struct Velocity : public Component {
+        /**
+         * @brief Construct a new Velocity object
+         * 
+         * @param Entity e 
+         */
         Velocity(Entity e) : Component(e) {entity = e;};
         float x;
         float y;

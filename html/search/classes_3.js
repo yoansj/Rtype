@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['joingame_5fs_26',['joinGame_s',['../structjoinGame__s.html',1,'']]]
+  ['hitbox_136',['Hitbox',['../structEngine_1_1Hitbox.html',1,'Engine']]],
+  ['hitboxsystem_137',['HitboxSystem',['../classEngine_1_1HitboxSystem.html',1,'Engine']]]
 ];

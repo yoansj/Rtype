@@ -21,12 +21,16 @@ void Engine::MonsterLoaderSystem::load(std::vector<std::string> libs)
             throw MonsterLoaderError("Couldn't load monsterGenerator in lib " + libs[0]);
 
         const int *secret = reinterpret_cast<int *>(dlsym(lib, "secret"));
+        const char *filepath = reinterpret_cast<char *>(dlsym(lib, "filepath"));
 
         if (!secret || *secret != 0x667)
             throw MonsterLoaderError("Bad secret number in lib" + libs[0]);
+        if (!filepath)
+            throw MonsterLoaderError("Filepath not found !");
 
         _monstersFactories.push_back(mob);
         _monstersLib.push_back(mob);
+        _monstersFilepath.push_back(filepath);
         std::cout << "Lib loaded ! babinks" << std::endl;
     }
 }
