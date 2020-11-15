@@ -134,15 +134,17 @@ void Engine::GameScreenSystem::update(EntityManager &entityManager, SceneManager
                 playerSprite.rect.left = 0;
                 playerSprite.rect.width = 160;
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                // Envoyer un paquet shoot
-                shoot_t package = {SHOOT_PACKAGE, _getPlayerId(), _getGameId(), playerPosition};
-                _sendPackage(reinterpret_cast<char *>(&package), SHOOT_PACKAGE);
-            }
             if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                 playerSprite.rect.left = 170;
                 playerSprite.rect.width = 148;
             }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && shooting == false) {
+                // Envoyer un paquet shoot
+                shoot_t package = {SHOOT_PACKAGE, _getPlayerId(), _getGameId(), playerPosition};
+                _sendPackage(reinterpret_cast<char *>(&package), SHOOT_PACKAGE);
+                shooting = true;
+            } else
+                shooting = false;
         }
         position_t package = {POSITION_PACKAGE, _getPlayerId(), _getGameId(), playerPosition};
         _sendPackage(reinterpret_cast<char *>(&package), POSITION_PACKAGE);

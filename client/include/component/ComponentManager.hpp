@@ -22,6 +22,7 @@ class ComponentManager {
 
         AbstractComponent &create(Entity e) {
             _components.push_back(AbstractComponent(e));
+            _components.back().entity = e;
             return (_components.back());
         }
 

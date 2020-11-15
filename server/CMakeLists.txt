@@ -19,7 +19,6 @@ set(INC_DIR server/include)
 
 set(SERVER_SRC
         server/main.cpp
-        server/src/UdpServer.cpp
         ${PROJECT_SOURCE_DIR}/client/src/entities/Entity.cpp
         ${PROJECT_SOURCE_DIR}/client/src/systems/PositionSystem.cpp
         ${PROJECT_SOURCE_DIR}/client/src/systems/VelocitySystem.cpp

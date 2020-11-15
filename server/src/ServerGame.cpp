@@ -21,7 +21,6 @@ void ServerGame::run()
 
 void ServerGame::checkPlayers()
 {
-    
 }
 
 void ServerGame::startGame()
@@ -72,6 +71,10 @@ void ServerGame::readPackages()
             _velocitySystem.create(bullet);
             _velocitySystem.setVelocity(bullet, 20, 0);
             _positionSystem.setPosition(bullet, package->pos.x + 20, package->pos.y);
+
+            std::cout << "[" << _gameId << "] Receive SHOOT_PACKAGE from: " << _packages[0].endpoint.address() << ":" << _packages[0].endpoint.port() << std::endl;
+
+            _serverEntities.push_back(bullet);
         }
         _packages.erase(_packages.begin());
     }

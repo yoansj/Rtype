@@ -20,7 +20,6 @@ namespace Engine {
     class Component {
         public:
             Component(Entity father) : entity(father) {};
-            Component() = default;
             ~Component() = default;
             Entity entity;
     };

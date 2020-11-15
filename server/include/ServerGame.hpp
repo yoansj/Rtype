@@ -8,6 +8,9 @@
 #ifndef SERVERGAME_HPP_
 #define SERVERGAME_HPP_
 
+#include "System.hpp"
+#include "ComponentManager.hpp"
+#include "Component.hpp"
 #include "PackagesType.hpp"
 #include "Packages.hpp"
 #include "Entity.hpp"

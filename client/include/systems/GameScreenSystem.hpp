@@ -27,7 +27,7 @@ namespace Engine {
         public:
             GameScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem) :
             _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false)
-            , _createdAllPlayers(false) {};
+            , _createdAllPlayers(false), shooting(false) {};
             ~GameScreenSystem() = default;
 
             void createSprites(std::array<Entity, 2> parallax);
@@ -67,6 +67,9 @@ namespace Engine {
             std::function<void(char const *package, int typePackage)> _sendPackage;
             std::function<Entity()> _createEntity;
             std::function<bool()> _hasFocus;
+
+            //Misc
+            bool shooting;
     };
 }
 

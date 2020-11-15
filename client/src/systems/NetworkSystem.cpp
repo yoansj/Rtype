@@ -11,7 +11,7 @@
 template <class PkgType>
 PkgType Engine::NetworkSystem::loadPkgType(bool typePackage, char *pkgUdp)
 {
-    PkgType pkg;
+    PkgType *pkg;
     std::size_t received;
     sf::IpAddress sender;
     unsigned short port;
@@ -20,7 +20,7 @@ PkgType Engine::NetworkSystem::loadPkgType(bool typePackage, char *pkgUdp)
         _socketTcp.receive(reinterpret_cast<char *>(&pkg) + sizeof(int), sizeof(PkgType) - sizeof(int), received);
     else
         std::memcpy(&pkg, pkgUdp, sizeof(PkgType));
-    return (pkg);
+    return (*pkg);
 }
 
 
@@ -123,6 +123,14 @@ void Engine::NetworkSystem::sendPackage(char const *package, int typePackage)
             std::size_t yo;
             //std::cout << "START GAME SENT !" << std::endl;
             if (_socketTcp.send(package, sizeof(startNewGame_t), yo) != sf::Socket::Done) {
+                throw EngineError("Network Error", "Package not sent !");
+            }
+            break;
+        }
+        case SHOOT_PACKAGE:
+        {
+            std::size_t yo;
+            if (_socketUdp.send(package, sizeof(shoot_t), _recipient, _port) != sf::Socket::Done) {
                 throw EngineError("Network Error", "Package not sent !");
             }
             break;

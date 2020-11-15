@@ -178,7 +178,6 @@ void ServerEngine::handlePackage(joinGame_t &package, tcpSocket &cli)
 
 void ServerEngine::run()
 {
-    // std::cout << "Server start ! Ip : " << _acceptor.local_endpoint().address() << ":" << _acceptor.local_endpoint().port() << std::endl;
     // auto t1 = std::chrono::high_resolution_clock::now();
     // float duration;
 
@@ -192,6 +191,7 @@ void ServerEngine::run()
     //         receiveUdpPackages();
     //      }
     // }
+    std::cout << "Server start ! Ip : " << _acceptor.local_endpoint().address() << ":" << _acceptor.local_endpoint().port() << std::endl;
     while (1) {
         acceptConnections();
         receiveTcpPackages();
