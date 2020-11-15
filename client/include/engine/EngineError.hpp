@@ -26,7 +26,18 @@ class EngineError : public std::exception {
         EngineError(std::string const &type, std::string const &message) :
         _message(message), _type(type) {};
 
+        /**
+         * @brief Return message error from what()
+         * 
+         * @return char const* 
+         */
         char const *what() const noexcept override { return _message.data();};
+
+        /**
+         * @brief Get the Type object
+         * 
+         * @return std::string 
+         */
         std::string getType() const{ return _type;};
 
     private:

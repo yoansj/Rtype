@@ -1,0 +1,181 @@
+\hypertarget{classEngine_1_1MenuScreenSystem}{}\doxysection{Engine\+::Menu\+Screen\+System Class Reference}
+\label{classEngine_1_1MenuScreenSystem}\index{Engine::MenuScreenSystem@{Engine::MenuScreenSystem}}
+
+
+Menu Screen \mbox{\hyperlink{classEngine_1_1System}{System}} to manage the scene Menu.  
+
+
+
+
+{\ttfamily \#include $<$Menu\+Screen\+System.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEngine_1_1MenuScreenSystem_a86a416e7108b3d38a7560a4bec4c1693}{Menu\+Screen\+System}} (\mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}} \&sprite\+System, \mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \&velocity\+System, \mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \&position\+System, \mbox{\hyperlink{classEngine_1_1ParallaxSystem}{Parallax\+System}} \&parallax\+System)
+\begin{DoxyCompactList}\small\item\em Construct a new Menu Screen \mbox{\hyperlink{classEngine_1_1System}{System}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1MenuScreenSystem_a08fb4e542bbc57d947d32132c36a2082}{create\+Sprites}} (std\+::array$<$ Entity, 2 $>$ parallax, std\+::array$<$ Entity, 3 $>$ buttons)
+\begin{DoxyCompactList}\small\item\em Create a Sprites object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1MenuScreenSystem_a9d2729503709c27ed12eb5e18711c24c}{destroy\+Sprites}} (\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager)
+\begin{DoxyCompactList}\small\item\em Destroy a Sprites object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEngine_1_1MenuScreenSystem_a197d15bbe54cd7745ed1bab49372987c}{is\+Created}} () const
+\begin{DoxyCompactList}\small\item\em Check is the Screen is created. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1MenuScreenSystem_ad304df1d217e8bc71be8f07a1dfedaf3}{update}} (\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager, \mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}} \&scene\+Manager, \mbox{\hyperlink{classEngine_1_1NetworkSystem}{Network\+System}} \&network\+System)
+\begin{DoxyCompactList}\small\item\em Update the scene Lobby Screen \mbox{\hyperlink{classEngine_1_1System}{System}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1MenuScreenSystem_ae33147618411720ace1c00ee9246f093}{set\+Has\+Focus}} (std\+::function$<$ bool()$>$ f)
+\begin{DoxyCompactList}\small\item\em Set the Has Focus object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_a2d19cc8fa6f93ce104aa8b752c479fe0}\label{classEngine_1_1MenuScreenSystem_a2d19cc8fa6f93ce104aa8b752c479fe0}} 
+enum {\bfseries choice} \{ {\bfseries C\+R\+E\+A\+TE}, 
+{\bfseries J\+O\+IN}, 
+{\bfseries Q\+U\+IT}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_a2baa787a7170c5224ed082d1ada8f2e6}\label{classEngine_1_1MenuScreenSystem_a2baa787a7170c5224ed082d1ada8f2e6}} 
+std\+::vector$<$ Entity $>$ {\bfseries \+\_\+menu\+Screen\+Entities}
+\item 
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_aa70f4d8a712d39a26ae54415c3bbb62b}\label{classEngine_1_1MenuScreenSystem_aa70f4d8a712d39a26ae54415c3bbb62b}} 
+bool {\bfseries \+\_\+created}
+\item 
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_ae9ef724492d13c68577821292752fccf}\label{classEngine_1_1MenuScreenSystem_ae9ef724492d13c68577821292752fccf}} 
+int {\bfseries \+\_\+choice}
+\item 
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_aab884c5f17247b54019382b47bf0eeaf}\label{classEngine_1_1MenuScreenSystem_aab884c5f17247b54019382b47bf0eeaf}} 
+bool {\bfseries \+\_\+is\+Pressed}
+\item 
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_a1bf6e263ca69b008e4eafd4016ae5420}\label{classEngine_1_1MenuScreenSystem_a1bf6e263ca69b008e4eafd4016ae5420}} 
+\mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}} \& {\bfseries \+\_\+sprite\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_a4e22eff4eec7e5110fc8f269c6f75ad8}\label{classEngine_1_1MenuScreenSystem_a4e22eff4eec7e5110fc8f269c6f75ad8}} 
+\mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \& {\bfseries \+\_\+velocity\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_a881b9e895985ce97e645c5e713aa2898}\label{classEngine_1_1MenuScreenSystem_a881b9e895985ce97e645c5e713aa2898}} 
+\mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \& {\bfseries \+\_\+position\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_ae99a0fe51bf1f83b8dae1858fe4ab3b7}\label{classEngine_1_1MenuScreenSystem_ae99a0fe51bf1f83b8dae1858fe4ab3b7}} 
+\mbox{\hyperlink{classEngine_1_1ParallaxSystem}{Parallax\+System}} \& {\bfseries \+\_\+parallax\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_a41abc42389fbfe8aac90b6d69701e81d}\label{classEngine_1_1MenuScreenSystem_a41abc42389fbfe8aac90b6d69701e81d}} 
+std\+::function$<$ bool()$>$ {\bfseries \+\_\+has\+Focus}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Menu Screen \mbox{\hyperlink{classEngine_1_1System}{System}} to manage the scene Menu. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_a86a416e7108b3d38a7560a4bec4c1693}\label{classEngine_1_1MenuScreenSystem_a86a416e7108b3d38a7560a4bec4c1693}} 
+\index{Engine::MenuScreenSystem@{Engine::MenuScreenSystem}!MenuScreenSystem@{MenuScreenSystem}}
+\index{MenuScreenSystem@{MenuScreenSystem}!Engine::MenuScreenSystem@{Engine::MenuScreenSystem}}
+\doxysubsubsection{\texorpdfstring{MenuScreenSystem()}{MenuScreenSystem()}}
+{\footnotesize\ttfamily Engine\+::\+Menu\+Screen\+System\+::\+Menu\+Screen\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}} \&}]{sprite\+System,  }\item[{\mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \&}]{velocity\+System,  }\item[{\mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \&}]{position\+System,  }\item[{\mbox{\hyperlink{classEngine_1_1ParallaxSystem}{Parallax\+System}} \&}]{parallax\+System }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Menu Screen \mbox{\hyperlink{classEngine_1_1System}{System}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}}} & \&sprite\+System \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}}} & \&velocity\+System \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}}} & \&position\+System \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1ParallaxSystem}{Parallax\+System}}} & \&parallax\+System \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_a08fb4e542bbc57d947d32132c36a2082}\label{classEngine_1_1MenuScreenSystem_a08fb4e542bbc57d947d32132c36a2082}} 
+\index{Engine::MenuScreenSystem@{Engine::MenuScreenSystem}!createSprites@{createSprites}}
+\index{createSprites@{createSprites}!Engine::MenuScreenSystem@{Engine::MenuScreenSystem}}
+\doxysubsubsection{\texorpdfstring{createSprites()}{createSprites()}}
+{\footnotesize\ttfamily void Engine\+::\+Menu\+Screen\+System\+::create\+Sprites (\begin{DoxyParamCaption}\item[{std\+::array$<$ Entity, 2 $>$}]{parallax,  }\item[{std\+::array$<$ Entity, 3 $>$}]{buttons }\end{DoxyParamCaption})}
+
+
+
+Create a Sprites object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::array$<$\+Entity,2$>$} & parallax \\
+\hline
+{\em std\+::array$<$\+Entity,3$>$} & buttons \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_a9d2729503709c27ed12eb5e18711c24c}\label{classEngine_1_1MenuScreenSystem_a9d2729503709c27ed12eb5e18711c24c}} 
+\index{Engine::MenuScreenSystem@{Engine::MenuScreenSystem}!destroySprites@{destroySprites}}
+\index{destroySprites@{destroySprites}!Engine::MenuScreenSystem@{Engine::MenuScreenSystem}}
+\doxysubsubsection{\texorpdfstring{destroySprites()}{destroySprites()}}
+{\footnotesize\ttfamily void Engine\+::\+Menu\+Screen\+System\+::destroy\+Sprites (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&}]{entity\+Manager }\end{DoxyParamCaption})}
+
+
+
+Destroy a Sprites object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}}} & \&entity\+Manager \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_a197d15bbe54cd7745ed1bab49372987c}\label{classEngine_1_1MenuScreenSystem_a197d15bbe54cd7745ed1bab49372987c}} 
+\index{Engine::MenuScreenSystem@{Engine::MenuScreenSystem}!isCreated@{isCreated}}
+\index{isCreated@{isCreated}!Engine::MenuScreenSystem@{Engine::MenuScreenSystem}}
+\doxysubsubsection{\texorpdfstring{isCreated()}{isCreated()}}
+{\footnotesize\ttfamily bool Engine\+::\+Menu\+Screen\+System\+::is\+Created (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check is the Screen is created. 
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_ae33147618411720ace1c00ee9246f093}\label{classEngine_1_1MenuScreenSystem_ae33147618411720ace1c00ee9246f093}} 
+\index{Engine::MenuScreenSystem@{Engine::MenuScreenSystem}!setHasFocus@{setHasFocus}}
+\index{setHasFocus@{setHasFocus}!Engine::MenuScreenSystem@{Engine::MenuScreenSystem}}
+\doxysubsubsection{\texorpdfstring{setHasFocus()}{setHasFocus()}}
+{\footnotesize\ttfamily void Engine\+::\+Menu\+Screen\+System\+::set\+Has\+Focus (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool()$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the Has Focus object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::function$<$bool()$>$} & f \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1MenuScreenSystem_ad304df1d217e8bc71be8f07a1dfedaf3}\label{classEngine_1_1MenuScreenSystem_ad304df1d217e8bc71be8f07a1dfedaf3}} 
+\index{Engine::MenuScreenSystem@{Engine::MenuScreenSystem}!update@{update}}
+\index{update@{update}!Engine::MenuScreenSystem@{Engine::MenuScreenSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Engine\+::\+Menu\+Screen\+System\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&}]{entity\+Manager,  }\item[{\mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}} \&}]{scene\+Manager,  }\item[{\mbox{\hyperlink{classEngine_1_1NetworkSystem}{Network\+System}} \&}]{network\+System }\end{DoxyParamCaption})}
+
+
+
+Update the scene Lobby Screen \mbox{\hyperlink{classEngine_1_1System}{System}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}}} & \&entity\+Manager \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}}} & \&scene\+Manager \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1NetworkSystem}{Network\+System}}} & \&network\+System \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+client/include/systems/Menu\+Screen\+System.\+hpp\end{DoxyCompactItemize}

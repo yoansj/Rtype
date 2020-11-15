@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['tcpsocket_45',['tcpSocket',['../classServerEngine.html#a65eb975fc6726e3f287eb925d8b32b04',1,'ServerEngine']]],
-  ['text_46',['Text',['../structEngine_1_1Text.html',1,'Engine']]]
+  ['networksystem_55',['NetworkSystem',['../classEngine_1_1NetworkSystem.html',1,'Engine::NetworkSystem'],['../classEngine_1_1NetworkSystem.html#ad3f9c9cbbfa1c4a4c04a7314a080cf28',1,'Engine::NetworkSystem::NetworkSystem()']]]
 ];

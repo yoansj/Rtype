@@ -14,12 +14,10 @@ Game \mbox{\hyperlink{classEngine_1_1Engine}{Engine}}.
 \item 
 \mbox{\hyperlink{classEngine_1_1Engine_a0fdf10be70629d62384230825d26acf2}{Engine}} (std\+::string const \&server\+Ip)
 \begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classEngine_1_1Engine}{Engine}} object. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classEngine_1_1Engine_a16ffb8f5265fcffd551f839ce6dd7e26}\label{classEngine_1_1Engine_a16ffb8f5265fcffd551f839ce6dd7e26}} 
-void {\bfseries run} ()
-\item 
-\mbox{\Hypertarget{classEngine_1_1Engine_ab6e5135b972028d37d51f0380019eaa9}\label{classEngine_1_1Engine_ab6e5135b972028d37d51f0380019eaa9}} 
-void {\bfseries update\+Systems} ()
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classEngine_1_1Engine_a16ffb8f5265fcffd551f839ce6dd7e26}{run}} ()
+\begin{DoxyCompactList}\small\item\em Loop for the game \mbox{\hyperlink{classEngine_1_1Engine}{Engine}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1Engine_ab6e5135b972028d37d51f0380019eaa9}{update\+Systems}} ()
+\begin{DoxyCompactList}\small\item\em Update all systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -30,7 +28,7 @@ std\+::shared\+\_\+ptr$<$ sf\+::\+Render\+Window $>$ {\bfseries \+\_\+window}
 sf\+::\+Event {\bfseries \+\_\+event}
 \item 
 \mbox{\Hypertarget{classEngine_1_1Engine_a31029e9f286a4a36ff69bf9b79d333ed}\label{classEngine_1_1Engine_a31029e9f286a4a36ff69bf9b79d333ed}} 
-System\+Manager {\bfseries \+\_\+systems}
+\mbox{\hyperlink{classEngine_1_1SystemManager}{System\+Manager}} {\bfseries \+\_\+systems}
 \item 
 \mbox{\Hypertarget{classEngine_1_1Engine_a592dcdadac2f4e83efb781800070f6fd}\label{classEngine_1_1Engine_a592dcdadac2f4e83efb781800070f6fd}} 
 \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} {\bfseries \+\_\+entity\+Manager}
@@ -64,9 +62,32 @@ Construct a new \mbox{\hyperlink{classEngine_1_1Engine}{Engine}} object.
 
 
 \begin{DoxyParams}{Parameters}
-{\em params1} & std\+::string const \& server\+Ip \\
+{\em std\+::string} & const \& server\+Ip \\
 \hline
 \end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEngine_1_1Engine_a16ffb8f5265fcffd551f839ce6dd7e26}\label{classEngine_1_1Engine_a16ffb8f5265fcffd551f839ce6dd7e26}} 
+\index{Engine::Engine@{Engine::Engine}!run@{run}}
+\index{run@{run}!Engine::Engine@{Engine::Engine}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Engine\+::\+Engine\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Loop for the game \mbox{\hyperlink{classEngine_1_1Engine}{Engine}}. 
+
+\mbox{\Hypertarget{classEngine_1_1Engine_ab6e5135b972028d37d51f0380019eaa9}\label{classEngine_1_1Engine_ab6e5135b972028d37d51f0380019eaa9}} 
+\index{Engine::Engine@{Engine::Engine}!updateSystems@{updateSystems}}
+\index{updateSystems@{updateSystems}!Engine::Engine@{Engine::Engine}}
+\doxysubsubsection{\texorpdfstring{updateSystems()}{updateSystems()}}
+{\footnotesize\ttfamily void Engine\+::\+Engine\+::update\+Systems (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update all systems. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

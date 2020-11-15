@@ -1,0 +1,309 @@
+\hypertarget{classEngine_1_1GameScreenSystem}{}\doxysection{Engine\+::Game\+Screen\+System Class Reference}
+\label{classEngine_1_1GameScreenSystem}\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+
+
+Game Screen \mbox{\hyperlink{classEngine_1_1System}{System}}, display and manage the lobby.  
+
+
+
+
+{\ttfamily \#include $<$Game\+Screen\+System.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEngine_1_1GameScreenSystem_aab0a22a961176f3248ebd63da31d47ee}{Game\+Screen\+System}} (\mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}} \&sprite\+System, \mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \&velocity\+System, \mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \&position\+System, \mbox{\hyperlink{classEngine_1_1ParallaxSystem}{Parallax\+System}} \&parallax\+System)
+\begin{DoxyCompactList}\small\item\em Construct a new Game Screen \mbox{\hyperlink{classEngine_1_1System}{System}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_a2194cb7e23faacfe486282352aa2cc6a}{create\+Sprites}} (std\+::array$<$ Entity, 2 $>$ parallax)
+\begin{DoxyCompactList}\small\item\em Create a Sprites with Entities. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_a9917bdeacb997e0c09264fafa0a32bd6}{destroy\+Sprites}} (\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager)
+\begin{DoxyCompactList}\small\item\em Destroy a Sprites Entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_adf64c48c493e64de7730552fb46dba3b}{init\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Init the game. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEngine_1_1GameScreenSystem_a665fbd31f84a1a820662f246f57401d0}{is\+Created}} () const
+\begin{DoxyCompactList}\small\item\em Check if the Entity is created. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_a2dc856a7f7d0efa97e90ef4fce2777a0}{update}} (\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&entity\+Manager, \mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}} \&scene\+Manager)
+\begin{DoxyCompactList}\small\item\em Update \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} and \mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_a111a8d6c8bae0dde81cd27a8eddbb976}{update\+Player\+Position}} (std\+::size\+\_\+t index, \mbox{\hyperlink{structEngine_1_1Position}{Position}} pos)
+\begin{DoxyCompactList}\small\item\em Update the players positions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_ace9a314f046818f7b5a4f82f2f088cb9}{set\+Player\+IdF}} (std\+::function$<$ std\+::size\+\_\+t()$>$ f)
+\begin{DoxyCompactList}\small\item\em Set the Player Id F object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_a5ce3ddfa1f72eee933b43c806a81d866}{set\+Player\+NbF}} (std\+::function$<$ std\+::size\+\_\+t()$>$ f)
+\begin{DoxyCompactList}\small\item\em Set the Player Nb F object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_a84fe4498f14c64e44b239decc426ed19}{set\+Create\+EntityF}} (std\+::function$<$ Entity()$>$ f)
+\begin{DoxyCompactList}\small\item\em Set the Create Entity F object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_a705a2c38e427eeef9e57f0742bd8d80c}{set\+Send\+PakageF}} (std\+::function$<$ void(char const $\ast$package, int type\+Package)$>$ f)
+\begin{DoxyCompactList}\small\item\em Set the Send Pakage F object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_a85aeb0ab09f0e5bc9173fe5895f5eeab}{set\+Game\+IdF}} (std\+::function$<$ std\+::size\+\_\+t()$>$ f)
+\begin{DoxyCompactList}\small\item\em Set the Game Id F object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_1_1GameScreenSystem_a98866bb4a59b552024bb074b5ff70dd9}{set\+Has\+Focus}} (std\+::function$<$ bool()$>$ f)
+\begin{DoxyCompactList}\small\item\em Set the Has Focus object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a7292ddf2b4b3e39595444a7ae4e947dd}\label{classEngine_1_1GameScreenSystem_a7292ddf2b4b3e39595444a7ae4e947dd}} 
+std\+::vector$<$ Entity $>$ {\bfseries \+\_\+game\+Screen\+Entities}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a017a75d0abf6491201087724cfe75885}\label{classEngine_1_1GameScreenSystem_a017a75d0abf6491201087724cfe75885}} 
+bool {\bfseries \+\_\+created}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a04509b5d69d0c36a9b2eee2d40639e5e}\label{classEngine_1_1GameScreenSystem_a04509b5d69d0c36a9b2eee2d40639e5e}} 
+std\+::vector$<$ Entity $>$ {\bfseries \+\_\+player\+Entities}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_aa668fc8f57f373baea540141d00797ea}\label{classEngine_1_1GameScreenSystem_aa668fc8f57f373baea540141d00797ea}} 
+bool {\bfseries \+\_\+created\+All\+Players}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a8ea5d28a995bde56eebd84af75661250}\label{classEngine_1_1GameScreenSystem_a8ea5d28a995bde56eebd84af75661250}} 
+\mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}} \& {\bfseries \+\_\+sprite\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a9caec0551fa39b78bc83015050681630}\label{classEngine_1_1GameScreenSystem_a9caec0551fa39b78bc83015050681630}} 
+\mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \& {\bfseries \+\_\+velocity\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_aeb9c59fb575eb01334d3498861bd37e2}\label{classEngine_1_1GameScreenSystem_aeb9c59fb575eb01334d3498861bd37e2}} 
+\mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \& {\bfseries \+\_\+position\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a25f7f44fd52d73051aa25f8566447158}\label{classEngine_1_1GameScreenSystem_a25f7f44fd52d73051aa25f8566447158}} 
+\mbox{\hyperlink{classEngine_1_1ParallaxSystem}{Parallax\+System}} \& {\bfseries \+\_\+parallax\+System}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a97e464aaa203ec6ae0a99811d4beaf0f}\label{classEngine_1_1GameScreenSystem_a97e464aaa203ec6ae0a99811d4beaf0f}} 
+std\+::function$<$ std\+::size\+\_\+t()$>$ {\bfseries \+\_\+get\+Player\+Id}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a019faffacb68efde96d2e7ec69a73e03}\label{classEngine_1_1GameScreenSystem_a019faffacb68efde96d2e7ec69a73e03}} 
+std\+::function$<$ std\+::size\+\_\+t()$>$ {\bfseries \+\_\+get\+Player\+Nb}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_aa0c6d32099dcc2b20dded67c70fae190}\label{classEngine_1_1GameScreenSystem_aa0c6d32099dcc2b20dded67c70fae190}} 
+std\+::function$<$ std\+::size\+\_\+t()$>$ {\bfseries \+\_\+get\+Game\+Id}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a74090dab9b7cca00a82ae7d5ab4e06d9}\label{classEngine_1_1GameScreenSystem_a74090dab9b7cca00a82ae7d5ab4e06d9}} 
+std\+::function$<$ void(char const $\ast$package, int type\+Package)$>$ {\bfseries \+\_\+send\+Package}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_acb8b28992db8e810a1d7bc7a5a5ac980}\label{classEngine_1_1GameScreenSystem_acb8b28992db8e810a1d7bc7a5a5ac980}} 
+std\+::function$<$ Entity()$>$ {\bfseries \+\_\+create\+Entity}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a0fb660735b5f36090a2c1eba3708185a}\label{classEngine_1_1GameScreenSystem_a0fb660735b5f36090a2c1eba3708185a}} 
+std\+::function$<$ bool()$>$ {\bfseries \+\_\+has\+Focus}
+\item 
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_aa80d7503ccb15687ff501528e0198749}\label{classEngine_1_1GameScreenSystem_aa80d7503ccb15687ff501528e0198749}} 
+bool {\bfseries shooting}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Game Screen \mbox{\hyperlink{classEngine_1_1System}{System}}, display and manage the lobby. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_aab0a22a961176f3248ebd63da31d47ee}\label{classEngine_1_1GameScreenSystem_aab0a22a961176f3248ebd63da31d47ee}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!GameScreenSystem@{GameScreenSystem}}
+\index{GameScreenSystem@{GameScreenSystem}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{GameScreenSystem()}{GameScreenSystem()}}
+{\footnotesize\ttfamily Engine\+::\+Game\+Screen\+System\+::\+Game\+Screen\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}} \&}]{sprite\+System,  }\item[{\mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}} \&}]{velocity\+System,  }\item[{\mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}} \&}]{position\+System,  }\item[{\mbox{\hyperlink{classEngine_1_1ParallaxSystem}{Parallax\+System}} \&}]{parallax\+System }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Game Screen \mbox{\hyperlink{classEngine_1_1System}{System}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classEngine_1_1SpriteSystem}{Sprite\+System}}} & \&sprite\+System \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1VelocitySystem}{Velocity\+System}}} & \&velocity\+System \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1PositionSystem}{Position\+System}}} & \&position\+System \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1ParallaxSystem}{Parallax\+System}}} & \&parallax\+System \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a2194cb7e23faacfe486282352aa2cc6a}\label{classEngine_1_1GameScreenSystem_a2194cb7e23faacfe486282352aa2cc6a}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!createSprites@{createSprites}}
+\index{createSprites@{createSprites}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{createSprites()}{createSprites()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::create\+Sprites (\begin{DoxyParamCaption}\item[{std\+::array$<$ Entity, 2 $>$}]{parallax }\end{DoxyParamCaption})}
+
+
+
+Create a Sprites with Entities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::array$<$\+Entity,2$>$} & parallax \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a9917bdeacb997e0c09264fafa0a32bd6}\label{classEngine_1_1GameScreenSystem_a9917bdeacb997e0c09264fafa0a32bd6}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!destroySprites@{destroySprites}}
+\index{destroySprites@{destroySprites}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{destroySprites()}{destroySprites()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::destroy\+Sprites (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&}]{entity\+Manager }\end{DoxyParamCaption})}
+
+
+
+Destroy a Sprites Entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}}} & \&entity\+Manager \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_adf64c48c493e64de7730552fb46dba3b}\label{classEngine_1_1GameScreenSystem_adf64c48c493e64de7730552fb46dba3b}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!initGame@{initGame}}
+\index{initGame@{initGame}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{initGame()}{initGame()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::init\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Init the game. 
+
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a665fbd31f84a1a820662f246f57401d0}\label{classEngine_1_1GameScreenSystem_a665fbd31f84a1a820662f246f57401d0}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!isCreated@{isCreated}}
+\index{isCreated@{isCreated}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{isCreated()}{isCreated()}}
+{\footnotesize\ttfamily bool Engine\+::\+Game\+Screen\+System\+::is\+Created (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if the Entity is created. 
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a84fe4498f14c64e44b239decc426ed19}\label{classEngine_1_1GameScreenSystem_a84fe4498f14c64e44b239decc426ed19}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!setCreateEntityF@{setCreateEntityF}}
+\index{setCreateEntityF@{setCreateEntityF}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{setCreateEntityF()}{setCreateEntityF()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::set\+Create\+EntityF (\begin{DoxyParamCaption}\item[{std\+::function$<$ Entity()$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the Create Entity F object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::function$<$\+Entity()$>$} & f \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a85aeb0ab09f0e5bc9173fe5895f5eeab}\label{classEngine_1_1GameScreenSystem_a85aeb0ab09f0e5bc9173fe5895f5eeab}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!setGameIdF@{setGameIdF}}
+\index{setGameIdF@{setGameIdF}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{setGameIdF()}{setGameIdF()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::set\+Game\+IdF (\begin{DoxyParamCaption}\item[{std\+::function$<$ std\+::size\+\_\+t()$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the Game Id F object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::function$<$std\+::size\+\_\+t()$>$} & f \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a98866bb4a59b552024bb074b5ff70dd9}\label{classEngine_1_1GameScreenSystem_a98866bb4a59b552024bb074b5ff70dd9}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!setHasFocus@{setHasFocus}}
+\index{setHasFocus@{setHasFocus}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{setHasFocus()}{setHasFocus()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::set\+Has\+Focus (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool()$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the Has Focus object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::function$<$bool()$>$} & f \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_ace9a314f046818f7b5a4f82f2f088cb9}\label{classEngine_1_1GameScreenSystem_ace9a314f046818f7b5a4f82f2f088cb9}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!setPlayerIdF@{setPlayerIdF}}
+\index{setPlayerIdF@{setPlayerIdF}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{setPlayerIdF()}{setPlayerIdF()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::set\+Player\+IdF (\begin{DoxyParamCaption}\item[{std\+::function$<$ std\+::size\+\_\+t()$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the Player Id F object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::function$<$std\+::size\+\_\+t()$>$} & f \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a5ce3ddfa1f72eee933b43c806a81d866}\label{classEngine_1_1GameScreenSystem_a5ce3ddfa1f72eee933b43c806a81d866}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!setPlayerNbF@{setPlayerNbF}}
+\index{setPlayerNbF@{setPlayerNbF}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{setPlayerNbF()}{setPlayerNbF()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::set\+Player\+NbF (\begin{DoxyParamCaption}\item[{std\+::function$<$ std\+::size\+\_\+t()$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the Player Nb F object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::function$<$std\+::size\+\_\+t()$>$} & f\\
+\hline
+\end{DoxyParams}
+Set the Player Nb F object
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::function$<$std\+::size\+\_\+t()$>$} & f \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a705a2c38e427eeef9e57f0742bd8d80c}\label{classEngine_1_1GameScreenSystem_a705a2c38e427eeef9e57f0742bd8d80c}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!setSendPakageF@{setSendPakageF}}
+\index{setSendPakageF@{setSendPakageF}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{setSendPakageF()}{setSendPakageF()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::set\+Send\+PakageF (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(char const $\ast$package, int type\+Package)$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the Send Pakage F object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::function$<$void(char} & const $\ast$package, int type\+Package)$>$ f \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a2dc856a7f7d0efa97e90ef4fce2777a0}\label{classEngine_1_1GameScreenSystem_a2dc856a7f7d0efa97e90ef4fce2777a0}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!update@{update}}
+\index{update@{update}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} \&}]{entity\+Manager,  }\item[{\mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}} \&}]{scene\+Manager }\end{DoxyParamCaption})}
+
+
+
+Update \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}} and \mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classEngine_1_1EntityManager}{Entity\+Manager}}} & \&entity\+Manager \\
+\hline
+{\em \mbox{\hyperlink{classEngine_1_1SceneManager}{Scene\+Manager}}} & \&scene\+Manager \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_1_1GameScreenSystem_a111a8d6c8bae0dde81cd27a8eddbb976}\label{classEngine_1_1GameScreenSystem_a111a8d6c8bae0dde81cd27a8eddbb976}} 
+\index{Engine::GameScreenSystem@{Engine::GameScreenSystem}!updatePlayerPosition@{updatePlayerPosition}}
+\index{updatePlayerPosition@{updatePlayerPosition}!Engine::GameScreenSystem@{Engine::GameScreenSystem}}
+\doxysubsubsection{\texorpdfstring{updatePlayerPosition()}{updatePlayerPosition()}}
+{\footnotesize\ttfamily void Engine\+::\+Game\+Screen\+System\+::update\+Player\+Position (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{index,  }\item[{\mbox{\hyperlink{structEngine_1_1Position}{Position}}}]{pos }\end{DoxyParamCaption})}
+
+
+
+Update the players positions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::size\+\_\+t} & index \\
+\hline
+{\em \mbox{\hyperlink{structEngine_1_1Position}{Position}}} & pos \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+client/include/systems/Game\+Screen\+System.\+hpp\end{DoxyCompactItemize}

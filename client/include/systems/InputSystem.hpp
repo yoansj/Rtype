@@ -19,13 +19,25 @@
 namespace Engine {
 
     /**
-     * @brief  System used to get user input in the game
+     * @brief System used to get user input in the game
+     * 
      */
     class InputSystem : public System<Position> {
         public:
+            /**
+             * @brief Construct a new Input System object
+             * 
+             */
             InputSystem() : System() {};
             ~InputSystem() = default;
 
+            /**
+             * @brief Update the InputSystem
+             * 
+             * @param Position &pos 
+             * @param Velocity &vel 
+             * @param Sprite &spr 
+             */
             void update(Position &pos, Velocity &vel, Sprite &spr);
     };
 

@@ -25,6 +25,11 @@
 #include "StatusSystem.hpp"
 
 namespace Engine {
+
+    /**
+     * @brief Manager for all the systems
+     * 
+     */
     class SystemManager {
         public:
             SystemManager() : titleScreen(spriteSystem, velocitySystem, positionSystem),
