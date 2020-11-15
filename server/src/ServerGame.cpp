@@ -94,26 +94,13 @@ void ServerGame::updateEntities()
         auto &bulletPos = _positionSystem.getComponent(_bulletEntities[i]);
         auto &bulletVel = _velocitySystem.getComponent(_bulletEntities[i]);
         auto &bulletStatus = _statusSystem.getComponent(_bulletEntities[i]);
+        auto &bulletHitbox = _hitboxSystem.getComponent(_bulletEntities[i]);
 
         bulletPos.x += bulletVel.x;
         bulletPos.y += bulletVel.y;
 
         if (bulletPos.x >= 2000) {
             bulletStatus.type = Engine::DEAD;
-        }
-        shootEntity_t package = {
-            SHOOT_ENTITY_PACKAGE,
-            bulletPos,
-            _hitboxSystem.getComponent(_bulletEntities[i]),
-            bulletStatus,
-            _bulletEntities[i]
-        };
-
-        boost::system::error_code error;
-        for (int i = 0; i != _tcpPlayers.size(); i++) {
-            auto endpoint = _playersEndpoints.find(i);
-            if (endpoint != _playersEndpoints.end())
-                _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(shootEntity_t)), endpoint->second, 0, error);
         }
 
         iterateForCollision(_bulletEntities[i], bulletPos, bulletStatus);
@@ -124,6 +111,21 @@ void ServerGame::updateEntities()
             _hitboxSystem.destroy(_bulletEntities[i]);
             _statusSystem.destroy(_bulletEntities[i]);
             _entitiesToDestroy.push_back(i);
+        }
+
+        shootEntity_t package = {
+            SHOOT_ENTITY_PACKAGE,
+            bulletPos,
+            bulletHitbox,
+            bulletStatus,
+            _bulletEntities[i]
+        };
+
+        boost::system::error_code error;
+        for (int i = 0; i != _tcpPlayers.size(); i++) {
+            auto endpoint = _playersEndpoints.find(i);
+            if (endpoint != _playersEndpoints.end())
+                _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(&package), sizeof(shootEntity_t)), endpoint->second, 0, error);
         }
     }
     // Update des monstres
