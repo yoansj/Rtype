@@ -32,23 +32,6 @@ void ServerGame::checkPlayers()
 {
 }
 
-void ServerGame::checkCollisions()
-{
-    for (std::size_t i = 0; _bulletEntities.size(); i++) {
-        for (std::size_t m = 0; m != _ennemyEntities.size(); m++) {
-            std::cout << i << " and " << m << std::endl;
-            /*if (!_hitboxSystem.Exist(_bulletEntities[i]) || !_hitboxSystem.Exist(_ennemyEntities[m])) continue;
-            if (_hitboxSystem.collides(_bulletEntities[i], _positionSystem.getComponent(_bulletEntities[i]),
-            _ennemyEntities[m], _positionSystem.getComponent(_ennemyEntities[m]))) {
-                std::cout << "collision !!!" << std::endl;
-                if (!_statusSystem.Exist(_bulletEntities[i]) || !_statusSystem.Exist(_ennemyEntities[m])) continue;
-                _statusSystem.setStatus(_bulletEntities[i], Engine::DEAD);
-                _statusSystem.setStatus(_ennemyEntities[i], Engine::DEAD);
-            }*/
-        }
-    }
-}
-
 void ServerGame::spawnMonsters()
 {
     if (monstersClock.duration() >= 4.5 * 1000) {

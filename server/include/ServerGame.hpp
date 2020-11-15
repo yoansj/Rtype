@@ -81,7 +81,6 @@ class ServerGame {
         void checkPlayers();
         void updateEntities();
         void spawnMonsters();
-        void checkCollisions();
 
         void iterateForCollision(Entity e, Engine::Position &pos, Engine::Status &status);
 
