@@ -58,7 +58,15 @@ namespace Engine {
              * @return value bool 
              */
             bool collides(Entity a, Position aPos, Entity b, Position bPos) {
-                return (true);
+                auto &aHitbox = _components.getComponent(a);
+                auto &bHitbox = _components.getComponent(b);
+
+                if (aPos.x < bPos.x + bHitbox.width &&
+                aPos.x + aHitbox.width > bPos.x &&
+                aPos.y < bPos.y + bHitbox.height &&
+                aHitbox.height + aPos.y > bPos.y)
+                    return (true);
+                return (false);
             }
     };
 

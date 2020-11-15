@@ -34,7 +34,19 @@ void ServerGame::checkPlayers()
 
 void ServerGame::checkCollisions()
 {
-    //for (std::size_t i = 0; )
+    for (std::size_t i = 0; _bulletEntities.size(); i++) {
+        for (std::size_t m = 0; m != _ennemyEntities.size(); m++) {
+            std::cout << i << " and " << m << std::endl;
+            /*if (!_hitboxSystem.Exist(_bulletEntities[i]) || !_hitboxSystem.Exist(_ennemyEntities[m])) continue;
+            if (_hitboxSystem.collides(_bulletEntities[i], _positionSystem.getComponent(_bulletEntities[i]),
+            _ennemyEntities[m], _positionSystem.getComponent(_ennemyEntities[m]))) {
+                std::cout << "collision !!!" << std::endl;
+                if (!_statusSystem.Exist(_bulletEntities[i]) || !_statusSystem.Exist(_ennemyEntities[m])) continue;
+                _statusSystem.setStatus(_bulletEntities[i], Engine::DEAD);
+                _statusSystem.setStatus(_ennemyEntities[i], Engine::DEAD);
+            }*/
+        }
+    }
 }
 
 void ServerGame::spawnMonsters()
@@ -54,6 +66,21 @@ void ServerGame::spawnMonsters()
         _positionSystem.setPosition(frog, std::rand() % 2000 + 1900,  std::rand() % 900 + 100);
         _ennemyEntities.push_back(frog);
         monstersClock.reset();
+    }
+}
+
+void ServerGame::iterateForCollision(Entity e, Engine::Position &pos, Engine::Status &status)
+{
+    for (std::size_t i = 0; i != _ennemyEntities.size(); i++) {
+        if (!_statusSystem.Exist(_ennemyEntities[i])) continue; // Si l'ennemi a pas de status on skip
+        if (status.type == Engine::DEAD || _statusSystem.getComponent(_ennemyEntities[i]).type == Engine::DEAD) continue; //Si un des deux est mort on skip
+        if (_hitboxSystem.collides(e, pos, _ennemyEntities[i], _positionSystem.getComponent(_ennemyEntities[i]))) {
+            if (!_statusSystem.Exist(_ennemyEntities[i])) {
+                std::cout << "collision !!!" << std::endl;
+                _statusSystem.setStatus(_ennemyEntities[i], Engine::DEAD);
+                status.type = Engine::DEAD;
+            }
+        }
     }
 }
 
@@ -97,6 +124,7 @@ void ServerGame::updateEntities()
             _statusSystem.destroy(_bulletEntities[i]);
             _entitiesToDestroy.push_back(i);
         }
+        iterateForCollision(_bulletEntities[i], bulletPos, bulletStatus);
     }
     // Update des monstres
     for (std::size_t i = 0; i != _ennemyEntities.size(); i++) {
@@ -137,7 +165,6 @@ void ServerGame::updateEntities()
             //_entitiesToDestroy.push_back(i);
         }
     }
-    destroyEntities();
 }
 
 void ServerGame::destroyEntities()
@@ -202,7 +229,7 @@ void ServerGame::readPackages()
             // Update les endpoint
             updateEndpoints(package->senderIndex, _packages[0].endpoint);
 
-            std::cout << "[" << _gameId << "] Receive POSITION_PACKAGE from: " << _packages[0].endpoint.address() << ":" << _packages[0].endpoint.port() << std::endl;
+            //std::cout << "[" << _gameId << "] Receive POSITION_PACKAGE from: " << _packages[0].endpoint.address() << ":" << _packages[0].endpoint.port() << std::endl;
 
             // Update la position du joueur dans les entités
             auto playerEntity = _players.find(package->senderIndex);
@@ -213,7 +240,7 @@ void ServerGame::readPackages()
             }
             boost::system::error_code error;
             for (int i = 0; i != _tcpPlayers.size(); i++) {
-                std::cout << "Send position package SenderIndex: " << package->senderIndex << std::endl;
+                //std::cout << "Send position package SenderIndex: " << package->senderIndex << std::endl;
                 auto endpoint = _playersEndpoints.find(i);
                 if (endpoint != _playersEndpoints.end())
                     _udpServer.send_to(boost::asio::buffer(reinterpret_cast<char *>(package), sizeof(position_t)), endpoint->second, 0, error);
@@ -236,7 +263,7 @@ void ServerGame::readPackages()
             _hitboxSystem.create(bullet);
             _statusSystem.create(bullet);
             // Les initialiser
-            _hitboxSystem.setHitbox(bullet, 32, 32, Engine::HitboxType::BULLET);
+            _hitboxSystem.setHitbox(bullet, 64, 64, Engine::HitboxType::BULLET);
             _velocitySystem.setVelocity(bullet, 20, 0);
             _positionSystem.setPosition(bullet, package->pos.x + 10, package->pos.y);
             _statusSystem.setStatus(bullet, Engine::ALIVE);

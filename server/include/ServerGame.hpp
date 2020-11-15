@@ -82,6 +82,8 @@ class ServerGame {
         void spawnMonsters();
         void checkCollisions();
 
+        void iterateForCollision(Entity e, Engine::Position &pos, Engine::Status &status);
+
         void destroyEntities();
 
         /** Updates player sockets in the game.
