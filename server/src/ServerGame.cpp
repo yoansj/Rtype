@@ -51,22 +51,27 @@ void ServerGame::checkCollisions()
 
 void ServerGame::spawnMonsters()
 {
-    if (monstersClock.duration() >= 5 * 1000) {
-        //monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_monsterLoaderSystem.getFactory(0));
-        //auto frog = frogFactory(_entityManager, _positionSystem, _velocitySystem, _hitboxSystem, _statusSystem);
-        auto frog = _entityManager.create();
-        std::cout << "Spawn monster ENTITY: " << frog << std::endl;
-        _positionSystem.create(frog);
-        _velocitySystem.create(frog);
-        _hitboxSystem.create(frog);
-        _statusSystem.create(frog);
+    if (monstersClock.duration() >= 3,5 * 1000) {
+        if (std::rand() % 1 + 2 == 1) {
+            monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_monsterLoaderSystem.getFactory(0));
+            auto frog = frogFactory(_entityManager, _positionSystem, _velocitySystem, _hitboxSystem, _statusSystem);
+            std::cout << "Spawn monster ENTITY: " << frog << std::endl;
 
-        _positionSystem.setPosition(frog, std::rand() % 2000 + 1900,  std::rand() % 900 + 100);
-        _velocitySystem.setVelocity(frog, -10, 0);
-        _hitboxSystem.setHitbox(frog, 70, 30, Engine::HitboxType::MONSTER);
-        _statusSystem.setStatus(frog, Engine::ALIVE);
-        _ennemyEntities.push_back(frog);
-        monstersClock.reset();
+            _positionSystem.setPosition(frog, std::rand() % 2000 + 1900,  std::rand() % 900 + 100);
+            _monstersFilepath.insert({frog, _monsterLoaderSystem.getFilepath(0)});
+            _ennemyEntities.push_back(frog);
+            monstersClock.reset();
+        }
+        if (std::rand() % 1 + 2 == 2) {
+            monsterGenerator frogFactory = reinterpret_cast<monsterGenerator>(_monsterLoaderSystem.getFactory(1));
+            auto frog = frogFactory(_entityManager, _positionSystem, _velocitySystem, _hitboxSystem, _statusSystem);
+            std::cout << "Spawn monster ENTITY: " << frog << std::endl;
+
+            _positionSystem.setPosition(frog, std::rand() % 2000 + 1900,  std::rand() % 900 + 100);
+            _monstersFilepath.insert({frog, _monsterLoaderSystem.getFilepath(1)});
+            _ennemyEntities.push_back(frog);
+            monstersClock.reset();
+        }
     }
 }
 
@@ -94,6 +99,7 @@ void ServerGame::updateEntities()
         auto &bulletPos = _positionSystem.getComponent(_bulletEntities[i]);
         auto &bulletVel = _velocitySystem.getComponent(_bulletEntities[i]);
         auto &bulletStatus = _statusSystem.getComponent(_bulletEntities[i]);
+        auto &bulletHitbox = _hitboxSystem.getComponent(_bulletEntities[i]);
 
         bulletPos.x += bulletVel.x;
         bulletPos.y += bulletVel.y;
@@ -106,7 +112,7 @@ void ServerGame::updateEntities()
         shootEntity_t package = {
             SHOOT_ENTITY_PACKAGE,
             bulletPos,
-            _hitboxSystem.getComponent(_bulletEntities[i]),
+            bulletHitbox,
             bulletStatus,
             _bulletEntities[i]
         };
@@ -142,9 +148,13 @@ void ServerGame::updateEntities()
             monsterPos,
             monsterStatus,
             _ennemyEntities[i],
-            //_monsterLoaderSystem.getFilepath(0)[0]
-            "../client/assets/monster.png"
+            ""
         };
+
+        auto fp = _monstersFilepath.find(_ennemyEntities[i]);
+        if (fp != _monstersFilepath.end()) {
+            std::memcpy(&package.filepath[0], &fp->second[0], fp->second.size());
+        }
 
         boost::system::error_code error;
         for (int i = 0; i != _tcpPlayers.size(); i++) {
@@ -158,6 +168,7 @@ void ServerGame::updateEntities()
             _hitboxSystem.destroy(_ennemyEntities[i]);
             _statusSystem.destroy(_ennemyEntities[i]);
             _ennemiesToDestroy.push_back(i);
+            _monstersFilepath.erase(_monstersFilepath.find(_ennemyEntities[i]));
             std::cout << "ERASED MONSTER : " << _ennemyEntities[i] << std::endl;
         }
     }
@@ -195,9 +206,10 @@ void ServerGame::startGame()
         }
     }*/
 
-    /*_monsterLoaderSystem.load({
-        "libs/libfrog.so"
-    });*/
+    _monsterLoaderSystem.load({
+        "./build/lib/libfrog.so",
+        "./build/lib/libdog.so",
+    });
 
     for (std::size_t i = 0; i != _tcpPlayers.size(); i += 1) {
         std::cout << "[" << _gameId << "] Sending start package " << std::endl;

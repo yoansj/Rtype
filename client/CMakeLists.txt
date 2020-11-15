@@ -5,7 +5,6 @@ add_definitions("-fPIC")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/")
 set(RUNTIME_OUTPUT_DIRECTORY build)
 set(CMAKE_CXX_STANDARD 20)
-set(MONSTERS_DIR "${PROJECT_SOURCE_DIR}/client/monsters")
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
@@ -39,6 +38,3 @@ include_directories(
 add_compile_definitions(ROOT_PATH="${PROJECT_SOURCE_DIR}/")
 add_executable(${PROJECT_NAME} ${SRC})
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
-
-# Frog
-add_library("frog" SHARED ${MONSTERS_DIR}/Frog.cpp)

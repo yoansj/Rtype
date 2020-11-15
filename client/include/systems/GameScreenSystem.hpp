@@ -17,6 +17,7 @@
 #include "VelocitySystem.hpp"
 #include "PositionSystem.hpp"
 #include "ParallaxSystem.hpp"
+#include "SoundSystem.hpp"
 #include "PackagesType.hpp"
 #include "Packages.hpp"
 
@@ -38,8 +39,8 @@ namespace Engine {
              * @param PositionSystem &positionSystem 
              * @param ParallaxSystem &parallaxSystem 
              */
-            GameScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem) :
-            _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _created(false)
+            GameScreenSystem(SpriteSystem &spriteSystem, VelocitySystem &velocitySystem, PositionSystem &positionSystem, ParallaxSystem &parallaxSystem, SoundSystem &soundSystem) :
+            _spriteSystem(spriteSystem), _velocitySystem(velocitySystem), _positionSystem(positionSystem), _parallaxSystem(parallaxSystem), _soundSystem(soundSystem) ,_created(false)
             , _createdAllPlayers(false), shooting(false) {};
             ~GameScreenSystem() = default;
 
@@ -48,7 +49,7 @@ namespace Engine {
              * 
              * @param std::array<Entity, 2> parallax 
              */
-            void createSprites(std::array<Entity, 2> parallax);
+            void createSprites(std::array<Entity, 2> parallax, std::array<Entity, 2> sounds);
 
             /**
              * @brief Destroy a Sprites Entity
@@ -142,12 +143,14 @@ namespace Engine {
             bool _created;
             std::vector<Entity> _playerEntities;
             bool _createdAllPlayers;
+            // std::vector<Entity> _soundEntities;
 
             // Systems
             SpriteSystem &_spriteSystem;
             VelocitySystem &_velocitySystem;
             PositionSystem &_positionSystem;
             ParallaxSystem &_parallaxSystem;
+            SoundSystem &_soundSystem;
 
             // Shortcut functions
             std::function<std::size_t()> _getPlayerId;
