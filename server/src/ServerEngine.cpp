@@ -77,7 +77,7 @@ void ServerEngine::receiveUdpPackages()
     // Recevoir un paquet position
     if (code == POSITION_PACKAGE) {
         position_t *package = reinterpret_cast<position_t *>(buffer.data());
-        std::cout << "Package sender :" << package->senderIndex << endpoint.address() << ":" << endpoint.port() << std::endl;
+        //std::cout << "[POSITION_PACKAGE] Package sender :" << package->senderIndex << endpoint.address() << ":" << endpoint.port() << std::endl;
         auto game = _games.find(package->gameId);
         if (game != _games.end()) {
             game->second->addPackage({POSITION_PACKAGE, package, endpoint});
@@ -86,7 +86,7 @@ void ServerEngine::receiveUdpPackages()
     // Recevoir un paquet shoo
     if (code == SHOOT_PACKAGE) {
         shoot_t *package = reinterpret_cast<shoot_t *>(buffer.data());
-        std::cout << "Package sender :" << package->senderIndex << endpoint.address() << ":" << endpoint.port() << std::endl;
+        //std::cout << "[SHOOT_PACKAGE] Package sender : " << package->senderIndex << " " << endpoint.address() << ":" << endpoint.port() << std::endl;
         auto game = _games.find(package->gameId);
         if (game != _games.end()) {
             game->second->addPackage({SHOOT_PACKAGE, package, endpoint});

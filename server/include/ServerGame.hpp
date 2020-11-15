@@ -82,6 +82,8 @@ class ServerGame {
         void spawnMonsters();
         void checkCollisions();
 
+        void iterateForCollision(Entity e, Engine::Position &pos, Engine::Status &status);
+
         void destroyEntities();
 
         /** Updates player sockets in the game.
@@ -132,6 +134,7 @@ class ServerGame {
         bool isPlaying;
         std::size_t _gameId;
         std::vector<std::size_t> _entitiesToDestroy;
+        std::vector<std::size_t> _ennemiesToDestroy;
         std::vector<Entity> _bulletEntities;
         std::vector<Entity> _ennemyEntities;
         std::vector<std::string> _libsToLoad;

@@ -38,7 +38,8 @@ namespace Engine {
                 _recipient = "localhost";
                 _port = 7172;
                 _connectedTcp = true;
-                _socketTcp.connect(_recipient, _port);
+                if (_socketTcp.connect(_recipient, _port) != sf::Socket::Done)
+                    throw EngineError("Not connected to server", "Not connected to server");
                 _socketTcp.setBlocking(false);
                 _socketUdp.setBlocking(false);
             };

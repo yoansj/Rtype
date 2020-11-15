@@ -70,8 +70,13 @@ void Engine::NetworkSystem::manageServerEntities(shootEntity_t &bulletPackage, E
     if (bulletEntity != _serverEntities.end()) {
         // Update une entité existante
         auto oldbullet = bulletEntity->second;
-
         positionSystem.setPosition(oldbullet, bulletPackage.pos.x, bulletPackage.pos.y);
+        if (bulletPackage.status.type == DEAD) {
+            positionSystem.destroy(oldbullet);
+            velocitySystem.destroy(oldbullet);
+            spriteSystem.destroy(oldbullet);
+            entityManager.remove(oldbullet);
+        }
     } else {
         // Créer l'entité
         auto newbullet = entityManager.create();
@@ -96,6 +101,12 @@ void Engine::NetworkSystem::manageServerEntities(monsterEntity_t &monsterPackage
         auto oldbullet = mEntity->second;
 
         positionSystem.setPosition(oldbullet, monsterPackage.pos.x, monsterPackage.pos.y);
+        if (monsterPackage.status.type == DEAD) {
+            positionSystem.destroy(oldbullet);
+            velocitySystem.destroy(oldbullet);
+            spriteSystem.destroy(oldbullet);
+            entityManager.remove(oldbullet);
+        }
     } else {
         // Créer l'entité
         auto newMonster = entityManager.create();
