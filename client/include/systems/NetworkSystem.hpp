@@ -34,8 +34,8 @@ namespace Engine {
              * @brief Construct a new Network System object
              * 
              */
-            NetworkSystem() : System() {
-                _recipient = "localhost";
+            NetworkSystem(std::string const &serverIp) : System() {
+                _recipient = serverIp;
                 _port = 7172;
                 _connectedTcp = true;
                 if (_socketTcp.connect(_recipient, _port) != sf::Socket::Done)

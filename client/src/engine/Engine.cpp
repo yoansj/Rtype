@@ -10,7 +10,7 @@
 
 Engine::Engine::Engine(std::string const &serverIp) :
     _window(std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "R-Type")),
-    _renderer(_window), _serverIp(serverIp)
+    _renderer(_window), _serverIp(serverIp), _systems(serverIp)
 {
     _systems.networkSystem.setRecipient(serverIp);
     _systems.networkSystem.setDestroyLobby([this]() {

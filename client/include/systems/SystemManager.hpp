@@ -33,11 +33,11 @@ namespace Engine {
      */
     class SystemManager {
         public:
-            SystemManager() : titleScreen(spriteSystem, velocitySystem, positionSystem),
+            SystemManager(std::string const &ip) : titleScreen(spriteSystem, velocitySystem, positionSystem),
             gameScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem, soundSystem),
             menuScreen(spriteSystem, velocitySystem, positionSystem, parallaxSystem, soundSystem),
             lobbyScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem, networkSystem),
-            joinScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem) {};
+            joinScreen(spriteSystem, velocitySystem,positionSystem, parallaxSystem, textSystem), networkSystem(ip) {};
             ~SystemManager() = default;
 
             PositionSystem positionSystem;
